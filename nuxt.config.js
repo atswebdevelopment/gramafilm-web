@@ -48,6 +48,9 @@ export default {
     '@nuxtjs/eslint-module',
     ['@nuxtjs/pwa', { meta: false }],
     '@nuxtjs/style-resources'
+    // ['@nuxtjs/google-analytics', {
+    //   id: 'UA-22891163-1'
+    // }]
   ],
   /*
   ** Nuxt.js modules
@@ -75,6 +78,12 @@ export default {
       }
     ],
     'nuxt-mq'
+    // ['nuxt-facebook-pixel-module', {
+    //   /* module options */
+    //   track: 'PageView',
+    //   pixelId: '1130929773924122',
+    //   disabled: false
+    // }]
   ],
   markdownit: {
     injected: true
