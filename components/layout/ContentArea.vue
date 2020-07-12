@@ -1,5 +1,5 @@
 <template>
-  <div class="section" :class="{ 'section--overflow': overflow, 'section--fullscreen': fullscreen, 'section--center': center, 'section--bg-orange': background === 'orange' }">
+  <div class="section" :class="{ 'section--nopadding': noPadding, 'section--overflow': overflow, 'section--fullscreen': fullscreen, 'section--center': center, 'section--bg-orange': background === 'orange' }">
     <div class="inner">
       <slot />
     </div>
@@ -11,6 +11,10 @@ export default {
   name: 'ContentArea',
   props: {
     overflow: {
+      type: Boolean,
+      default: false
+    },
+    noPadding: {
       type: Boolean,
       default: false
     },
@@ -48,6 +52,9 @@ export default {
 
   &--fullscreen
     height 100vh
+
+  &--nopadding
+    padding 0
 
   &--center
     display flex

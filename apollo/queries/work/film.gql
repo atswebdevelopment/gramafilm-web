@@ -159,18 +159,64 @@ query Film {
       }
       ... on ComponentModulesVideo {
         id
+        image {
+          url
+          alternativeText
+          caption
+        }
         qvideo {
           id
           title
           src
         }
+        fullscreen
       }
       ... on ComponentModules1X1Textleft {
         id
+        mainimage {
+          url
+          alternativeText
+          caption
+        }
+        mainvideo {
+          id
+          title
+          src
+        }
+        image {
+          url
+          alternativeText
+          caption
+        }
+        qvideo {
+          id
+          title
+          src
+        }
         content
       }
       ... on ComponentModules1X1Textright {
         id
+        mainimage {
+          url
+          alternativeText
+          caption
+        }
+        mainvideo {
+          id
+          title
+          src
+        }
+        image {
+          url
+          alternativeText
+          caption
+        }
+        qvideo {
+          id
+          title
+          src
+        }
         content
       }
     }

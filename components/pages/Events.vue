@@ -22,8 +22,8 @@
           </Counter>
         </Column>
       </ColumnContainer>
-      <Modules :modules="events.modules" />
     </ContentArea>
+    <Modules :modules="events.modules" />
     <GetInTouch footer-links />
     <Banner v-if="design.image" :background="design.image.url" hide-overflow black>
       <h1>Design</h1>

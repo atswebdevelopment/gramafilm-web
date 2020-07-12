@@ -22,13 +22,13 @@
           </template>
           <template v-else>
             <Column v-if="!section.reverse">
-              <img v-if="section.media" :src="section.media.url" :alt="section.media.alternativeText">
+              <img v-if="section.media" :src="setResponsive(section.media.url)" :alt="section.media.alternativeText">
             </Column>
             <Column wide>
               <div v-html="section.content" />
             </Column>
             <Column v-if="section.reverse">
-              <img v-if="section.media" :src="section.media.url" :alt="section.media.alternativeText">
+              <img v-if="section.media" :src="setResponsive(section.media.url)" :alt="section.media.alternativeText">
             </Column>
           </template>
         </ColumnContainer>
@@ -104,6 +104,7 @@
 
 <script>
 import fadeIn from '~/helpers/fadeIn'
+import { setResponsive } from '~/helpers/cdn'
 import peopleQuery from '~/apollo/queries/people/people'
 export default {
   components: {
@@ -123,7 +124,8 @@ export default {
   },
   data () {
     return {
-      people: []
+      people: [],
+      setResponsive
     }
   },
   apollo: {

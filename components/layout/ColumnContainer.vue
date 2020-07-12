@@ -30,6 +30,7 @@ export default {
   flex-direction row
   max-width 1440px
   margin 0 auto
+  box-sizing border-box
 
   @media (max-width $bp-sm)
     display block

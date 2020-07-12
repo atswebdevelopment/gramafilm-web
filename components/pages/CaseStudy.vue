@@ -2,13 +2,13 @@
   <div class="case">
     <Banner class="case__banner" :video="caseStudy.banner && caseStudy.banner.mime.includes('video')" :background="caseStudy.banner && caseStudy.banner.url">
       <h1>{{ caseStudy.title }}</h1>
-      <div class="banner__item banner__item--5">
+      <div v-if="caseStudy.image" class="banner__item banner__item--5">
         <div class="banner__media">
-          <div class="banner__image" style="background-image:url(/landscape.png)" />
+          <div class="banner__image" :style="`background-image:url(${caseStudy.image.url})`" />
         </div>
       </div>
     </Banner>
-    <ContentArea overflow>
+    <ContentArea>
       <p class="large">
         {{ caseStudy.introduction }}
       </p>
@@ -26,57 +26,129 @@
           <div v-html="caseStudy.content" />
         </Column>
       </ColumnContainer>
-      <div v-if="caseStudy.modules" class="casestudy">
-        <div v-for="(section, index) in caseStudy.modules" :key="`section-${index}`" class="fade fadeIn">
-          <div v-if="section.__typename === 'ComponentModulesVideo'" class="casestudy__module casestudy__module--1">
-            <ColumnContainer>
-              <Column>
+    </ContentArea>
+    <div v-if="caseStudy.modules" class="casestudy">
+      <div v-for="(section, index) in caseStudy.modules" :key="`section-${index}`" class="fade fadeIn">
+        <template v-if="section.__typename === 'ComponentModulesVideo'">
+          <div v-if="section.fullscreen" class="casestudy__item casestudy__item--3">
+            <div class="casestudy__media">
+              <img v-if="section.image" :src="setResponsive(section.image.url)" :alt="section.image.alternativeText">
+              <Video v-else-if="section.qvideo" :video="section.qvideo" />
+            </div>
+          </div>
+          <ColumnContainer v-else>
+            <Column>
+              <div class="casestudy__module">
                 <div class="casestudy__item">
                   <div class="casestudy__media">
-                    <img v-if="section.image" :src="section.image.url" :alt="section.image.alternativeText">
+                    <img v-if="section.image" :src="setResponsive(section.image.url)" :alt="section.image.alternativeText">
                     <Video v-else-if="section.qvideo" :video="section.qvideo" />
                   </div>
                 </div>
-              </Column>
-            </ColumnContainer>
-          </div>
-          <div v-else-if="section.__typename === 'ComponentModules1X1'" class="casestudy__module casestudy__module--2">
-            <ColumnContainer>
-              <Column>
+              </div>
+            </Column>
+          </ColumnContainer>
+        </template>
+        <div v-else-if="section.__typename === 'ComponentModules1X1'">
+          <ColumnContainer>
+            <Column>
+              <div class="casestudy__module">
                 <div class="casestudy__item">
                   <div class="casestudy__media">
-                    <img v-if="section.column1image" :src="section.column1image.url" :alt="section.column1image.alternativeText">
+                    <img v-if="section.column1image" :src="setResponsive(section.column1image.url)" :alt="section.column1image.alternativeText">
                     <Video v-else-if="section.column1video" :video="section.column1video" />
                     <div v-html="section.column1content" />
                   </div>
                 </div>
-              </Column>
-              <Column>
+              </div>
+            </Column>
+            <Column>
+              <div class="casestudy__module">
                 <div class="casestudy__item">
                   <div class="casestudy__media">
-                    <img v-if="section.column2image" :src="section.column2image.url" :alt="section.column2image.alternativeText">
+                    <img v-if="section.column2image" :src="setResponsive(section.column2image.url)" :alt="section.column2image.alternativeText">
                     <Video v-else-if="section.column2video" :video="section.column2video" />
                     <div v-html="section.column2content" />
                   </div>
                 </div>
-              </Column>
-            </ColumnContainer>
-          </div>
-          <Quote v-else-if="section.__typename === 'ComponentModulesQuote'" class="casestudy__module casestudy__module--3">
-            <template slot="quote">
-              {{ section.quote }}
-            </template>
-            <template slot="cite">
-              {{ section.citation }}
-            </template>
-          </Quote>
-          <div v-else-if="section.__typename === 'ComponentModulesGallery'" class="casestudy__module casestudy__module--4">
-            <h2>{{ section.title }}</h2>
-            <Slider v-if="section.images" :items="section.images" />
-          </div>
+              </div>
+            </Column>
+          </ColumnContainer>
+        </div>
+        <div v-else-if="section.__typename === 'ComponentModules1X1Textleft'" class="casestudy__module casestudy__module--1">
+          <ColumnContainer center>
+            <Column wide>
+              <div class="casestudy__item">
+                <div v-html="section.content" />
+              </div>
+            </Column>
+            <Column>
+              <div class="casestudy__item">
+                <div class="casestudy__media">
+                  <img v-if="section.image" :src="setResponsive(section.image.url)" :alt="section.image.alternativeText">
+                  <Video v-else-if="section.qvideo" :video="section.qvideo" />
+                </div>
+              </div>
+            </Column>
+          </ColumnContainer>
+          <ColumnContainer center>
+            <Column>
+              <div class="casestudy__item casestudy__item--1">
+                <div class="casestudy__media">
+                  <img v-if="section.mainimage" :src="setResponsive(section.mainimage.url)" :alt="section.mainimage.alternativeText">
+                  <Video v-else-if="section.mainvideo" :video="section.mainvideo" />
+                </div>
+              </div>
+            </Column>
+          </ColumnContainer>
+        </div>
+        <div v-else-if="section.__typename === 'ComponentModules1X1Textright'" class="casestudy__module casestudy__module--1">
+          <ColumnContainer center>
+            <Column wide-w2>
+              <div class="casestudy__item">
+                <div class="casestudy__media">
+                  <img v-if="section.mainimage" :src="setResponsive(section.mainimage.url)" :alt="section.mainimage.alternativeText">
+                  <Video v-else-if="section.mainvideo" :video="section.mainvideo" />
+                </div>
+              </div>
+            </Column>
+            <Column>
+              <div>
+                <div v-html="section.content" />
+              </div>
+            </Column>
+          </ColumnContainer>
+          <ColumnContainer center>
+            <Column>
+              <div class="casestudy__item casestudy__item--2">
+                <div class="casestudy__media">
+                  <img v-if="section.image" :src="setResponsive(section.image.url)" :alt="section.image.alternativeText">
+                  <Video v-else-if="section.qvideo" :video="section.qvideo" />
+                </div>
+              </div>
+            </Column>
+          </ColumnContainer>
+        </div>
+        <Quote v-else-if="section.__typename === 'ComponentModulesQuote'">
+          <template slot="quote">
+            {{ section.quote }}
+          </template>
+          <template slot="cite">
+            {{ section.citation }}
+          </template>
+        </Quote>
+        <div v-else-if="section.__typename === 'ComponentModulesGallery'">
+          <ColumnContainer>
+            <Column>
+              <div class="casestudy__module">
+                <h2>{{ section.title }}</h2>
+                <Slider v-if="section.images" :items="section.images" />
+              </div>
+            </Column>
+          </ColumnContainer>
         </div>
       </div>
-    </ContentArea>
+    </div>
     <GetInTouch footer-links />
     <Banner
       v-if="caseStudy.case_study"
@@ -94,6 +166,7 @@
 </template>
 
 <script>
+import { setResponsive } from '~/helpers/cdn'
 import fadeIn from '~/helpers/fadeIn'
 export default {
   components: {
@@ -110,6 +183,11 @@ export default {
     caseStudy: {
       type: Object,
       default: () => {}
+    }
+  },
+  data () {
+    return {
+      setResponsive
     }
   },
   mounted () {
@@ -146,29 +224,42 @@ export default {
     @media (max-width $bp-sm)
       padding 10vh 0
 
+  &__module
+    width calc(100% + 16px)
+    margin-left -8px
+
+    &--1
+      width 100%
+      margin 0
+
+      .columns:first-child .column
+        padding-bottom 0
+
   &__item
     width 100%
 
     img
       width 100%
 
-    // &--1
-    //   .casestudy__media
-    //     margin 5px 0
+    &--1
+      .casestudy__media
+        margin 0 auto
+        max-width 880px
 
-    // &--3
-    //   .casestudy__media
-    //     margin 0 auto
-    //     max-width 880px
+    &--2
+      .casestudy__media
+        margin-left auto
+        max-width 432px
 
-    // &--4
-    //   .casestudy__media
-    //     margin-left auto
-    //     max-width 432px
-  &__module
-    width calc(100% + 16px)
-    margin-left -8px
+    &--3
+      padding 3vh 0
 
-    .column
-      padding 3vh 8px
+  .columns
+    padding 0 58px
+
+    @media (max-width $bp-sm)
+      padding 0 18px
+
+  .column
+    padding 3vh 8px
 </style>

@@ -3,7 +3,7 @@
     <div v-for="(person, index) in people" :key="index" class="people__person fade fadeIn">
       <div class="people__inner">
         <img v-if="person.image" :src="person.image.url" :alt="person.image.alternativeText">
-        <div v-html="person.content" />
+        <div class="people__text" v-html="person.content" />
       </div>
     </div>
   </div>
@@ -52,4 +52,10 @@ export default {
 
     @media (max-width $bp-sm)
       padding 40px 0 0
+
+  &__text
+    margin 1em 0
+
+    >>> p
+      margin 0
 </style>

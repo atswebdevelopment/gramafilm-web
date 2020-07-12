@@ -22,6 +22,9 @@ export default {
   margin 0 auto
   padding-bottom 20vh
 
+  @media (max-width $bp-sm)
+    padding 6vh 0
+
   blockquote
     font-size 64px
     line-height 66px
@@ -35,13 +38,13 @@ export default {
       margin 0 20px 30px
 
     &:before
-      content '"'
+      content '“'
       position absolute
       left -20px
       top 0
 
     &:after
-      content '"'
+      content '”'
       position absolute
       right -20px
       bottom 0

@@ -33,25 +33,27 @@ export default {
     this.identifier = result
   },
   mounted () {
-    const urls = this.video.src.split('\n')
-    const tempArray = []
-    urls.forEach((e, i) => {
-      const res = e.includes('id=174') ? 720 : e.includes('id=165') ? 540 : e.includes('id=165') ? 360 : 1080
-      tempArray.push({
-        type: 'video/mp4',
-        src: e.replace(/ /g, ''),
-        label: `${res}p`,
-        res
+    if (this.video) {
+      const urls = this.video.src.split('\n')
+      const tempArray = []
+      urls.forEach((e, i) => {
+        const res = e.includes('id=174') ? 720 : e.includes('id=165') ? 540 : e.includes('id=165') ? 360 : 1080
+        tempArray.push({
+          type: 'video/mp4',
+          src: e.replace(/ /g, ''),
+          label: `${res}p`,
+          res
+        })
       })
-    })
-    this.playerOptions.sources = tempArray
-    window.addEventListener('scroll', () => {
-      const video = document.querySelector(`.video-${this.identifier}`)
-      if (video && !this.viewportLoaded) {
-        const elemOffset = video.getBoundingClientRect().top
-        this.viewportLoaded = elemOffset - window.innerHeight < 0
-      }
-    })
+      this.playerOptions.sources = tempArray
+      window.addEventListener('scroll', () => {
+        const video = document.querySelector(`.video-${this.identifier}`)
+        if (video && !this.viewportLoaded) {
+          const elemOffset = video.getBoundingClientRect().top
+          this.viewportLoaded = elemOffset - window.innerHeight < 0
+        }
+      })
+    }
   }
 }
 </script>

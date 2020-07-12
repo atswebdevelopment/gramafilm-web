@@ -12,6 +12,12 @@ export default {
 
 <style lang="stylus" scoped>
 .showcase
+  &__container
+    margin-bottom -20vh
+
+    @media (max-width $bp-sm)
+      margin-bottom -3vh
+
   >>> p
     max-width 528px
 
@@ -24,6 +30,26 @@ export default {
 
     @media (max-width $bp-sm)
       margin 15vh 0 10vh
+
+  >>> &__module
+    width 100%
+
+    &--1 .columns,
+    &--3 .columns
+      padding 0 40px
+
+      @media (max-width $bp-sm)
+        padding 0
+
+    &--6
+      margin -10vh 0 7vh
+
+      @media (max-width $bp-sm)
+        margin 0
+        padding 3vh 0
+
+    .columns
+      padding 0 18px
 
   >>> &__item
     width 100%
