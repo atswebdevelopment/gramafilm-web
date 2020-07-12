@@ -1,0 +1,11 @@
+query People {
+  people {
+    id
+    image {
+      url
+      alternativeText
+      caption
+    }
+    content
+  }
+}

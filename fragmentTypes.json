@@ -1,0 +1,660 @@
+{
+  "__schema": {
+    "types": [
+      {
+        "kind": "UNION",
+        "name": "AboutContentDynamicZone",
+        "possibleTypes": [
+          {
+            "name": "ComponentColumnsOneColumn"
+          },
+          {
+            "name": "ComponentColumnsTwoColumn"
+          },
+          {
+            "name": "ComponentColumnsVideo"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "Morph",
+        "possibleTypes": [
+          {
+            "name": "UsersPermissionsMe"
+          },
+          {
+            "name": "UsersPermissionsMeRole"
+          },
+          {
+            "name": "UsersPermissionsLoginPayload"
+          },
+          {
+            "name": "UserPermissionsPasswordPayload"
+          },
+          {
+            "name": "About"
+          },
+          {
+            "name": "updateAboutPayload"
+          },
+          {
+            "name": "deleteAboutPayload"
+          },
+          {
+            "name": "Article"
+          },
+          {
+            "name": "ArticleConnection"
+          },
+          {
+            "name": "ArticleAggregator"
+          },
+          {
+            "name": "ArticleGroupBy"
+          },
+          {
+            "name": "ArticleConnectionId"
+          },
+          {
+            "name": "ArticleConnectionCreated_at"
+          },
+          {
+            "name": "ArticleConnectionUpdated_at"
+          },
+          {
+            "name": "ArticleConnectionTitle"
+          },
+          {
+            "name": "ArticleConnectionContent"
+          },
+          {
+            "name": "ArticleConnectionImage"
+          },
+          {
+            "name": "ArticleConnectionPublished_at"
+          },
+          {
+            "name": "ArticleConnectionCategory"
+          },
+          {
+            "name": "createArticlePayload"
+          },
+          {
+            "name": "updateArticlePayload"
+          },
+          {
+            "name": "deleteArticlePayload"
+          },
+          {
+            "name": "CaseStudy"
+          },
+          {
+            "name": "CaseStudyConnection"
+          },
+          {
+            "name": "CaseStudyAggregator"
+          },
+          {
+            "name": "CaseStudyGroupBy"
+          },
+          {
+            "name": "CaseStudyConnectionId"
+          },
+          {
+            "name": "CaseStudyConnectionCreated_at"
+          },
+          {
+            "name": "CaseStudyConnectionUpdated_at"
+          },
+          {
+            "name": "CaseStudyConnectionTitle"
+          },
+          {
+            "name": "CaseStudyConnectionIntroduction"
+          },
+          {
+            "name": "CaseStudyConnectionImage"
+          },
+          {
+            "name": "CaseStudyConnectionType"
+          },
+          {
+            "name": "CaseStudyConnectionContent"
+          },
+          {
+            "name": "CaseStudyConnectionWhatwedid"
+          },
+          {
+            "name": "CaseStudyConnectionClient"
+          },
+          {
+            "name": "CaseStudyConnectionCase_study"
+          },
+          {
+            "name": "CaseStudyConnectionBanner"
+          },
+          {
+            "name": "createCaseStudyPayload"
+          },
+          {
+            "name": "updateCaseStudyPayload"
+          },
+          {
+            "name": "deleteCaseStudyPayload"
+          },
+          {
+            "name": "Category"
+          },
+          {
+            "name": "CategoryConnection"
+          },
+          {
+            "name": "CategoryAggregator"
+          },
+          {
+            "name": "CategoryGroupBy"
+          },
+          {
+            "name": "CategoryConnectionId"
+          },
+          {
+            "name": "CategoryConnectionCreated_at"
+          },
+          {
+            "name": "CategoryConnectionUpdated_at"
+          },
+          {
+            "name": "CategoryConnectionName"
+          },
+          {
+            "name": "createCategoryPayload"
+          },
+          {
+            "name": "updateCategoryPayload"
+          },
+          {
+            "name": "deleteCategoryPayload"
+          },
+          {
+            "name": "Contact"
+          },
+          {
+            "name": "updateContactPayload"
+          },
+          {
+            "name": "deleteContactPayload"
+          },
+          {
+            "name": "Design"
+          },
+          {
+            "name": "updateDesignPayload"
+          },
+          {
+            "name": "deleteDesignPayload"
+          },
+          {
+            "name": "Events"
+          },
+          {
+            "name": "updateEventPayload"
+          },
+          {
+            "name": "deleteEventPayload"
+          },
+          {
+            "name": "Film"
+          },
+          {
+            "name": "updateFilmPayload"
+          },
+          {
+            "name": "deleteFilmPayload"
+          },
+          {
+            "name": "Home"
+          },
+          {
+            "name": "updateHomePayload"
+          },
+          {
+            "name": "deleteHomePayload"
+          },
+          {
+            "name": "Menu"
+          },
+          {
+            "name": "updateMenuPayload"
+          },
+          {
+            "name": "deleteMenuPayload"
+          },
+          {
+            "name": "People"
+          },
+          {
+            "name": "PeopleConnection"
+          },
+          {
+            "name": "PeopleAggregator"
+          },
+          {
+            "name": "PeopleGroupBy"
+          },
+          {
+            "name": "PeopleConnectionId"
+          },
+          {
+            "name": "PeopleConnectionCreated_at"
+          },
+          {
+            "name": "PeopleConnectionUpdated_at"
+          },
+          {
+            "name": "PeopleConnectionImage"
+          },
+          {
+            "name": "PeopleConnectionContent"
+          },
+          {
+            "name": "createPersonPayload"
+          },
+          {
+            "name": "updatePersonPayload"
+          },
+          {
+            "name": "deletePersonPayload"
+          },
+          {
+            "name": "PrivateVideos"
+          },
+          {
+            "name": "PrivateVideosConnection"
+          },
+          {
+            "name": "PrivateVideosAggregator"
+          },
+          {
+            "name": "PrivateVideosGroupBy"
+          },
+          {
+            "name": "PrivateVideosConnectionId"
+          },
+          {
+            "name": "PrivateVideosConnectionCreated_at"
+          },
+          {
+            "name": "PrivateVideosConnectionUpdated_at"
+          },
+          {
+            "name": "PrivateVideosConnectionClient"
+          },
+          {
+            "name": "PrivateVideosConnectionVideo"
+          },
+          {
+            "name": "createPrivateVideoPayload"
+          },
+          {
+            "name": "updatePrivateVideoPayload"
+          },
+          {
+            "name": "deletePrivateVideoPayload"
+          },
+          {
+            "name": "Videos"
+          },
+          {
+            "name": "VideosConnection"
+          },
+          {
+            "name": "VideosAggregator"
+          },
+          {
+            "name": "VideosGroupBy"
+          },
+          {
+            "name": "VideosConnectionId"
+          },
+          {
+            "name": "VideosConnectionCreated_at"
+          },
+          {
+            "name": "VideosConnectionUpdated_at"
+          },
+          {
+            "name": "VideosConnectionSrc"
+          },
+          {
+            "name": "VideosConnectionTitle"
+          },
+          {
+            "name": "createVideoPayload"
+          },
+          {
+            "name": "updateVideoPayload"
+          },
+          {
+            "name": "deleteVideoPayload"
+          },
+          {
+            "name": "Work"
+          },
+          {
+            "name": "updateWorkPayload"
+          },
+          {
+            "name": "deleteWorkPayload"
+          },
+          {
+            "name": "UploadFile"
+          },
+          {
+            "name": "UploadFileConnection"
+          },
+          {
+            "name": "UploadFileAggregator"
+          },
+          {
+            "name": "UploadFileAggregatorSum"
+          },
+          {
+            "name": "UploadFileAggregatorAvg"
+          },
+          {
+            "name": "UploadFileAggregatorMin"
+          },
+          {
+            "name": "UploadFileAggregatorMax"
+          },
+          {
+            "name": "UploadFileGroupBy"
+          },
+          {
+            "name": "UploadFileConnectionId"
+          },
+          {
+            "name": "UploadFileConnectionCreated_at"
+          },
+          {
+            "name": "UploadFileConnectionUpdated_at"
+          },
+          {
+            "name": "UploadFileConnectionName"
+          },
+          {
+            "name": "UploadFileConnectionAlternativeText"
+          },
+          {
+            "name": "UploadFileConnectionCaption"
+          },
+          {
+            "name": "UploadFileConnectionWidth"
+          },
+          {
+            "name": "UploadFileConnectionHeight"
+          },
+          {
+            "name": "UploadFileConnectionFormats"
+          },
+          {
+            "name": "UploadFileConnectionHash"
+          },
+          {
+            "name": "UploadFileConnectionExt"
+          },
+          {
+            "name": "UploadFileConnectionMime"
+          },
+          {
+            "name": "UploadFileConnectionSize"
+          },
+          {
+            "name": "UploadFileConnectionUrl"
+          },
+          {
+            "name": "UploadFileConnectionPreviewUrl"
+          },
+          {
+            "name": "UploadFileConnectionProvider"
+          },
+          {
+            "name": "UploadFileConnectionProvider_metadata"
+          },
+          {
+            "name": "UsersPermissionsPermission"
+          },
+          {
+            "name": "UsersPermissionsRole"
+          },
+          {
+            "name": "UsersPermissionsRoleConnection"
+          },
+          {
+            "name": "UsersPermissionsRoleAggregator"
+          },
+          {
+            "name": "UsersPermissionsRoleGroupBy"
+          },
+          {
+            "name": "UsersPermissionsRoleConnectionId"
+          },
+          {
+            "name": "UsersPermissionsRoleConnectionName"
+          },
+          {
+            "name": "UsersPermissionsRoleConnectionDescription"
+          },
+          {
+            "name": "UsersPermissionsRoleConnectionType"
+          },
+          {
+            "name": "createRolePayload"
+          },
+          {
+            "name": "updateRolePayload"
+          },
+          {
+            "name": "deleteRolePayload"
+          },
+          {
+            "name": "UsersPermissionsUser"
+          },
+          {
+            "name": "UsersPermissionsUserConnection"
+          },
+          {
+            "name": "UsersPermissionsUserAggregator"
+          },
+          {
+            "name": "UsersPermissionsUserGroupBy"
+          },
+          {
+            "name": "UsersPermissionsUserConnectionId"
+          },
+          {
+            "name": "UsersPermissionsUserConnectionCreated_at"
+          },
+          {
+            "name": "UsersPermissionsUserConnectionUpdated_at"
+          },
+          {
+            "name": "UsersPermissionsUserConnectionUsername"
+          },
+          {
+            "name": "UsersPermissionsUserConnectionEmail"
+          },
+          {
+            "name": "UsersPermissionsUserConnectionProvider"
+          },
+          {
+            "name": "UsersPermissionsUserConnectionConfirmed"
+          },
+          {
+            "name": "UsersPermissionsUserConnectionBlocked"
+          },
+          {
+            "name": "UsersPermissionsUserConnectionRole"
+          },
+          {
+            "name": "createUserPayload"
+          },
+          {
+            "name": "updateUserPayload"
+          },
+          {
+            "name": "deleteUserPayload"
+          },
+          {
+            "name": "ComponentCasestudiesCaseStudies"
+          },
+          {
+            "name": "ComponentColumnsOneColumn"
+          },
+          {
+            "name": "ComponentColumnsTwoColumn"
+          },
+          {
+            "name": "ComponentColumnsVideo"
+          },
+          {
+            "name": "ComponentContentCounter"
+          },
+          {
+            "name": "ComponentContentselectorContentSelector"
+          },
+          {
+            "name": "ComponentMenuNavigation"
+          },
+          {
+            "name": "ComponentModules1X1"
+          },
+          {
+            "name": "ComponentModules1X1Textleft"
+          },
+          {
+            "name": "ComponentModules1X1Textright"
+          },
+          {
+            "name": "ComponentModules1X1X1"
+          },
+          {
+            "name": "ComponentModules1X4"
+          },
+          {
+            "name": "ComponentModules3X1"
+          },
+          {
+            "name": "ComponentModulesGallery"
+          },
+          {
+            "name": "ComponentModulesQuote"
+          },
+          {
+            "name": "ComponentModulesVideo"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "CaseStudyModulesDynamicZone",
+        "possibleTypes": [
+          {
+            "name": "ComponentModules1X1"
+          },
+          {
+            "name": "ComponentModulesVideo"
+          },
+          {
+            "name": "ComponentModulesQuote"
+          },
+          {
+            "name": "ComponentModulesGallery"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "DesignModulesDynamicZone",
+        "possibleTypes": [
+          {
+            "name": "ComponentModules1X4"
+          },
+          {
+            "name": "ComponentModules3X1"
+          },
+          {
+            "name": "ComponentModules1X1X1"
+          },
+          {
+            "name": "ComponentModules1X1Textright"
+          },
+          {
+            "name": "ComponentModulesQuote"
+          },
+          {
+            "name": "ComponentModules1X1Textleft"
+          },
+          {
+            "name": "ComponentModulesVideo"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "EventsModulesDynamicZone",
+        "possibleTypes": [
+          {
+            "name": "ComponentModules1X4"
+          },
+          {
+            "name": "ComponentModules3X1"
+          },
+          {
+            "name": "ComponentModules1X1X1"
+          },
+          {
+            "name": "ComponentModules1X1Textright"
+          },
+          {
+            "name": "ComponentModulesQuote"
+          },
+          {
+            "name": "ComponentModules1X1Textleft"
+          },
+          {
+            "name": "ComponentModulesVideo"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "FilmModulesDynamicZone",
+        "possibleTypes": [
+          {
+            "name": "ComponentModules1X4"
+          },
+          {
+            "name": "ComponentModules3X1"
+          },
+          {
+            "name": "ComponentModules1X1X1"
+          },
+          {
+            "name": "ComponentModules1X1Textright"
+          },
+          {
+            "name": "ComponentModulesQuote"
+          },
+          {
+            "name": "ComponentModules1X1Textleft"
+          },
+          {
+            "name": "ComponentModulesVideo"
+          }
+        ]
+      }
+    ]
+  }
+}

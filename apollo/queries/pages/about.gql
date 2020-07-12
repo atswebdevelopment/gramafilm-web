@@ -1,0 +1,43 @@
+query About {
+  about {
+    id
+    title
+    introduction
+    content {
+    	... on ComponentColumnsOneColumn {
+        id
+        content
+      }
+    	... on ComponentColumnsTwoColumn {
+        id
+        content
+        media {
+          url
+          alternativeText
+          caption
+        }
+        reverse
+      }
+    	... on ComponentColumnsVideo {
+        id
+        qvideo {
+          id
+          title
+          src
+        }
+      }
+    }
+    expertise {
+      ... on ComponentContentselectorContentSelector {
+        id
+        title
+        content
+        image {
+          url
+          alternativeText
+          caption
+        }
+      }
+    }
+  }
+}

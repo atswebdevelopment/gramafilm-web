@@ -1,0 +1,21 @@
+query Work {
+  work {
+    id
+    title
+    casestudies {
+      ... on ComponentCasestudiesCaseStudies {
+        id
+        case_study {
+          id
+          title
+          type
+          image {
+            url
+            alternativeText
+            caption
+          }
+        }
+      }
+    }
+  }
+}

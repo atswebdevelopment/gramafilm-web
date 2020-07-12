@@ -1,0 +1,37 @@
+query Home {
+  home {
+    id
+    subtitle
+    images {
+      id
+      url
+      alternativeText
+      caption
+    }
+    introvideo {
+      id
+      title
+      src
+    }
+    partners {
+      ... on ComponentContentselectorContentSelector {
+        id
+        title
+        content
+        image {
+          url
+          alternativeText
+          caption
+        }
+      }
+    }
+    counters {
+      ... on ComponentContentCounter {
+        id
+        number
+        unit
+        text
+      }
+    }
+  }
+}

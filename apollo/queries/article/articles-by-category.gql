@@ -1,0 +1,20 @@
+query ArticlesByCategory ($id: ID!) {
+  category (id: $id) {
+    name
+    articles {
+      id
+      title
+      content
+      image {
+        url
+        alternativeText
+        caption
+      }
+      category {
+        id
+        name
+      }
+      published_at
+    }
+  }
+}

@@ -1,0 +1,83 @@
+query CaseStudies ($id: ID!) {
+  caseStudy (id: $id) {
+    id
+    title
+    banner {
+      url
+      mime
+    }
+    image {
+      url
+      alternativeText
+      caption
+    }
+    type
+    introduction
+    content
+    client
+    whatwedid
+    case_study {
+      id
+      title
+      banner {
+        url
+        mime
+      }
+    }
+    modules {
+      ... on ComponentModulesVideo {
+        id
+        image {
+          url
+          alternativeText
+          caption
+        }
+        qvideo {
+          id
+          title
+          src
+        }
+      }
+      ... on ComponentModules1X1 {
+        id
+        column1content
+        column1image {
+          url
+          alternativeText
+          caption
+        }
+        column1video {
+          id
+          title
+          src
+        }
+        column2content
+        column2image {
+          url
+          alternativeText
+          caption
+        }
+        column2video {
+          id
+          title
+          src
+        }
+      }
+      ... on ComponentModulesQuote {
+        id
+        quote
+        citation
+      }
+      ... on ComponentModulesGallery {
+        id
+        title
+        images {
+          id
+          url
+          alternativeText
+          caption
+        }
+      }
+    }
+  }
+}

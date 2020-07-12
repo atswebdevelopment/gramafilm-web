@@ -1,0 +1,204 @@
+query Film {
+  film {
+    id
+    image {
+      url
+      alternativeText
+      caption
+    }
+    headerimage1 {
+      url
+      alternativeText
+      caption
+    }
+    headerimage2 {
+      url
+      alternativeText
+      caption
+    }
+    introduction
+    modules {
+      ... on ComponentModules1X4 {
+        id
+        content
+        mainimage {
+          url
+          alternativeText
+          caption
+        }
+        mainvideo {
+          id
+          title
+          src
+        }
+        image1 {
+          url
+          alternativeText
+          caption
+        }
+        video1 {
+          id
+          title
+          src
+        }
+        image2 {
+          url
+          alternativeText
+          caption
+        }
+        video2 {
+          id
+          title
+          src
+        }
+        image3 {
+          url
+          alternativeText
+          caption
+        }
+        video3 {
+          id
+          title
+          src
+        }
+        image4 {
+          url
+          alternativeText
+          caption
+        }
+        video4 {
+          id
+          title
+          src
+        }
+      }
+      ... on ComponentModules3X1 {
+        id
+        content
+        mainimage {
+          url
+          alternativeText
+          caption
+        }
+        mainvideo {
+          id
+          title
+          src
+        }
+        image1 {
+          url
+          alternativeText
+          caption
+        }
+        video1 {
+          id
+          title
+          src
+        }
+        image2 {
+          url
+          alternativeText
+          caption
+        }
+        video2 {
+          id
+          title
+          src
+        }
+        image3 {
+          url
+          alternativeText
+          caption
+        }
+        video3 {
+          id
+          title
+          src
+        }
+      }
+      ... on ComponentModules1X1X1 {
+        id
+        column1content
+        column1image {
+          url
+          alternativeText
+          caption
+        }
+        column1video {
+          id
+          title
+          src
+        }
+        column2content
+        column2image {
+          url
+          alternativeText
+          caption
+        }
+        column2video {
+          id
+          title
+          src
+        }
+        column3content
+        column3image {
+          url
+          alternativeText
+          caption
+        }
+        column3video {
+          id
+          title
+          src
+        }
+      }
+      ... on ComponentModulesQuote {
+        id
+        quote
+        citation
+      }
+      ... on ComponentModulesVideo {
+        id
+        qvideo {
+          id
+          title
+          src
+        }
+      }
+      ... on ComponentModules1X1Textleft {
+        id
+        content
+      }
+      ... on ComponentModules1X1Textright {
+        id
+        content
+      }
+    }
+    counters {
+      ... on ComponentContentCounter {
+        id
+        number
+        unit
+        text
+      }
+    }
+  }
+  event {
+    id
+    image {
+      url
+      alternativeText
+      caption
+    }
+    headerimage1 {
+      url
+      alternativeText
+      caption
+    }
+    headerimage2 {
+      url
+      alternativeText
+      caption
+    }
+  }
+}

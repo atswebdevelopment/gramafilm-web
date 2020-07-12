@@ -1,0 +1,12 @@
+query Contact {
+  contact {
+    id
+    title
+    introduction
+    address
+    visit
+    telephone
+    email
+    coordinates
+  }
+}
