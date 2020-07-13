@@ -2,16 +2,34 @@
   <div class="intro">
     <!-- <div class="intro" @mousemove="moveBackground"> -->
     <div class="intro__background">
-      <img v-if="home.images[0]" class="intro__image intro__image--image-1" :src="home.images[0].url" :alt="home.images[0].alternativeText" data-rellax-speed="-6">
-      <img v-if="home.images[4]" class="intro__image intro__image--image-5" :src="home.images[4].url" :alt="home.images[4].alternativeText" data-rellax-speed="-3">
-      <img v-if="home.images[5]" class="intro__image intro__image--image-6" :src="home.images[5].url" :alt="home.images[5].alternativeText" data-rellax-speed="6">
+      <img v-if="home.images[0] && !home.images[0].mime.includes('video')" class="intro__image intro__image--image-1" :src="home.images[0].url" :alt="home.images[0].alternativeText" data-rellax-speed="-6">
+      <video v-else-if="home.images[0] && home.images[0].mime.includes('video')" class="intro__image intro__image--image-1" loop muted autoplay>
+        <source :src="home.images[0].url" type="video/mp4">
+      </video>
+      <img v-if="home.images[4] && !home.images[4].mime.includes('video')" class="intro__image intro__image--image-5" :src="home.images[4].url" :alt="home.images[4].alternativeText" data-rellax-speed="-3">
+      <video v-else-if="home.images[4] && home.images[4].mime.includes('video')" class="intro__image intro__image--image-5" loop muted autoplay>
+        <source :src="home.images[4].url" type="video/mp4">
+      </video>
+      <img v-if="home.images[5] && !home.images[5].mime.includes('video')" class="intro__image intro__image--image-6" :src="home.images[5].url" :alt="home.images[5].alternativeText" data-rellax-speed="6">
+      <video v-else-if="home.images[5] && home.images[5].mime.includes('video')" class="intro__image intro__image--image-6" loop muted autoplay>
+        <source :src="home.images[5].url" type="video/mp4">
+      </video>
     </div>
     <div class="intro__background intro__background--2">
-      <img v-if="home.images[1]" class="intro__image intro__image--image-2" :src="home.images[1].url" :alt="home.images[1].alternativeText" data-rellax-speed="3">
-      <img v-if="home.images[3]" class="intro__image intro__image--image-4" :src="home.images[3].url" :alt="home.images[3].alternativeText" data-rellax-speed="1">
+      <img v-if="home.images[1] && !home.images[1].mime.includes('video')" class="intro__image intro__image--image-2" :src="home.images[1].url" :alt="home.images[1].alternativeText" data-rellax-speed="3">
+      <video v-else-if="home.images[1] && home.images[1].mime.includes('video')" class="intro__image intro__image--image-2" loop muted autoplay>
+        <source :src="home.images[1].url" type="video/mp4">
+      </video>
+      <img v-if="home.images[3] && !home.images[3].mime.includes('video')" class="intro__image intro__image--image-4" :src="home.images[3].url" :alt="home.images[3].alternativeText" data-rellax-speed="1">
+      <video v-else-if="home.images[3] && home.images[3].mime.includes('video')" class="intro__image intro__image--image-4" loop muted autoplay>
+        <source :src="home.images[3].url" type="video/mp4">
+      </video>
     </div>
     <div class="intro__background intro__background--3">
-      <img v-if="home.images[2]" class="intro__image intro__image--image-3" :src="home.images[2].url" :alt="home.images[2].alternativeText" data-rellax-speed="-3">
+      <img v-if="home.images[2] && !home.images[2].mime.includes('video')" class="intro__image intro__image--image-3" :src="home.images[2].url" :alt="home.images[2].alternativeText" data-rellax-speed="-3">
+      <video v-else-if="home.images[2] && home.images[2].mime.includes('video')" class="intro__image intro__image--image-3" loop muted autoplay>
+        <source :src="home.images[2].url" type="video/mp4">
+      </video>
     </div>
     <Logo class="intro__logo" color="white" />
     <p class="intro__subtitle">

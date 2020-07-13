@@ -21,7 +21,7 @@ export default {
   },
   apollo: {
     about: {
-      prefetch: true,
+      prefetch: false,
       query: aboutQuery
     }
   }

@@ -18,9 +18,9 @@
         <img src="/about/image-instagram.png" alt="">
         <div class="social__links">
           <div>Follow us</div>
-          <a href="" target="_blank" title="Opens in a new window" class="social__link arrowLink arrowLink--tiny">Instagram</a>
-          <a href="" target="_blank" title="Opens in a new window" class="social__link">Twitter</a>
-          <a href="" target="_blank" title="Opens in a new window" class="social__link">Linked in</a>
+          <a href="" target="_blank" title="Opens in a new window" class="social__link arrowLink arrowLink--hover">Instagram</a>
+          <a href="" target="_blank" title="Opens in a new window" class="social__link arrowLink arrowLink--hover">Twitter</a>
+          <a href="" target="_blank" title="Opens in a new window" class="social__link arrowLink arrowLink--hover">Linked in</a>
         </div>
       </div>
     </Column>

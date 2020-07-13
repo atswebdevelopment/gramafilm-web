@@ -32,14 +32,25 @@ export default {
     }
   },
   mounted () {
-    document.querySelectorAll('.contentSwitcher__tab').forEach((e, i) => {
-      e.onclick = () => {
-        document.querySelector('.contentSwitcher__content--active').classList.remove('contentSwitcher__content--active')
-        document.querySelector('.contentSwitcher__tab--active').classList.remove('contentSwitcher__tab--active')
-        document.querySelectorAll('.contentSwitcher__content')[i].classList.add('contentSwitcher__content--active')
-        document.querySelectorAll('.contentSwitcher__tab')[i].classList.add('contentSwitcher__tab--active')
+    this.ready()
+  },
+  methods: {
+    ready () {
+      if (!document.querySelectorAll('.contentSwitcher__tab').length > 0) {
+        setTimeout(() => {
+          this.ready()
+        }, 100)
+        return
       }
-    })
+      document.querySelectorAll('.contentSwitcher__tab').forEach((e, i) => {
+        e.onclick = () => {
+          document.querySelector('.contentSwitcher__content--active').classList.remove('contentSwitcher__content--active')
+          document.querySelector('.contentSwitcher__tab--active').classList.remove('contentSwitcher__tab--active')
+          document.querySelectorAll('.contentSwitcher__content')[i].classList.add('contentSwitcher__content--active')
+          document.querySelectorAll('.contentSwitcher__tab')[i].classList.add('contentSwitcher__tab--active')
+        }
+      })
+    }
   }
 }
 </script>

@@ -54,7 +54,7 @@ export default {
       if (type) {
         this.filteredWork = this.work.casestudies.filter(caseStudy => caseStudy.case_study.type && caseStudy.case_study.type === type)
       } else {
-        this.filteredWork = []
+        this.filteredWork = this.work.casestudies
       }
       this.type = type
     }

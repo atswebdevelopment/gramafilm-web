@@ -19,7 +19,7 @@ export default {
   },
   apollo: {
     caseStudy: {
-      prefetch: true,
+      prefetch: false,
       query: caseQuery,
       variables () {
         return {

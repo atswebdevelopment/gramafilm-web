@@ -128,6 +128,9 @@ export default {
     &--show
       opacity 1
 
+  >>> .inner
+    max-width 1800px
+
 .menu
   width 36px
   height 14px

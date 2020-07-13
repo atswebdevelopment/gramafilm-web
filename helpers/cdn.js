@@ -9,7 +9,6 @@ const setResponsive = (url) => {
   let size = window.innerWidth < 767 ? 767 : window.innerWidth < 1200 ? 1600 : 3000
   size = `w_${size},c_limit`
   const newPath = `${pathArray[0]}upload/${size}/${pathArray[1].split('/')[1]}`
-  console.log(newPath)
   return newPath
 }
 

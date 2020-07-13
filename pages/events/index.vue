@@ -20,11 +20,11 @@ export default {
   },
   apollo: {
     event: {
-      prefetch: true,
+      prefetch: false,
       query: eventsQuery
     },
     design: {
-      prefetch: true,
+      prefetch: false,
       query: eventsQuery
     }
   }

@@ -160,7 +160,7 @@ export default {
   },
   apollo: {
     work: {
-      prefetch: true,
+      prefetch: false,
       query: workQuery
     }
   },

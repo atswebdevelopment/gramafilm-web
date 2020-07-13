@@ -28,7 +28,7 @@ export default {
   },
   apollo: {
     home: {
-      prefetch: true,
+      prefetch: false,
       query: homeQuery
     }
   },
@@ -57,7 +57,7 @@ export default {
 <style lang="stylus" scoped>
 .page
   padding 0
-  transition 0.4s background-color $ease
+  transition 1.4s background-color $ease
 
   // &:before
   //   background $primary

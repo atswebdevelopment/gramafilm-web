@@ -21,7 +21,7 @@ export default {
   },
   apollo: {
     contact: {
-      prefetch: true,
+      prefetch: false,
       query: contactQuery
     }
   }

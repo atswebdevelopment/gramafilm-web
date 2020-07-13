@@ -20,11 +20,11 @@ export default {
   },
   apollo: {
     film: {
-      prefetch: true,
+      prefetch: false,
       query: filmQuery
     },
     event: {
-      prefetch: true,
+      prefetch: false,
       query: filmQuery
     }
   }

@@ -62,12 +62,15 @@ export default {
   },
   apollo: {
     articles: {
-      prefetch: true,
+      prefetch: false,
       query: articlesQuery
     }
   },
   mounted () {
     fadeIn()
+    window.addEventListener('scroll', () => {
+      document.querySelector('.logo-circle').style.transform = `rotateZ(${window.scrollY / 10}deg)`
+    })
   }
 }
 </script>
@@ -81,6 +84,7 @@ export default {
   bottom -100px
   left 50%
   margin-left 400px
+  transition 0.6s transform $ease
 
   @media (max-width: $bp-sm)
     margin 0

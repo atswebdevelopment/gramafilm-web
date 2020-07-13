@@ -187,10 +187,8 @@ export default {
     overflow hidden
 
     video
-      height 100%
-      width 177.77777778vh
       min-width 100%
-      min-height 56.25vw
+      min-height 100%
       position absolute
       left 50%
       top 50%

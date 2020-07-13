@@ -130,7 +130,7 @@ export default {
   },
   apollo: {
     people: {
-      prefetch: true,
+      prefetch: false,
       query: peopleQuery
     }
   },
@@ -158,7 +158,10 @@ export default {
 
 .image-1
   width 41.667%
-  margin-bottom 95px
+  margin-bottom 140px
+
+  @media (max-width $bp-sm)
+    margin-bottom 90px
 
 .image-2
   width 33.33%

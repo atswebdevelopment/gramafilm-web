@@ -12,7 +12,14 @@
     </div>
     <ContentArea fullscreen center>
       <div class="navigation__links">
-        <nuxt-link v-for="(item, index) in menu.navigation" :key="index" :to="item.route" class="navigation__link navigation__link--home" @click.native="closeMenu">
+        <nuxt-link
+          v-for="(item, index) in menu.navigation"
+          :key="index"
+          :to="item.route"
+          class="navigation__link"
+          :class="{ 'navigation__link--home': item.route === '/' }"
+          @click.native="closeMenu"
+        >
           {{ item.title }}
         </nuxt-link>
       </div>
@@ -51,32 +58,57 @@ export default {
     }
   },
   mounted () {
-    let activeIndex = 0
-    const navigationObj = document.querySelectorAll('.navigation')
-    navigationObj.forEach((navigation, i) => {
-      navigation.querySelectorAll('.navigation__link').forEach((e, i) => {
-        if (e.classList.contains('nuxt-link-active')) {
-          activeIndex = i
-        }
-        navigation.querySelectorAll('.backgrounds__background')[activeIndex].classList.add('backgrounds__background--active')
-        e.onmouseenter = () => {
-          navigation.querySelectorAll('.backgrounds__background--active').forEach((e, i) => {
-            e.classList.remove('backgrounds__background--active')
-            const video = e.querySelector('video')
+    this.ready()
+  },
+  methods: {
+    ready () {
+      if (!document.querySelectorAll('.navigation__link').length > 0) {
+        setTimeout(() => {
+          this.ready()
+        }, 100)
+        return
+      }
+      let activeIndex = 0
+      const navigationObj = document.querySelectorAll('.navigation')
+      navigationObj.forEach((navigation, i) => {
+        navigation.querySelectorAll('.navigation__link').forEach((e, i) => {
+          if (e.classList.contains('nuxt-link-active')) {
+            activeIndex = i
+          }
+          navigation.querySelectorAll('.backgrounds__background')[activeIndex].classList.add('backgrounds__background--active')
+          e.onmouseenter = () => {
+            navigation.querySelectorAll('.backgrounds__background--active').forEach((e, i) => {
+              e.classList.remove('backgrounds__background--active')
+              const video = e.querySelector('video')
+              if (video) {
+                video.pause()
+              }
+            })
+            navigation.querySelectorAll('.backgrounds__background')[i].classList.add('backgrounds__background--active')
+            const video = navigation.querySelector('.backgrounds__background--active video')
             if (video) {
-              video.pause()
+              video.play()
             }
-          })
-          navigation.querySelectorAll('.backgrounds__background')[i].classList.add('backgrounds__background--active')
-          const video = navigation.querySelector('.backgrounds__background--active video')
-          if (video) {
+          }
+        })
+      })
+
+      let videoPlaying = false
+      window.addEventListener('scroll', () => {
+        const elemBottom = document.querySelector('.mainMenu--fixed')
+        if (elemBottom) {
+          const menuActive = window.scrollY + window.innerHeight >= document.body.scrollHeight - window.innerHeight
+          const video = document.querySelector('.mainMenu--fixed .backgrounds__background--active video')
+          if (menuActive && video && !videoPlaying) {
             video.play()
+            videoPlaying = true
+          } else if (!menuActive && video && videoPlaying) {
+            video.pause()
+            videoPlaying = false
           }
         }
       })
-    })
-  },
-  methods: {
+    },
     closeMenu () {
       this.$emit('close-menu')
     }
@@ -162,10 +194,8 @@ export default {
     overflow hidden
 
     video
-      height 100%
-      width 177.77777778vh
       min-width 100%
-      min-height 56.25vw
+      min-height 100%
       position absolute
       left 50%
       top 50%

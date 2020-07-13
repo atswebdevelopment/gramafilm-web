@@ -194,11 +194,19 @@ button
     width 36px
     height 28px
 
-  &--tiny:after
-    transform rotateZ(-45deg)
-    margin-left 10px
-    width 20px
-    height 20px
+  &--hover
+    justify-content left
+
+    &:after
+      opacity 0
+      transform rotateZ(-45deg)
+      margin-left 10px
+      width 20px
+      height 20px
+      transition 0.4s opacity $ease
+
+  &--hover:hover:after
+    opacity 1
 
 .fade
   opacity 1

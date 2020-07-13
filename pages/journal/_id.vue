@@ -28,15 +28,15 @@ export default {
   },
   apollo: {
     categories: {
-      prefetch: true,
+      prefetch: false,
       query: categoriesQuery
     },
     articles: {
-      prefetch: true,
+      prefetch: false,
       query: articlesQuery
     },
     article: {
-      prefetch: true,
+      prefetch: false,
       query: articleQuery,
       variables () {
         return {
