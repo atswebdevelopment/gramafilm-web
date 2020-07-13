@@ -5,10 +5,10 @@
   "author": "Adam Southorn",
   "private": true,
   "scripts": {
-    "dev": "nuxt && graphql-codegen",
-    "build": "nuxt build && graphql-codegen",
-    "start": "nuxt start && graphql-codegen",
-    "generate": "nuxt generate && graphql-codegen",
+    "dev": "nuxt && graphql-codegen-r dotenv/config",
+    "build": "nuxt build && graphql-codegen-r dotenv/config",
+    "start": "nuxt start && graphql-codegen-r dotenv/config",
+    "generate": "nuxt generate && graphql-codegen -r dotenv/config",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "test": "jest"
   },

@@ -17,11 +17,15 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Yarn Install
-      run: |
-        yarn install
-    - name: Run a multi-line script
-      run: |
-        yarn generate
+      run: yarn install
+    - name: Prepare generation
+      run: echo Preparing deployment with linked server at $SCHEMA_PATH
+      env:
+        SCHEMA_PATH: http://18.132.131.54:1337/graphql
+    - name: Generate the site
+      run: yarn generate
+      env:
+        SCHEMA_PATH: http://18.132.131.54:1337/graphql
     - name: Deploy to S3
       uses: jakejarvis/s3-sync-action@master
       with:
