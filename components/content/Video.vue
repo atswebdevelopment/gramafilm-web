@@ -1,6 +1,6 @@
 <template>
   <client-only>
-    <div class="video" :class="`video-${identifier}`">
+    <div class="video" :class="[`video-${identifier}`, fullscreen ? 'video--fullscreen' : '']">
       <div v-if="video && viewportLoaded" v-video-player:myVideoPlayer="playerOptions" class="video-player-box" />
     </div>
   </client-only>
@@ -13,6 +13,10 @@ export default {
     video: {
       type: Object,
       default: () => {}
+    },
+    fullscreen: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -65,8 +69,12 @@ export default {
   position relative
   box-sizing border-box
 
-  video,
-  .video-player-box,
+  @media (max-width $bp-sm)
+    height auto !important
+    padding 56.25% 0 0 0 !important
+
+  >>> video,
+  >>> .video-player-box,
   >>> .video-js,
   >>> iframe
     position absolute
@@ -75,8 +83,31 @@ export default {
     width 100%
     height 100%
 
+    @media (max-width $bp-sm)
+      width 100% !important
+      height 100% !important
+
   >>> .video-js .vjs-big-play-button
     top 50%
     left 50%
     margin -24px 0 0 -45px
+
+  &--fullscreen
+    height 100vh
+    overflow hidden
+    padding 0
+
+    >>> video,
+    >>> .video-player-box,
+    >>> .video-js,
+    >>> iframe
+      width auto
+      height auto
+      min-width 100%
+      min-height 100%
+
+    >>> .video-js .vjs-big-play-button
+      top 50%
+      left 50%
+      margin -24px 0 0 -45px
 </style>

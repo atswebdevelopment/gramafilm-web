@@ -16,6 +16,12 @@
       </video>
     </div>
     <div class="intro__background intro__background--2">
+      <img v-if="home.images[2] && !home.images[2].mime.includes('video')" class="intro__image intro__image--image-3" :src="home.images[2].url" :alt="home.images[2].alternativeText" data-rellax-speed="-3">
+      <video v-else-if="home.images[2] && home.images[2].mime.includes('video')" class="intro__image intro__image--image-3" loop muted autoplay>
+        <source :src="home.images[2].url" type="video/mp4">
+      </video>
+    </div>
+    <div class="intro__background intro__background--3">
       <img v-if="home.images[1] && !home.images[1].mime.includes('video')" class="intro__image intro__image--image-2" :src="home.images[1].url" :alt="home.images[1].alternativeText" data-rellax-speed="3">
       <video v-else-if="home.images[1] && home.images[1].mime.includes('video')" class="intro__image intro__image--image-2" loop muted autoplay>
         <source :src="home.images[1].url" type="video/mp4">
@@ -23,12 +29,6 @@
       <img v-if="home.images[3] && !home.images[3].mime.includes('video')" class="intro__image intro__image--image-4" :src="home.images[3].url" :alt="home.images[3].alternativeText" data-rellax-speed="1">
       <video v-else-if="home.images[3] && home.images[3].mime.includes('video')" class="intro__image intro__image--image-4" loop muted autoplay>
         <source :src="home.images[3].url" type="video/mp4">
-      </video>
-    </div>
-    <div class="intro__background intro__background--3">
-      <img v-if="home.images[2] && !home.images[2].mime.includes('video')" class="intro__image intro__image--image-3" :src="home.images[2].url" :alt="home.images[2].alternativeText" data-rellax-speed="-3">
-      <video v-else-if="home.images[2] && home.images[2].mime.includes('video')" class="intro__image intro__image--image-3" loop muted autoplay>
-        <source :src="home.images[2].url" type="video/mp4">
       </video>
     </div>
     <Logo class="intro__logo" color="white" />
@@ -114,7 +114,7 @@ export default {
     font-size 48px
     line-height 54px
     letter-spacing -1.5px
-    padding-bottom 50vh
+    padding-bottom 75vh
 
     @media (max-width $bp-sm)
       font-size 24px
@@ -157,14 +157,14 @@ export default {
     &--image-1
       left calc(50% - 225px)
       width 450px
-      margin-left -30vw
+      margin-left -329px
 
       @media (max-width $bp-sm)
         left 18px
         margin-left 0
 
     &--image-2
-      margin-left 30vw
+      margin-left 400px
       top 20vh
 
       @media (max-width $bp-sm)
@@ -174,8 +174,8 @@ export default {
         transform-origin 100% 0
 
     &--image-3
-      margin-left -20vw
-      top 50vh
+      margin-left -280px
+      top 74vh
 
       @media (max-width $bp-sm)
         margin 0
@@ -183,8 +183,8 @@ export default {
         top 80vh
 
     &--image-4
-      margin-left -35vw
-      top 75vh
+      margin-left -500px
+      top 85vh
 
       @media (max-width $bp-sm)
         margin 0
@@ -194,8 +194,8 @@ export default {
     &--image-5
       left calc(50% - 272px)
       width 544px
-      margin-left 25vw
-      top 50vh
+      margin-left 395px
+      top 74vh
 
       @media (max-width $bp-sm)
         margin 0

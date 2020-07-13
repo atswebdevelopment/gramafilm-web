@@ -4,7 +4,7 @@
       Gramafilm
     </h1>
     <Introduction :home="home" />
-    <Video v-if="home.introvideo" :video="home.introvideo" />
+    <Video v-if="home.introvideo" :video="home.introvideo" fullscreen />
     <ContentArea overflow>
       <h2>Work</h2>
       <WorkPortfolio home />
@@ -68,9 +68,12 @@ export default {
   },
   mounted () {
     fadeIn()
-    window.addEventListener('scroll', () => {
-      document.querySelector('.logo-circle').style.transform = `rotateZ(${window.scrollY / 10}deg)`
-    })
+    const logoCircle = document.querySelector('.logo-circle')
+    if (logoCircle) {
+      window.addEventListener('scroll', () => {
+        logoCircle.style.transform = `rotateZ(${window.scrollY / 10}deg)`
+      })
+    }
   }
 }
 </script>

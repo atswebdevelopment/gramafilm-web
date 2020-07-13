@@ -33,7 +33,7 @@
           <div v-if="section.fullscreen" class="casestudy__item casestudy__item--3">
             <div class="casestudy__media">
               <img v-if="section.image" :src="setResponsive(section.image.url)" :alt="section.image.alternativeText">
-              <Video v-else-if="section.qvideo" :video="section.qvideo" />
+              <Video v-else-if="section.qvideo" :video="section.qvideo" fullscreen />
             </div>
           </div>
           <ColumnContainer v-else>
