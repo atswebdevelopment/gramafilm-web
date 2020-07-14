@@ -24,6 +24,14 @@ export default {
       prefetch: false,
       query: contactQuery
     }
+  },
+  head () {
+    return {
+      title: (this.contact && this.contact.seotitle) || 'Gramafilm > Contact',
+      meta: [
+        { hid: 'description', name: 'description', content: (this.contact && this.contact.seodescription) || 'Gramafilm produce branded content and films for broadcasters and brands. We&#39;re an independent production company based in London, UK.' }
+      ]
+    }
   }
 }
 </script>

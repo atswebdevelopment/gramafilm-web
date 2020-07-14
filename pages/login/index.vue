@@ -13,6 +13,14 @@ export default {
     ContentArea: () => import('~/components/layout/ContentArea'),
     Login: () => import('~/components/content/Login'),
     FooterLinks: () => import('~/components/content/FooterLinks')
+  },
+  head () {
+    return {
+      title: 'Login to My Account',
+      meta: [
+        { hid: 'description', name: 'description', content: 'Gramafilm produce branded content and films for broadcasters and brands. We&#39;re an independent production company based in London, UK.' }
+      ]
+    }
   }
 }
 </script>

@@ -30,6 +30,14 @@ export default {
       prefetch: false,
       query: articlesQuery
     }
+  },
+  head () {
+    return {
+      title: 'Gramafilm > Journal',
+      meta: [
+        { hid: 'Gramafilm produce branded content and films for broadcasters and brands. We&#39;re an independent production company based in London, UK.' }
+      ]
+    }
   }
 }
 </script>

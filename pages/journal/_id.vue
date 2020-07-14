@@ -44,6 +44,14 @@ export default {
         }
       }
     }
+  },
+  head () {
+    return {
+      title: (this.article && (this.article.seotitle || this.article.title)) || 'Gramafilm',
+      meta: [
+        { hid: 'description', name: 'description', content: (this.article && this.article.seodescription) || 'Gramafilm produce branded content and films for broadcasters and brands. We&#39;re an independent production company based in London, UK.' }
+      ]
+    }
   }
 }
 </script>
