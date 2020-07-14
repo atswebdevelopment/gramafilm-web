@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <Work v-if="work.id" :work="work" />
+    <Work v-if="work && work.id" :work="work" />
     <Loader v-else />
     <GetInTouch footer-links />
   </div>

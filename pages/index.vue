@@ -2,7 +2,7 @@
   <div class="window">
     <div class="window--front">
       <div class="page" :class="{ 'page--orange': partnersInFocus }">
-        <Home v-if="home.id" :home="home" />
+        <Home v-if="home && home.id" :home="home" />
         <GetInTouch />
       </div>
     </div>

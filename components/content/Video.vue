@@ -45,13 +45,13 @@ export default {
         tempArray.push({
           type: 'video/mp4',
           src: e.replace(/ /g, ''),
-          label: `${res}p`,
+          label: res + 'p',
           res
         })
       })
       this.playerOptions.sources = tempArray
       window.addEventListener('scroll', () => {
-        const video = document.querySelector(`.video-${this.identifier}`)
+        const video = document.querySelector('.video-' + this.identifier)
         if (video && !this.viewportLoaded) {
           const elemOffset = video.getBoundingClientRect().top
           this.viewportLoaded = elemOffset - window.innerHeight < 0

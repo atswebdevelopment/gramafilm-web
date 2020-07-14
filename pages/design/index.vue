@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <Design v-if="design.id" :design="design" :film="film" />
+    <Design v-if="design && design.id" :design="design" :film="film" />
     <Loader v-else />
   </div>
 </template>

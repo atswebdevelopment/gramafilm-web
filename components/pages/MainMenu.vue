@@ -1,6 +1,6 @@
 <template>
   <div class="mainMenu" :class="{ 'mainMenu--open': open, 'mainMenu--fixed': fixed }">
-    <Navigation v-if="menu.id" :show="open" :menu="menu" @close-menu="closeMenu" />
+    <Navigation v-if="menu && menu.id" :show="open" :menu="menu" @close-menu="closeMenu" />
   </div>
 </template>
 

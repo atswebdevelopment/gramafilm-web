@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <About v-if="about.id" :about="about" />
+    <About v-if="about && about.id" :about="about" />
     <Loader v-else />
     <GetInTouch footer-links />
   </div>

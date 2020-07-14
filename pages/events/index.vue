@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <Events v-if="event.id" :events="event" :design="design" />
+    <Events v-if="event && event.id" :events="event" :design="design" />
     <Loader v-else />
   </div>
 </template>

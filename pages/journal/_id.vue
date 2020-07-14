@@ -1,8 +1,8 @@
 <template>
   <div class="page">
-    <Article v-if="article.id" :article="article" />
+    <Article v-if="article && article.id" :article="article" />
     <Loader v-else />
-    <Journal v-if="articles.length" :articles="articles" :categories="categories" disable-load-more />
+    <Journal v-if="articles.length && categories.length" :articles="articles" :categories="categories" disable-load-more />
     <Loader v-else />
     <GetInTouch footer-links />
   </div>
