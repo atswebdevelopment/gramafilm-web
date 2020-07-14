@@ -74,20 +74,20 @@ export default {
     new Rellax('.intro__image--image-5', {})
     new Rellax('.intro__image--image-6', {})
   },
-  methods: {
-    moveBackground (e) {
-      const bg = document.querySelector('.intro__background')
-      const bg2 = document.querySelector('.intro__background--2')
-      const bg3 = document.querySelector('.intro__background--3')
-      const centerX = window.innerWidth / 2
-      const centerY = window.innerHeight / 2
-      if (this.isTimeToUpdate()) {
-        bg.style.transform = `translate(${((centerX - e.clientX) / 10)}px,${((centerY - e.clientY) / 10)}px)`
-        bg2.style.transform = `translate(${((centerX - e.clientX) / 5)}px,${((centerY - e.clientY) / 5)}px)`
-        bg3.style.transform = `translate(${((centerX - e.clientX) / 7)}px,${((centerY - e.clientY) / 7)}px)`
-      }
-    }
-  }
+  // methods: {
+  //   moveBackground (e) {
+  //     const bg = document.querySelector('.intro__background')
+  //     const bg2 = document.querySelector('.intro__background--2')
+  //     const bg3 = document.querySelector('.intro__background--3')
+  //     const centerX = window.innerWidth / 2
+  //     const centerY = window.innerHeight / 2
+  //     if (this.isTimeToUpdate()) {
+  //       bg.style.transform = `translate(${((centerX - e.clientX) / 10)}px,${((centerY - e.clientY) / 10)}px)`
+  //       bg2.style.transform = `translate(${((centerX - e.clientX) / 5)}px,${((centerY - e.clientY) / 5)}px)`
+  //       bg3.style.transform = `translate(${((centerX - e.clientX) / 7)}px,${((centerY - e.clientY) / 7)}px)`
+  //     }
+  //   }
+  // }
 }
 </script>
 

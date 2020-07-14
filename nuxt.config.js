@@ -1,5 +1,11 @@
 export default {
   mode: 'universal',
+  target: 'static',
+  publicRuntimeConfig: {
+    baseUrl: 'http://localhost:3000',
+    strapiBaseUri: process.env.NODE_ENV === 'production' ? 'http://18.132.131.54:1337' : 'http://localhost:1337',
+    schemaPath: process.env.NODE_ENV === 'production' ? 'http://18.132.131.54:1337/graphql' : 'http://localhost:1337/graphql'
+  },
   /*
   ** Headers of the page
   */
@@ -121,10 +127,6 @@ export default {
     clientConfigs: {
       default: '~/apollo/config.js'
     }
-  },
-  env: {
-    baseUrl: 'http://localhost:3000',
-    strapiBaseUri: process.env.NODE_ENV === 'production' ? 'http://18.132.131.54:1337' : 'http://localhost:1337',
   },
   pwa: {
     manifest: {
