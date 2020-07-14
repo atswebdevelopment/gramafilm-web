@@ -3,6 +3,7 @@
     <div class="window--front">
       <div class="page" :class="{ 'page--orange': partnersInFocus }">
         <Home v-if="home && home.id" :home="home" />
+        <Loader v-else />
         <GetInTouch />
       </div>
     </div>
@@ -18,7 +19,8 @@ export default {
   components: {
     Home: () => import('~/components/pages/Home'),
     GetInTouch: () => import('~/components/content/GetInTouch'),
-    MainMenu: () => import('~/components/pages/MainMenu')
+    MainMenu: () => import('~/components/pages/MainMenu'),
+    Loader: () => import('~/components/content/Loader')
   },
   data () {
     return {
@@ -50,6 +52,14 @@ export default {
         }
       }
     })
+  },
+  head () {
+    return {
+      title: (this.home && this.home.seotitle) || 'Gramafilm London - Branded Content Video Production Company',
+      meta: [
+        { hid: 'description', name: 'description', content: (this.home && this.home.seodescription) || 'Gramafilm produce some of the world&#39;s most shared branded content, films, technology and experiences for global brands and broadcasters.' }
+      ]
+    }
   }
 }
 </script>
