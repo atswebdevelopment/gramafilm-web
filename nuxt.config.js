@@ -107,6 +107,9 @@ export default {
     gzip: true,
     exclude: ['/secret', '/admin/**']
   },
+  serverMiddleware: [
+    '~/servermiddleware/seo.js'
+  ],
   webfontloader: {
     google: {
       families: ['Catamaran:400,700'] //Loads Lato font with weights 400 and 700
