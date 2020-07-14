@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <CaseStudy v-if="caseStudy.id" :case-study="caseStudy" />
+    <CaseStudy v-if="caseStudy && caseStudy.id" :case-study="caseStudy" />
     <Loader v-else />
   </div>
 </template>

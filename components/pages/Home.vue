@@ -71,7 +71,7 @@ export default {
     const logoCircle = document.querySelector('.logo-circle')
     if (logoCircle) {
       window.addEventListener('scroll', () => {
-        logoCircle.style.transform = `rotateZ(${window.scrollY / 10}deg)`
+        logoCircle.style.transform = 'rotateZ' + (window.scrollY / 10) + 'deg)'
       })
     }
   }

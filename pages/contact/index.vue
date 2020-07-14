@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <Contact v-if="contact.id" :contact="contact" />
+    <Contact v-if="contact && contact.id" :contact="contact" />
     <Loader v-else />
     <GetInTouch no-contact footer-links />
   </div>

@@ -73,7 +73,7 @@ export default {
     new Rellax('.intro__image--image-4', {})
     new Rellax('.intro__image--image-5', {})
     new Rellax('.intro__image--image-6', {})
-  },
+  }
   // methods: {
   //   moveBackground (e) {
   //     const bg = document.querySelector('.intro__background')
