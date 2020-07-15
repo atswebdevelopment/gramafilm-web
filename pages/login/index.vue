@@ -9,6 +9,11 @@
 
 <script>
 export default {
+  middleware ({ store, redirect }) {
+    if (store.state.auth.user.token) {
+      return redirect('/clientarea')
+    }
+  },
   components: {
     ContentArea: () => import('~/components/layout/ContentArea'),
     Login: () => import('~/components/content/Login'),

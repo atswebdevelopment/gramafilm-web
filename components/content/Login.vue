@@ -36,12 +36,13 @@ export default {
       }
       this.$axios
         .post('http://localhost:1337/auth/local', data)
-        .then((response) => {
+        .then(async (response) => {
           // Handle success.
           this.$store.commit('auth/setUser', {
             user: response.data.user,
             token: response.data.jwt
           })
+          await this.$apolloHelpers.onLogin(response.data.jwt)
           this.$nuxt.$router.push({ name: 'clientarea' })
         })
         .catch((error) => {
