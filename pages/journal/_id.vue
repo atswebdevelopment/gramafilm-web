@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import categoriesQuery from '~/apollo/queries/article/categories'
-import articlesQuery from '~/apollo/queries/article/articles'
-import articleQuery from '~/apollo/queries/article/article'
+import categoriesQuery from '~/apollo/queries/article/categories.gql'
+import articlesQuery from '~/apollo/queries/article/articles.gql'
+import articleQuery from '~/apollo/queries/article/article.gql'
 export default {
   components: {
     Article: () => import('~/components/pages/Article'),

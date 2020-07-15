@@ -37,15 +37,12 @@ export default {
 <style lang="stylus" scoped>
 .section
   position relative
-  display inline-block
+  display block
   width 100%
   padding 5vh 0
   box-sizing border-box
   z-index 1
   overflow hidden
-
-  @media (max-width $bp-sm)
-    display block
 
   &--overflow
     overflow visible

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import menuQuery from '~/apollo/queries/pages/menu'
+import menuQuery from '~/apollo/queries/pages/menu.gql'
 export default {
   name: 'MainMenu',
   components: {

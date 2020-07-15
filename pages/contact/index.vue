@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import contactQuery from '~/apollo/queries/pages/contact'
+import contactQuery from '~/apollo/queries/pages/contact.gql'
 export default {
   components: {
     Contact: () => import('~/components/pages/Contact'),

@@ -129,7 +129,7 @@
 </template>
 
 <script>
-import workQuery from '~/apollo/queries/work/work'
+import workQuery from '~/apollo/queries/work/work.gql'
 import fadeIn from '~/helpers/fadeIn'
 export default {
   name: 'WorkPortfolio',
@@ -183,7 +183,7 @@ export default {
   },
   methods: {
     splitWork () {
-      let caseStudies = [...this.caseStudies, ...this.caseStudies, ...this.caseStudies, ...this.caseStudies, ...this.caseStudies, ...this.caseStudies, ...this.caseStudies, ...this.caseStudies]
+      let caseStudies = [...this.caseStudies]
       caseStudies = caseStudies.map(caseStudy => caseStudy.case_study)
       this.workModuleOne = caseStudies.length > 0 ? caseStudies.slice(0, 4) : []
       this.workModuleTwo = caseStudies.length > 4 ? caseStudies.slice(4, 5) : []

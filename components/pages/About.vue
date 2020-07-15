@@ -105,7 +105,7 @@
 <script>
 import fadeIn from '~/helpers/fadeIn'
 import { setResponsive } from '~/helpers/cdn'
-import peopleQuery from '~/apollo/queries/people/people'
+import peopleQuery from '~/apollo/queries/people/people.gql'
 export default {
   components: {
     ContentArea: () => import('~/components/layout/ContentArea'),

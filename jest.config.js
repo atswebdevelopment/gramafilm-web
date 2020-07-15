@@ -4,6 +4,9 @@ module.exports = {
     '^~/(.*)$': '<rootDir>/$1',
     '^vue$': 'vue/dist/vue.common.js'
   },
+  setupFiles: [
+    'dotenv/config'
+  ],
   moduleFileExtensions: [
     'js',
     'vue',
@@ -11,7 +14,8 @@ module.exports = {
   ],
   transform: {
     '^.+\\.js$': 'babel-jest',
-    '.*\\.(vue)$': 'vue-jest'
+    '.*\\.(vue)$': 'vue-jest',
+    '\\.(gql|graphql)$': 'jest-transform-graphql',
   },
   collectCoverage: true,
   collectCoverageFrom: [

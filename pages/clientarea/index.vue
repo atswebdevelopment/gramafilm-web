@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import privateVideosQuery from '~/apollo/queries/private/videos'
+import privateVideosQuery from '~/apollo/queries/private/videos.gql'
 export default {
   middleware ({ app, redirect }) {
     const hasToken = !!app.$apolloHelpers.getToken()

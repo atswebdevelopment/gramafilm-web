@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import articlesQuery from '~/apollo/queries/article/articles'
+import articlesQuery from '~/apollo/queries/article/articles.gql'
 import fadeIn from '~/helpers/fadeIn'
 export default {
   components: {

@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import aboutQuery from '~/apollo/queries/pages/about'
+import aboutQuery from '~/apollo/queries/pages/about.gql'
 export default {
   components: {
     About: () => import('~/components/pages/About'),

@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import articlesByCategoryQuery from '~/apollo/queries/article/articles-by-category'
+import articlesByCategoryQuery from '~/apollo/queries/article/articles-by-category.gql'
 export default {
   components: {
     ContentArea: () => import('~/components/layout/ContentArea'),

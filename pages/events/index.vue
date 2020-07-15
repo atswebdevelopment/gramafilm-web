@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import eventsQuery from '~/apollo/queries/work/events'
+import eventsQuery from '~/apollo/queries/work/events.gql'
 export default {
   components: {
     Events: () => import('~/components/pages/Events'),
