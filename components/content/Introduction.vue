@@ -120,6 +120,7 @@ export default {
       font-size 24px
       line-height 30px
       letter-spacing -1px
+      padding-bottom 45vh
 
   &__about
     font-size 72px
