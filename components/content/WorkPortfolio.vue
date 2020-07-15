@@ -1,6 +1,6 @@
 <template>
   <div class="work" :class="{'work--home': home}">
-    <div v-if="work.length">
+    <div v-if="caseStudies.length">
       <div v-if="workModuleOne.length" class="work__module work__module--1" :class="{ 'work__module--filtering': filtering }">
         <div
           v-for="(caseStudy, index) in workModuleOne"
