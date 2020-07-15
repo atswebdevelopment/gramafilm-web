@@ -18,6 +18,8 @@ jobs:
       run: yarn install
     - name: Generate the site
       run: yarn generate
+    - name: Run tests
+      run: yarn test
       env:
         SCHEMA_PATH: ${{ secrets.SCHEMA_PATH_PROD }}
     - name: Deploy to S3

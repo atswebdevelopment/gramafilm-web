@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import categoriesQuery from '~/apollo/queries/article/categories'
-import articlesQuery from '~/apollo/queries/article/articles'
+import categoriesQuery from '~/apollo/queries/article/categories.gql'
+import articlesQuery from '~/apollo/queries/article/articles.gql'
 export default {
   components: {
     Journal: () => import('~/components/pages/Journal'),

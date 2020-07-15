@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import homeQuery from '~/apollo/queries/pages/home'
+import homeQuery from '~/apollo/queries/pages/home.gql'
 export default {
   layout: 'home',
   transition: 'page',

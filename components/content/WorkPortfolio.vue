@@ -129,7 +129,7 @@
 </template>
 
 <script>
-import workQuery from '~/apollo/queries/work/work'
+import workQuery from '~/apollo/queries/work/work.gql'
 import fadeIn from '~/helpers/fadeIn'
 export default {
   name: 'WorkPortfolio',

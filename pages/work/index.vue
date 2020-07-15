@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import workQuery from '~/apollo/queries/work/work'
+import workQuery from '~/apollo/queries/work/work.gql'
 export default {
   components: {
     Work: () => import('~/components/pages/Work'),

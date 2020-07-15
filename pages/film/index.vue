@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import filmQuery from '~/apollo/queries/work/film'
+import filmQuery from '~/apollo/queries/work/film.gql'
 export default {
   components: {
     Film: () => import('~/components/pages/Film'),

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import designQuery from '~/apollo/queries/work/design'
+import designQuery from '~/apollo/queries/work/design.gql'
 export default {
   components: {
     Design: () => import('~/components/pages/Design'),

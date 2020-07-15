@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import caseQuery from '~/apollo/queries/case/case'
+import caseQuery from '~/apollo/queries/case/case.gql'
 export default {
   components: {
     CaseStudy: () => import('~/components/pages/CaseStudy'),

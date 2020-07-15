@@ -35,7 +35,6 @@
               </div>
             </form>
           </div>
-          <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js" />
           <!--End mc_embed_signup-->
         </div>
       </div>
@@ -60,6 +59,11 @@ export default {
   components: {
     ColumnContainer: () => import('~/components/layout/ColumnContainer'),
     Column: () => import('~/components/layout/Column')
+  },
+  mounted () {
+    const validateScript = document.createElement('script')
+    validateScript.setAttribute('src', '//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js')
+    document.head.appendChild(validateScript)
   }
 }
 </script>
