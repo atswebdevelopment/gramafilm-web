@@ -1,0 +1,10 @@
+query PrivateVideos {
+  privateVideos {
+    id
+    title
+    src
+    created_at
+    clientname
+    content
+  }
+}

@@ -37,7 +37,17 @@ export default {
     this.identifier = result
   },
   mounted () {
-    if (this.video) {
+    this.ready()
+  },
+  methods: {
+    ready () {
+      if (!document.querySelector('.video-' + this.identifier)) {
+        setTimeout(() => {
+          this.ready()
+        }, 100)
+        return
+      }
+
       const urls = this.video.src.split('\n')
       const tempArray = []
       urls.forEach((e, i) => {
@@ -51,12 +61,16 @@ export default {
       })
       this.playerOptions.sources = tempArray
       window.addEventListener('scroll', () => {
-        const video = document.querySelector('.video-' + this.identifier)
-        if (video && !this.viewportLoaded) {
-          const elemOffset = video.getBoundingClientRect().top
-          this.viewportLoaded = elemOffset - window.innerHeight < 0
-        }
+        this.loadVideo()
       })
+      this.loadVideo()
+    },
+    loadVideo () {
+      const video = document.querySelector('.video-' + this.identifier)
+      if (video && !this.viewportLoaded) {
+        const elemOffset = video.getBoundingClientRect().top
+        this.viewportLoaded = elemOffset - window.innerHeight < 0
+      }
     }
   }
 }

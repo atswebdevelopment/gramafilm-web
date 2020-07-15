@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <Journal v-if="articles.length" :articles="articles" :categories="categories" />
+    <Journal v-if="articles && articles.length" :articles="articles" :categories="categories" />
     <Loader v-else />
     <GetInTouch footer-links />
   </div>
