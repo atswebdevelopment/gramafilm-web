@@ -15,7 +15,7 @@
     </Column>
     <Column>
       <div class="social">
-        <img src="/about/image-instagram.png" alt="">
+        <img src="/images/image-instagram.png" alt="">
         <div class="social__links">
           <div>Follow us</div>
           <a href="" target="_blank" title="Opens in a new window" class="social__link arrowLink arrowLink--hover">Instagram</a>
