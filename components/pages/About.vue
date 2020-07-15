@@ -2,8 +2,8 @@
   <div class="about">
     <ContentArea>
       <h1>{{ about.title }}</h1>
-      <img class="image-1 fade fadeIn" src="/about/about-showcase-1.png" alt="">
-      <img class="image-2 fade fadeIn" src="/about/about-showcase-2.png" alt="">
+      <img class="image-1 fade fadeIn" src="/images/about-showcase-1.png" alt="">
+      <img class="image-2 fade fadeIn" src="/images/about-showcase-2.png" alt="">
       <h3>About us</h3>
       <p class="large">
         {{ about.introduction }}
@@ -58,37 +58,37 @@
       <h3>Our clients</h3>
       <ColumnContainer no-padding center class="fade fadeIn">
         <Column>
-          <img src="/about/logo-google.png" alt="">
+          <img src="/images/logo-google.png" alt="">
         </Column>
         <Column>
-          <img src="/about/logo-johnlewis.png" alt="">
+          <img src="/images/logo-intel.png" alt="">
         </Column>
         <Column>
-          <img src="/about/logo-google.png" alt="">
+          <img src="/images/logo-microsoft.png" alt="">
         </Column>
         <Column>
-          <img src="/about/logo-google.png" alt="">
+          <img src="/images/logo-jeep.png" alt="">
         </Column>
       </ColumnContainer>
       <ColumnContainer no-padding center class="fade fadeIn">
         <Column>
-          <img src="/about/logo-google.png" alt="">
+          <img src="/images/logo-bbc.png" alt="">
         </Column>
         <Column>
-          <img src="/about/logo-google.png" alt="">
+          <img src="/images/logo-johnlewis.png" alt="">
         </Column>
         <Column>
-          <img src="/about/logo-johnlewis.png" alt="">
+          <img src="/images/logo-c4.png" alt="">
         </Column>
         <Column>
-          <img src="/about/logo-johnlewis.png" alt="">
+          <img src="/images/logo-samsung.png" alt="">
         </Column>
       </ColumnContainer>
     </ContentArea>
     <ContentArea>
       <h3>Awards</h3>
       <div class="awards fade fadeIn">
-        <img src="/about/logo-webby.png" alt="">
+        <img src="/images/logo-webby.png" alt="">
       </div>
     </ContentArea>
     <ContentArea>
