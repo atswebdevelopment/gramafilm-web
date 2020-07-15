@@ -35,7 +35,7 @@ export default {
         password: this.password
       }
       this.$axios
-        .post('http://localhost:1337/auth/local', data)
+        .post(this.$config.strapiBaseUri + '/auth/local', data)
         .then(async (response) => {
           // Handle success.
           this.$store.commit('auth/setUser', {
