@@ -6,10 +6,37 @@
           Sign up to our newsletter
         </p>
         <div class="form">
-          <div class="form__field">
-            <input id="email" type="email" name="email" placeholder="Email address">
+          <!-- Begin Mailchimp Signup Form -->
+          <div id="mc_embed_signup">
+            <form
+              id="mc-embedded-subscribe-form"
+              action="https://gramafilm.us2.list-manage.com/subscribe/post?u=b83507b88fd01b906b5675a41&amp;id=fe5b071194"
+              method="post"
+              name="mc-embedded-subscribe-form"
+              class="validate"
+              target="_blank"
+              novalidate
+            >
+              <div id="mc_embed_signup_scroll">
+                <div class="form__field mc-field-group">
+                  <input id="mce-EMAIL" type="email" name="EMAIL" class="required email" placeholder="Email address">
+                </div>
+                <div id="mce-responses" class="clear">
+                  <div id="mce-error-response" class="response" style="display:none" />
+                  <div id="mce-success-response" class="response" style="display:none" />
+                </div>
+                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                  <input type="text" name="b_b83507b88fd01b906b5675a41_fe5b071194" tabindex="-1" value="">
+                </div>
+                <div class="clear">
+                  <button id="mc-embedded-subscribe" name="subscribe" type="submit" class="button">Sign up</button>
+                </div>
+              </div>
+            </form>
           </div>
-          <button>Sign up</button>
+          <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js" />
+          <!--End mc_embed_signup-->
         </div>
       </div>
     </Column>
