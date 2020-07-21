@@ -25,7 +25,13 @@
       <Modules :modules="design.modules" />
     </ContentArea>
     <GetInTouch footer-links />
-    <Banner v-if="film.image" :background="film.image.url" class="banner--bottom" hide-overflow>
+    <Banner
+      v-if="film.image"
+      class="clickable"
+      :background="film.image.url"
+      hide-overflow
+      @click.native="$nuxt.$router.push({ name: 'film' })"
+    >
       <h1>Film</h1>
       <div v-if="film.headerimage1" class="banner__item banner__item--2">
         <div class="banner__media">

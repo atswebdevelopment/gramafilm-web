@@ -113,6 +113,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.journal
+  background $white
+
 .load-more
   text-align center
 

@@ -3,7 +3,9 @@
     <h1 class="hidden">
       Gramafilm
     </h1>
-    <Introduction :home="home" />
+    <div class="intro-container">
+      <Introduction :home="home" />
+    </div>
     <Video v-if="home.introvideo" :video="home.introvideo" fullscreen />
     <ContentArea overflow>
       <h2>Work</h2>
@@ -30,7 +32,7 @@
         </template>
       </ContentSwitcher>
     </ContentArea>
-    <ContentArea>
+    <ContentArea class="journal">
       <h2>Journal</h2>
     </ContentArea>
     <Slider v-if="articles.length" :items="articles" />
@@ -71,7 +73,7 @@ export default {
     window.addEventListener('scroll', () => {
       const logoCircle = document.querySelector('.logo-circle')
       if (logoCircle) {
-        logoCircle.style.transform = 'rotateZ(' + (window.scrollY / 10) + 'deg)'
+        logoCircle.style.transform = 'rotateZ(' + (window.scrollY / 4) + 'deg)'
       }
     })
   }
@@ -82,13 +84,21 @@ export default {
 .home
   overflow hidden
 
+.intro-container
+  min-height 100vh
+  background $primary
+
 .logo-circle
   position absolute
-  bottom -100px
+  bottom -30px
   left 50%
   margin-left 400px
-  transition 0.6s transform $ease
+  transition 2s transform $ease
 
   @media (max-width: $bp-sm)
     margin 0
+    bottom -100px
+
+.journal
+  padding 4vh 0
 </style>

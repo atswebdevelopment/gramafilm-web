@@ -20,9 +20,11 @@ query Home {
         title
         content
         image {
+          id
           url
           alternativeText
           caption
+          mime
         }
       }
     }

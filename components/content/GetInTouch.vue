@@ -6,17 +6,17 @@
         <div class="text-swap">
           <div class="green">
             <nuxt-link :to="{ name: 'film' }">
-              make a film
+              <span>make</span> <span>a</span> <span>film</span>
             </nuxt-link>
           </div>
           <div class="blue">
             <nuxt-link :to="{ name: 'design' }">
-              create impactful design
+              <span>create</span> <span>impactful</span> <span>design</span>
             </nuxt-link>
           </div>
           <div class="orange">
             <nuxt-link :to="{ name: 'events' }">
-              create memorable events
+              <span>create</span> <span>memorable</span> <span>events</span>
             </nuxt-link>
           </div>
         </div>

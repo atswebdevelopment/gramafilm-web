@@ -129,6 +129,9 @@ h3
   @media (max-width $bp-sm)
     display block
 
+.clickable
+  cursor pointer
+
 input,
 button
   display block
@@ -138,6 +141,7 @@ button
   position relative
   font-family $fontFamily
   padding 0
+  outline none
 
 input
   border-bottom 1px solid $black
@@ -145,7 +149,7 @@ input
   margin-top 1em
   padding 0.45em 0
   font-size 24px
-  line-height 66px
+  line-height 32px
   width 100%
   outline none
 
@@ -189,6 +193,10 @@ button
     background-size 100%
     flex-shrink 0
     margin-left 20px
+    transition 0.4s transform $ease
+
+  &:hover:after
+    transform translateX(20px)
 
   &--small:after
     width 36px
@@ -203,10 +211,11 @@ button
       margin-left 10px
       width 20px
       height 20px
-      transition 0.4s opacity $ease
+      transition 0.2s opacity $ease
 
   &--hover:hover:after
     opacity 1
+    transform rotateZ(-45deg)
 
 .fade
   opacity 1

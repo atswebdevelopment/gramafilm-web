@@ -9,7 +9,7 @@
         {{ about.introduction }}
       </p>
       <div class="about__inner">
-        <ColumnContainer v-for="(section, index) in about.content" :key="`section-${index}`" class="fade fadeIn">
+        <ColumnContainer v-for="(section, index) in about.content" :key="`section-${index}`" center class="fade fadeIn">
           <template v-if="section.__typename === 'ComponentColumnsOneColumn'">
             <Column>
               <p class="large center" v-html="section.content" />

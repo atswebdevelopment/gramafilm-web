@@ -93,7 +93,6 @@ export default {
 
 <style lang="stylus" scoped>
 .intro
-  background $primary
   text-align center
   color $white
   position relative
@@ -114,7 +113,7 @@ export default {
     font-size 48px
     line-height 54px
     letter-spacing -1.5px
-    padding-bottom 75vh
+    padding-bottom 85vh
 
     @media (max-width $bp-sm)
       font-size 24px
@@ -221,15 +220,27 @@ export default {
   >>> .counter__text
     color $white
 
-.link-blue:after
+.link-blue:after,
+.link-green:after,
+.link-orange:after
   bottom 34px
   border-bottom 1px solid $blue
 
+  @media (max-width $bp-sm)
+    bottom 23px
+
 .link-green:after
-  bottom 34px
-  border-bottom 1px solid $green
+  border-color $green
 
 .link-orange:after
-  bottom 34px
-  border-bottom 1px solid $orange
+  border-color $orange
+
+.link-blue:hover
+  color $blue
+
+.link-green:hover
+  color $green
+
+.link-orange:hover
+  color $orange
 </style>

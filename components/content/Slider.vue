@@ -80,6 +80,8 @@ export default {
   padding 0 18px 80px
 
 .swiper
+  cursor grab
+
   &-slide
     width auto
 

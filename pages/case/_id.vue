@@ -42,7 +42,4 @@ export default {
 <style lang="stylus" scoped>
 .page
   padding 0
-
-  // &:before
-  //   background $primary
 </style>

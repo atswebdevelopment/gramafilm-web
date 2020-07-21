@@ -8,5 +8,8 @@ query Articles ($id: ID!) {
       alternativeText
       caption
     }
+    category {
+      name
+    }
   }
 }

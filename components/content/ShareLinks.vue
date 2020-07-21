@@ -1,12 +1,12 @@
 <template>
   <div class="shareLinks">
     <div>
-      <span class="shareLinks__link">Share</span>
-      <a class="shareLinks__link" href="">Instagram</a>
-      <a class="shareLinks__link" href="">Facebook</a>
-      <a class="shareLinks__link" href="">LinkedIn</a>
-      <a class="shareLinks__link" href="">Youtube</a>
-      <a class="shareLinks__link" href="">Twitter</a>
+      <span class="shareLinks__link"><b>Share</b></span>
+      <a class="shareLinks__link" target="_blank" title="Opens in a new window" href="https://www.instagram.com/gramafilm/?hl=en">Instagram</a>
+      <a class="shareLinks__link" target="_blank" title="Opens in a new window" href="https://www.facebook.com/Gramafilm/">Facebook</a>
+      <a class="shareLinks__link" target="_blank" title="Opens in a new window" href="https://uk.linkedin.com/organization-guest/company/gramafilm">LinkedIn</a>
+      <a class="shareLinks__link" target="_blank" title="Opens in a new window" href="https://www.youtube.com/gramafilm">Youtube</a>
+      <a class="shareLinks__link" target="_blank" title="Opens in a new window" href="https://twitter.com/Gramafilm">Twitter</a>
     </div>
   </div>
 </template>
@@ -36,4 +36,7 @@ export default {
 
     &:last-child
       margin-right 0
+
+  a:hover
+      text-decoration underline
 </style>

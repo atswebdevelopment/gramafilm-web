@@ -55,8 +55,3 @@ export default {
   }
 }
 </script>
-
-<style lang="stylus" scoped>
-.page:before
-  background linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(238,237,233,1) 80%)
-</style>

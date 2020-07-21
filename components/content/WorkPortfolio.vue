@@ -16,7 +16,7 @@
           </div>
         </div>
       </div>
-      <div v-if="!home" class="work__module work__module--4">
+      <div v-if="!home && workModuleOne.length" class="work__module work__module--4">
         <div class="work__marquee" />
       </div>
       <div v-if="workModuleTwo.length" class="work__module work__module--2" :class="{ 'work__module--filtering': filtering }">
@@ -167,10 +167,22 @@ export default {
   watch: {
     work () {
       this.caseStudies = [...this.work.casestudies]
+      if (this.caseStudies.length < 7) {
+        this.caseStudies = [...this.work.casestudies, ...this.work.casestudies]
+      }
+      if (this.caseStudies.length < 7) {
+        this.caseStudies = [...this.work.casestudies, ...this.work.casestudies, ...this.work.casestudies]
+      }
       this.splitWork()
     },
     filteredWork () {
       this.caseStudies = [...this.filteredWork]
+      if (this.caseStudies.length < 7) {
+        this.caseStudies = [...this.filteredWork, ...this.filteredWork]
+      }
+      if (this.caseStudies.length < 7) {
+        this.caseStudies = [...this.filteredWork, ...this.filteredWork, ...this.filteredWork]
+      }
       this.filtering = true
       setTimeout(() => {
         this.splitWork()
@@ -185,14 +197,26 @@ export default {
     splitWork () {
       let caseStudies = [...this.caseStudies]
       caseStudies = caseStudies.map(caseStudy => caseStudy.case_study)
-      this.workModuleOne = caseStudies.length > 0 ? caseStudies.slice(0, 4) : []
-      this.workModuleTwo = caseStudies.length > 4 ? caseStudies.slice(4, 5) : []
-      this.workModuleThree = caseStudies.length > 5 ? caseStudies.slice(5, 8) : []
-      this.workModuleFour = caseStudies.length > 7 ? caseStudies.slice(7, 8) : []
-      this.workModuleFive = caseStudies.length > 8 ? caseStudies.slice(8, 9) : []
-      this.workModuleSix = caseStudies.length > 9 ? caseStudies.slice(9, 11) : []
-      this.workModuleSeven = caseStudies.length > 11 ? caseStudies.slice(11, 12) : []
-      this.workModuleEight = caseStudies.length > 12 ? caseStudies.slice(12, 16) : []
+      this.workModuleOne = []
+      this.workModuleTwo = []
+      this.workModuleThree = []
+      this.workModuleFour = []
+      this.workModuleFive = []
+      this.workModuleSix = []
+      this.workModuleSeven = []
+      this.workModuleEight = []
+
+      setTimeout(() => {
+        this.workModuleOne = caseStudies.length > 0 ? caseStudies.slice(0, 4) : []
+        this.workModuleTwo = caseStudies.length > 4 ? caseStudies.slice(4, 5) : []
+        this.workModuleThree = caseStudies.length > 5 ? caseStudies.slice(5, 8) : []
+        this.workModuleFour = caseStudies.length > 7 ? caseStudies.slice(7, 8) : []
+        this.workModuleFive = caseStudies.length > 8 ? caseStudies.slice(8, 9) : []
+        this.workModuleSix = caseStudies.length > 9 ? caseStudies.slice(9, 11) : []
+        this.workModuleSeven = caseStudies.length > 11 ? caseStudies.slice(11, 12) : []
+        this.workModuleEight = caseStudies.length > 12 ? caseStudies.slice(12, 16) : []
+      }, 100)
+      fadeIn()
     },
     getClass (type) {
       switch (type) {
@@ -211,6 +235,7 @@ export default {
 <style lang="stylus" scoped>
 .work
   margin 15vh 0 -15vh
+  min-height 100vh
 
   @media (max-width: $bp-sm)
     margin-top 5vh
