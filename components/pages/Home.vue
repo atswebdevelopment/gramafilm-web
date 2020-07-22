@@ -20,6 +20,7 @@
             {{ partner.title }}
             <div class="contentSwitcher__tabcontent">
               <img v-if="partner.image" :src="partner.image.url" :alt="partner.image.alternativeText">
+              <Video v-else-if="partner.qvideo" :video="partner.qvideo" />
               <div v-html="partner.content" />
             </div>
           </div>
@@ -27,6 +28,7 @@
         <template slot="contentWindow">
           <div v-for="(partner, index) in home.partners" :key="partner.id" class="contentSwitcher__content" :class="{ 'contentSwitcher__content--active': index === 0}">
             <img v-if="partner.image" :src="partner.image.url" :alt="partner.image.alternativeText">
+            <Video v-else-if="partner.qvideo" :video="partner.qvideo" />
             <div v-html="partner.content" />
           </div>
         </template>

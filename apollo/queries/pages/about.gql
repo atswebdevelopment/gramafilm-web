@@ -33,9 +33,15 @@ query About {
         title
         content
         image {
+          id
           url
           alternativeText
           caption
+        }
+        qvideo {
+          id
+          title
+          src
         }
       }
     }
