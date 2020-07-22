@@ -1,7 +1,9 @@
 <template>
   <div class="page">
-    <Design v-if="design && design.id" :design="design" :film="film" />
+    <DesignBanner v-if="designFromStoreId || (design && design.id)" :design="(designFromStoreId && designFromStore) || design" banner-top />
+    <Design v-if="design && design.id" :design="design" />
     <Loader v-else />
+    <FilmBanner v-if="film && film.id" :film="film" />
   </div>
 </template>
 
@@ -10,6 +12,8 @@ import designQuery from '~/apollo/queries/work/design.gql'
 export default {
   components: {
     Design: () => import('~/components/pages/Design'),
+    DesignBanner: () => import('~/components/banners/DesignBanner'),
+    FilmBanner: () => import('~/components/banners/FilmBanner'),
     Loader: () => import('~/components/content/Loader')
   },
   data () {
@@ -26,6 +30,14 @@ export default {
     film: {
       prefetch: false,
       query: designQuery
+    }
+  },
+  computed: {
+    designFromStore () {
+      return this.$store.state.showcase.design
+    },
+    designFromStoreId () {
+      return this.$store.state.showcase.design.id
     }
   },
   head () {

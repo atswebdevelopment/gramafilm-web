@@ -1,7 +1,9 @@
 <template>
   <div class="page">
-    <Film v-if="film && film.id" :film="film" :events="event" />
+    <FilmBanner v-if="filmFromStoreId || (film && film.id)" :film="(filmFromStoreId && filmFromStore) || film" banner-top />
+    <Film v-if="film && film.id" :film="film" />
     <Loader v-else />
+    <EventsBanner v-if="event && event.id" :events="event" />
   </div>
 </template>
 
@@ -10,12 +12,14 @@ import filmQuery from '~/apollo/queries/work/film.gql'
 export default {
   components: {
     Film: () => import('~/components/pages/Film'),
+    FilmBanner: () => import('~/components/banners/FilmBanner'),
+    EventsBanner: () => import('~/components/banners/EventsBanner'),
     Loader: () => import('~/components/content/Loader')
   },
   data () {
     return {
       film: {},
-      events: {}
+      event: {}
     }
   },
   apollo: {
@@ -26,6 +30,14 @@ export default {
     event: {
       prefetch: false,
       query: filmQuery
+    }
+  },
+  computed: {
+    filmFromStore () {
+      return this.$store.state.showcase.film
+    },
+    filmFromStoreId () {
+      return this.$store.state.showcase.film.id
     }
   },
   head () {

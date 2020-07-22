@@ -1,7 +1,9 @@
 <template>
   <div class="page">
-    <Events v-if="event && event.id" :events="event" :design="design" />
+    <EventsBanner v-if="eventsFromStoreId || (event && event.id)" :events="(eventsFromStoreId && eventsFromStore) || event" banner-top />
+    <Events v-if="event && event.id" :events="event" />
     <Loader v-else />
+    <DesignBanner v-if="design && design.id" :design="design" />
   </div>
 </template>
 
@@ -10,6 +12,8 @@ import eventsQuery from '~/apollo/queries/work/events.gql'
 export default {
   components: {
     Events: () => import('~/components/pages/Events'),
+    EventsBanner: () => import('~/components/banners/EventsBanner'),
+    DesignBanner: () => import('~/components/banners/DesignBanner'),
     Loader: () => import('~/components/content/Loader')
   },
   data () {
@@ -26,6 +30,14 @@ export default {
     design: {
       prefetch: false,
       query: eventsQuery
+    }
+  },
+  computed: {
+    eventsFromStore () {
+      return this.$store.state.showcase.events
+    },
+    eventsFromStoreId () {
+      return this.$store.state.showcase.events.id
     }
   },
   head () {

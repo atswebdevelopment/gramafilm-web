@@ -1,5 +1,5 @@
 <template>
-  <ContentArea class="footerLinks">
+  <ContentArea class="footerLinks" stretch>
     <div class="footerLinks__inner">
       <div>
         <a class="footerLinks__link" target="_blank" title="Opens in a new window" href="https://www.instagram.com/gramafilm/?hl=en">Instagram</a>
