@@ -2,17 +2,17 @@
   <div class="text-swap" :class="{ 'text-swap--inline': inline }">
     <div class="green">
       <nuxt-link :to="{ name: 'film' }">
-        <span>make</span> <span>a</span> <span>film{{ inline && '.' }}</span>
+        <span>make</span> <span>a</span> <span>film{{ inline ? '.' : '' }}</span>
       </nuxt-link>
     </div>
     <div class="blue">
       <nuxt-link :to="{ name: 'design' }">
-        <span>create</span> <span>impactful</span> <span>design{{ inline && '.' }}</span>
+        <span>create</span> <span>impactful</span> <span>design{{ inline ? '.' : '' }}</span>
       </nuxt-link>
     </div>
     <div class="orange">
       <nuxt-link :to="{ name: 'events' }">
-        <span>create</span> <span>memorable</span> <span>events{{ inline && '.' }}</span>
+        <span>create</span> <span>memorable</span> <span>events{{ inline ? '.' : '' }}</span>
       </nuxt-link>
     </div>
   </div>
@@ -60,11 +60,32 @@ export default {
     &:first-child
       animation swapfilm 10s linear infinite
 
+      span
+        animation swapfilminner 10s linear infinite
+
     &:nth-child(2)
       animation swapdesign 10s linear infinite
 
+      span
+        animation swapdesigninner 10s linear infinite
+
     &:last-child
       animation swapevents 10s linear infinite
+
+      span
+        animation swapeventsinner 10s linear infinite
+
+    span
+      opacity 0
+
+    span:first-child
+      animation-delay 0.2s
+
+    span:nth-child(2)
+      animation-delay 0.4s
+
+    span:last-child
+      animation-delay 0.6s
 
 @keyframes swapfilm {
   0%, 30% {
@@ -78,6 +99,18 @@ export default {
   100% {
     opacity 1
     z-index 1
+  }
+}
+
+@keyframes swapfilminner {
+  0% {
+    opacity 0
+  }
+  3%, 30% {
+    opacity 1
+  }
+  33%, 100% {
+    opacity 0
   }
 }
 
@@ -96,6 +129,18 @@ export default {
   }
 }
 
+@keyframes swapdesigninner {
+  0%, 33% {
+    opacity 0
+  }
+  36%, 63% {
+    opacity 1
+  }
+  66%, 100% {
+    opacity 0
+  }
+}
+
 @keyframes swapevents {
   0%, 63% {
     opacity 0
@@ -108,6 +153,18 @@ export default {
   100% {
     opacity 0
     z-index 0
+  }
+}
+
+@keyframes swapeventsinner {
+  0%, 66% {
+    opacity 0
+  }
+  70%, 97% {
+    opacity 1
+  }
+  100% {
+    opacity 0
   }
 }
 </style>
