@@ -31,5 +31,33 @@ $bp-sm     = 1024px;
 $bp-md     = 1350px;
 $bp-lg     = 1600px;
 
-$fontFamily = 'Catamaran', sans-serif;
+@font-face {
+  font-family 'whytelight'
+  src url('/fonts/whyte-light-webfont.woff2') format('woff2'),
+      url('/fonts/whyte-light-webfont.woff') format('woff')
+  font-weight normal
+  font-style normal
+}
+
+@font-face {
+  font-family 'whytemedium'
+  src url('/fonts/whyte-medium-webfont.woff2') format('woff2'),
+      url('/fonts/whyte-medium-webfont.woff') format('woff')
+  font-weight normal
+  font-style normal
+
+}
+
+@font-face {
+  font-family 'whyteregular'
+  src url('/fonts/whyte-regular-webfont.woff2') format('woff2'),
+      url('/fonts/whyte-regular-webfont.woff') format('woff')
+  font-weight normal
+  font-style normal
+}
+
+$fontFamily = 'whytelight';
+$fontFamilySemiBold = 'whyteregular';
+$fontFamilyBold = 'whytemedium';
+
 $ease       = cubic-bezier(.11,.98,.57,1);

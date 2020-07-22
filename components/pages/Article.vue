@@ -11,7 +11,7 @@
         <ShareLinks />
       </div>
       <div class="article__content">
-        <img v-if="article.image" :src="setCDNPath(article.image.url)" :alt="article.image.alternativeText">
+        <img v-if="article.image" :src="setCDNPath(article.image.url)" class="article__image" :alt="article.image.alternativeText">
         <div v-html="article.content" />
       </div>
     </ContentArea>
@@ -54,6 +54,7 @@ export default {
     }
   },
   mounted () {
+    console.log(this.article)
     setTimeout(() => {
       this.$store.commit('header/setDefaultColor', 'black')
     }, 200)
@@ -91,4 +92,7 @@ export default {
     @media (max-width: $bp-sm)
       width 100%
       margin-left 0
+
+  &__image
+    margin-bottom 2em
 </style>

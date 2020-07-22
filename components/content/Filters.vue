@@ -38,6 +38,18 @@ export default {
     &--active
       opacity 1
 
+    &--blue:hover,
+    &--active.filters__filter--blue
+      color $blue
+
+    &--orange:hover,
+    &--active.filters__filter--orange
+      color $orange
+
+    &--green:hover,
+    &--active.filters__filter--green
+      color $green
+
   &__toggle
     margin 25px 0
     display none

@@ -9,13 +9,13 @@
           <div class="filters__filter" :class="{ 'filters__filter--active': type === '' }" @click="filterWork('')">
             All
           </div>
-          <div class="filters__filter" :class="{ 'filters__filter--active': type === 'film' }" @click="filterWork('film')">
+          <div class="filters__filter filters__filter--green" :class="{ 'filters__filter--active': type === 'film' }" @click="filterWork('film')">
             Film
           </div>
-          <div class="filters__filter" :class="{ 'filters__filter--active': type === 'event' }" @click="filterWork('event')">
+          <div class="filters__filter filters__filter--orange" :class="{ 'filters__filter--active': type === 'event' }" @click="filterWork('event')">
             Event
           </div>
-          <div class="filters__filter" :class="{ 'filters__filter--active': type === 'design' }" @click="filterWork('design')">
+          <div class="filters__filter filters__filter--blue" :class="{ 'filters__filter--active': type === 'design' }" @click="filterWork('design')">
             Design
           </div>
         </Filters>

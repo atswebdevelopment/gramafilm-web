@@ -1,6 +1,6 @@
 <template>
   <div class="case">
-    <Banner class="case__banner" :video="caseStudy.banner && caseStudy.banner.mime.includes('video')" :background="caseStudy.banner && caseStudy.banner.url">
+    <Banner v-if="caseStudy.banner" class="case__banner" :video="caseStudy.banner.mime.includes('video')" :background="caseStudy.banner.url">
       <h1>{{ caseStudy.title }}</h1>
       <div v-if="caseStudy.image" class="banner__item banner__item--5">
         <div class="banner__media">

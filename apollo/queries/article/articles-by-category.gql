@@ -1,7 +1,7 @@
-query ArticlesByCategory ($id: ID!) {
+query ArticlesByCategory ($id: ID!, $start: Int) {
   category (id: $id) {
     name
-    articles {
+    articles (limit: 10, start: $start, sort: "published_at:DESC", where: { published: true }) {
       id
       title
       content

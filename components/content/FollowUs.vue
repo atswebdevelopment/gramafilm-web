@@ -43,10 +43,10 @@
       <div class="social">
         <img src="/images/image-instagram.png" alt="">
         <div class="social__links">
-          <div>Follow us</div>
-          <a href="" target="_blank" title="Opens in a new window" class="social__link arrowLink arrowLink--hover">Instagram</a>
-          <a href="" target="_blank" title="Opens in a new window" class="social__link arrowLink arrowLink--hover">Twitter</a>
-          <a href="" target="_blank" title="Opens in a new window" class="social__link arrowLink arrowLink--hover">Linked in</a>
+          <div><b>Follow us</b></div>
+          <a href="https://www.instagram.com/gramafilm/?hl=en" target="_blank" title="Opens in a new window" class="social__link arrowLink arrowLink--hover">Instagram</a>
+          <a href="https://twitter.com/Gramafilm" target="_blank" title="Opens in a new window" class="social__link arrowLink arrowLink--hover">Twitter</a>
+          <a href="https://uk.linkedin.com/organization-guest/company/gramafilm" target="_blank" title="Opens in a new window" class="social__link arrowLink arrowLink--hover">Linked in</a>
         </div>
       </div>
     </Column>

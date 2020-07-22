@@ -1,5 +1,5 @@
 <template>
-  <div class="loader">
+  <div class="loader" :class="{ 'loader--inline': inline }">
     <!-- By Sam Herbert (@sherb), for everyone. More @ http://goo.gl/7AJzbL -->
     <svg
       :stroke="color"
@@ -66,6 +66,10 @@ export default {
     color: {
       type: String,
       default: '#000'
+    },
+    inline: {
+      type: Boolean,
+      default: false
     }
   }
 }
@@ -78,4 +82,7 @@ export default {
   display flex
   justify-content center
   align-items center
+
+  &--inline
+    height auto
 </style>

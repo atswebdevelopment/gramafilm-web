@@ -1,6 +1,6 @@
 <template>
   <div class="section" :class="{ 'section--nopadding': noPadding, 'section--overflow': overflow, 'section--fullscreen': fullscreen, 'section--center': center, 'section--bg-orange': background === 'orange' }">
-    <div class="inner">
+    <div class="inner" :class="{ 'inner--stretch': stretch }">
       <slot />
     </div>
   </div>
@@ -10,6 +10,10 @@
 export default {
   name: 'ContentArea',
   props: {
+    stretch: {
+      type: Boolean,
+      default: false
+    },
     overflow: {
       type: Boolean,
       default: false
@@ -39,7 +43,7 @@ export default {
   position relative
   display block
   width 100%
-  padding 5vh 0
+  padding 8vh 0
   box-sizing border-box
   z-index 1
   overflow hidden
@@ -86,6 +90,9 @@ export default {
   max-width 1440px
   margin 0 auto
   box-sizing border-box
+
+  &--stretch
+    max-width 1800px
 
   @media (max-width $bp-sm)
     padding 0 18px

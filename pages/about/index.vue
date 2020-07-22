@@ -39,7 +39,4 @@ export default {
 <style lang="stylus" scoped>
 .page
   background $secondary
-
-  &:before
-    background linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba($secondary,1) 80%)
 </style>

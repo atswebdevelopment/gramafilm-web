@@ -6,13 +6,9 @@
       <video v-else-if="home.images[0] && home.images[0].mime.includes('video')" class="intro__image intro__image--image-1" loop muted autoplay>
         <source :src="home.images[0].url" type="video/mp4">
       </video>
-      <img v-if="home.images[4] && !home.images[4].mime.includes('video')" class="intro__image intro__image--image-5" :src="home.images[4].url" :alt="home.images[4].alternativeText" data-rellax-speed="-3">
+      <img v-if="home.images[4] && !home.images[4].mime.includes('video')" class="intro__image intro__image--image-5" :src="home.images[4].url" :alt="home.images[4].alternativeText" data-rellax-speed="1">
       <video v-else-if="home.images[4] && home.images[4].mime.includes('video')" class="intro__image intro__image--image-5" loop muted autoplay>
         <source :src="home.images[4].url" type="video/mp4">
-      </video>
-      <img v-if="home.images[5] && !home.images[5].mime.includes('video')" class="intro__image intro__image--image-6" :src="home.images[5].url" :alt="home.images[5].alternativeText" data-rellax-speed="6">
-      <video v-else-if="home.images[5] && home.images[5].mime.includes('video')" class="intro__image intro__image--image-6" loop muted autoplay>
-        <source :src="home.images[5].url" type="video/mp4">
       </video>
     </div>
     <div class="intro__background intro__background--2">
@@ -76,16 +72,15 @@ export default {
   }
   // methods: {
   //   moveBackground (e) {
+  //     /* eslint-disable */
   //     const bg = document.querySelector('.intro__background')
   //     const bg2 = document.querySelector('.intro__background--2')
   //     const bg3 = document.querySelector('.intro__background--3')
   //     const centerX = window.innerWidth / 2
   //     const centerY = window.innerHeight / 2
-  //     if (this.isTimeToUpdate()) {
-  //       bg.style.transform = `translate(${((centerX - e.clientX) / 10)}px,${((centerY - e.clientY) / 10)}px)`
-  //       bg2.style.transform = `translate(${((centerX - e.clientX) / 5)}px,${((centerY - e.clientY) / 5)}px)`
-  //       bg3.style.transform = `translate(${((centerX - e.clientX) / 7)}px,${((centerY - e.clientY) / 7)}px)`
-  //     }
+  //     bg.style.transform = `translate(${((centerX - e.clientX) / 8)}px,${((centerY - e.clientY) / 8)}px)`
+  //     bg2.style.transform = `translate(${((centerX - e.clientX) / 2)}px,${((centerY - e.clientY) / 2)}px)`
+  //     bg3.style.transform = `translate(${((centerX - e.clientX) / 4)}px,${((centerY - e.clientY) / 4)}px)`
   //   }
   // }
 }
@@ -93,7 +88,6 @@ export default {
 
 <style lang="stylus" scoped>
 .intro
-  background $primary
   text-align center
   color $white
   position relative
@@ -114,7 +108,7 @@ export default {
     font-size 48px
     line-height 54px
     letter-spacing -1.5px
-    padding-bottom 75vh
+    padding-bottom 85vh
 
     @media (max-width $bp-sm)
       font-size 24px
@@ -143,7 +137,6 @@ export default {
     width 100%
     height 100%
     z-index -1
-    transition transform 0.4s
 
   &__image
     position absolute
@@ -221,15 +214,27 @@ export default {
   >>> .counter__text
     color $white
 
-.link-blue:after
-  bottom 34px
+.link-blue:after,
+.link-green:after,
+.link-orange:after
+  bottom 18px
   border-bottom 1px solid $blue
 
+  @media (max-width $bp-sm)
+    bottom 11px
+
 .link-green:after
-  bottom 34px
-  border-bottom 1px solid $green
+  border-color $green
 
 .link-orange:after
-  bottom 34px
-  border-bottom 1px solid $orange
+  border-color $orange
+
+.link-blue:hover
+  color $blue
+
+.link-green:hover
+  color $green
+
+.link-orange:hover
+  color $orange
 </style>

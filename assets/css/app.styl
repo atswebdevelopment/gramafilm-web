@@ -20,22 +20,24 @@ a
 p
   min-height 16px
 
+b, strong
+  font-weight normal
+  font-family $fontFamilySemiBold
+
 h1
-  font-weight 400
+  font-weight normal
+  font-family $fontFamilySemiBold
   font-size 140px
   line-height 140px
-  letter-spacing -3.88889px
   max-width 1000px
 
   @media (max-width $bp-sm)
     font-size 76px
-    letter-spacing -2px
     line-height 82px
 
   &.h1-small
     font-size 72px
     line-height 76px
-    letter-spacing -2px
     margin 0
 
     @media (max-width $bp-sm)
@@ -43,19 +45,19 @@ h1
       line-height 64px
 
 h2
-  font-weight 400
+  font-weight normal
+  font-family $fontFamilySemiBold
   font-size 40px
   line-height 46px
 
 .large
   font-size 48px
   line-height 54px
-  letter-spacing -1.5px
   max-width 930px
   margin 18px 0
 
   a
-    font-weight 600
+    font-family $fontFamilyBold
     position relative
     color inherit
 
@@ -74,7 +76,8 @@ h2
     line-height 46px
 
 h3
-  font-weight 600
+  font-weight normal
+  font-family $fontFamilySemiBold
   font-size 32px
   line-height 36px
 
@@ -129,6 +132,9 @@ h3
   @media (max-width $bp-sm)
     display block
 
+.clickable
+  cursor pointer
+
 input,
 button
   display block
@@ -138,6 +144,7 @@ button
   position relative
   font-family $fontFamily
   padding 0
+  outline none
 
 input
   border-bottom 1px solid $black
@@ -145,7 +152,7 @@ input
   margin-top 1em
   padding 0.45em 0
   font-size 24px
-  line-height 66px
+  line-height 32px
   width 100%
   outline none
 
@@ -189,6 +196,10 @@ button
     background-size 100%
     flex-shrink 0
     margin-left 20px
+    transition 0.4s transform $ease
+
+  &:hover:after
+    transform translateX(20px)
 
   &--small:after
     width 36px
@@ -203,10 +214,11 @@ button
       margin-left 10px
       width 20px
       height 20px
-      transition 0.4s opacity $ease
+      transition 0.2s opacity $ease
 
   &--hover:hover:after
     opacity 1
+    transform rotateZ(-45deg)
 
 .fade
   opacity 1

@@ -9,7 +9,7 @@
         {{ about.introduction }}
       </p>
       <div class="about__inner">
-        <ColumnContainer v-for="(section, index) in about.content" :key="`section-${index}`" class="fade fadeIn">
+        <ColumnContainer v-for="(section, index) in about.content" :key="`section-${index}`" center class="fade fadeIn">
           <template v-if="section.__typename === 'ComponentColumnsOneColumn'">
             <Column>
               <p class="large center" v-html="section.content" />
@@ -39,7 +39,7 @@
       <ContentSwitcher>
         <template slot="tabs">
           <div v-for="(item, index) in about.expertise" :key="`t-${index}`" class="contentSwitcher__tab" :class="{ 'contentSwitcher__tab--active': index === 0}">
-            {{ item.title }}
+            <b>{{ item.title }}</b>
             <div class="contentSwitcher__tabcontent">
               <img v-if="item.image" :src="item.image.url" :alt="item.image.alternativeText">
               <div v-html="item.content" />
@@ -155,6 +155,10 @@ export default {
     @media (max-width $bp-sm)
       padding 0
       margin-top 5vh
+
+    >>> h2
+      font-size 48px
+      line-height 54px
 
 .image-1
   width 41.667%

@@ -3,7 +3,9 @@
     <h1 class="hidden">
       Gramafilm
     </h1>
-    <Introduction :home="home" />
+    <div class="intro-container">
+      <Introduction :home="home" />
+    </div>
     <Video v-if="home.introvideo" :video="home.introvideo" fullscreen />
     <ContentArea overflow>
       <h2>Work</h2>
@@ -15,9 +17,10 @@
       <ContentSwitcher mirrored class="fade fadeIn">
         <template slot="tabs">
           <div v-for="(partner, index) in home.partners" :key="partner.id" class="contentSwitcher__tab" :class="{ 'contentSwitcher__tab--active': index === 0}">
-            {{ partner.title }}
+            <b>{{ partner.title }}</b>
             <div class="contentSwitcher__tabcontent">
               <img v-if="partner.image" :src="partner.image.url" :alt="partner.image.alternativeText">
+              <Video v-else-if="partner.qvideo" :video="partner.qvideo" />
               <div v-html="partner.content" />
             </div>
           </div>
@@ -25,12 +28,13 @@
         <template slot="contentWindow">
           <div v-for="(partner, index) in home.partners" :key="partner.id" class="contentSwitcher__content" :class="{ 'contentSwitcher__content--active': index === 0}">
             <img v-if="partner.image" :src="partner.image.url" :alt="partner.image.alternativeText">
+            <Video v-else-if="partner.qvideo" :video="partner.qvideo" />
             <div v-html="partner.content" />
           </div>
         </template>
       </ContentSwitcher>
     </ContentArea>
-    <ContentArea>
+    <ContentArea class="journal">
       <h2>Journal</h2>
     </ContentArea>
     <Slider v-if="articles.length" :items="articles" />
@@ -71,7 +75,7 @@ export default {
     window.addEventListener('scroll', () => {
       const logoCircle = document.querySelector('.logo-circle')
       if (logoCircle) {
-        logoCircle.style.transform = 'rotateZ(' + (window.scrollY / 10) + 'deg)'
+        logoCircle.style.transform = 'rotateZ(' + (window.scrollY / 4) + 'deg)'
       }
     })
   }
@@ -82,13 +86,21 @@ export default {
 .home
   overflow hidden
 
+.intro-container
+  min-height 100vh
+  background $primary
+
 .logo-circle
   position absolute
-  bottom -100px
+  bottom -30px
   left 50%
   margin-left 400px
-  transition 0.6s transform $ease
+  transition 2s transform $ease
 
   @media (max-width: $bp-sm)
     margin 0
+    bottom -100px
+
+.journal
+  padding 4vh 0
 </style>

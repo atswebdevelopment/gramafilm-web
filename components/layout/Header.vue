@@ -50,10 +50,11 @@ export default {
       const intro = document.querySelector('.intro')
       if (intro) {
         const elemHeight = intro.offsetHeight
-        this.logoOnScroll = window.scrollY >= elemHeight - 100
-        if (this.logoOnScroll && this.headerColor === 'white') {
+        const pastIntro = window.scrollY >= elemHeight - 100
+        this.logoOnScroll = window.scrollY >= (window.innerHeight / 2) + 150
+        if (pastIntro && this.headerColor === 'white') {
           this.$store.commit('header/setColor', 'black')
-        } else if (!this.logoOnScroll && this.headerColor === 'black') {
+        } else if ((!this.logoOnScroll || !pastIntro) && this.headerColor === 'black') {
           this.$store.commit('header/setColor', 'white')
         }
       }
