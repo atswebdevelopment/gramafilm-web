@@ -10,6 +10,13 @@ query Articles ($id: ID!) {
     }
     category {
       name
+      colour
+    }
+    seo {
+      ... on ComponentContentSeo {
+        title
+        description
+      }
     }
   }
 }

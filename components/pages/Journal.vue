@@ -9,7 +9,7 @@
           <div class="filters__filter" :class="{ 'filters__filter--active': type === 0 }" @click="filterArticles(0)">
             All
           </div>
-          <div v-for="filter in categories" :key="filter.id" class="filters__filter" :class="{ 'filters__filter--active': type === filter.id }" @click="filterArticles(filter.id)">
+          <div v-for="filter in categories" :key="filter.id" class="filters__filter" :class="{ 'filters__filter--active': type === filter.id, 'filters__filter--green': filter.colour === 'green', 'filters__filter--blue': filter.colour === 'blue', 'filters__filter--orange': filter.colour === 'orange' }" @click="filterArticles(filter.id)">
             {{ filter.name }}
           </div>
         </Filters>

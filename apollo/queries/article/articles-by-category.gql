@@ -13,6 +13,7 @@ query ArticlesByCategory ($id: ID!, $start: Int) {
       category {
         id
         name
+        colour
       }
       published_at
     }

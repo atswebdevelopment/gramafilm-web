@@ -2,7 +2,8 @@
   <div class="contact">
     <ContentArea>
       <h1 class="h1-small">
-        {{ contact.title }}
+        Get in touch if you want to
+        <TextSwap inline />
       </h1>
       <ColumnContainer no-padding>
         <Column wide>
@@ -60,7 +61,8 @@ export default {
     ContentArea: () => import('~/components/layout/ContentArea'),
     ColumnContainer: () => import('~/components/layout/ColumnContainer'),
     Column: () => import('~/components/layout/Column'),
-    FollowUs: () => import('~/components/content/FollowUs')
+    FollowUs: () => import('~/components/content/FollowUs'),
+    TextSwap: () => import('~/components/content/TextSwap')
   },
   props: {
     contact: {

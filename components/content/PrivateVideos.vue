@@ -43,7 +43,7 @@ export default {
 
 <style lang="stylus" scoped>
 .videoList
-  min-height 70vh
+  min-height 64vh
   margin-bottom 10vh
 
   >>> .column p:first-child

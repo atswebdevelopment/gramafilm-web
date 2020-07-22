@@ -128,5 +128,11 @@ query CaseStudies ($id: ID!) {
         }
       }
     }
+    seo {
+      ... on ComponentContentSeo {
+        title
+        description
+      }
+    }
   }
 }

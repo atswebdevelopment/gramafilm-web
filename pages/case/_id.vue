@@ -30,9 +30,9 @@ export default {
   },
   head () {
     return {
-      title: (this.caseStudy && (this.caseStudy.seotitle || this.caseStudy.title)) || 'Gramafilm',
+      title: (this.caseStudy && ((this.caseStudy.seo && this.caseStudy.seo.title) || this.caseStudy.title)) || 'Gramafilm',
       meta: [
-        { hid: 'description', name: 'description', content: (this.caseStudy && this.caseStudy.seodescription) || 'Gramafilm created and produced a global campaign for Android showcasing developers through a series of 11 films, photography, out of home and an event activation.' }
+        { hid: 'description', name: 'description', content: (this.caseStudy && this.caseStudy.seo && this.caseStudy.seo.description) || 'Gramafilm created and produced a global campaign for Android showcasing developers through a series of 11 films, photography, out of home and an event activation.' }
       ]
     }
   }

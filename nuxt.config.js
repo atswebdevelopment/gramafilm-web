@@ -22,8 +22,7 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'apple-touch-icon', type: 'image/x-icon', href: '/icons/apple-touch-icon.png' },
-      { rel: 'stylesheet', href: 'https://vjs.zencdn.net/7.8.3/video-js.css' }
+      { rel: 'apple-touch-icon', type: 'image/x-icon', href: '/icons/apple-touch-icon.png' }
     ],
     script: [
       { src: 'https://vjs.zencdn.net/7.8.3/video.js' }
@@ -37,8 +36,8 @@ export default {
   ** Global CSS
   */
   css: [
-    '@assets/css/app.styl'
-    // '@assets/css/video-skin.css'
+    '@assets/css/app.styl',
+    '@assets/css/video.css'
   ],
   plugins: [
     { src: '~plugins/vue-awesome-swiper', mode: 'client' },

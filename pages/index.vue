@@ -57,9 +57,9 @@ export default {
   },
   head () {
     return {
-      title: (this.home && this.home.seotitle) || 'Gramafilm London - Branded Content Video Production Company',
+      title: (this.home && this.home.seo && this.home.seo.title) || 'Gramafilm London - Branded Content Video Production Company',
       meta: [
-        { hid: 'description', name: 'description', content: (this.home && this.home.seodescription) || 'Gramafilm produce some of the world&#39;s most shared branded content, films, technology and experiences for global brands and broadcasters.' }
+        { hid: 'description', name: 'description', content: (this.home && this.home.seo && this.home.seo.description) || 'Gramafilm produce some of the world&#39;s most shared branded content, films, technology and experiences for global brands and broadcasters.' }
       ]
     }
   }

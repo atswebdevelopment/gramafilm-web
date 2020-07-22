@@ -1,12 +1,17 @@
 query Contact {
   contact {
     id
-    title
     introduction
     address
     visit
     telephone
     email
     coordinates
+    seo {
+      ... on ComponentContentSeo {
+        title
+        description
+      }
+    }
   }
 }

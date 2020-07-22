@@ -231,6 +231,12 @@ query Events {
         text
       }
     }
+    seo {
+      ... on ComponentContentSeo {
+        title
+        description
+      }
+    }
   }
   design {
     id
