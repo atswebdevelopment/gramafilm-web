@@ -1,6 +1,7 @@
-query Articles ($id: ID!) {
-  article (id: $id) {
+query Articles ($url: String!) {
+  articles (where: { url: $url }) {
     id
+    url
     title
     content
     image {
@@ -12,11 +13,6 @@ query Articles ($id: ID!) {
       name
       colour
     }
-    seo {
-      ... on ComponentContentSeo {
-        title
-        description
-      }
-    }
+    published_at
   }
 }

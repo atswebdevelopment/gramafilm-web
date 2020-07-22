@@ -23,8 +23,11 @@ export default {
       query: caseQuery,
       variables () {
         return {
-          id: parseInt(this.$route.params.id)
+          url: this.$route.params.id
         }
+      },
+      update (data) {
+        return data.caseStudies[0] || this.$nuxt.$router.push({ name: 'work' })
       }
     }
   },

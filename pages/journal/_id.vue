@@ -40,8 +40,11 @@ export default {
       query: articleQuery,
       variables () {
         return {
-          id: parseInt(this.$route.params.id)
+          url: this.$route.params.id
         }
+      },
+      update (data) {
+        return data.articles[0] || this.$nuxt.$router.push({ name: 'journal' })
       }
     }
   },

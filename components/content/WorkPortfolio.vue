@@ -6,7 +6,7 @@
           v-for="(caseStudy, index) in workModuleOne"
           :key="index"
           :class="`work__item work__item--${index} fade fadeIn`"
-          @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.id } })"
+          @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
         >
           <div class="work__media">
             <div v-if="caseStudy.image" class="work__image" :style="`background-image:url(${caseStudy.image.url})`" />
@@ -24,6 +24,7 @@
           v-for="(caseStudy, index) in workModuleTwo"
           :key="index"
           :class="`work__item work__item--${index + 4} fade fadeIn`"
+          @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
         >
           <div class="work__media">
             <div v-if="caseStudy.image" class="work__image" :style="`background-image:url(${caseStudy.image.url})`" />
@@ -38,6 +39,7 @@
           v-for="(caseStudy, index) in workModuleThree"
           :key="index"
           :class="`work__item work__item--${index + 7} fade fadeIn`"
+          @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
         >
           <div class="work__media">
             <div v-if="caseStudy.image" class="work__image" :style="`background-image:url(${caseStudy.image.url})`" />
@@ -52,6 +54,7 @@
           v-for="(caseStudy, index) in workModuleFour"
           :key="index"
           :class="`work__item work__item--${index + 5} fade fadeIn`"
+          @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
         >
           <div class="work__media">
             <div v-if="caseStudy.image" class="work__image" :style="`background-image:url(${caseStudy.image.url})`" />
@@ -73,6 +76,7 @@
           v-for="(caseStudy, index) in workModuleFive"
           :key="index"
           :class="`work__item work__item--${index + 4} fade fadeIn`"
+          @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
         >
           <div class="work__media">
             <div v-if="caseStudy.image" class="work__image" :style="`background-image:url(${caseStudy.image.url})`" />
@@ -87,6 +91,7 @@
           v-for="(caseStudy, index) in workModuleSix"
           :key="index"
           :class="`work__item work__item--${index + 10} fade fadeIn`"
+          @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
         >
           <div class="work__media">
             <div v-if="caseStudy.image" class="work__image" :style="`background-image:url(${caseStudy.image.url})`" />
@@ -101,6 +106,7 @@
           v-for="(caseStudy, index) in workModuleSeven"
           :key="index"
           :class="`work__item work__item--${index + 4} fade fadeIn`"
+          @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
         >
           <div class="work__media">
             <div v-if="caseStudy.image" class="work__image" :style="`background-image:url(${caseStudy.image.url})`" />
@@ -115,6 +121,7 @@
           v-for="(caseStudy, index) in workModuleEight"
           :key="index"
           :class="`work__item work__item--${index} fade fadeIn`"
+          @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
         >
           <div class="work__media">
             <div v-if="caseStudy.image" class="work__image" :style="`background-image:url(${caseStudy.image.url})`" />
