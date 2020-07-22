@@ -5,16 +5,19 @@ query Film {
       url
       alternativeText
       caption
+      mime
     }
     headerimage1 {
       url
       alternativeText
       caption
+      mime
     }
     headerimage2 {
       url
       alternativeText
       caption
+      mime
     }
     introduction
     modules {
@@ -235,16 +238,19 @@ query Film {
       url
       alternativeText
       caption
+      mime
     }
     headerimage1 {
       url
       alternativeText
       caption
+      mime
     }
     headerimage2 {
       url
       alternativeText
       caption
+      mime
     }
   }
 }

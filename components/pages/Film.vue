@@ -1,13 +1,13 @@
 <template>
   <Showcase>
-    <Banner v-if="film.image" :background="film.image.url">
+    <Banner v-if="film.image" :video="film.image.mime.includes('video')" :background="film.image.url" class="banner--top">
       <h1>Film</h1>
-      <div v-if="film.headerimage1" class="banner__item banner__item--2">
+      <div v-if="film.headerimage1" class="banner__item banner__item--2" data-rellax-speed="-3">
         <div class="banner__media">
           <div class="banner__image" :style="`background-image:url(${film.headerimage1.url})`" />
         </div>
       </div>
-      <div v-if="film.headerimage2" class="banner__item banner__item--1">
+      <div v-if="film.headerimage2" class="banner__item banner__item--1" data-rellax-speed="3">
         <div class="banner__media">
           <div class="banner__image" :style="`background-image:url(${film.headerimage2.url})`" />
         </div>
@@ -28,6 +28,7 @@
     <Banner
       v-if="events.image"
       class="clickable"
+      :video="events.image.mime.includes('video')"
       :background="events.image.url"
       hide-overflow
       @click.native="$nuxt.$router.push({ name: 'events' })"
@@ -48,6 +49,7 @@
 </template>
 
 <script>
+import Rellax from 'rellax'
 import CounterMixin from '~/components/mixins/CounterMixin'
 export default {
   components: {
@@ -73,6 +75,8 @@ export default {
   },
   mounted () {
     setTimeout(() => {
+      new Rellax('.banner--top .banner__item--2', {})
+      new Rellax('.banner--top .banner__item--1', {})
       this.$store.commit('header/setDefaultColor', 'white')
     }, 200)
   }

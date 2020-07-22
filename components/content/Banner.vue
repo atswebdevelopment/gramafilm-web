@@ -109,7 +109,7 @@ export default {
         bottom -70px
 
     &--2
-      bottom 5vh
+      bottom 8vh
       right 0
       width 432px
 
