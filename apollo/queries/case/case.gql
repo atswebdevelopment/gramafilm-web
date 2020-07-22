@@ -1,6 +1,7 @@
-query CaseStudies ($id: ID!) {
-  caseStudy (id: $id) {
+query CaseStudies ($url: String!) {
+  caseStudies (where: { url: $url }) {
     id
+    url
     title
     banner {
       url

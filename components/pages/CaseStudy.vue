@@ -157,10 +157,10 @@
       :background="caseStudy.case_study && caseStudy.case_study.banner && caseStudy.case_study.banner.url"
       hide-overflow
     >
-      <div class="banner__next" @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.case_study.id } })">
+      <div class="banner__next" @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.case_study.url } })">
         Next
       </div>
-      <h1 class="click" @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.case_study.id } })">{{ caseStudy.case_study.title }}</h1>
+      <h1 class="click" @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.case_study.url } })">{{ caseStudy.case_study.title }}</h1>
     </Banner>
   </div>
 </template>

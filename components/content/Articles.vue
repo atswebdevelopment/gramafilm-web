@@ -5,7 +5,7 @@
       :key="index"
       :class="{ 'articles__item--landscape': index % 10 === 1 || index % 10 === 7, 'articles__item--wide': index % 10 === 3 || index % 10 === 9 }"
       class="articles__item"
-      @click="$nuxt.$router.push({ name: 'journal-id', params: { id: article.id } })"
+      @click="$nuxt.$router.push({ name: 'journal-id', params: { id: article.url } })"
     >
       <img :src="article.image.url" :alt="article.image.alternativeText">
       <p>{{ article.title }}</p>

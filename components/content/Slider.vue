@@ -12,10 +12,10 @@
           :key="index"
         >
           <template v-if="item.image">
-            <div class="swiper__media" @click="$nuxt.$router.push({ name: 'journal-id', params: { id: item.id } })">
+            <div class="swiper__media" @click="$nuxt.$router.push({ name: 'journal-id', params: { id: item.url } })">
               <img v-if="item.image" data-not-lazy :src="item.image.url" :alt="item.image.alternativeText">
             </div>
-            <div class="swiper__text" @click="$nuxt.$router.push({ name: 'journal-id', params: { id: item.id } })">
+            <div class="swiper__text" @click="$nuxt.$router.push({ name: 'journal-id', params: { id: item.url } })">
               <span v-if="item.category" :class="getClass(item.category.name)">{{ item.category.name }}</span> {{ item.title }}
             </div>
           </template>
