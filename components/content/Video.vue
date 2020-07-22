@@ -1,7 +1,13 @@
 <template>
   <client-only>
-    <div class="video" :class="[`video-${identifier}`, fullscreen ? 'video--fullscreen' : '']">
-      <div v-if="video && viewportLoaded" v-video-player:myVideoPlayer="playerOptions" class="video-player-box vjs-theme-sea" />
+    <div v-if="video" class="video" :class="[`video-${identifier}`, fullscreen ? 'video--fullscreen' : '']">
+      <div v-if="viewportLoaded" v-video-player:myVideoPlayer="playerOptions" class="video-player-box vjs-theme-sea" />
+      <div v-if="video.preview && video.preview.url" class="video__preview">
+        <img v-if="!video.preview.mime.includes('video')" :src="video.preview.url">
+        <video v-else-if="video.preview.mime.includes('video')" loop muted autoplay>
+          <source :src="video.preview.url" type="video/mp4">
+        </video>
+      </div>
     </div>
   </client-only>
 </template>
@@ -114,4 +120,11 @@ export default {
       height auto
       min-width 100%
       min-height 100%
+
+  &__preview
+    height 100%
+    width 100%
+    position absolute
+    top 0
+    left 0
 </style>

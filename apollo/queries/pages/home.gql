@@ -13,6 +13,11 @@ query Home {
       id
       title
       src
+      preview {
+        id
+        url
+        mime
+      }
     }
     partners {
       ... on ComponentContentselectorContentSelector {
@@ -29,6 +34,11 @@ query Home {
           id
           title
           src
+          preview {
+            id
+            url
+            mime
+          }
         }
       }
     }
