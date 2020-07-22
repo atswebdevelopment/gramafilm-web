@@ -2,7 +2,7 @@
   <div class="article">
     <ContentArea overflow>
       <div class="article__aside">
-        <p v-if="article.category && article.category.name">
+        <p v-if="article.category && article.category.name" :class="article.category.colour">
           {{ article.category.name }}
         </p>
         <h1 class="h1-small">

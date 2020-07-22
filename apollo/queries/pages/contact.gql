@@ -1,7 +1,6 @@
 query Contact {
   contact {
     id
-    title
     introduction
     address
     visit
