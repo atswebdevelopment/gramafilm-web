@@ -78,5 +78,6 @@ export default {
       content: 'k'
 
   &__text
+    margin-top 4vh
     color $black
 </style>

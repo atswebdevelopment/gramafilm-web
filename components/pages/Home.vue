@@ -17,7 +17,7 @@
       <ContentSwitcher mirrored class="fade fadeIn">
         <template slot="tabs">
           <div v-for="(partner, index) in home.partners" :key="partner.id" class="contentSwitcher__tab" :class="{ 'contentSwitcher__tab--active': index === 0}">
-            {{ partner.title }}
+            <b>{{ partner.title }}</b>
             <div class="contentSwitcher__tabcontent">
               <img v-if="partner.image" :src="partner.image.url" :alt="partner.image.alternativeText">
               <Video v-else-if="partner.qvideo" :video="partner.qvideo" />
