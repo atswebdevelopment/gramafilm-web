@@ -231,6 +231,12 @@ query Film {
         text
       }
     }
+    seo {
+      ... on ComponentContentSeo {
+        title
+        description
+      }
+    }
   }
   event {
     id

@@ -40,5 +40,11 @@ query Home {
         text
       }
     }
+    seo {
+      ... on ComponentContentSeo {
+        title
+        description
+      }
+    }
   }
 }

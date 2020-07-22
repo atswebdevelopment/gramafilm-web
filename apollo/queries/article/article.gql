@@ -11,5 +11,11 @@ query Articles ($id: ID!) {
     category {
       name
     }
+    seo {
+      ... on ComponentContentSeo {
+        title
+        description
+      }
+    }
   }
 }

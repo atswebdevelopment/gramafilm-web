@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <div class="video" :class="[`video-${identifier}`, fullscreen ? 'video--fullscreen' : '']">
-      <div v-if="video && viewportLoaded" v-video-player:myVideoPlayer="playerOptions" class="video-player-box" />
+      <div v-if="video && viewportLoaded" v-video-player:myVideoPlayer="playerOptions" class="video-player-box vjs-theme-sea" />
     </div>
   </client-only>
 </template>
@@ -101,11 +101,6 @@ export default {
       width 100% !important
       height 100% !important
 
-  >>> .video-js .vjs-big-play-button
-    top 50%
-    left 50%
-    margin -24px 0 0 -45px
-
   &--fullscreen
     height 100vh
     overflow hidden
@@ -119,9 +114,4 @@ export default {
       height auto
       min-width 100%
       min-height 100%
-
-    >>> .video-js .vjs-big-play-button
-      top 50%
-      left 50%
-      margin -24px 0 0 -45px
 </style>

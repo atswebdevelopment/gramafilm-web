@@ -17,5 +17,11 @@ query Work {
         }
       }
     }
+    seo {
+      ... on ComponentContentSeo {
+        title
+        description
+      }
+    }
   }
 }

@@ -42,9 +42,9 @@ export default {
   },
   head () {
     return {
-      title: (this.event && this.event.seotitle) || 'Gramafilm > Our Work > Event',
+      title: (this.event && this.event.seo && this.event.seo.title) || 'Gramafilm > Our Work > Event',
       meta: [
-        { hid: 'description', name: 'description', content: (this.event && this.event.seodescription) || 'Gramafilm produce branded content and films for broadcasters and brands. We&#39;re an independent production company based in London, UK.' }
+        { hid: 'description', name: 'description', content: (this.event && this.event.seo && this.event.seo.description) || 'Gramafilm produce branded content and films for broadcasters and brands. We&#39;re an independent production company based in London, UK.' }
       ]
     }
   }
