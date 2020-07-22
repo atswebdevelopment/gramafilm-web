@@ -42,6 +42,7 @@
             <b>{{ item.title }}</b>
             <div class="contentSwitcher__tabcontent">
               <img v-if="item.image" :src="item.image.url" :alt="item.image.alternativeText">
+              <Video v-else-if="item.qvideo" :video="item.qvideo" />
               <div v-html="item.content" />
             </div>
           </div>
@@ -49,6 +50,7 @@
         <template slot="contentWindow">
           <div v-for="(item, index) in about.expertise" :key="`c-${index}`" class="contentSwitcher__content" :class="{ 'contentSwitcher__content--active': index === 0}">
             <img v-if="item.image" :src="item.image.url" :alt="item.image.alternativeText">
+            <Video v-else-if="item.qvideo" :video="item.qvideo" />
             <div v-html="item.content" />
           </div>
         </template>
