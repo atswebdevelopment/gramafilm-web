@@ -1,7 +1,7 @@
 <template>
   <client-only>
-    <div v-if="video" class="video" :class="[`video-${identifier}`, fullscreen ? 'video--fullscreen' : '']">
-      <div v-if="viewportLoaded" v-video-player:myVideoPlayer="playerOptions" class="video-player-box vjs-theme-sea" />
+    <div v-if="video" :ref="`video-${identifier}`" class="video" :class="[`video-${identifier}`, fullscreen ? 'video--fullscreen' : '']">
+      <div v-if="viewportLoaded" v-video-player:myVideoPlayer="playerOptions" class="video-player-box vjs-theme-sea" @play="onPlayerPlay($event)" />
       <div v-if="video.preview && video.preview.url" class="video__preview">
         <img v-if="!video.preview.mime.includes('video')" :src="video.preview.url">
         <video v-else-if="video.preview.mime.includes('video')" loop muted autoplay>
@@ -46,6 +46,10 @@ export default {
     this.ready()
   },
   methods: {
+    onPlayerPlay (player) {
+      const video = document.querySelector('.video-' + this.identifier + ' .video__preview')
+      video.parentNode.removeChild(video)
+    },
     ready () {
       if (!document.querySelector('.video-' + this.identifier)) {
         setTimeout(() => {
@@ -127,4 +131,5 @@ export default {
     position absolute
     top 0
     left 0
+    opacity 1
 </style>
