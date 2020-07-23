@@ -10,10 +10,31 @@ query Work {
           url
           title
           type
-          image {
+          banner {
             url
             alternativeText
             caption
+            mime
+          }
+          media {
+            ... on ComponentContentMedia {
+              id
+              image {
+                url
+                alternativeText
+                caption
+              }
+              qvideo {
+                id
+                title
+                src
+                preview {
+                  id
+                  url
+                  mime
+                }
+              }
+            }
           }
         }
       }

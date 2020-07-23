@@ -27,11 +27,6 @@ query CaseStudies ($url: String!) {
         }
       }
     }
-    image {
-      url
-      alternativeText
-      caption
-    }
     type
     introduction
     content

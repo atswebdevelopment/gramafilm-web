@@ -2,9 +2,9 @@
   <div class="case">
     <Banner v-if="caseStudy.banner" class="case__banner" :video="caseStudy.banner.mime.includes('video')" :background="caseStudy.banner.url">
       <h1>{{ caseStudy.title }}</h1>
-      <div v-if="caseStudy.image" class="banner__item banner__item--5">
+      <div v-if="caseStudy.media" class="banner__item banner__item--5">
         <div class="banner__media">
-          <div v-if="caseStudy.media && caseStudy.media.image" class="banner__image" :style="`background-image:url(${caseStudy.image.url})`" />
+          <div v-if="caseStudy.media && caseStudy.media.image" class="banner__image" :style="`background-image:url(${caseStudy.media.image.url})`" />
           <Video v-else-if="caseStudy.media && caseStudy.media.qvideo" class="banner__image" :video="caseStudy.media.qvideo" />
         </div>
       </div>
