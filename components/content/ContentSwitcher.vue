@@ -67,6 +67,7 @@ export default {
 
     @media (max-width: $bp-sm)
       margin 0
+      width 100%
 
   &__tab
     font-size 36px
@@ -82,6 +83,7 @@ export default {
       @media (max-width: $bp-sm)
         .contentSwitcher__tabcontent
           display block
+          margin-top 1em
 
   &__tabcontent
     display none

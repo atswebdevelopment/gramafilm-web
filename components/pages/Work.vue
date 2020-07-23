@@ -1,6 +1,6 @@
 <template>
   <div class="work">
-    <ContentArea>
+    <ContentArea stretch>
       <div class="heading">
         <h1 class="h1-small">
           {{ work.title }}

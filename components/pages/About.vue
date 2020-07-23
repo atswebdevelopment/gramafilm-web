@@ -185,8 +185,13 @@ export default {
     margin 0
     text-align center
 
-@media (max-width $bp-sm)
-  .logos .column
+  .column
+    justify-content center
+
+.logos .column
+  justify-content center
+
+  @media (max-width $bp-sm)
     display inline-block
     width 48%
     vertical-align middle

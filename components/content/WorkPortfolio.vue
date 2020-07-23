@@ -9,7 +9,8 @@
           @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
         >
           <div class="work__media">
-            <div v-if="caseStudy.image" class="work__image" :style="`background-image:url(${caseStudy.image.url})`" />
+            <div v-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${caseStudy.banner.url})`" />
+            <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${caseStudy.media.image.url})`" />
           </div>
           <div class="work__text">
             <span :class="getClass(caseStudy.type)">{{ caseStudy.type }}</span> {{ caseStudy.title }}
@@ -27,7 +28,8 @@
           @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
         >
           <div class="work__media">
-            <div v-if="caseStudy.image" class="work__image" :style="`background-image:url(${caseStudy.image.url})`" />
+            <div v-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${caseStudy.banner.url})`" />
+            <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${caseStudy.media.image.url})`" />
           </div>
           <div class="work__text">
             <span :class="getClass(caseStudy.type)">{{ caseStudy.type }}</span> {{ caseStudy.title }}
@@ -42,7 +44,8 @@
           @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
         >
           <div class="work__media">
-            <div v-if="caseStudy.image" class="work__image" :style="`background-image:url(${caseStudy.image.url})`" />
+            <div v-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${caseStudy.banner.url})`" />
+            <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${caseStudy.media.image.url})`" />
           </div>
           <div class="work__text">
             <span :class="getClass(caseStudy.type)">{{ caseStudy.type }}</span> {{ caseStudy.title }}
@@ -57,7 +60,8 @@
           @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
         >
           <div class="work__media">
-            <div v-if="caseStudy.image" class="work__image" :style="`background-image:url(${caseStudy.image.url})`" />
+            <div v-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${caseStudy.banner.url})`" />
+            <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${caseStudy.media.image.url})`" />
           </div>
           <div class="work__text">
             <span :class="getClass(caseStudy.type)">{{ caseStudy.type }}</span> {{ caseStudy.title }}
@@ -79,7 +83,8 @@
           @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
         >
           <div class="work__media">
-            <div v-if="caseStudy.image" class="work__image" :style="`background-image:url(${caseStudy.image.url})`" />
+            <div v-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${caseStudy.banner.url})`" />
+            <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${caseStudy.media.image.url})`" />
           </div>
           <div class="work__text">
             <span :class="getClass(caseStudy.type)">{{ caseStudy.type }}</span> {{ caseStudy.title }}
@@ -94,7 +99,8 @@
           @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
         >
           <div class="work__media">
-            <div v-if="caseStudy.image" class="work__image" :style="`background-image:url(${caseStudy.image.url})`" />
+            <div v-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${caseStudy.banner.url})`" />
+            <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${caseStudy.media.image.url})`" />
           </div>
           <div class="work__text">
             <span :class="getClass(caseStudy.type)">{{ caseStudy.type }}</span> {{ caseStudy.title }}
@@ -109,7 +115,8 @@
           @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
         >
           <div class="work__media">
-            <div v-if="caseStudy.image" class="work__image" :style="`background-image:url(${caseStudy.image.url})`" />
+            <div v-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${caseStudy.banner.url})`" />
+            <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${caseStudy.media.image.url})`" />
           </div>
           <div class="work__text">
             <span :class="getClass(caseStudy.type)">{{ caseStudy.type }}</span> {{ caseStudy.title }}
@@ -124,7 +131,8 @@
           @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
         >
           <div class="work__media">
-            <div v-if="caseStudy.image" class="work__image" :style="`background-image:url(${caseStudy.image.url})`" />
+            <div v-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${caseStudy.banner.url})`" />
+            <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${caseStudy.media.image.url})`" />
           </div>
           <div class="work__text">
             <span :class="getClass(caseStudy.type)">{{ caseStudy.type }}</span> {{ caseStudy.title }}
