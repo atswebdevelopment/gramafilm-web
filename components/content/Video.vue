@@ -111,6 +111,14 @@ export default {
       width 100% !important
       height 100% !important
 
+  &__preview
+    height 100%
+    width 100%
+    position absolute
+    top 0
+    left 0
+    opacity 1
+
   &--fullscreen
     height 100vh
     overflow hidden
@@ -125,11 +133,7 @@ export default {
       min-width 100%
       min-height 100%
 
-  &__preview
-    height 100%
-    width 100%
-    position absolute
-    top 0
-    left 0
-    opacity 1
+    .video__preview video
+      top 50%
+      transform translateY(-50%)
 </style>
