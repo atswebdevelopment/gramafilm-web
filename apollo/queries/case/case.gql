@@ -7,6 +7,26 @@ query CaseStudies ($url: String!) {
       url
       mime
     }
+    media {
+      ... on ComponentContentMedia {
+        id
+        image {
+          url
+          alternativeText
+          caption
+        }
+        qvideo {
+          id
+          title
+          src
+          preview {
+            id
+            url
+            mime
+          }
+        }
+      }
+    }
     image {
       url
       alternativeText
@@ -37,6 +57,11 @@ query CaseStudies ($url: String!) {
           id
           title
           src
+          preview {
+            id
+            url
+            mime
+          }
         }
         fullscreen
       }
@@ -51,6 +76,11 @@ query CaseStudies ($url: String!) {
           id
           title
           src
+          preview {
+            id
+            url
+            mime
+          }
         }
         image {
           url
@@ -61,6 +91,11 @@ query CaseStudies ($url: String!) {
           id
           title
           src
+          preview {
+            id
+            url
+            mime
+          }
         }
         content
       }
@@ -75,6 +110,11 @@ query CaseStudies ($url: String!) {
           id
           title
           src
+          preview {
+            id
+            url
+            mime
+          }
         }
         image {
           url
@@ -85,6 +125,11 @@ query CaseStudies ($url: String!) {
           id
           title
           src
+          preview {
+            id
+            url
+            mime
+          }
         }
         content
       }
@@ -100,6 +145,11 @@ query CaseStudies ($url: String!) {
           id
           title
           src
+          preview {
+            id
+            url
+            mime
+          }
         }
         column2content
         column2image {
@@ -111,6 +161,11 @@ query CaseStudies ($url: String!) {
           id
           title
           src
+          preview {
+            id
+            url
+            mime
+          }
         }
       }
       ... on ComponentModulesQuote {

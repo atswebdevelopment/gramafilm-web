@@ -154,13 +154,13 @@ export default {
         height 568px
 
     &--5
-      bottom -200px
+      bottom -176px
       left 50%
       margin-left -440px
       width 880px
 
       .banner__media
-        height 588px
+        height 495px
 
     @media (max-width $bp-sm)
       bottom -90px
@@ -170,6 +170,10 @@ export default {
 
       .banner__media
         height 255px
+
+        .video
+          position absolute
+          bottom 0
 
   &__image
     width 100%

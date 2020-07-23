@@ -4,7 +4,8 @@
       <h1>{{ caseStudy.title }}</h1>
       <div v-if="caseStudy.image" class="banner__item banner__item--5">
         <div class="banner__media">
-          <div class="banner__image" :style="`background-image:url(${caseStudy.image.url})`" />
+          <div v-if="caseStudy.media && caseStudy.media.image" class="banner__image" :style="`background-image:url(${caseStudy.image.url})`" />
+          <Video v-else-if="caseStudy.media && caseStudy.media.qvideo" class="banner__image" :video="caseStudy.media.qvideo" />
         </div>
       </div>
     </Banner>

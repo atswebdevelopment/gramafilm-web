@@ -33,6 +33,11 @@ query Events {
           id
           title
           src
+          preview {
+            id
+            url
+            mime
+          }
         }
         image1 {
           url
@@ -43,6 +48,11 @@ query Events {
           id
           title
           src
+          preview {
+            id
+            url
+            mime
+          }
         }
         image2 {
           url
@@ -53,6 +63,11 @@ query Events {
           id
           title
           src
+          preview {
+            id
+            url
+            mime
+          }
         }
         image3 {
           url
@@ -63,6 +78,11 @@ query Events {
           id
           title
           src
+          preview {
+            id
+            url
+            mime
+          }
         }
         image4 {
           url
@@ -73,6 +93,11 @@ query Events {
           id
           title
           src
+          preview {
+            id
+            url
+            mime
+          }
         }
       }
       ... on ComponentModules3X1 {
@@ -87,6 +112,11 @@ query Events {
           id
           title
           src
+          preview {
+            id
+            url
+            mime
+          }
         }
         image1 {
           url
@@ -97,6 +127,11 @@ query Events {
           id
           title
           src
+          preview {
+            id
+            url
+            mime
+          }
         }
         image2 {
           url
@@ -107,6 +142,11 @@ query Events {
           id
           title
           src
+          preview {
+            id
+            url
+            mime
+          }
         }
         image3 {
           url
@@ -117,6 +157,11 @@ query Events {
           id
           title
           src
+          preview {
+            id
+            url
+            mime
+          }
         }
       }
       ... on ComponentModules1X1X1 {
@@ -131,6 +176,11 @@ query Events {
           id
           title
           src
+          preview {
+            id
+            url
+            mime
+          }
         }
         column2content
         column2image {
@@ -142,6 +192,11 @@ query Events {
           id
           title
           src
+          preview {
+            id
+            url
+            mime
+          }
         }
         column3content
         column3image {
@@ -153,6 +208,11 @@ query Events {
           id
           title
           src
+          preview {
+            id
+            url
+            mime
+          }
         }
       }
       ... on ComponentModulesQuote {
@@ -171,6 +231,11 @@ query Events {
           id
           title
           src
+          preview {
+            id
+            url
+            mime
+          }
         }
         fullscreen
       }
@@ -185,6 +250,11 @@ query Events {
           id
           title
           src
+          preview {
+            id
+            url
+            mime
+          }
         }
         image {
           url
@@ -195,6 +265,11 @@ query Events {
           id
           title
           src
+          preview {
+            id
+            url
+            mime
+          }
         }
         content
       }
@@ -209,6 +284,11 @@ query Events {
           id
           title
           src
+          preview {
+            id
+            url
+            mime
+          }
         }
         image {
           url
@@ -219,6 +299,11 @@ query Events {
           id
           title
           src
+          preview {
+            id
+            url
+            mime
+          }
         }
         content
       }
