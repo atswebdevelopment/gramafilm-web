@@ -19,7 +19,7 @@
               <span v-if="item.category" :class="getClass(item.category.name)">{{ item.category.name }}</span> {{ item.title }}
             </div>
           </template>
-          <template v-else>
+          <template v-else-if="item.caption || item.caption === ''">
             <div class="swiper__media">
               <img v-if="item.url" data-not-lazy :src="item.url" :alt="item.alternativeText">
             </div>

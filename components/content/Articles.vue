@@ -7,7 +7,7 @@
       class="articles__item"
       @click="$nuxt.$router.push({ name: 'journal-id', params: { id: article.url } })"
     >
-      <img :src="article.image.url" :alt="article.image.alternativeText">
+      <img v-if="article.image" :src="article.image.url" :alt="article.image.alternativeText">
       <p>{{ article.title }}</p>
     </div>
   </div>

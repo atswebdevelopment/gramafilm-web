@@ -37,7 +37,7 @@
     <ContentArea class="journal">
       <h2>Journal</h2>
     </ContentArea>
-    <Slider v-if="articles.length" :items="articles" />
+    <Slider v-if="articles.length" :items="articles.slice(0, 10)" />
   </div>
 </template>
 
