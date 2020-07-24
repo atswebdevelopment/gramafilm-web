@@ -30,7 +30,9 @@ export default {
       playerOptions: {},
       identifier: '',
       sources: null,
-      viewportLoaded: false
+      viewportLoaded: false,
+      options: null,
+      loaded: false
     }
   },
   created () {
@@ -47,8 +49,45 @@ export default {
   },
   methods: {
     onPlayerPlay (player) {
-      const video = document.querySelector('.video-' + this.identifier + ' .video__preview')
-      video.parentNode.removeChild(video)
+      const videoPreview = document.querySelector('.video-' + this.identifier + ' .video__preview')
+      if (videoPreview) {
+        videoPreview.parentNode.removeChild(videoPreview)
+      }
+      if (!this.loaded && this.playerOptions.sources && this.playerOptions.sources.length > 1) {
+        const qualityList = document.querySelector('.video-' + this.identifier + ' .vjs-spacer')
+        qualityList.innerHTML = ''
+        const tag = document.createElement('span')
+        this.options = document.createElement('ul')
+        tag.innerHTML = this.playerOptions.sources[0].label
+        tag.addEventListener('mouseenter', () => {
+          this.options.style.display = 'block'
+        })
+        qualityList.appendChild(tag)
+        this.playerOptions.sources.forEach((e, i) => {
+          const option = document.createElement('li')
+          option.innerHTML = e.label
+          option.addEventListener('click', () => {
+            const video = document.querySelector('.video-' + this.identifier + ' video')
+            const time = video.currentTime
+            video.setAttribute('src', e.src)
+            video.currentTime = time
+            video.play()
+            this.options.style.display = 'none'
+            tag.innerHTML = e.label
+            this.options.querySelector('.active').classList.remove('active')
+            option.classList.add('active')
+          })
+          if (i === 0) {
+            option.classList.add('active')
+          }
+          this.options.appendChild(option)
+        })
+        qualityList.appendChild(this.options)
+        qualityList.addEventListener('mouseleave', () => {
+          this.options.style.display = 'none'
+        })
+      }
+      this.loaded = true
     },
     ready () {
       if (!document.querySelector('.video-' + this.identifier)) {
@@ -61,7 +100,7 @@ export default {
       const urls = this.video.src.split('\n')
       const tempArray = []
       urls.forEach((e, i) => {
-        const res = e.includes('id=174') ? 720 : e.includes('id=165') ? 540 : e.includes('id=165') ? 360 : 1080
+        const res = e.includes('id=174') ? 720 : e.includes('id=165') ? 540 : e.includes('id=164') ? 360 : 1080
         tempArray.push({
           type: 'video/mp4',
           src: e.replace(/ /g, ''),

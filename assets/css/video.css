@@ -8,4 +8,12 @@
 .vjs-theme-sea .vjs-big-play-button:hover, .vjs-theme-sea .vjs-big-play-button:focus { background: url('/videoplayer/play-on.svg');}
 .video-js .vjs-big-play-button:focus, .video-js:hover .vjs-big-play-button { border: none; background-color: transparent; }
 .vjs-theme-sea .vjs-big-play-button span { display: none; }
-.vjs-paused .vjs-big-play-button { display: block; }
+.vjs-paused .vjs-big-play-button, .video-js .vjs-custom-control-spacer { display: block; }
+
+.video-js .vjs-custom-control-spacer { display: block; position: relative; text-align: center; }
+.video-js .vjs-custom-control-spacer:hover, .video-js .vjs-custom-control-spacer:focus { background: #FFF; color: #01485F; }
+.video-js .vjs-custom-control-spacer span { display:inline-block; line-height: 40px; width: 50px; padding: 0 10px; cursor: pointer; }
+.video-js .vjs-custom-control-spacer ul { display:none; position: absolute; bottom: 40px; left: 0; width: 100%; padding: 0; list-style: none; background: #FFF; }
+.video-js .vjs-custom-control-spacer li { padding: 5px 10px; color: #01485F; cursor: pointer; }
+.video-js .vjs-custom-control-spacer li:hover { background:rgba(1,72,95,.6); color: #FFF; }
+.video-js .vjs-custom-control-spacer li.active, .video-js .vjs-custom-control-spacer li:hover.active { background: #01485F; color: #FFF; }

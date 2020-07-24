@@ -27,7 +27,7 @@ export default {
         }
       },
       update (data) {
-        return data.caseStudies[0] || this.$nuxt.$router.push({ name: 'work' })
+        return (data.caseStudies && data.caseStudies[0]) || this.$nuxt.$router.push({ name: 'work' })
       }
     }
   },
