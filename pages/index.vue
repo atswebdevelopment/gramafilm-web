@@ -10,6 +10,7 @@
       </div>
     </div>
     <MainMenu fixed />
+    <img class="hidden" data-not-lazy src="/videoplayer/play-on.svg">
   </div>
 </template>
 
