@@ -4,6 +4,12 @@ query CaseStudies ($url: String!) {
     url
     title
     banner {
+      id
+      url
+      mime
+    }
+    thumbnail {
+      id
       url
       mime
     }
