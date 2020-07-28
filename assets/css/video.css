@@ -5,7 +5,13 @@
 .vjs-paused { cursor: pointer; }
 
 .vjs-theme-sea .vjs-big-play-button { background: url('/videoplayer/play-off.svg'); width: 98px; height: 98px; margin: -49px 0 0 -49px; z-index: 1;}
+@media only screen and (max-width: 1023px) {
+  .vjs-theme-sea .vjs-big-play-button { width: 48px; height: 48px; margin: -24px 0 0 -24px; background-size: 48px;}
+}
 .vjs-theme-sea .vjs-big-play-button:hover, .vjs-theme-sea .vjs-big-play-button:focus { background: url('/videoplayer/play-on.svg');}
+@media only screen and (max-width: 1023px) {
+  .vjs-theme-sea .vjs-big-play-button:hover, .vjs-theme-sea .vjs-big-play-button:focus { background-size: 48px;}
+}
 .video-js .vjs-big-play-button:focus, .video-js:hover .vjs-big-play-button { border: none; background-color: transparent; }
 .vjs-theme-sea .vjs-big-play-button span { display: none; }
 .vjs-paused .vjs-big-play-button, .video-js .vjs-custom-control-spacer { display: block; }

@@ -426,8 +426,9 @@ export default {
     text-align center
 
     @media (max-width: $bp-sm)
-      margin 0 auto 200px
+      margin 100px auto 200px
       font-size 40px
+      width 302px
       line-height 40px
 
   &__marquee
@@ -443,7 +444,7 @@ export default {
     margin-left -500px
 
     @media (max-width: $bp-sm)
-      margin-bottom 70px
+      margin 100px 0
 
   &--home
     margin -50px 0 0

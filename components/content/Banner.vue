@@ -75,12 +75,13 @@ export default {
     font-size 32px
     line-height 36px
     position absolute
-    left 0
+    left 12px
     top 20vh
     font-weight 500
     cursor pointer
 
     @media (max-width $bp-sm)
+      left 10px
       top 15vh
 
   &__inner
@@ -154,7 +155,7 @@ export default {
         height 568px
 
     &--5
-      bottom -176px
+      bottom -247px
       left 50%
       margin-left -440px
       width 880px
@@ -162,18 +163,18 @@ export default {
       .banner__media
         height 495px
 
-    @media (max-width $bp-sm)
-      bottom -90px
-      margin 0
-      width 100%
-      left 0
+      @media (max-width $bp-sm)
+        bottom -127px
+        margin 0
+        width 100%
+        left 0
 
-      .banner__media
-        height 255px
+        .banner__media
+          height 255px
 
-        .video
-          position absolute
-          bottom 0
+          .video
+            position absolute
+            bottom 0
 
   &__image
     width 100%

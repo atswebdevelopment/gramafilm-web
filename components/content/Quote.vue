@@ -37,20 +37,23 @@ export default {
       line-height 42px
       margin 0 20px 30px
 
-    &:before
-      content '“'
-      position absolute
-      left -20px
-      top 0
+    // &:before
+    //   content '“'
+    //   position absolute
+    //   left -20px
+    //   top 0
 
-    &:after
-      content '”'
-      position absolute
-      right -20px
-      bottom 0
+    // &:after
+    //   content '”'
+    //   position absolute
+    //   right -20px
+    //   bottom 0
 
   .cite
     font-size 16px
     line-height 20px
     text-transform uppercase
+
+    @media (max-width $bp-sm)
+      margin 0 20px
 </style>

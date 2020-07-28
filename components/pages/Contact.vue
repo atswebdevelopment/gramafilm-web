@@ -279,6 +279,9 @@ export default {
 .map
   height 750px
 
+  @media (max-width $bp-sm)
+    height 400px
+
 >>> .GMap__Wrapper
   height 100%
 </style>

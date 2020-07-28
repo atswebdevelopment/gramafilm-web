@@ -146,6 +146,10 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+h1
+  font-size 16vw
+  line-height 16vw
+
 .about
   position relative
   z-index 1
@@ -195,4 +199,10 @@ export default {
     display inline-block
     width 48%
     vertical-align middle
+
+.logos img
+  @media (max-width $bp-sm)
+    margin 0 auto
+    max-width 60%
+    max-height 60px
 </style>

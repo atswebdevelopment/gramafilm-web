@@ -9,8 +9,8 @@
           </Counter>
         </Column>
       </ColumnContainer>
+      <Modules :modules="events.modules" />
     </ContentArea>
-    <Modules :modules="events.modules" />
     <GetInTouch footer-links />
   </Showcase>
 </template>

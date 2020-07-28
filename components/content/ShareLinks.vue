@@ -5,7 +5,7 @@
       <a class="shareLinks__link" target="_blank" title="Opens in a new window" href="https://www.instagram.com/gramafilm/?hl=en">Instagram</a>
       <a class="shareLinks__link" target="_blank" title="Opens in a new window" href="https://www.facebook.com/Gramafilm/">Facebook</a>
       <a class="shareLinks__link" target="_blank" title="Opens in a new window" href="https://uk.linkedin.com/organization-guest/company/gramafilm">LinkedIn</a>
-      <a class="shareLinks__link" target="_blank" title="Opens in a new window" href="https://www.youtube.com/gramafilm">Youtube</a>
+      <a class="shareLinks__link" target="_blank" title="Opens in a new window" href="https://www.youtube.com/gramafilm">YouTube</a>
       <a class="shareLinks__link" target="_blank" title="Opens in a new window" href="https://twitter.com/Gramafilm">Twitter</a>
     </div>
   </div>

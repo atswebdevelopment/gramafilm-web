@@ -8,6 +8,9 @@
     black
     @click.native="!bannerTop && $nuxt.$router.push({ name: 'design' })"
   >
+    <div v-if="!bannerTop" class="banner__next">
+      Next
+    </div>
     <h1>Design</h1>
     <div v-if="design.headerimage1" class="banner__item banner__item--4" data-rellax-speed="-3">
       <div class="banner__media">
