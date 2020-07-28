@@ -18,8 +18,8 @@
         <template slot="tabs">
           <div v-for="(partner, index) in home.partners" :key="partner.id" class="contentSwitcher__tab" :class="{ 'contentSwitcher__tab--active': index === 0}">
             <b>{{ partner.title }}</b>
-            <div class="contentSwitcher__tabcontent">
-              <img v-if="partner.image" :src="partner.image.url" :alt="partner.image.alternativeText">
+            <div v-if="mobile" class="contentSwitcher__tabcontent">
+              <img v-if="partner.image" :src="setResponsive(partner.image.url, 767)" :alt="partner.image.alternativeText">
               <Video v-else-if="partner.qvideo" :video="partner.qvideo" />
               <div v-html="partner.content" />
             </div>
@@ -27,7 +27,7 @@
         </template>
         <template slot="contentWindow">
           <div v-for="(partner, index) in home.partners" :key="partner.id" class="contentSwitcher__content" :class="{ 'contentSwitcher__content--active': index === 0}">
-            <img v-if="partner.image" :src="partner.image.url" :alt="partner.image.alternativeText">
+            <img v-if="partner.image" :src="setResponsive(partner.image.url, 767)" :alt="partner.image.alternativeText">
             <Video v-else-if="partner.qvideo" :video="partner.qvideo" />
             <div v-html="partner.content" />
           </div>
@@ -44,6 +44,7 @@
 <script>
 import articlesQuery from '~/apollo/queries/article/articles.gql'
 import fadeIn from '~/helpers/fadeIn'
+import { setResponsive } from '~/helpers/cdn'
 export default {
   components: {
     ContentArea: () => import('~/components/layout/ContentArea'),
@@ -61,13 +62,19 @@ export default {
   },
   data () {
     return {
-      articles: []
+      articles: [],
+      setResponsive
     }
   },
   apollo: {
     articles: {
       prefetch: false,
       query: articlesQuery
+    }
+  },
+  computed: {
+    mobile () {
+      return window.innerWidth < 1024
     }
   },
   mounted () {

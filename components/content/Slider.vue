@@ -13,7 +13,7 @@
         >
           <template v-if="item.image">
             <div class="swiper__media" @click="$nuxt.$router.push({ name: 'journal-id', params: { id: item.url } })">
-              <img v-if="item.image" data-not-lazy :src="item.image.url" :alt="item.image.alternativeText">
+              <img v-if="item.image" data-not-lazy :src="setResponsive(item.image.url, 767)" :alt="item.image.alternativeText">
             </div>
             <div class="swiper__text" @click="$nuxt.$router.push({ name: 'journal-id', params: { id: item.url } })">
               <span v-if="item.category" :class="getClass(item.category.name)">{{ item.category.name }}</span> {{ item.title }}
@@ -21,7 +21,7 @@
           </template>
           <template v-else-if="item.caption || item.caption === ''">
             <div class="swiper__media">
-              <img v-if="item.url" data-not-lazy :src="item.url" :alt="item.alternativeText">
+              <img v-if="item.url" data-not-lazy :src="setResponsive(item.url, 767)" :alt="item.alternativeText">
             </div>
             <div v-if="item.caption" class="swiper__text">
               {{ item.caption }}
@@ -35,6 +35,7 @@
 
 <script>
 import 'swiper/css/swiper.css'
+import { setResponsive } from '~/helpers/cdn'
 export default {
   name: 'Slider',
   props: {
@@ -45,6 +46,7 @@ export default {
   },
   data () {
     return {
+      setResponsive,
       swiperOptions: {
         slidesPerView: 'auto',
         loop: true,
