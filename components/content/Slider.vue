@@ -73,17 +73,24 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.inner .swiper-container
+.inner .swiper-container,
+.casestudy .swiper-container
   padding 0 0 80px
 
 .swiper-container
   padding 0 18px 80px
+
+  @media (max-width $bp-sm)
+    overflow visible
 
 .swiper
   cursor grab
 
   &-slide
     width auto
+
+    @media (max-width $bp-sm)
+      max-width 100%
 
   &__media
     cursor pointer

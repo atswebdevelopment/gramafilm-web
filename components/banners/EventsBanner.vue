@@ -7,6 +7,9 @@
     :hide-overflow="!bannerTop"
     @click.native="!bannerTop && $nuxt.$router.push({ name: 'events' })"
   >
+    <div v-if="!bannerTop" class="banner__next">
+      Next
+    </div>
     <h1>Events</h1>
     <div v-if="events.headerimage1" class="banner__item banner__item--3" data-rellax-speed="-3">
       <div class="banner__media">

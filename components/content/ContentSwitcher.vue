@@ -44,12 +44,18 @@ export default {
       }
       document.querySelectorAll('.contentSwitcher__tab').forEach((e, i) => {
         e.onclick = () => {
-          document.querySelector('.contentSwitcher__content--active').classList.remove('contentSwitcher__content--active')
-          document.querySelector('.contentSwitcher__tab--active').classList.remove('contentSwitcher__tab--active')
-          document.querySelectorAll('.contentSwitcher__content')[i].classList.add('contentSwitcher__content--active')
-          document.querySelectorAll('.contentSwitcher__tab')[i].classList.add('contentSwitcher__tab--active')
+          this.setTab(i)
+        }
+        e.ontouchstart = () => {
+          this.setTab(i)
         }
       })
+    },
+    setTab (i) {
+      document.querySelector('.contentSwitcher__content--active').classList.remove('contentSwitcher__content--active')
+      document.querySelector('.contentSwitcher__tab--active').classList.remove('contentSwitcher__tab--active')
+      document.querySelectorAll('.contentSwitcher__content')[i].classList.add('contentSwitcher__content--active')
+      document.querySelectorAll('.contentSwitcher__tab')[i].classList.add('contentSwitcher__tab--active')
     }
   }
 }

@@ -4,10 +4,13 @@
     v-if="film && film.image"
     :video="film.image.mime.includes('video')"
     :background="film.image.url"
-    :class="{ 'banner--top': bannerTop, 'clickable': !bannerTop }"
+    :class="{ 'banner--top': bannerTop, 'banner--bottom clickable': !bannerTop }"
     :hide-overflow="!bannerTop"
     @click.native="!bannerTop && $nuxt.$router.push({ name: 'film' })"
   >
+    <div v-if="!bannerTop" class="banner__next">
+      Next
+    </div>
     <h1>Film</h1>
     <div v-if="film.headerimage1" class="banner__item banner__item--2" data-rellax-speed="-3">
       <div class="banner__media">

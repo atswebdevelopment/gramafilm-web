@@ -17,7 +17,6 @@
 
 <script>
 import CounterMixin from '~/components/mixins/CounterMixin'
-import fadeIn from '~/helpers/fadeIn'
 export default {
   components: {
     Showcase: () => import('~/components/layout/Showcase'),
@@ -39,7 +38,6 @@ export default {
     setTimeout(() => {
       this.$store.commit('header/setDefaultColor', 'black')
     }, 200)
-    fadeIn()
   }
 }
 </script>

@@ -40,7 +40,7 @@ export default {
 
   @media (max-width $bp-sm)
     width 100%
-    height 104px
+    height 125px
 
   &--inline
     display inline-block

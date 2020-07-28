@@ -1,4 +1,4 @@
-const setResponsive = (url) => {
+const setResponsive = (url, size) => {
   if (!process.client) {
     return url
   }
@@ -6,9 +6,9 @@ const setResponsive = (url) => {
     return url
   }
   const pathArray = url.split('upload/')
-  let size = window.innerWidth < 767 ? 767 : window.innerWidth < 1200 ? 1600 : 3000
-  size = `w_${size},c_limit`
-  const newPath = `${pathArray[0]}upload/${size}/${pathArray[1].split('/')[1]}`
+  let resize = size || window.innerWidth < 767 ? 767 : window.innerWidth < 1200 ? 1600 : 3000
+  resize = `w_${resize},c_limit`
+  const newPath = `${pathArray[0]}upload/${resize}/${pathArray[1].split('/')[1]}`
   return newPath
 }
 
