@@ -84,6 +84,11 @@ export default {
       left 10px
       top 15vh
 
+    @media (max-width $bp-xs)
+      left 3px
+      top 30vh
+      font-size 28px
+
   &__inner
     height 100vh
     position relative
@@ -160,6 +165,9 @@ export default {
       margin-left -440px
       width 880px
 
+      @media (max-width $bp-xs)
+        bottom -105px
+
       .banner__media
         height 495px
 
@@ -171,6 +179,9 @@ export default {
 
         .banner__media
           height 255px
+
+          @media (max-width $bp-xs)
+            height: 210px
 
           .video
             position absolute

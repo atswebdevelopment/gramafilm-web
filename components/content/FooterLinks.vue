@@ -31,10 +31,17 @@ export default {
   bottom 42px
   left 0
   width 100%
-  font-size 16px
-  line-height 19px
-  letter-spacing 0
   padding 0
+  line-height 19px
+
+  p, a
+    font-size 16px
+    line-height 19px
+    letter-spacing 0
+
+    @media (max-width $bp-xs)
+      font-size 12px
+      line-height 16px
 
   @media (max-width $bp-sm)
     bottom 10px
@@ -47,6 +54,9 @@ export default {
       padding 0 18px
       display block
       text-align center
+
+    @media (max-width $bp-xs)
+      padding 0 20px
 
   &__link
     margin 0 5px

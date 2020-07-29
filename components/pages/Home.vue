@@ -108,6 +108,10 @@ export default {
     margin 0
     bottom -100px
 
+  @media (max-width $bp-xs)
+    width 250px
+    bottom -74px
+
 .journal
   padding 4vh 0
 </style>

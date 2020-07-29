@@ -139,6 +139,12 @@ export default {
     z-index 1
     margin 0 18px
 
+    @media (max-width $bp-xs)
+      margin 0 6px
+      font-size 32px
+      line-height 42px
+      letter-spacing 0px
+
     &.nuxt-link-active,
     &:hover
       opacity 1

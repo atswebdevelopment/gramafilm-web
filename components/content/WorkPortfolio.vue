@@ -433,6 +433,10 @@ export default {
       width 302px
       line-height 40px
 
+    @media (max-width $bp-xs)
+      font-size 34px
+      line-height 42px
+
   &__marquee
     height 51px
     background url(/logo.svg) 0 0
