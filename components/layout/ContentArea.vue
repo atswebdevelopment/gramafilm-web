@@ -48,6 +48,9 @@ export default {
   z-index 1
   overflow hidden
 
+  @media (max-width $bp-xs)
+    padding 3vh 0
+
   &--overflow
     overflow visible
 

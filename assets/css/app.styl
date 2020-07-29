@@ -20,9 +20,13 @@ a
 p
   min-height 16px
 
+  @media (max-width $bp-xs)
+    font-size 22px
+    line-height 28px
+
 b, strong
   font-weight normal
-  font-family $fontFamilySemiBold
+  font-family $fontFamilyBold
 
 h1
   font-weight normal
@@ -45,9 +49,13 @@ h1
 
 h2
   font-weight normal
-  font-family $fontFamilySemiBold
+  font-family $fontFamilyBold
   font-size 40px
   line-height 46px
+
+  @media (max-width $bp-xs)
+    font-size 32px
+    line-height 40px
 
 .large
   font-size 48px
@@ -74,11 +82,19 @@ h2
     font-size 40px
     line-height 46px
 
+  @media (max-width $bp-xs)
+    font-size 32px
+    line-height 38px
+
 h3
   font-weight normal
-  font-family $fontFamilySemiBold
+  font-family $fontFamilyBold
   font-size 32px
   line-height 36px
+
+  @media (max-width $bp-xs)
+    font-size 28px
+    margin-bottom 0
 
 .nomargin
   white-space pre-line
@@ -165,6 +181,7 @@ button
   line-height 48px
   margin-left auto
   cursor pointer
+  letter-spacing -0.9px
 
 .form--alt input,
 .form--alt button
@@ -198,6 +215,8 @@ button
     flex-shrink 0
     margin-left 20px
     transition 0.4s transform $ease
+    position relative
+    top 2px
 
   &:hover:after
     transform translateX(20px)

@@ -50,6 +50,11 @@ export default {
     letter-spacing -1.5px
     margin-bottom 30px
 
+    @media (max-width $bp-xs)
+      font-size 34px
+      line-height 38px
+      letter-spacing -0.3px
+
   &__link
     font-size 32px
     line-height 52px

@@ -229,6 +229,9 @@ export default {
     @media (max-width $bp-sm)
       margin-top 2vh
 
+    @media (max-width $bp-xs)
+      margin-top 0
+
 .casestudy
   p
     max-width 528px
@@ -277,4 +280,7 @@ export default {
 
   .column
     padding 3vh 8px
+
+    @media (max-width $bp-sm)
+      padding 3vh 0
 </style>

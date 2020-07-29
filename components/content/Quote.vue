@@ -56,4 +56,8 @@ export default {
 
     @media (max-width $bp-sm)
       margin 0 20px
+
+    @media (max-width $bp-xs)
+      font-family $fontFamilySemiBold
+      letter-spacing 0.3px
 </style>

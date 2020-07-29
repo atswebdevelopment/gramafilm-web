@@ -113,6 +113,8 @@ export default {
     margin-right 20px
     color $white
     transition 0.4s color $ease
+    font-size 18px
+    letter-spacing 0
 
     &--black
       color $black

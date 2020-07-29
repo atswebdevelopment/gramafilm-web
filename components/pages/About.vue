@@ -162,6 +162,11 @@ h1
       padding 0
       margin-top 5vh
 
+    @media (max-width $bp-xs)
+      font-family $fontFamily
+      font-size 34px
+      line-height 40px
+
     >>> h2
       font-size 48px
       line-height 54px
