@@ -139,7 +139,7 @@ export default {
     z-index 1
     margin 0 18px
 
-    @media (max-width $bp-xs)
+    @media (max-width $bp-xxs)
       margin 0 6px
       font-size 32px
       line-height 42px

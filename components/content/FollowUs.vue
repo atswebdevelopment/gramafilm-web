@@ -77,6 +77,7 @@ export default {
 
   @media (max-width $bp-sm)
     width 100%
+    margin 0 20px
     padding 0 18px
     box-sizing border-box
 

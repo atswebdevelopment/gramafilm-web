@@ -128,9 +128,9 @@ export default {
       const bg3 = document.querySelector('.intro__background--3')
       const centerX = window.innerWidth / 2
       const centerY = window.innerHeight / 2
-      // bg.style.transform = `rotateY(${((centerX - e.clientX) / 70)}deg) rotateX(${((centerY - e.clientY) / 70)}deg) translateZ(0px)`
-      // bg2.style.transform = `rotateY(${((centerX - e.clientX) / 70)}deg) rotateX(${((centerY - e.clientY) / 70)}deg) translateZ(0px)`
-      // bg3.style.transform = `rotateY(${((centerX - e.clientX) / 70)}deg) rotateX(${((centerY - e.clientY) / 70)}deg) translateZ(0px)`
+      bg.style.transform = `rotateY(${((centerX - e.clientX) / 50)}deg) rotateX(${((centerY - e.clientY) / 50)}deg) translateZ(0px)`
+      bg2.style.transform = `rotateY(${((centerX - e.clientX) / 50)}deg) rotateX(${((centerY - e.clientY) / 50)}deg) translateZ(0px)`
+      bg3.style.transform = `rotateY(${((centerX - e.clientX) / 50)}deg) rotateX(${((centerY - e.clientY) / 50)}deg) translateZ(0px)`
     }
   }
 }
