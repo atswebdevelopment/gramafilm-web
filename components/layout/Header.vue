@@ -9,7 +9,7 @@
             </nuxt-link>
           </div>
           <div class="header__util">
-            <nuxt-link class="header__link" :class="{ 'header__link--black': headerColor === 'black' }" :to="{ name: 'contact'}">
+            <nuxt-link v-if="!menu" class="header__link" :class="{ 'header__link--black': headerColor === 'black' }" :to="{ name: 'contact'}">
               Contact
             </nuxt-link>
             <div class="menu" :class="{ 'menu--open': menu, 'menu--black': headerColor === 'black' }" @click="toggleMenu" />

@@ -1,6 +1,6 @@
 <template>
   <div class="case">
-    <Banner v-if="caseStudy.banner" class="case__banner" :video="caseStudy.banner.mime.includes('video')" :background="caseStudy.banner.url">
+    <Banner v-if="caseStudy.banner" class="case__banner" :video="caseStudy.banner.mime.includes('video')" :background="caseStudy.banner.url" :black="caseStudy.inverttext">
       <h1>{{ caseStudy.title }}</h1>
       <div v-if="caseStudy.media && (caseStudy.media.image || caseStudy.media.qvideo)" class="banner__item banner__item--5">
         <div class="banner__media">
@@ -153,10 +153,12 @@
     <GetInTouch footer-links />
     <Banner
       v-if="caseStudy.case_study"
-      class="case__banner banner--bottom"
+      class="case__banner"
+      :class=" { 'banner--bottom': !caseStudy.case_study.inverttext }"
       :video="caseStudy.case_study && caseStudy.case_study.banner && caseStudy.case_study.banner.mime.includes('video')"
       :background="caseStudy.case_study && caseStudy.case_study.banner && caseStudy.case_study.banner.url"
       hide-overflow
+      :black="caseStudy.case_study.inverttext"
     >
       <div class="banner__next" @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.case_study.url } })">
         Next
@@ -193,7 +195,7 @@ export default {
   },
   mounted () {
     setTimeout(() => {
-      this.$store.commit('header/setDefaultColor', 'white')
+      this.$store.commit('header/setDefaultColor', this.caseStudy.inverttext ? 'black' : 'white')
     }, 200)
     fadeIn()
   }
