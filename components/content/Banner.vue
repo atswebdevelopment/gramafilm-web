@@ -52,6 +52,9 @@ export default {
   height 100vh
   color $white
 
+  @media (max-width $bp-sm)
+    height 80vh
+
   &--hide-overflow
     overflow hidden
 
@@ -71,6 +74,10 @@ export default {
       line-height 134px
       top 10vh
 
+    @media (max-width $bp-sm)
+      font-size 76px
+      line-height 82px
+
   &__next
     font-size 32px
     line-height 36px
@@ -81,17 +88,19 @@ export default {
     cursor pointer
 
     @media (max-width $bp-sm)
-      left 10px
-      top 15vh
+      left 5px
+      top 10vh
 
     @media (max-width $bp-xs)
       left 3px
-      top 30vh
       font-size 28px
 
   &__inner
     height 100vh
     position relative
+
+    @media (max-width $bp-sm)
+      height 72vh
 
   &__media
     width 100%
@@ -112,7 +121,10 @@ export default {
       left 0
 
       @media (max-width $bp-sm)
-        bottom -70px
+        bottom -107px
+
+      @media (max-width $bp-xs)
+        bottom -146px
 
     &--2
       bottom 8vh
@@ -120,11 +132,7 @@ export default {
       width 432px
 
       @media (max-width $bp-sm)
-        transform scale(0.5)
-        transform-origin 100% 0
-        bottom auto
-        top 40vh
-        right -18px
+        display none
 
       .banner__media
         height 574px
@@ -135,11 +143,7 @@ export default {
       width 432px
 
       @media (max-width $bp-sm)
-        transform scale(0.5)
-        transform-origin 100% 0
-        bottom auto
-        top 50vh
-        right -18px
+        display none
 
       .banner__media
         height 289px
@@ -150,11 +154,7 @@ export default {
       width 432px
 
       @media (max-width $bp-sm)
-        transform scale(0.5)
-        transform-origin 100% 0
-        bottom auto
-        top 40vh
-        right -18px
+        display none
 
       .banner__media
         height 568px
@@ -164,9 +164,6 @@ export default {
       left 50%
       margin-left -440px
       width 880px
-
-      @media (max-width $bp-xs)
-        bottom -105px
 
       .banner__media
         height 495px
@@ -186,6 +183,9 @@ export default {
           .video
             position absolute
             bottom 0
+
+      @media (max-width $bp-xs)
+        bottom -105px
 
   &__image
     width 100%

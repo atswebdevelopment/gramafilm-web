@@ -5,7 +5,7 @@
         <div
           v-for="(caseStudy, index) in workModuleOne"
           :key="index"
-          :class="`work__item work__item--${index} fade fadeIn`"
+          :class="`work__item work__item--${index} ${index > 1 && 'fade fadeIn'}`"
           @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
         >
           <div class="work__media">

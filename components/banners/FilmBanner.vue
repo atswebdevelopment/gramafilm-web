@@ -43,7 +43,7 @@ export default {
   },
   mounted () {
     setTimeout(() => {
-      if (this.bannerTop) {
+      if (this.bannerTop && window.innerWidth > 1023) {
         new Rellax('.banner--top .banner__item--2', {})
         new Rellax('.banner--top .banner__item--1', {})
       }

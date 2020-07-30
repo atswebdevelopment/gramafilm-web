@@ -11,10 +11,12 @@ query Work {
           title
           type
           thumbnail {
+            id
             url
             mime
           }
           banner {
+            id
             url
             alternativeText
             caption
@@ -24,6 +26,7 @@ query Work {
             ... on ComponentContentMedia {
               id
               image {
+                id
                 url
                 alternativeText
                 caption

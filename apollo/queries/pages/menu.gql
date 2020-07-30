@@ -4,6 +4,7 @@ query Menu {
     navigation {
       title
       route
+      inverttext
       background {
         url
         mime

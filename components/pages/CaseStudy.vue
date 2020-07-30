@@ -1,6 +1,6 @@
 <template>
   <div class="case">
-    <Banner v-if="caseStudy.banner" class="case__banner" :video="caseStudy.banner.mime.includes('video')" :background="caseStudy.banner.url">
+    <Banner v-if="caseStudy.banner" class="case__banner" :video="caseStudy.banner.mime.includes('video')" :background="caseStudy.banner.url" :black="caseStudy.inverttext">
       <h1>{{ caseStudy.title }}</h1>
       <div v-if="caseStudy.media && (caseStudy.media.image || caseStudy.media.qvideo)" class="banner__item banner__item--5">
         <div class="banner__media">
@@ -153,10 +153,12 @@
     <GetInTouch footer-links />
     <Banner
       v-if="caseStudy.case_study"
-      class="case__banner banner--bottom"
+      class="case__banner"
+      :class=" { 'banner--bottom': !caseStudy.case_study.inverttext }"
       :video="caseStudy.case_study && caseStudy.case_study.banner && caseStudy.case_study.banner.mime.includes('video')"
       :background="caseStudy.case_study && caseStudy.case_study.banner && caseStudy.case_study.banner.url"
       hide-overflow
+      :black="caseStudy.case_study.inverttext"
     >
       <div class="banner__next" @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.case_study.url } })">
         Next
@@ -193,7 +195,7 @@ export default {
   },
   mounted () {
     setTimeout(() => {
-      this.$store.commit('header/setDefaultColor', 'white')
+      this.$store.commit('header/setDefaultColor', this.caseStudy.inverttext ? 'black' : 'white')
     }, 200)
     fadeIn()
   }
@@ -201,21 +203,32 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.case
+  overflow hidden
+
 >>> .banner__inner
   height 92vh
 
 @media (max-width $bp-sm)
   .case__banner
-    height 80vh
-
     h1
       font-size 56px
       line-height 64px
-      top 30vh
+      top 20vh
       letter-spacing 0
+
+    @media (max-width $bp-sm)
+      .banner__next
+        top 18vh
 
   >>> .banner__inner
     height 72vh
+
+@media (max-width $bp-xs)
+  .case__banner
+    h1
+      font-size 48px
+      line-height 56px
 
 .large
   margin 30vh auto 5vh
@@ -245,6 +258,10 @@ export default {
   &__module
     width calc(100% + 16px)
     margin-left -8px
+
+    @media (max-width $bp-sm)
+      width 100%
+      margin-left 0
 
     &--1
       width 100%

@@ -6,7 +6,6 @@ query Home {
       id
       url
       alternativeText
-      caption
       mime
     }
     introvideo {

@@ -3,6 +3,7 @@ query CaseStudies ($url: String!) {
     id
     url
     title
+    inverttext
     banner {
       id
       url
@@ -17,9 +18,10 @@ query CaseStudies ($url: String!) {
       ... on ComponentContentMedia {
         id
         image {
+          id
           url
           alternativeText
-          caption
+          mime
         }
         qvideo {
           id
@@ -41,6 +43,7 @@ query CaseStudies ($url: String!) {
     case_study {
       id
       title
+      inverttext
       banner {
         url
         mime
@@ -50,6 +53,7 @@ query CaseStudies ($url: String!) {
       ... on ComponentModulesVideo {
         id
         image {
+          id
           url
           alternativeText
           caption
@@ -69,6 +73,7 @@ query CaseStudies ($url: String!) {
       ... on ComponentModules1X1Textleft {
         id
         mainimage {
+          id
           url
           alternativeText
           caption
@@ -103,6 +108,7 @@ query CaseStudies ($url: String!) {
       ... on ComponentModules1X1Textright {
         id
         mainimage {
+          id
           url
           alternativeText
           caption
@@ -118,6 +124,7 @@ query CaseStudies ($url: String!) {
           }
         }
         image {
+          id
           url
           alternativeText
           caption
@@ -138,6 +145,7 @@ query CaseStudies ($url: String!) {
         id
         column1content
         column1image {
+          id
           url
           alternativeText
           caption
@@ -154,6 +162,7 @@ query CaseStudies ($url: String!) {
         }
         column2content
         column2image {
+          id
           url
           alternativeText
           caption
