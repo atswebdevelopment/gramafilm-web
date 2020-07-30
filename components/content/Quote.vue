@@ -59,5 +59,4 @@ export default {
 
     @media (max-width $bp-xs)
       font-family $fontFamilySemiBold
-      letter-spacing 0.3px
 </style>
