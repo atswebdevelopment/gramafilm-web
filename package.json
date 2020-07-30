@@ -43,8 +43,7 @@
     "vue-awesome-swiper": "^4.1.1",
     "vue-countup-v2": "^4.0.0",
     "vue-markdown": "^2.2.4",
-    "vue-video-player": "^5.0.2",
-    "vue-vimeo-player": "^0.1.0"
+    "vue-video-player": "^5.0.2"
   },
   "devDependencies": {
     "@babel/runtime-corejs3": "^7.10.2",
