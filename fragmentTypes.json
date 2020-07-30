@@ -78,6 +78,15 @@
             "name": "ArticleConnectionCategory"
           },
           {
+            "name": "ArticleConnectionPublished"
+          },
+          {
+            "name": "ArticleConnectionSeo"
+          },
+          {
+            "name": "ArticleConnectionUrl"
+          },
+          {
             "name": "createArticlePayload"
           },
           {
@@ -135,6 +144,18 @@
             "name": "CaseStudyConnectionBanner"
           },
           {
+            "name": "CaseStudyConnectionSeo"
+          },
+          {
+            "name": "CaseStudyConnectionUrl"
+          },
+          {
+            "name": "CaseStudyConnectionMedia"
+          },
+          {
+            "name": "CaseStudyConnectionThumbnail"
+          },
+          {
             "name": "createCaseStudyPayload"
           },
           {
@@ -166,6 +187,9 @@
           },
           {
             "name": "CategoryConnectionName"
+          },
+          {
+            "name": "CategoryConnectionColour"
           },
           {
             "name": "createCategoryPayload"
@@ -291,7 +315,16 @@
             "name": "PrivateVideosConnectionClient"
           },
           {
-            "name": "PrivateVideosConnectionVideo"
+            "name": "PrivateVideosConnectionTitle"
+          },
+          {
+            "name": "PrivateVideosConnectionSrc"
+          },
+          {
+            "name": "PrivateVideosConnectionClientname"
+          },
+          {
+            "name": "PrivateVideosConnectionContent"
           },
           {
             "name": "createPrivateVideoPayload"
@@ -328,6 +361,9 @@
           },
           {
             "name": "VideosConnectionTitle"
+          },
+          {
+            "name": "VideosConnectionPreview"
           },
           {
             "name": "createVideoPayload"
@@ -520,6 +556,12 @@
           },
           {
             "name": "ComponentContentCounter"
+          },
+          {
+            "name": "ComponentContentMedia"
+          },
+          {
+            "name": "ComponentContentSeo"
           },
           {
             "name": "ComponentContentselectorContentSelector"
