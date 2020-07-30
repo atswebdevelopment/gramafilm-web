@@ -1,5 +1,5 @@
 <template>
-  <ContentArea class="footerLinks" stretch>
+  <ContentArea class="footerLinks" stretch :class="{ 'footerLinks--inline': inline }">
     <div class="footerLinks__inner">
       <div>
         <a class="footerLinks__link" target="_blank" title="Opens in a new window" href="https://www.instagram.com/gramafilm/?hl=en">Instagram</a>
@@ -21,6 +21,12 @@ export default {
   name: 'Footerlinks',
   components: {
     ContentArea: () => import('~/components/layout/ContentArea')
+  },
+  props: {
+    inline: {
+      type: Boolean,
+      default: false
+    }
   }
 }
 </script>
@@ -34,6 +40,16 @@ export default {
   padding 0
   line-height 19px
 
+  @media (max-width $bp-sm)
+    bottom 10px
+
+  &--inline
+    position static
+    padding 8vh 0 42px
+
+    @media (max-width $bp-sm)
+      padding 3vh 0 10px
+
   p, a
     font-size 16px
     line-height 19px
@@ -42,9 +58,6 @@ export default {
     @media (max-width $bp-xs)
       font-size 12px
       line-height 16px
-
-  @media (max-width $bp-sm)
-    bottom 10px
 
   &__inner
     display flex

@@ -5,7 +5,7 @@
         If you want to
         <TextSwap />
       </div>
-      <div v-if="!noContact" class="getInTouch__link">
+      <div class="getInTouch__link">
         <nuxt-link class="arrowLink arrowLink--small" :to="{ name: 'contact' }">
           Get in touch
         </nuxt-link>
@@ -24,10 +24,6 @@ export default {
     TextSwap: () => import('~/components/content/TextSwap')
   },
   props: {
-    noContact: {
-      type: Boolean,
-      default: false
-    },
     footerLinks: {
       type: Boolean,
       default: false

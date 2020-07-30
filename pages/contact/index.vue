@@ -2,7 +2,7 @@
   <div class="page">
     <Contact v-if="contact && contact.id" :contact="contact" />
     <Loader v-else />
-    <GetInTouch no-contact footer-links />
+    <FooterLinks inline />
   </div>
 </template>
 
@@ -11,7 +11,7 @@ import contactQuery from '~/apollo/queries/pages/contact.gql'
 export default {
   components: {
     Contact: () => import('~/components/pages/Contact'),
-    GetInTouch: () => import('~/components/content/GetInTouch'),
+    FooterLinks: () => import('~/components/content/FooterLinks'),
     Loader: () => import('~/components/content/Loader')
   },
   data () {

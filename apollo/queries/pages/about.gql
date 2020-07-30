@@ -3,6 +3,48 @@ query About {
     id
     title
     introduction
+    image1 {
+      ... on ComponentContentMedia {
+        id
+        image {
+          url
+          alternativeText
+          caption
+          mime
+        }
+        qvideo {
+          id
+          title
+          src
+          preview {
+            id
+            url
+            mime
+          }
+        }
+      }
+    }
+    image2 {
+      ... on ComponentContentMedia {
+        id
+        image {
+          url
+          alternativeText
+          caption
+          mime
+        }
+        qvideo {
+          id
+          title
+          src
+          preview {
+            id
+            url
+            mime
+          }
+        }
+      }
+    }
     content {
     	... on ComponentColumnsOneColumn {
         id

@@ -151,8 +151,9 @@ export default {
   },
   methods: {
     loaded (e) {
-      new Rellax(e.path[0], {})
-      e.path[0].classList.add('loaded')
+      const path = e.path ? e.path[0] : e.srcElement || e.target
+      new Rellax(path, {})
+      path.classList.add('loaded')
     }
   }
 }

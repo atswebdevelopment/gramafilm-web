@@ -2,8 +2,16 @@
   <div class="about">
     <ContentArea>
       <h1>{{ about.title }}</h1>
-      <img class="image-1 fade fadeIn" src="/images/about-showcase-1.png" alt="">
-      <img class="image-2 fade fadeIn" src="/images/about-showcase-2.png" alt="">
+      <img v-if="about.image1 && about.image1.image && !about.image1.image.mime.includes('video')" class="image-1" :src="about.image1.image.url" :alt="about.image1.image.alternativeText">
+      <video v-else-if="about.image1 && about.image1.image && about.image1.image.mime.includes('video')" loop muted autoplay>
+        <source :src="about.image1.image.url" type="video/mp4">
+      </video>
+      <Video v-else-if="about.image1 && about.image1.qvideo" class="image-1" :video="about.image1.qvideo" />
+      <img v-if="about.image2 && about.image2.image && !about.image2.image.mime.includes('video')" class="image-2" :src="about.image2.image.url" :alt="about.image2.image.alternativeText">
+      <video v-else-if="about.image2 && about.image2.image && about.image2.image.mime.includes('video')" loop muted autoplay>
+        <source :src="about.image2.image.url" type="video/mp4">
+      </video>
+      <Video v-else-if="about.image2 && about.image2.qvideo" class="image-1" :video="about.image2.qvideo" />
       <h3>About us</h3>
       <p class="large">
         {{ about.introduction }}
@@ -89,9 +97,14 @@
     </ContentArea>
     <ContentArea>
       <h3>Awards</h3>
-      <div class="awards fade fadeIn">
-        <img src="/images/logo-webby.png" alt="">
-      </div>
+      <ColumnContainer no-padding center class="fade fadeIn">
+        <Column>
+          <img src="/images/logo-webby.png" alt="">
+        </Column>
+        <Column />
+        <Column />
+        <Column />
+      </ColumnContainer>
     </ContentArea>
     <ContentArea>
       <h3>People</h3>
@@ -136,6 +149,11 @@ export default {
       query: peopleQuery
     }
   },
+  computed: {
+    mobile () {
+      return window.innerWidth < 1024
+    }
+  },
   mounted () {
     setTimeout(() => {
       this.$store.commit('header/setDefaultColor', 'black')
@@ -172,6 +190,7 @@ export default {
     >>> h2
       font-size 48px
       line-height 54px
+      font-family $fontFamily
 
 .image-1
   width 41.667%
@@ -186,18 +205,6 @@ export default {
   right 0
   top 195px
   z-index -1
-
-.awards
-  display flex
-  margin 10vh 0
-
-  @media (max-width $bp-sm)
-    display block
-    margin 0
-    text-align center
-
-  .column
-    justify-content center
 
 .logos .column
   justify-content center

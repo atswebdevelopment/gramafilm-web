@@ -46,7 +46,18 @@ export default {
     }
   },
   mounted () {
+    let oldScrollVal = window.scrollY
     window.addEventListener('scroll', () => {
+      if (window.innerWidth < 767) {
+        const header = document.querySelector('.header')
+        if (window.scrollY < oldScrollVal) {
+          header.classList.remove('header--hide')
+        } else {
+          header.classList.add('header--hide')
+        }
+      }
+      oldScrollVal = window.scrollY
+
       const intro = document.querySelector('.intro')
       if (intro) {
         const elemHeight = intro.offsetHeight
@@ -98,6 +109,10 @@ export default {
   top 4vh
   left 0
   width 100%
+  transition transform 0.5s $ease
+
+  &--hide
+    transform translateY(-100px)
 
   &__inner
     display flex
