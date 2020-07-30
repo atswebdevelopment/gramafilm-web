@@ -135,6 +135,9 @@ export default {
       letter-spacing 0
       margin-top 0
 
+    @media (max-width $bp-xs)
+      display none
+
     &--black
       color $black
 

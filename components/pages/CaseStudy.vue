@@ -201,21 +201,32 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.case
+  overflow hidden
+
 >>> .banner__inner
   height 92vh
 
 @media (max-width $bp-sm)
   .case__banner
-    height 80vh
-
     h1
       font-size 56px
       line-height 64px
-      top 30vh
+      top 20vh
       letter-spacing 0
+
+    @media (max-width $bp-sm)
+      .banner__next
+        top 18vh
 
   >>> .banner__inner
     height 72vh
+
+@media (max-width $bp-xs)
+  .case__banner
+    h1
+      font-size 48px
+      line-height 56px
 
 .large
   margin 30vh auto 5vh
@@ -245,6 +256,10 @@ export default {
   &__module
     width calc(100% + 16px)
     margin-left -8px
+
+    @media (max-width $bp-sm)
+      width 100%
+      margin-left 0
 
     &--1
       width 100%

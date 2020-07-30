@@ -81,9 +81,7 @@ export default {
 
 .swiper-container
   padding 0 18px 80px
-
-  @media (max-width $bp-sm)
-    overflow visible
+  overflow visible
 
 .swiper
   cursor grab
@@ -92,7 +90,7 @@ export default {
     width auto
 
     @media (max-width $bp-sm)
-      max-width 100%
+      max-width 80%
 
   &__media
     cursor pointer
