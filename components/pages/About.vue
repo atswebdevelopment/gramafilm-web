@@ -146,13 +146,15 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-h1
-  font-size 16vw
-  line-height 16vw
 
 .about
   position relative
   z-index 1
+
+  @media (max-width $bp-sm)
+    h1
+      font-size 15vw
+      line-height 15vw
 
   &__inner
     margin-top 10vh
