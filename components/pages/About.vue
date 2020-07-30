@@ -40,16 +40,16 @@
         <template slot="tabs">
           <div v-for="(item, index) in about.expertise" :key="`t-${index}`" class="contentSwitcher__tab" :class="{ 'contentSwitcher__tab--active': index === 0}">
             <b>{{ item.title }}</b>
-            <div class="contentSwitcher__tabcontent">
-              <img v-if="item.image" :src="item.image.url" :alt="item.image.alternativeText">
+            <div v-if="mobile" class="contentSwitcher__tabcontent">
+              <img v-if="item.image" :src="item.image.url" :alt="item.image.alternativeText || ''">
               <Video v-else-if="item.qvideo" :video="item.qvideo" />
               <div v-html="item.content" />
             </div>
           </div>
         </template>
-        <template slot="contentWindow">
+        <template v-if="!mobile" slot="contentWindow">
           <div v-for="(item, index) in about.expertise" :key="`c-${index}`" class="contentSwitcher__content" :class="{ 'contentSwitcher__content--active': index === 0}">
-            <img v-if="item.image" :src="item.image.url" :alt="item.image.alternativeText">
+            <img v-if="item.image" :src="item.image.url" :alt="item.image.alternativeText || ''">
             <Video v-else-if="item.qvideo" :video="item.qvideo" />
             <div v-html="item.content" />
           </div>

@@ -3,8 +3,7 @@
     <div class="window--front">
       <div class="page" :class="{ 'page--orange': partnersInFocus }">
         <div class="home-container">
-          <Home v-if="home && home.id" :home="home" />
-          <Loader v-else />
+          <Home :home="home" />
         </div>
         <GetInTouch />
       </div>
@@ -22,8 +21,7 @@ export default {
   components: {
     Home: () => import('~/components/pages/Home'),
     GetInTouch: () => import('~/components/content/GetInTouch'),
-    MainMenu: () => import('~/components/pages/MainMenu'),
-    Loader: () => import('~/components/content/Loader')
+    MainMenu: () => import('~/components/pages/MainMenu')
   },
   data () {
     return {
