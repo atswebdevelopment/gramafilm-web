@@ -42,6 +42,9 @@ export default {
     width 100%
     height 125px
 
+  @media (max-width $bp-xs)
+    height 80px
+
   &--inline
     display inline-block
     width 100%

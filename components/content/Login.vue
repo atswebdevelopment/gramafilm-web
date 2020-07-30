@@ -68,6 +68,8 @@ export default {
   color $white
   font-size 16px
   text-transform uppercase
+  letter-spacing 0.3px
+  text-decoration underline
 
 .error
   color $negative
