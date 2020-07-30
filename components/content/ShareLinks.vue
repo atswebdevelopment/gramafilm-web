@@ -1,7 +1,7 @@
 <template>
-  <div class="shareLinks">
+  <div class="shareLinks" :class="{ 'shareLinks--active': filterToggle }">
     <div>
-      <span class="shareLinks__link"><b>Share</b></span>
+      <span class="shareLinks__link" @click="filterToggle = !filterToggle"><b>Share</b></span>
       <a class="shareLinks__link" target="_blank" title="Opens in a new window" href="https://www.instagram.com/gramafilm/?hl=en">Instagram</a>
       <a class="shareLinks__link" target="_blank" title="Opens in a new window" href="https://www.facebook.com/Gramafilm/">Facebook</a>
       <a class="shareLinks__link" target="_blank" title="Opens in a new window" href="https://uk.linkedin.com/organization-guest/company/gramafilm">LinkedIn</a>
@@ -13,7 +13,12 @@
 
 <script>
 export default {
-  name: 'ShareLinks'
+  name: 'ShareLinks',
+  data () {
+    return {
+      filterToggle: false
+    }
+  }
 }
 </script>
 
@@ -24,12 +29,12 @@ export default {
   line-height 19px
   text-align left
 
-  @media (max-width $bp-sm)
-    padding 0 18px
-
   &__link
     margin 0 15px
     color $black
+
+      &--active
+        opacity 1
 
     &:first-child
       margin-left 0
@@ -37,6 +42,24 @@ export default {
     &:last-child
       margin-right 0
 
-  a:hover
+  a
+    @media (max-width $bp-sm)
+      display none
+
+    &:hover
       text-decoration underline
+
+  @media (max-width $bp-sm)
+    b:after
+      content '+'
+      margin-left 10px
+
+  &--active
+    @media (max-width $bp-sm)
+      b:after
+        content '-'
+
+      a
+        display block
+        margin 10px 0 0
 </style>

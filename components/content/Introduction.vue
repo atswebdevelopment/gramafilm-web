@@ -1,75 +1,111 @@
 <template>
-  <div class="intro" @mousemove="moveBackground">
-    <!-- <div class="intro"> -->
-    <div class="intro__background">
-      <div class="intro__image-container intro__image-container--1">
-        <img v-if="home.images[0] && !home.images[0].mime.includes('video')" class="intro__image intro__image--image-1" :src="setResponsive(home.images[0].url, 767)" :alt="home.images[0].alternativeText" data-rellax-speed="-6">
-        <video
-          v-else-if="home.images[0] && home.images[0].mime.includes('video')"
-          class="intro__image intro__image--image-1"
-          loop
-          muted
-          autoplay
-          data-rellax-speed="-6"
-        >
-          <source :src="home.images[0].url" type="video/mp4">
-        </video>
+  <div class="intro">
+    <div v-if="home && home.images" class="intro__backgrounds">
+      <div class="intro__background">
+        <div class="intro__image-container intro__image-container--1">
+          <img
+            v-if="home.images[0] && !home.images[0].mime.includes('video')"
+            class="intro__image intro__image--image-1"
+            :src="setResponsive(home.images[0].url, 767)"
+            :alt="home.images[0].alternativeText"
+            data-rellax-speed="-6"
+            @load="loaded($event)"
+          >
+          <video
+            v-else-if="home.images[0] && home.images[0].mime.includes('video')"
+            class="intro__image intro__image--image-1"
+            loop
+            muted
+            autoplay
+            data-rellax-speed="-6"
+          >
+            <source :src="home.images[0].url" type="video/mp4">
+          </video>
+        </div>
+        <div class="intro__image-container intro__image-container--5">
+          <img
+            v-if="home.images[4] && !home.images[4].mime.includes('video')"
+            class="intro__image intro__image--image-5"
+            :src="setResponsive(home.images[4].url, 767)"
+            :alt="home.images[4].alternativeText"
+            data-rellax-speed="1"
+            @load="loaded($event)"
+          >
+          <video
+            v-else-if="home.images[4] && home.images[4].mime.includes('video')"
+            class="intro__image intro__image--image-5"
+            loop
+            muted
+            autoplay
+            data-rellax-speed="1"
+          >
+            <source :src="home.images[4].url" type="video/mp4">
+          </video>
+        </div>
       </div>
-      <div class="intro__image-container intro__image-container--5">
-        <img v-if="home.images[4] && !home.images[4].mime.includes('video')" class="intro__image intro__image--image-5" :src="setResponsive(home.images[4].url, 767)" :alt="home.images[4].alternativeText" data-rellax-speed="1">
-        <video
-          v-else-if="home.images[4] && home.images[4].mime.includes('video')"
-          class="intro__image intro__image--image-5"
-          loop
-          muted
-          autoplay
-          data-rellax-speed="1"
-        >
-          <source :src="home.images[4].url" type="video/mp4">
-        </video>
+      <div class="intro__background intro__background--2">
+        <div class="intro__image-container intro__image-container--3">
+          <img
+            v-if="home.images[2] && !home.images[2].mime.includes('video')"
+            class="intro__image intro__image--image-3"
+            :src="setResponsive(home.images[2].url, 767)"
+            :alt="home.images[2].alternativeText"
+            data-rellax-speed="-1"
+            @load="loaded($event)"
+          >
+          <video
+            v-else-if="home.images[2] && home.images[2].mime.includes('video')"
+            class="intro__image intro__image--image-3"
+            loop
+            muted
+            autoplay
+            data-rellax-speed="-3"
+          >
+            <source :src="home.images[2].url" type="video/mp4">
+          </video>
+        </div>
       </div>
-    </div>
-    <div class="intro__background intro__background--2">
-      <div class="intro__image-container intro__image-container--3">
-        <img v-if="home.images[2] && !home.images[2].mime.includes('video')" class="intro__image intro__image--image-3" :src="setResponsive(home.images[2].url, 767)" :alt="home.images[2].alternativeText" data-rellax-speed="-1">
-        <video
-          v-else-if="home.images[2] && home.images[2].mime.includes('video')"
-          class="intro__image intro__image--image-3"
-          loop
-          muted
-          autoplay
-          data-rellax-speed="-3"
-        >
-          <source :src="home.images[2].url" type="video/mp4">
-        </video>
-      </div>
-    </div>
-    <div class="intro__background intro__background--3">
-      <div class="intro__image-container intro__image-container--2">
-        <img v-if="home.images[1] && !home.images[1].mime.includes('video')" class="intro__image intro__image--image-2" :src="setResponsive(home.images[1].url, 767)" :alt="home.images[1].alternativeText" data-rellax-speed="3">
-        <video
-          v-else-if="home.images[1] && home.images[1].mime.includes('video')"
-          class="intro__image intro__image--image-2"
-          loop
-          muted
-          autoplay
-          data-rellax-speed="3"
-        >
-          <source :src="home.images[1].url" type="video/mp4">
-        </video>
-      </div>
-      <div class="intro__image-container intro__image-container--4">
-        <img v-if="home.images[3] && !home.images[3].mime.includes('video')" class="intro__image intro__image--image-4" :src="setResponsive(home.images[3].url, 767)" :alt="home.images[3].alternativeText" data-rellax-speed="1">
-        <video
-          v-else-if="home.images[3] && home.images[3].mime.includes('video')"
-          class="intro__image intro__image--image-4"
-          loop
-          muted
-          autoplay
-          data-rellax-speed="1"
-        >
-          <source :src="home.images[3].url" type="video/mp4">
-        </video>
+      <div class="intro__background intro__background--3">
+        <div class="intro__image-container intro__image-container--2">
+          <img
+            v-if="home.images[1] && !home.images[1].mime.includes('video')"
+            class="intro__image intro__image--image-2"
+            :src="setResponsive(home.images[1].url, 767)"
+            :alt="home.images[1].alternativeText"
+            data-rellax-speed="3"
+            @load="loaded($event)"
+          >
+          <video
+            v-else-if="home.images[1] && home.images[1].mime.includes('video')"
+            class="intro__image intro__image--image-2"
+            loop
+            muted
+            autoplay
+            data-rellax-speed="3"
+          >
+            <source :src="home.images[1].url" type="video/mp4">
+          </video>
+        </div>
+        <div class="intro__image-container intro__image-container--4">
+          <img
+            v-if="home.images[3] && !home.images[3].mime.includes('video')"
+            class="intro__image intro__image--image-4"
+            :src="setResponsive(home.images[3].url, 767)"
+            :alt="home.images[3].alternativeText"
+            data-rellax-speed="1"
+            @load="loaded($event)"
+          >
+          <video
+            v-else-if="home.images[3] && home.images[3].mime.includes('video')"
+            class="intro__image intro__image--image-4"
+            loop
+            muted
+            autoplay
+            data-rellax-speed="1"
+          >
+            <source :src="home.images[3].url" type="video/mp4">
+          </video>
+        </div>
       </div>
     </div>
     <Logo class="intro__logo" color="white" />
@@ -113,24 +149,10 @@ export default {
       setResponsive
     }
   },
-  mounted () {
-    new Rellax('.intro__image--image-1', {})
-    new Rellax('.intro__image--image-2', {})
-    new Rellax('.intro__image--image-3', {})
-    new Rellax('.intro__image--image-4', {})
-    new Rellax('.intro__image--image-5', {})
-  },
   methods: {
-    moveBackground (e) {
-      /* eslint-disable */
-      const bg = document.querySelector('.intro__background')
-      const bg2 = document.querySelector('.intro__background--2')
-      const bg3 = document.querySelector('.intro__background--3')
-      const centerX = window.innerWidth / 2
-      const centerY = window.innerHeight / 2
-      // bg.style.transform = `rotateY(${((centerX - e.clientX) / 50)}deg) rotateX(${((centerY - e.clientY) / 50)}deg) translateZ(0px)`
-      // bg2.style.transform = `rotateY(${((centerX - e.clientX) / 50)}deg) rotateX(${((centerY - e.clientY) / 50)}deg) translateZ(0px)`
-      // bg3.style.transform = `rotateY(${((centerX - e.clientX) / 50)}deg) rotateX(${((centerY - e.clientY) / 50)}deg) translateZ(0px)`
+    loaded (e) {
+      new Rellax(e.path[0], {})
+      e.path[0].classList.add('loaded')
     }
   }
 }
@@ -143,6 +165,7 @@ export default {
   position relative
   z-index 2
   padding 0 18px
+  min-height 100vh
 
   &__logo.logo
     padding 40vh 0 0
@@ -194,6 +217,13 @@ export default {
     top 0
     left calc(50% - 160px)
     width 320px
+
+    img
+      opacity 0
+      transition opacity 1s $ease
+
+      &.loaded
+        opacity 1
 
     @media (max-width $bp-sm)
       transform scale(0.5) !important

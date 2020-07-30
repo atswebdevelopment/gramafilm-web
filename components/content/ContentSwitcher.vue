@@ -46,16 +46,15 @@ export default {
         e.onclick = () => {
           this.setTab(i)
         }
-        e.ontouchstart = () => {
-          this.setTab(i)
-        }
       })
     },
     setTab (i) {
-      document.querySelector('.contentSwitcher__content--active').classList.remove('contentSwitcher__content--active')
       document.querySelector('.contentSwitcher__tab--active').classList.remove('contentSwitcher__tab--active')
-      document.querySelectorAll('.contentSwitcher__content')[i].classList.add('contentSwitcher__content--active')
       document.querySelectorAll('.contentSwitcher__tab')[i].classList.add('contentSwitcher__tab--active')
+      if (window.innerWidth > 1023) {
+        document.querySelector('.contentSwitcher__content--active').classList.remove('contentSwitcher__content--active')
+        document.querySelectorAll('.contentSwitcher__content')[i].classList.add('contentSwitcher__content--active')
+      }
     }
   }
 }
@@ -82,7 +81,6 @@ export default {
     opacity 0.25
     cursor pointer
 
-    &:hover,
     &--active
       opacity 1
 
@@ -90,6 +88,10 @@ export default {
         .contentSwitcher__tabcontent
           display block
           margin-top 1em
+
+    @media (min-width: $bp-sm)
+      &:hover
+        opacity 1
 
   &__tabcontent
     display none

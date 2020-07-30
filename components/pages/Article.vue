@@ -2,7 +2,7 @@
   <div class="article">
     <ContentArea overflow>
       <div class="article__aside">
-        <p v-if="article.category && article.category.name" :class="article.category.colour">
+        <p v-if="article.category && article.category.name" class="article__category" :class="article.category.colour">
           {{ article.category.name }}
         </p>
         <h1 class="h1-small">
@@ -77,4 +77,7 @@ export default {
 
   &__image
     margin-bottom 2em
+
+  &__category
+    margin-bottom 0
 </style>

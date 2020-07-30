@@ -1,5 +1,5 @@
 <template>
-  <div class="section" :class="{ 'section--nopadding': noPadding, 'section--overflow': overflow, 'section--fullscreen': fullscreen, 'section--center': center, 'section--bg-orange': background === 'orange' }">
+  <div class="section" :class="{ 'section--nopadding': noPadding, 'section--overflow': overflow, 'section--fullscreen': fullscreen, 'section--center': center }">
     <div class="inner" :class="{ 'inner--stretch': stretch }">
       <slot />
     </div>
@@ -68,25 +68,6 @@ export default {
     @media (max-width $bp-sm)
       .inner
         flex 1
-
-  &--bg-orange
-    background $orange
-    z-index 0
-
-    &:before,
-    &:after
-      content ''
-      position absolute
-      top -50vh
-      left 0
-      width 100%
-      height 50vh
-      z-index -1
-      background: linear-gradient(0deg, rgba($orange,1) 0%, rgba(0,0,0,0) 100%);
-
-    &:after
-      top 100%
-      background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba($orange,1) 100%);
 
 .inner
   padding 0 58px
