@@ -11,7 +11,8 @@ const fadeIn = () => {
 
 const findFades = () => {
   document.querySelectorAll('.fadeIn').forEach((e, i) => {
-    if (window.innerHeight > e.getBoundingClientRect().top + (e.offsetHeight / 2)) {
+    const offsetter = window.innerWidth < 767 ? 4 : 2
+    if (window.innerHeight > e.getBoundingClientRect().top + (e.offsetHeight / offsetter)) {
       e.classList.remove('fadeIn')
     }
   })

@@ -5,11 +5,13 @@ query Articles ($url: String!) {
     title
     content
     image {
+      id
       url
       alternativeText
       caption
     }
     category {
+      id
       name
       colour
     }

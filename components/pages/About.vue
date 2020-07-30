@@ -95,13 +95,12 @@
         </Column>
       </ColumnContainer>
     </ContentArea>
-    <ContentArea>
+    <ContentArea class="awards">
       <h3>Awards</h3>
       <ColumnContainer no-padding center class="fade fadeIn">
         <Column>
           <img src="/images/logo-webby.png" alt="">
         </Column>
-        <Column />
         <Column />
         <Column />
       </ColumnContainer>
@@ -164,7 +163,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-
 .about
   position relative
   z-index 1
@@ -206,6 +204,7 @@ export default {
   top 195px
   z-index -1
 
+.awards .column
 .logos .column
   justify-content center
 
@@ -214,6 +213,7 @@ export default {
     width 48%
     vertical-align middle
 
+.awards img,
 .logos img
   @media (max-width $bp-sm)
     margin 0 auto

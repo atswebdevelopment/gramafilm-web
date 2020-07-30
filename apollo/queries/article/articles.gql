@@ -5,11 +5,13 @@ query Articles ($start: Int) {
     title
     content
     image {
+      id
       url
       alternativeText
       caption
     }
     category {
+      id
       name
       colour
     }
