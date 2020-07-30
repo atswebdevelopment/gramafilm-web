@@ -84,6 +84,12 @@ export default {
                 video.pause()
               }
             })
+            if (this.menu.navigation[i].inverttext) {
+              navigation.classList.add('navigation--inverted')
+            } else {
+              navigation.classList.remove('navigation--inverted')
+            }
+            this.$store.commit('header/setColor', this.menu.navigation[i].inverttext ? 'black' : 'white')
             navigation.querySelectorAll('.backgrounds__background')[i].classList.add('backgrounds__background--active')
             const video = navigation.querySelector('.backgrounds__background--active video')
             if (video) {
@@ -119,6 +125,7 @@ export default {
 <style lang="stylus" scoped>
 .navigation
   color $white
+  transition color 0.4s $ease
 
   &__links
     left 26vw
@@ -138,6 +145,7 @@ export default {
     position relative
     z-index 1
     margin 0 18px
+    transition color 0.4s $ease
 
     @media (max-width $bp-xxs)
       margin 0 6px
@@ -160,7 +168,17 @@ export default {
     &:last-child
       margin-top 40px
 
+  &--inverted
+    color $black
+
+    .navigation__link
+      color $black
+
+    >>> .footerLinks__link
+      color $black
+
 >>> .footerLinks__link
+  transition color 0.4s $ease
   color $white
 
 .backgrounds
