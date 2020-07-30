@@ -16,26 +16,9 @@
       </div>
     </ContentArea>
   </div>
-  <!-- <div>
-    <div v-if="article.image" id="banner" class="uk-height-small uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-light uk-padding" :data-src="api_url + article.image.url" uk-img>
-      <h1>
-        {{ article.title }}
-      </h1>
-    </div>
-    <div class="uk-section">
-      <div class="uk-container uk-container-small">
-        eslint-disable-next-line
-        <div v-if="article.content" id="editor" v-html="$md.render(article.content)" />
-        <p v-if="article.published_at">
-          {{ moment(article.published_at).format("MMM Do YY") }}
-        </p>
-      </div>
-    </div>
-  </div> -->
 </template>
 
 <script>
-// const moment = require('moment')
 import setCDNPath from '~/helpers/cdn'
 export default {
   components: {

@@ -23,9 +23,6 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'apple-touch-icon', type: 'image/x-icon', href: '/icons/apple-touch-icon.png' }
-    ],
-    script: [
-      { src: 'https://vjs.zencdn.net/7.8.3/video.js' }
     ]
   },
   /*
@@ -223,9 +220,6 @@ export default {
     /*
     ** You can extend webpack config here
     */
-    vendor: [
-      'vue-vimeo-player'
-    ],
     babel: {
       presets({ isServer }) {
         return [

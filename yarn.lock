@@ -2350,7 +2350,6 @@
     cli-ux "^5.2.1"
     debug "^4.0.0"
     fs-extra "^7.0.0"
-    moment "^2.22.1"
 
 "@oclif/plugin-help@2.2.3":
   version "2.2.3"
@@ -3626,7 +3625,6 @@ apollo-language-server@^1.22.3:
     lodash.debounce "^4.0.8"
     lodash.merge "^4.6.1"
     minimatch "^3.0.4"
-    moment "2.26.0"
     vscode-languageserver "^5.1.0"
     vscode-uri "1.0.6"
 
@@ -3859,7 +3857,6 @@ apollo@^2.20.0:
     lodash.identity "3.0.0"
     lodash.pickby "4.6.0"
     mkdirp "0.5.5"
-    moment "2.26.0"
     strip-ansi "5.2.0"
     table "5.4.6"
     tty "1.0.1"
@@ -10833,11 +10830,6 @@ mkdirp@1.0.4, mkdirp@~1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-1.0.4.tgz#3eb5ed62622756d79a5f0e2a221dfebad75c2f7e"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
-
-moment@2.26.0, moment@^2.22.1:
-  version "2.26.0"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.26.0.tgz#5e1f82c6bafca6e83e808b30c8705eed0dcbd39a"
-  integrity sha512-oIixUO+OamkUkwjhAVE18rAMfRJNsNe/Stid/gwHSOfHrOtw9EhAY2AHvdKZ/k/MggcYELFCJz/Sn2pL8b8JMw==
 
 move-concurrently@^1.0.1:
   version "1.0.1"

@@ -11,7 +11,7 @@
             {{ video.title }}
           </p>
           <div v-html="video.content" />
-          <p>Uploaded on {{ moment(video.created_at).format("DD MMMM YYYY") }}</p>
+          <!-- <p>Uploaded on {{ moment(video.created_at).format("DD MMMM YYYY") }}</p> -->
         </div>
       </Column>
     </ColumnContainer>
@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import moment from 'moment'
 export default {
   name: 'PrivateVideos',
   components: {
@@ -31,11 +30,6 @@ export default {
     videos: {
       type: Array,
       default: () => []
-    }
-  },
-  data () {
-    return {
-      moment
     }
   }
 }
