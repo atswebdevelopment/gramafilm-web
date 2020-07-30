@@ -59,7 +59,6 @@ export default {
     >>> p
       margin 0
       font-family 'whyteregular'
-      letter-spacing -0.3px
       font-size 18px
       line-height 24px
 </style>
