@@ -63,15 +63,13 @@ export default {
 
   h1
     font-size 20vh
+    line-height 20vh
     position absolute
     left 0
     top 15vh
     max-width none
-    line-height 20vh
 
     @media (max-width $bp-sm)
-      font-size 112px
-      line-height 134px
       top 10vh
 
     @media (max-width $bp-sm)
@@ -183,6 +181,18 @@ export default {
           .video
             position absolute
             bottom 0
+            height 100% !important
+            padding 0 !important
+            width 454px
+            left 50%
+            margin-left -227px
+
+      @media (max-width $bp-xxs)
+        .banner__media .video
+          width 100%
+          height 160px !important
+          left 0
+          margin 0
 
       @media (max-width $bp-xs)
         bottom -105px

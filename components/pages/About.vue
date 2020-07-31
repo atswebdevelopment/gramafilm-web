@@ -103,6 +103,7 @@
         </Column>
         <Column />
         <Column />
+        <Column />
       </ColumnContainer>
     </ContentArea>
     <ContentArea>

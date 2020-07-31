@@ -206,6 +206,10 @@ export default {
 .case
   overflow hidden
 
+.case__banner h1
+  font-size 112px
+  line-height 120px
+
 >>> .banner__inner
   height 92vh
 
@@ -296,7 +300,7 @@ export default {
       padding 0 18px
 
   .column
-    padding 3vh 8px
+    padding 3vh 4.1667%
 
     @media (max-width $bp-sm)
       padding 3vh 0
