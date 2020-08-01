@@ -1,8 +1,8 @@
 <template>
   <div class="navigation" :class="{ 'navigation--open': show }">
     <div class="backgrounds">
-      <div v-for="(item, index) in menu.navigation" :key="index" class="backgrounds__background" :style="`background-image:url(${(item.background && !item.background.mime.includes('video') && item.background.url) || ''})`">
-        <div v-if="item.background && item.background.mime.includes('video')" class="backgrounds__video">
+      <div v-for="(item, index) in menu.navigation" :key="index" class="backgrounds__background" :style="`background-image:url(${(mobile && item.backgroundimage && item.backgroundimage.url) || ''})`">
+        <div v-if="item.background && !mobile" class="backgrounds__video">
           <video loop muted>
             <source :src="item.background.url" type="video/mp4">
             Your browser does not support the video tag.
@@ -45,14 +45,35 @@ export default {
       default: false
     }
   },
+  data () {
+    return {
+      activeIndex: 0
+    }
+  },
+  computed: {
+    mobile () {
+      return window.innerWidth < 1024
+    }
+  },
   watch: {
     show (val) {
       const video = document.querySelector('.backgrounds__background--active video')
       if (video) {
         if (val) {
           document.querySelector('.backgrounds__background--active video').play()
+          setTimeout(() => {
+            // This is quick and hacky, need refactoring through vue data
+            const navigation = document.querySelector('.mainMenu--open .navigation')
+            if (this.menu.navigation[this.activeIndex].inverttext) {
+              navigation.classList.add('navigation--inverted')
+            } else {
+              navigation.classList.remove('navigation--inverted')
+            }
+          }, 100)
+          this.$store.commit('header/setColor', this.menu.navigation[this.activeIndex].inverttext ? 'black' : 'white')
         } else {
           document.querySelector('.backgrounds__background--active video').pause()
+          this.$store.commit('header/setColor', this.$store.state.header.defaultColor)
         }
       }
     }
@@ -68,14 +89,19 @@ export default {
         }, 100)
         return
       }
-      let activeIndex = 0
       const navigationObj = document.querySelectorAll('.navigation')
       navigationObj.forEach((navigation, i) => {
         navigation.querySelectorAll('.navigation__link').forEach((e, i) => {
+          // This whole section is quick and hacky, need refactoring through vue data
           if (e.classList.contains('nuxt-link-active')) {
-            activeIndex = i
+            this.activeIndex = i
           }
-          navigation.querySelectorAll('.backgrounds__background')[activeIndex].classList.add('backgrounds__background--active')
+          if (this.menu.navigation[this.activeIndex].inverttext) {
+            navigation.classList.add('navigation--inverted')
+          } else {
+            navigation.classList.remove('navigation--inverted')
+          }
+          navigation.querySelectorAll('.backgrounds__background')[this.activeIndex].classList.add('backgrounds__background--active')
           e.onmouseenter = () => {
             navigation.querySelectorAll('.backgrounds__background--active').forEach((e, i) => {
               e.classList.remove('backgrounds__background--active')
@@ -111,6 +137,10 @@ export default {
           } else if (!menuActive && video && videoPlaying) {
             video.pause()
             videoPlaying = false
+          }
+          const logoOnMenu = window.scrollY + window.innerHeight >= document.body.scrollHeight - 50
+          if (logoOnMenu) {
+            this.$store.commit('header/setColor', this.menu.navigation[this.activeIndex].inverttext ? 'black' : 'white')
           }
         }
       })
