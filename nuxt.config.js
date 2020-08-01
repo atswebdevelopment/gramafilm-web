@@ -64,14 +64,6 @@ export default {
     'nuxt-lazy-load',
     '@nuxtjs/sitemap',
     '@nuxtjs/markdownit',
-    ['nuxt-compress', {
-      gzip: {
-        cache: true
-      },
-      brotli: {
-        threshold: 10240
-      }
-    }],
     ['nuxt-gmaps', {
       key: 'AIzaSyCFdgq-MJ_zopqLhWQlhfw7USoHRe0hrBc'
     }],
