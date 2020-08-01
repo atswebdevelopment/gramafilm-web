@@ -11,7 +11,7 @@
             {{ video.title }}
           </p>
           <div v-html="video.content" />
-          <!-- <p>Uploaded on {{ moment(video.created_at).format("DD MMMM YYYY") }}</p> -->
+          <p>Uploaded on {{ formatDate(video.created_at) }}</p>
         </div>
       </Column>
     </ColumnContainer>
@@ -30,6 +30,14 @@ export default {
     videos: {
       type: Array,
       default: () => []
+    }
+  },
+  methods: {
+    formatDate (date) {
+      date = new Date(date)
+      const dateTimeFormat = new Intl.DateTimeFormat('en', { year: 'numeric', month: 'long', day: '2-digit' })
+      const [{ value: month },, { value: day },, { value: year }] = dateTimeFormat.formatToParts(date)
+      return `${day} ${month} ${year} `
     }
   }
 }

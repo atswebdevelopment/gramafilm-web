@@ -28,8 +28,14 @@ export default {
       margin 30vh 5% 20vh
       max-width 1024px
 
-    @media (max-width $bp-sm)
-      margin 15vh 0 10vh
+      @media (max-width $bp-sm)
+        margin 15vh 0 10vh
+
+    &--no-gap p
+      margin-top 5vh
+
+      @media (max-width $bp-sm)
+        margin-top 5vh
 
   >>> &__module
     width 100%

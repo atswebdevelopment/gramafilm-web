@@ -146,14 +146,18 @@ export default {
   },
   data () {
     return {
-      setResponsive
+      setResponsive,
+      rand: 0
     }
   },
   methods: {
     loaded (e) {
       const path = e.path ? e.path[0] : e.srcElement || e.target
       new Rellax(path, {})
-      path.classList.add('loaded')
+      this.rand++
+      setTimeout(() => {
+        path.classList.add('loaded')
+      }, this.rand * 100)
     }
   }
 }
@@ -221,7 +225,7 @@ export default {
 
     img
       opacity 0
-      transition opacity 1s $ease
+      transition opacity 2s $ease
 
       &.loaded
         opacity 1

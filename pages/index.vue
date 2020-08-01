@@ -8,7 +8,7 @@
         <GetInTouch />
       </div>
     </div>
-    <MainMenu fixed />
+    <MainMenu class="mainMenu mainMenu--hide" fixed />
     <img class="hidden" data-not-lazy src="/videoplayer/play-on.svg">
   </div>
 </template>
@@ -40,6 +40,15 @@ export default {
   },
   mounted () {
     window.addEventListener('scroll', () => {
+      const fixedMenu = document.querySelector('.mainMenu--fixed')
+      if (fixedMenu) {
+        if (window.scrollY > 100) {
+          fixedMenu.classList.remove('mainMenu--hide')
+        } else {
+          fixedMenu.classList.add('mainMenu--hide')
+        }
+      }
+
       const partners = document.querySelector('.partners')
       if (partners) {
         const partnersHeight = partners.offsetHeight

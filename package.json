@@ -31,8 +31,6 @@
     "nuxt-gmaps": "^1.2.4",
     "nuxt-imagemin": "^1.0.0",
     "nuxt-lazy-load": "^1.2.4",
-    "nuxt-mq": "^2.0.1",
-    "nuxt-webfontloader": "^1.1.0",
     "rellax": "^1.12.1",
     "request-promise": "^4.2.5",
     "stylus": "^0.54.7",

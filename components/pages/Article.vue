@@ -48,7 +48,7 @@ export default {
 .article
   &__aside
     position sticky
-    top 15vh
+    top 17vh
     width 45%
     display inline-block
     vertical-align top

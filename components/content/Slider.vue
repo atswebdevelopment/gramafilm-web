@@ -62,12 +62,12 @@ export default {
   methods: {
     getClass (type) {
       switch (type) {
-        case 'Culture':
-          return 'orange'
-        case 'Announcements':
-          return 'blue'
-        default:
-          return 'green'
+      case 'Culture':
+        return 'orange'
+      case 'Announcements':
+        return 'blue'
+      default:
+        return 'green'
       }
     }
   }

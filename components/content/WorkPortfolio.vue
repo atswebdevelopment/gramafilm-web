@@ -269,12 +269,12 @@ export default {
     },
     getClass (type) {
       switch (type) {
-        case 'event':
-          return 'orange'
-        case 'design':
-          return 'blue'
-        default:
-          return 'green'
+      case 'event':
+        return 'orange'
+      case 'design':
+        return 'blue'
+      default:
+        return 'green'
       }
     }
   }

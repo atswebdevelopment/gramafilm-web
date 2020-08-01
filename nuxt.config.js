@@ -62,7 +62,6 @@ export default {
     '@nuxtjs/axios', 
     '@nuxtjs/markdownit',
     'nuxt-lazy-load',
-    'nuxt-webfontloader',
     '@nuxtjs/sitemap',
     '@nuxtjs/markdownit',
     ['nuxt-gmaps', {
@@ -78,8 +77,7 @@ export default {
         optipng: { optimizationLevel: 5 },
         gifsicle: { optimizationLevel: 2 }
       }
-    ],
-    'nuxt-mq'
+    ]
     // ['nuxt-facebook-pixel-module', {
     //   /* module options */
     //   track: 'PageView',
@@ -90,14 +88,6 @@ export default {
   markdownit: {
     injected: true
   },
-  mq: {
-    defaultBreakpoint: 'desktop',
-    breakpoints: {
-      mobile: 767,
-      tablet: 1024,
-      desktop: Infinity
-    }
-  },
   sitemap: {
     hostname: 'https://gramafilm.com',
     gzip: true,
@@ -106,11 +96,6 @@ export default {
   serverMiddleware: [
     '~/servermiddleware/seo.js'
   ],
-  webfontloader: {
-    google: {
-      families: ['Catamaran:400,700'] //Loads Lato font with weights 400 and 700
-    }
-  },
   styleResources: {
     stylus: [
       '~assets/css/variables.styl'

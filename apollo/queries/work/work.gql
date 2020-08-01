@@ -14,12 +14,12 @@ query Work {
             id
             url
             mime
+            alternativeText
           }
           banner {
             id
             url
             alternativeText
-            caption
             mime
           }
           media {
