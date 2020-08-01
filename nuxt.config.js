@@ -64,6 +64,14 @@ export default {
     'nuxt-lazy-load',
     '@nuxtjs/sitemap',
     '@nuxtjs/markdownit',
+    ['nuxt-compress', {
+      gzip: {
+        cache: true
+      },
+      brotli: {
+        threshold: 10240
+      }
+    }],
     ['nuxt-gmaps', {
       key: 'AIzaSyCFdgq-MJ_zopqLhWQlhfw7USoHRe0hrBc'
     }],
@@ -71,13 +79,10 @@ export default {
       max: 10000,
       maxAge: 1000 * 60 * 60
     }],
-    [
-      'nuxt-imagemin',
-      {
-        optipng: { optimizationLevel: 5 },
-        gifsicle: { optimizationLevel: 2 }
-      }
-    ]
+    ['nuxt-imagemin', {
+      optipng: { optimizationLevel: 5 },
+      gifsicle: { optimizationLevel: 2 }
+    }]
     // ['nuxt-facebook-pixel-module', {
     //   /* module options */
     //   track: 'PageView',
