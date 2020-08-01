@@ -6,8 +6,12 @@ query Menu {
       route
       inverttext
       background {
+        id
         url
-        mime
+      }
+      backgroundimage {
+        id
+        url
       }
     }
   }

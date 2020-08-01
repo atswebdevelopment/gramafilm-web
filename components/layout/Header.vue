@@ -81,7 +81,7 @@ export default {
         }
       }
 
-      const elemBottom = document.querySelector('.mainMenu--fixed') || document.querySelector('.banner--bottom')
+      const elemBottom = document.querySelector('.banner--bottom')
       if (elemBottom) {
         const logoOnMenu = window.scrollY + window.innerHeight >= document.body.scrollHeight - 50
         if (window.innerWidth < 767 && logoOnMenu) {

@@ -1,6 +1,6 @@
 <template>
   <div class="mainMenu" :class="{ 'mainMenu--open': open, 'mainMenu--fixed': fixed }">
-    <Navigation v-if="menu && menu.id" :show="open" :menu="menu" @close-menu="closeMenu" />
+    <Navigation v-if="menu && menu.id && ready" :show="open" :menu="menu" @close-menu="closeMenu" />
   </div>
 </template>
 
@@ -24,7 +24,8 @@ export default {
   data () {
     return {
       menu: {},
-      open: false
+      open: false,
+      ready: false
     }
   },
   apollo: {
@@ -37,6 +38,9 @@ export default {
     show (val) {
       this.open = val
     }
+  },
+  mounted () {
+    this.ready = true
   },
   methods: {
     closeMenu () {
