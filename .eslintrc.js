@@ -17,6 +17,10 @@ module.exports = {
     'no-new': 'off',
     'nuxt/no-globals-in-created': 'off',
     'vue/no-v-html': 'off',
-    'vue/singleline-html-element-content-newline': 'off'
+    'vue/singleline-html-element-content-newline': 'off',
+    'template-curly-spacing': 'off',
+    'indent': ['error', 2, {
+      'ignoredNodes': ['TemplateLiteral']
+    }]
   }
 }

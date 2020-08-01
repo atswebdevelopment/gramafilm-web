@@ -58,6 +58,9 @@ export default {
   transition 0.25s $ease
   z-index 8
 
+  &--hide
+    display none
+
   &--open
     transform translateX(0%)
 

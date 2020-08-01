@@ -1,7 +1,7 @@
 <template>
   <Showcase>
     <ContentArea overflow>
-      <div class="large" v-html="design.introduction" />
+      <div class="large" :class="{ 'large--no-gap': !design.headerimage1 }" v-html="design.introduction" />
       <ColumnContainer v-if="design.counters" class="blue counter-container">
         <Column v-for="(counter, index) in design.counters" :key="index">
           <Counter :start-counter="startCounter" :data-val="counter.number" :val="counters[index]" :unit="counter.unit">

@@ -47,9 +47,9 @@ export default {
   },
   mounted () {
     let oldScrollVal = window.scrollY
+    const header = document.querySelector('.header')
     window.addEventListener('scroll', () => {
       if (window.innerWidth < 767) {
-        const header = document.querySelector('.header')
         if (window.scrollY < oldScrollVal) {
           header.classList.remove('header--hide')
         } else {
@@ -83,7 +83,11 @@ export default {
 
       const elemBottom = document.querySelector('.mainMenu--fixed') || document.querySelector('.banner--bottom')
       if (elemBottom) {
-        const logoOnMenu = window.scrollY + window.innerHeight >= document.body.scrollHeight - 100
+        const logoOnMenu = window.scrollY + window.innerHeight >= document.body.scrollHeight - 50
+        if (window.innerWidth < 767 && logoOnMenu) {
+          header.classList.remove('header--hide')
+        }
+        oldScrollVal = window.scrollY
         if (logoOnMenu && this.headerColor === 'black') {
           this.$store.commit('header/setColor', 'white')
         }
