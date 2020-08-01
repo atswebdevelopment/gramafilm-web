@@ -156,6 +156,9 @@
             "name": "CaseStudyConnectionThumbnail"
           },
           {
+            "name": "CaseStudyConnectionInverttext"
+          },
+          {
             "name": "createCaseStudyPayload"
           },
           {
