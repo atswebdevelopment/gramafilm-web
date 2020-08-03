@@ -1,173 +1,175 @@
 <template>
   <div class="work" :class="{'work--home': home}">
     <div v-if="caseStudies.length">
-      <div v-if="workModuleOne.length" class="work__module work__module--1" :class="{ 'work__module--filtering': filtering }">
-        <div
-          v-for="(caseStudy, index) in workModuleOne"
-          :key="index"
-          :class="`work__item work__item--${index} ${index > 1 && 'fade fadeIn'}`"
-          @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
-        >
-          <div class="work__media">
-            <div v-if="caseStudy.thumbnail && !caseStudy.thumbnail.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.thumbnail.url, 767)})`" />
-            <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted>
-              <source :src="caseStudy.thumbnail.url" type="video/mp4">
-            </video>
-            <div v-else-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.banner.url, 767)})`" />
-            <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.media.image.url, 767)})`" />
-          </div>
-          <div class="work__text">
-            <span :class="getClass(caseStudy.type)">{{ caseStudy.type }}</span> {{ caseStudy.title }}
-          </div>
-        </div>
-      </div>
-      <div v-if="!home && workModuleOne.length" class="work__module work__module--4">
-        <div class="work__marquee" />
-      </div>
-      <div v-if="workModuleTwo.length" class="work__module work__module--2" :class="{ 'work__module--filtering': filtering }">
-        <div
-          v-for="(caseStudy, index) in workModuleTwo"
-          :key="index"
-          :class="`work__item work__item--${index + 4} fade fadeIn`"
-          @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
-        >
-          <div class="work__media">
-            <div v-if="caseStudy.thumbnail && !caseStudy.thumbnail.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.thumbnail.url)})`" />
-            <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted>
-              <source :src="caseStudy.thumbnail.url" type="video/mp4">
-            </video>
-            <div v-else-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.banner.url)})`" />
-            <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.media.image.url)})`" />
-          </div>
-          <div class="work__text">
-            <span :class="getClass(caseStudy.type)">{{ caseStudy.type }}</span> {{ caseStudy.title }}
+      <div v-for="(workModule, wmindex) in workModules" :key="wmindex">
+        <div v-if="workModule.workModuleOne.length && wmindex === 0 || !home && workModule.workModuleOne.length && wmindex > 0" class="work__module work__module--1" :class="{ 'work__module--filtering': filtering }">
+          <div
+            v-for="(caseStudy, index) in workModule.workModuleOne"
+            :key="index"
+            :class="`work__item work__item--${index} ${index > 1 && 'fade fadeIn'}`"
+            @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
+          >
+            <div class="work__media">
+              <div v-if="caseStudy.thumbnail && !caseStudy.thumbnail.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.thumbnail.url, 767)})`" />
+              <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted>
+                <source :src="caseStudy.thumbnail.url" type="video/mp4">
+              </video>
+              <div v-else-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.banner.url, 767)})`" />
+              <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.media.image.url, 767)})`" />
+            </div>
+            <div class="work__text">
+              <span :class="getClass(caseStudy.type)">{{ caseStudy.type }}</span> {{ caseStudy.title }}
+            </div>
           </div>
         </div>
-      </div>
-      <div v-if="!home && workModuleThree.length" class="work__module work__module--5" :class="{ 'work__module--filtering': filtering }">
-        <div
-          v-for="(caseStudy, index) in workModuleThree"
-          :key="index"
-          :class="`work__item work__item--${index + 7} fade fadeIn`"
-          @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
-        >
-          <div class="work__media">
-            <div v-if="caseStudy.thumbnail && !caseStudy.thumbnail.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.thumbnail.url, 767)})`" />
-            <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted>
-              <source :src="caseStudy.thumbnail.url" type="video/mp4">
-            </video>
-            <div v-else-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.banner.url, 767)})`" />
-            <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.media.image.url, 767)})`" />
-          </div>
-          <div class="work__text">
-            <span :class="getClass(caseStudy.type)">{{ caseStudy.type }}</span> {{ caseStudy.title }}
+        <div v-if="!home && workModule.workModuleOne.length" class="work__module work__module--4">
+          <div class="work__marquee" />
+        </div>
+        <div v-if="workModule.workModuleTwo.length && wmindex === 0 || !home && workModule.workModuleTwo.length && wmindex > 0" class="work__module work__module--2" :class="{ 'work__module--filtering': filtering }">
+          <div
+            v-for="(caseStudy, index) in workModule.workModuleTwo"
+            :key="index"
+            :class="`work__item work__item--${index + 4} fade fadeIn`"
+            @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
+          >
+            <div class="work__media">
+              <div v-if="caseStudy.thumbnail && !caseStudy.thumbnail.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.thumbnail.url)})`" />
+              <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted>
+                <source :src="caseStudy.thumbnail.url" type="video/mp4">
+              </video>
+              <div v-else-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.banner.url)})`" />
+              <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.media.image.url)})`" />
+            </div>
+            <div class="work__text">
+              <span :class="getClass(caseStudy.type)">{{ caseStudy.type }}</span> {{ caseStudy.title }}
+            </div>
           </div>
         </div>
-      </div>
-      <div v-if="home && workModuleFour.length" class="work__module work__module--3" :class="{ 'work__module--filtering': filtering }">
-        <div
-          v-for="(caseStudy, index) in workModuleFour"
-          :key="index"
-          :class="`work__item work__item--${index + 5} fade fadeIn`"
-          @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
-        >
-          <div class="work__media">
-            <div v-if="caseStudy.thumbnail && !caseStudy.thumbnail.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.thumbnail.url, 767)})`" />
-            <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted>
-              <source :src="caseStudy.thumbnail.url" type="video/mp4">
-            </video>
-            <div v-else-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.banner.url, 767)})`" />
-            <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.media.image.url, 767)})`" />
-          </div>
-          <div class="work__text">
-            <span :class="getClass(caseStudy.type)">{{ caseStudy.type }}</span> {{ caseStudy.title }}
-          </div>
-        </div>
-        <div class="work__item work__item--6 fade fadeIn">
-          <div class="work__link">
-            <nuxt-link class="arrowLink" :to="{ name: 'work' }">
-              See more of our work
-            </nuxt-link>
+        <div v-if="!home && workModule.workModuleThree.length" class="work__module work__module--5" :class="{ 'work__module--filtering': filtering }">
+          <div
+            v-for="(caseStudy, index) in workModule.workModuleThree"
+            :key="index"
+            :class="`work__item work__item--${index + 7} fade fadeIn`"
+            @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
+          >
+            <div class="work__media">
+              <div v-if="caseStudy.thumbnail && !caseStudy.thumbnail.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.thumbnail.url, 767)})`" />
+              <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted>
+                <source :src="caseStudy.thumbnail.url" type="video/mp4">
+              </video>
+              <div v-else-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.banner.url, 767)})`" />
+              <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.media.image.url, 767)})`" />
+            </div>
+            <div class="work__text">
+              <span :class="getClass(caseStudy.type)">{{ caseStudy.type }}</span> {{ caseStudy.title }}
+            </div>
           </div>
         </div>
-      </div>
-      <div v-if="!home && workModuleFive.length" class="work__module work__module--2" :class="{ 'work__module--filtering': filtering }">
-        <div
-          v-for="(caseStudy, index) in workModuleFive"
-          :key="index"
-          :class="`work__item work__item--${index + 4} fade fadeIn`"
-          @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
-        >
-          <div class="work__media">
-            <div v-if="caseStudy.thumbnail && !caseStudy.thumbnail.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.thumbnail.url)})`" />
-            <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted>
-              <source :src="caseStudy.thumbnail.url" type="video/mp4">
-            </video>
-            <div v-else-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.banner.url)})`" />
-            <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.media.image.url)})`" />
+        <div v-if="home && workModule.workModuleFour.length && wmindex === 0" class="work__module work__module--3" :class="{ 'work__module--filtering': filtering }">
+          <div
+            v-for="(caseStudy, index) in workModule.workModuleFour"
+            :key="index"
+            :class="`work__item work__item--${index + 5} fade fadeIn`"
+            @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
+          >
+            <div class="work__media">
+              <div v-if="caseStudy.thumbnail && !caseStudy.thumbnail.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.thumbnail.url, 767)})`" />
+              <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted>
+                <source :src="caseStudy.thumbnail.url" type="video/mp4">
+              </video>
+              <div v-else-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.banner.url, 767)})`" />
+              <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.media.image.url, 767)})`" />
+            </div>
+            <div class="work__text">
+              <span :class="getClass(caseStudy.type)">{{ caseStudy.type }}</span> {{ caseStudy.title }}
+            </div>
           </div>
-          <div class="work__text">
-            <span :class="getClass(caseStudy.type)">{{ caseStudy.type }}</span> {{ caseStudy.title }}
-          </div>
-        </div>
-      </div>
-      <div v-if="!home && workModuleSix.length" class="work__module work__module--6" :class="{ 'work__module--filtering': filtering }">
-        <div
-          v-for="(caseStudy, index) in workModuleSix"
-          :key="index"
-          :class="`work__item work__item--${index + 10} fade fadeIn`"
-          @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
-        >
-          <div class="work__media">
-            <div v-if="caseStudy.thumbnail && !caseStudy.thumbnail.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.thumbnail.url, 767)})`" />
-            <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted>
-              <source :src="caseStudy.thumbnail.url" type="video/mp4">
-            </video>
-            <div v-else-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.banner.url, 767)})`" />
-            <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.media.image.url, 767)})`" />
-          </div>
-          <div class="work__text">
-            <span :class="getClass(caseStudy.type)">{{ caseStudy.type }}</span> {{ caseStudy.title }}
+          <div class="work__item work__item--6 fade fadeIn">
+            <div class="work__link">
+              <nuxt-link class="arrowLink" :to="{ name: 'work' }">
+                See more of our work
+              </nuxt-link>
+            </div>
           </div>
         </div>
-      </div>
-      <div v-if="!home && workModuleSeven.length" class="work__module work__module--2" :class="{ 'work__module--filtering': filtering }">
-        <div
-          v-for="(caseStudy, index) in workModuleSeven"
-          :key="index"
-          :class="`work__item work__item--${index + 4} fade fadeIn`"
-          @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
-        >
-          <div class="work__media">
-            <div v-if="caseStudy.thumbnail && !caseStudy.thumbnail.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.thumbnail.url)})`" />
-            <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted>
-              <source :src="caseStudy.thumbnail.url" type="video/mp4">
-            </video>
-            <div v-else-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.banner.url)})`" />
-            <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.media.image.url)})`" />
-          </div>
-          <div class="work__text">
-            <span :class="getClass(caseStudy.type)">{{ caseStudy.type }}</span> {{ caseStudy.title }}
+        <div v-if="!home && workModule.workModuleFive.length" class="work__module work__module--2" :class="{ 'work__module--filtering': filtering }">
+          <div
+            v-for="(caseStudy, index) in workModule.workModuleFive"
+            :key="index"
+            :class="`work__item work__item--${index + 4} fade fadeIn`"
+            @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
+          >
+            <div class="work__media">
+              <div v-if="caseStudy.thumbnail && !caseStudy.thumbnail.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.thumbnail.url)})`" />
+              <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted>
+                <source :src="caseStudy.thumbnail.url" type="video/mp4">
+              </video>
+              <div v-else-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.banner.url)})`" />
+              <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.media.image.url)})`" />
+            </div>
+            <div class="work__text">
+              <span :class="getClass(caseStudy.type)">{{ caseStudy.type }}</span> {{ caseStudy.title }}
+            </div>
           </div>
         </div>
-      </div>
-      <div v-if="!home && workModuleEight.length" class="work__module work__module--1">
-        <div
-          v-for="(caseStudy, index) in workModuleEight"
-          :key="index"
-          :class="`work__item work__item--${index} fade fadeIn`"
-          @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
-        >
-          <div class="work__media">
-            <div v-if="caseStudy.thumbnail && !caseStudy.thumbnail.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.thumbnail.url, 767)})`" />
-            <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted>
-              <source :src="caseStudy.thumbnail.url" type="video/mp4">
-            </video>
-            <div v-else-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.banner.url, 767)})`" />
-            <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.media.image.url, 767)})`" />
+        <div v-if="!home && workModule.workModuleSix.length" class="work__module work__module--6" :class="{ 'work__module--filtering': filtering }">
+          <div
+            v-for="(caseStudy, index) in workModule.workModuleSix"
+            :key="index"
+            :class="`work__item work__item--${index + 10} fade fadeIn`"
+            @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
+          >
+            <div class="work__media">
+              <div v-if="caseStudy.thumbnail && !caseStudy.thumbnail.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.thumbnail.url, 767)})`" />
+              <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted>
+                <source :src="caseStudy.thumbnail.url" type="video/mp4">
+              </video>
+              <div v-else-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.banner.url, 767)})`" />
+              <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.media.image.url, 767)})`" />
+            </div>
+            <div class="work__text">
+              <span :class="getClass(caseStudy.type)">{{ caseStudy.type }}</span> {{ caseStudy.title }}
+            </div>
           </div>
-          <div class="work__text">
-            <span :class="getClass(caseStudy.type)">{{ caseStudy.type }}</span> {{ caseStudy.title }}
+        </div>
+        <div v-if="!home && workModule.workModuleSeven.length" class="work__module work__module--2" :class="{ 'work__module--filtering': filtering }">
+          <div
+            v-for="(caseStudy, index) in workModule.workModuleSeven"
+            :key="index"
+            :class="`work__item work__item--${index + 4} fade fadeIn`"
+            @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
+          >
+            <div class="work__media">
+              <div v-if="caseStudy.thumbnail && !caseStudy.thumbnail.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.thumbnail.url)})`" />
+              <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted>
+                <source :src="caseStudy.thumbnail.url" type="video/mp4">
+              </video>
+              <div v-else-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.banner.url)})`" />
+              <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.media.image.url)})`" />
+            </div>
+            <div class="work__text">
+              <span :class="getClass(caseStudy.type)">{{ caseStudy.type }}</span> {{ caseStudy.title }}
+            </div>
+          </div>
+        </div>
+        <div v-if="!home && workModule.workModuleEight.length" class="work__module work__module--1">
+          <div
+            v-for="(caseStudy, index) in workModule.workModuleEight"
+            :key="index"
+            :class="`work__item work__item--${index} fade fadeIn`"
+            @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
+          >
+            <div class="work__media">
+              <div v-if="caseStudy.thumbnail && !caseStudy.thumbnail.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.thumbnail.url, 767)})`" />
+              <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted>
+                <source :src="caseStudy.thumbnail.url" type="video/mp4">
+              </video>
+              <div v-else-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.banner.url, 767)})`" />
+              <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.media.image.url, 767)})`" />
+            </div>
+            <div class="work__text">
+              <span :class="getClass(caseStudy.type)">{{ caseStudy.type }}</span> {{ caseStudy.title }}
+            </div>
           </div>
         </div>
       </div>
@@ -197,14 +199,7 @@ export default {
       filtering: false,
       work: [],
       caseStudies: [],
-      workModuleOne: [],
-      workModuleTwo: [],
-      workModuleThree: [],
-      workModuleFour: [],
-      workModuleFive: [],
-      workModuleSix: [],
-      workModuleSeven: [],
-      workModuleEight: []
+      workModules: []
     }
   },
   apollo: {
@@ -216,22 +211,10 @@ export default {
   watch: {
     work () {
       this.caseStudies = [...this.work.casestudies]
-      if (this.caseStudies.length < 7) {
-        this.caseStudies = [...this.work.casestudies, ...this.work.casestudies]
-      }
-      if (this.caseStudies.length < 7) {
-        this.caseStudies = [...this.work.casestudies, ...this.work.casestudies, ...this.work.casestudies]
-      }
       this.splitWork()
     },
     filteredWork () {
       this.caseStudies = [...this.filteredWork]
-      if (this.caseStudies.length < 7) {
-        this.caseStudies = [...this.filteredWork, ...this.filteredWork]
-      }
-      if (this.caseStudies.length < 7) {
-        this.caseStudies = [...this.filteredWork, ...this.filteredWork, ...this.filteredWork]
-      }
       this.filtering = true
       setTimeout(() => {
         this.splitWork()
@@ -245,7 +228,7 @@ export default {
       const video = document.querySelectorAll('.work__media video')
       if (video) {
         video.forEach((e, i) => {
-          if (e.getBoundingClientRect().top - window.innerHeight < -200 && e.getBoundingClientRect().top + e.offsetHeight > 200) {
+          if (e.getBoundingClientRect().top - window.innerHeight < -(e.offsetHeight / 2) && e.getBoundingClientRect().top + e.offsetHeight > (e.offsetHeight / 2)) {
             e.play()
           } else {
             e.pause()
@@ -258,24 +241,25 @@ export default {
     splitWork () {
       let caseStudies = [...this.caseStudies]
       caseStudies = caseStudies.map(caseStudy => caseStudy.case_study)
-      this.workModuleOne = []
-      this.workModuleTwo = []
-      this.workModuleThree = []
-      this.workModuleFour = []
-      this.workModuleFive = []
-      this.workModuleSix = []
-      this.workModuleSeven = []
-      this.workModuleEight = []
+      this.workModules = []
 
       setTimeout(() => {
-        this.workModuleOne = caseStudies.length > 0 ? caseStudies.slice(0, 4) : []
-        this.workModuleTwo = caseStudies.length > 4 ? caseStudies.slice(4, 5) : []
-        this.workModuleThree = caseStudies.length > 5 ? caseStudies.slice(5, 8) : []
-        this.workModuleFour = caseStudies.length > 7 ? caseStudies.slice(7, 8) : []
-        this.workModuleFive = caseStudies.length > 8 ? caseStudies.slice(8, 9) : []
-        this.workModuleSix = caseStudies.length > 9 ? caseStudies.slice(9, 11) : []
-        this.workModuleSeven = caseStudies.length > 11 ? caseStudies.slice(11, 12) : []
-        this.workModuleEight = caseStudies.length > 12 ? caseStudies.slice(12, 16) : []
+        const modules = Math.ceil(caseStudies.length / 16)
+        let start = 0
+        for (let i = 0; i < modules; i++) {
+          const moduleCaseStudies = caseStudies.slice(start, start + 16)
+          start = start + 16
+          const obj = {}
+          obj.workModuleOne = moduleCaseStudies.length > 0 ? moduleCaseStudies.slice(0, 4) : []
+          obj.workModuleTwo = moduleCaseStudies.length > 4 ? moduleCaseStudies.slice(4, 5) : []
+          obj.workModuleThree = moduleCaseStudies.length > 5 ? moduleCaseStudies.slice(5, 8) : []
+          obj.workModuleFour = moduleCaseStudies.length > 7 ? moduleCaseStudies.slice(7, 8) : []
+          obj.workModuleFive = moduleCaseStudies.length > 8 ? moduleCaseStudies.slice(8, 9) : []
+          obj.workModuleSix = moduleCaseStudies.length > 9 ? moduleCaseStudies.slice(9, 11) : []
+          obj.workModuleSeven = moduleCaseStudies.length > 11 ? moduleCaseStudies.slice(11, 12) : []
+          obj.workModuleEight = moduleCaseStudies.length > 12 ? moduleCaseStudies.slice(12, 16) : []
+          this.workModules.push(obj)
+        }
       }, 100)
       fadeIn()
     },
