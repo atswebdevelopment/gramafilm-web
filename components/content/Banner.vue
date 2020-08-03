@@ -40,15 +40,17 @@ export default {
   },
   mounted () {
     window.addEventListener('scroll', () => {
-      const bannerVideo = document.querySelector('.banner__video')
+      const bannerVideo = document.querySelectorAll('.banner__video')
       if (bannerVideo) {
-        const bannerInView = window.scrollY <= bannerVideo.offsetHeight
-        const bannerVideoElement = bannerVideo.querySelector('video')
-        if (bannerInView) {
-          bannerVideoElement.play()
-        } else {
-          bannerVideoElement.pause()
-        }
+        bannerVideo.forEach((e, i) => {
+          const bannerInView = window.scrollY <= e.offsetHeight
+          const bannerVideoElement = e.querySelector('video')
+          if (bannerInView) {
+            bannerVideoElement.play()
+          } else {
+            bannerVideoElement.pause()
+          }
+        })
       }
     })
   }
@@ -233,4 +235,5 @@ export default {
       left 50%
       top 50%
       transform translate(-50%, -50%)
+      object-fit cover
 </style>

@@ -14,12 +14,22 @@
     <h1>Design</h1>
     <div v-if="design.headerimage1" class="banner__item banner__item--4" data-rellax-speed="-3">
       <div class="banner__media">
-        <div class="banner__image" :style="`background-image:url(${design.headerimage1.url})`" />
+        <div v-if="!design.headerimage1.mime.includes('video')" class="banner__image" :style="`background-image:url(${design.headerimage1.url})`" />
+        <div v-else class="banner__video">
+          <video loop muted autoplay>
+            <source :src="design.headerimage1.url" type="video/mp4">
+          </video>
+        </div>
       </div>
     </div>
     <div v-if="design.headerimage2" class="banner__item banner__item--1" data-rellax-speed="3">
       <div class="banner__media">
-        <div class="banner__image" :style="`background-image:url(${design.headerimage2.url})`" />
+        <div v-if="!design.headerimage2.mime.includes('video')" class="banner__image" :style="`background-image:url(${design.headerimage2.url})`" />
+        <div v-else class="banner__video">
+          <video loop muted autoplay>
+            <source :src="design.headerimage1.url" type="video/mp4">
+          </video>
+        </div>
       </div>
     </div>
   </Banner>

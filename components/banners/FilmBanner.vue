@@ -14,12 +14,22 @@
     <h1>Film</h1>
     <div v-if="film.headerimage1" class="banner__item banner__item--2" data-rellax-speed="-3">
       <div class="banner__media">
-        <div class="banner__image" :style="`background-image:url(${film.headerimage1.url})`" />
+        <div v-if="!film.headerimage1.mime.includes('video')" class="banner__image" :style="`background-image:url(${film.headerimage1.url})`" />
+        <div v-else class="banner__video">
+          <video loop muted autoplay>
+            <source :src="film.headerimage1.url" type="video/mp4">
+          </video>
+        </div>
       </div>
     </div>
     <div v-if="film.headerimage2" class="banner__item banner__item--1" data-rellax-speed="3">
       <div class="banner__media">
-        <div class="banner__image" :style="`background-image:url(${film.headerimage2.url})`" />
+        <div v-if="!film.headerimage2.mime.includes('video')" class="banner__image" :style="`background-image:url(${film.headerimage2.url})`" />
+        <div v-else class="banner__video">
+          <video loop muted autoplay>
+            <source :src="film.headerimage2.url" type="video/mp4">
+          </video>
+        </div>
       </div>
     </div>
   </Banner>
