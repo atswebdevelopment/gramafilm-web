@@ -121,6 +121,10 @@ export default {
 
   &--clickable
     cursor pointer
+    font-family $fontFamilySemiBold
+    font-size 40px
+    line-height 48px
+    letter-spacing -.9px
 
 .article-container
   opacity 1

@@ -37,6 +37,20 @@ export default {
       type: Boolean,
       default: false
     }
+  },
+  mounted () {
+    window.addEventListener('scroll', () => {
+      const bannerVideo = document.querySelector('.banner__video')
+      if (bannerVideo) {
+        const bannerInView = window.scrollY <= bannerVideo.offsetHeight
+        const bannerVideoElement = bannerVideo.querySelector('video')
+        if (bannerInView) {
+          bannerVideoElement.play()
+        } else {
+          bannerVideoElement.pause()
+        }
+      }
+    })
   }
 }
 </script>

@@ -10,7 +10,7 @@
         >
           <div class="work__media">
             <div v-if="caseStudy.thumbnail && !caseStudy.thumbnail.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.thumbnail.url, 767)})`" />
-            <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted autoplay>
+            <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted>
               <source :src="caseStudy.thumbnail.url" type="video/mp4">
             </video>
             <div v-else-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.banner.url, 767)})`" />
@@ -32,12 +32,12 @@
           @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
         >
           <div class="work__media">
-            <div v-if="caseStudy.thumbnail && !caseStudy.thumbnail.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.thumbnail.url, 767)})`" />
-            <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted autoplay>
+            <div v-if="caseStudy.thumbnail && !caseStudy.thumbnail.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.thumbnail.url)})`" />
+            <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted>
               <source :src="caseStudy.thumbnail.url" type="video/mp4">
             </video>
-            <div v-else-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.banner.url, 767)})`" />
-            <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.media.image.url, 767)})`" />
+            <div v-else-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.banner.url)})`" />
+            <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.media.image.url)})`" />
           </div>
           <div class="work__text">
             <span :class="getClass(caseStudy.type)">{{ caseStudy.type }}</span> {{ caseStudy.title }}
@@ -53,7 +53,7 @@
         >
           <div class="work__media">
             <div v-if="caseStudy.thumbnail && !caseStudy.thumbnail.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.thumbnail.url, 767)})`" />
-            <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted autoplay>
+            <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted>
               <source :src="caseStudy.thumbnail.url" type="video/mp4">
             </video>
             <div v-else-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.banner.url, 767)})`" />
@@ -73,7 +73,7 @@
         >
           <div class="work__media">
             <div v-if="caseStudy.thumbnail && !caseStudy.thumbnail.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.thumbnail.url, 767)})`" />
-            <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted autoplay>
+            <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted>
               <source :src="caseStudy.thumbnail.url" type="video/mp4">
             </video>
             <div v-else-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.banner.url, 767)})`" />
@@ -99,12 +99,12 @@
           @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
         >
           <div class="work__media">
-            <div v-if="caseStudy.thumbnail && !caseStudy.thumbnail.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.thumbnail.url, 767)})`" />
-            <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted autoplay>
+            <div v-if="caseStudy.thumbnail && !caseStudy.thumbnail.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.thumbnail.url)})`" />
+            <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted>
               <source :src="caseStudy.thumbnail.url" type="video/mp4">
             </video>
-            <div v-else-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.banner.url, 767)})`" />
-            <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.media.image.url, 767)})`" />
+            <div v-else-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.banner.url)})`" />
+            <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.media.image.url)})`" />
           </div>
           <div class="work__text">
             <span :class="getClass(caseStudy.type)">{{ caseStudy.type }}</span> {{ caseStudy.title }}
@@ -120,7 +120,7 @@
         >
           <div class="work__media">
             <div v-if="caseStudy.thumbnail && !caseStudy.thumbnail.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.thumbnail.url, 767)})`" />
-            <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted autoplay>
+            <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted>
               <source :src="caseStudy.thumbnail.url" type="video/mp4">
             </video>
             <div v-else-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.banner.url, 767)})`" />
@@ -139,12 +139,12 @@
           @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.url } })"
         >
           <div class="work__media">
-            <div v-if="caseStudy.thumbnail && !caseStudy.thumbnail.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.thumbnail.url, 767)})`" />
-            <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted autoplay>
+            <div v-if="caseStudy.thumbnail && !caseStudy.thumbnail.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.thumbnail.url)})`" />
+            <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted>
               <source :src="caseStudy.thumbnail.url" type="video/mp4">
             </video>
-            <div v-else-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.banner.url, 767)})`" />
-            <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.media.image.url, 767)})`" />
+            <div v-else-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.banner.url)})`" />
+            <div v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.media.image.url)})`" />
           </div>
           <div class="work__text">
             <span :class="getClass(caseStudy.type)">{{ caseStudy.type }}</span> {{ caseStudy.title }}
@@ -160,7 +160,7 @@
         >
           <div class="work__media">
             <div v-if="caseStudy.thumbnail && !caseStudy.thumbnail.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.thumbnail.url, 767)})`" />
-            <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted autoplay>
+            <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted>
               <source :src="caseStudy.thumbnail.url" type="video/mp4">
             </video>
             <div v-else-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :style="`background-image:url(${setResponsive(caseStudy.banner.url, 767)})`" />
@@ -241,6 +241,18 @@ export default {
   },
   mounted () {
     fadeIn()
+    window.addEventListener('scroll', () => {
+      const video = document.querySelectorAll('.work__media video')
+      if (video) {
+        video.forEach((e, i) => {
+          if (e.getBoundingClientRect().top - window.innerHeight < -200 && e.getBoundingClientRect().top + e.offsetHeight > 200) {
+            e.play()
+          } else {
+            e.pause()
+          }
+        })
+      }
+    })
   },
   methods: {
     splitWork () {
@@ -417,6 +429,7 @@ export default {
     height 100%
     background-position 50%
     background-size cover
+    object-fit cover
 
   &__text span
     text-transform capitalize

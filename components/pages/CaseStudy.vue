@@ -135,7 +135,7 @@
             {{ section.quote }}
           </template>
           <template slot="cite">
-            {{ section.citation }}
+            <div v-html="section.citation.replace(/\n/g, '<br>')" />
           </template>
         </Quote>
         <div v-else-if="section.__typename === 'ComponentModulesGallery'">

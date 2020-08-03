@@ -2,12 +2,12 @@
   <ContentArea class="footerLinks" stretch :class="{ 'footerLinks--inline': inline }">
     <div class="footerLinks__inner">
       <div>
-        <a class="footerLinks__link" target="_blank" title="Opens in a new window" href="https://www.instagram.com/gramafilm/?hl=en">Instagram</a>
-        <a class="footerLinks__link" target="_blank" title="Opens in a new window" href="https://www.facebook.com/Gramafilm/">Facebook</a>
-        <a class="footerLinks__link" target="_blank" title="Opens in a new window" href="https://www.youtube.com/gramafilm">YouTube</a>
-        <a class="footerLinks__link" target="_blank" title="Opens in a new window" href="https://twitter.com/Gramafilm">Twitter</a>
-        <a class="footerLinks__link" target="_blank" title="Opens in a new window" href="https://vimeo.com/gramafilm">Vimeo</a>
-        <a class="footerLinks__link" target="_blank" title="Opens in a new window" href="https://uk.linkedin.com/organization-guest/company/gramafilm">LinkedIn</a>
+        <a class="footerLinks__link" target="_blank" rel="noopener" title="Opens in a new window" href="https://www.instagram.com/gramafilm/?hl=en">Instagram</a>
+        <a class="footerLinks__link" target="_blank" rel="noopener" title="Opens in a new window" href="https://www.facebook.com/Gramafilm/">Facebook</a>
+        <a class="footerLinks__link" target="_blank" rel="noopener" title="Opens in a new window" href="https://www.youtube.com/gramafilm">YouTube</a>
+        <a class="footerLinks__link" target="_blank" rel="noopener" title="Opens in a new window" href="https://twitter.com/Gramafilm">Twitter</a>
+        <a class="footerLinks__link" target="_blank" rel="noopener" title="Opens in a new window" href="https://vimeo.com/gramafilm">Vimeo</a>
+        <a class="footerLinks__link" target="_blank" rel="noopener" title="Opens in a new window" href="https://uk.linkedin.com/organization-guest/company/gramafilm">LinkedIn</a>
       </div>
       <div class="footerLinks__copy">
         <p>Copyright 2009-2020 Gramafilm Limited. All Rights Reserved.</p>
