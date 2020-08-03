@@ -13,12 +13,22 @@
     <h1>Events</h1>
     <div v-if="events.headerimage1" class="banner__item banner__item--3" data-rellax-speed="-3">
       <div class="banner__media">
-        <div class="banner__image" :style="`background-image:url(${events.headerimage1.url})`" />
+        <div v-if="!events.headerimage1.mime.includes('video')" class="banner__image" :style="`background-image:url(${events.headerimage1.url})`" />
+        <div v-else class="banner__video">
+          <video loop muted autoplay>
+            <source :src="events.headerimage1.url" type="video/mp4">
+          </video>
+        </div>
       </div>
     </div>
     <div v-if="events.headerimage2" class="banner__item banner__item--1" data-rellax-speed="3">
       <div class="banner__media">
-        <div class="banner__image" :style="`background-image:url(${events.headerimage2.url})`" />
+        <div v-if="!events.headerimage2.mime.includes('video')" class="banner__image" :style="`background-image:url(${events.headerimage2.url})`" />
+        <div v-else class="banner__video">
+          <video loop muted autoplay>
+            <source :src="events.headerimage2.url" type="video/mp4">
+          </video>
+        </div>
       </div>
     </div>
   </Banner>
