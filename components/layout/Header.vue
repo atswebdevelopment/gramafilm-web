@@ -4,7 +4,7 @@
       <ContentArea class="header__container">
         <div class="header__inner">
           <div class="header__logo" :class="{ 'header__logo--hide': nologo, 'header__logo--show': logoOnScroll || menu }">
-            <nuxt-link to="/">
+            <nuxt-link to="/" title="Back to Home">
               <Logo :color="headerColor" />
             </nuxt-link>
           </div>

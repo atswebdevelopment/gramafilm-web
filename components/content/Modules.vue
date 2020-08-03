@@ -99,7 +99,7 @@
           {{ section.quote }}
         </template>
         <template slot="cite">
-          {{ section.citation }}
+          <div v-html="section.citation.replace(/\n/g, '<br>')" />
         </template>
       </Quote>
       <div v-if="section.__typename === 'ComponentModulesVideo'" class="showcase__module" :class="{ ' showcase__module--6': section.fullscreen}">
