@@ -33,6 +33,7 @@ export default {
   ** Global CSS
   */
   css: [
+    '@assets/css/fonts.styl',
     '@assets/css/app.styl',
     '@assets/css/video.css'
   ],
