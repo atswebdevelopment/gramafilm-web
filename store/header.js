@@ -1,6 +1,7 @@
 export const state = () => ({
   defaultColor: 'white',
-  color: 'white'
+  color: 'white',
+  hideLogo: true
 })
 
 export const mutations = {
@@ -10,5 +11,8 @@ export const mutations = {
   },
   setColor (state, color) {
     state.color = color
+  },
+  hideLogo (state, hideLogo) {
+    state.hideLogo = hideLogo
   }
 }

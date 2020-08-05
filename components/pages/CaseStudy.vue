@@ -194,6 +194,7 @@ export default {
     }
   },
   mounted () {
+    this.$store.commit('header/setDefaultColor', this.caseStudy.inverttext ? 'black' : 'white')
     setTimeout(() => {
       this.$store.commit('header/setDefaultColor', this.caseStudy.inverttext ? 'black' : 'white')
     }, 200)

@@ -3,7 +3,7 @@
     v-if="events && events.image"
     :video="events.image.mime.includes('video')"
     :background="events.image.url"
-    :class="{ 'banner--top': bannerTop, 'clickable': !bannerTop }"
+    :class="{ 'banner--top': bannerTop, 'banner--bottom clickable': !bannerTop }"
     :hide-overflow="!bannerTop"
     @click.native="!bannerTop && $nuxt.$router.push({ name: 'events' })"
   >

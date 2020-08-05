@@ -16,8 +16,6 @@
 <script>
 import homeQuery from '~/apollo/queries/pages/home.gql'
 export default {
-  layout: 'home',
-  transition: 'page',
   components: {
     Home: () => import('~/components/pages/Home'),
     GetInTouch: () => import('~/components/content/GetInTouch'),
@@ -35,10 +33,20 @@ export default {
       query: homeQuery
     }
   },
+  beforeRouteEnter (to, from, next) {
+    next((vm) => {
+      vm.$store.commit('header/hideLogo', true)
+    })
+  },
+  beforeRouteLeave (to, from, next) {
+    this.$store.commit('header/hideLogo', false)
+    next()
+  },
   created () {
     this.$store.commit('header/setDefaultColor', 'white')
   },
   mounted () {
+    this.$store.commit('header/hideLogo', true)
     window.addEventListener('scroll', () => {
       const fixedMenu = document.querySelector('.mainMenu--fixed')
       if (fixedMenu) {

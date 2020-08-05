@@ -17,8 +17,8 @@
           :key="index"
           :to="item.route"
           class="navigation__link"
-          :class="{ 'navigation__link--home': item.route === '/' }"
-          @click.native="closeMenu"
+          :class="{ 'navigation__link--home': item.route === '/', 'navigation__link--page': item.route !== '/' }"
+          @click.native="closeMenu(index)"
         >
           {{ item.title }}
         </nuxt-link>
@@ -47,7 +47,7 @@ export default {
   },
   data () {
     return {
-      activeIndex: 0
+      activeIndex: null
     }
   },
   computed: {
@@ -60,19 +60,13 @@ export default {
       const video = document.querySelector('.backgrounds__background--active video')
       if (video) {
         if (val) {
-          document.querySelector('.backgrounds__background--active video').play()
           setTimeout(() => {
-            // This is quick and hacky, need refactoring through vue data
             const navigation = document.querySelector('.mainMenu--open .navigation')
-            if (this.menu.navigation[this.activeIndex].inverttext) {
-              navigation.classList.add('navigation--inverted')
-            } else {
-              navigation.classList.remove('navigation--inverted')
-            }
-          }, 100)
-          this.$store.commit('header/setColor', this.menu.navigation[this.activeIndex].inverttext ? 'black' : 'white')
+            this.setState(this.activeIndex, navigation)
+          }, 10)
         } else {
-          document.querySelector('.backgrounds__background--active video').pause()
+          const video = document.querySelector('.backgrounds__background--active video')
+          video.pause()
           this.$store.commit('header/setColor', this.$store.state.header.defaultColor)
         }
       }
@@ -82,6 +76,32 @@ export default {
     this.ready()
   },
   methods: {
+    setState (i, navigation) {
+      // This whole section is quick and hacky, need refactoring through vue data
+      navigation.querySelectorAll('.navigation__link').forEach((e, i) => {
+        if ((e.classList.contains('nuxt-link-active') && e.classList.contains('navigation__link--page') && window.location.pathname.length > 1) || (e.classList.contains('nuxt-link-exact-active') && window.location.pathname.length <= 1)) {
+          this.activeIndex = i
+        }
+      })
+      navigation.querySelectorAll('.backgrounds__background--active').forEach((e, index) => {
+        e.classList.remove('backgrounds__background--active')
+        const video = e.querySelector('video')
+        if (video) {
+          video.pause()
+        }
+      })
+      if (this.menu.navigation[i].inverttext) {
+        navigation.classList.add('navigation--inverted')
+      } else {
+        navigation.classList.remove('navigation--inverted')
+      }
+      this.$store.commit('header/setColor', this.menu.navigation[i].inverttext ? 'black' : 'white')
+      navigation.querySelectorAll('.backgrounds__background')[i].classList.add('backgrounds__background--active')
+      const video = navigation.querySelector('.backgrounds__background--active video')
+      if (video) {
+        video.play()
+      }
+    },
     ready () {
       if (!document.querySelectorAll('.navigation__link').length > 0) {
         setTimeout(() => {
@@ -92,37 +112,19 @@ export default {
       const navigationObj = document.querySelectorAll('.navigation')
       navigationObj.forEach((navigation, i) => {
         navigation.querySelectorAll('.navigation__link').forEach((e, i) => {
-          // This whole section is quick and hacky, need refactoring through vue data
-          if (e.classList.contains('nuxt-link-active')) {
+          if ((e.classList.contains('nuxt-link-active') && e.classList.contains('navigation__link--page') && window.location.pathname.length > 1) || (e.classList.contains('nuxt-link-exact-active') && window.location.pathname.length <= 1)) {
             this.activeIndex = i
           }
-          if (this.menu.navigation[this.activeIndex].inverttext) {
-            navigation.classList.add('navigation--inverted')
-          } else {
-            navigation.classList.remove('navigation--inverted')
-          }
-          navigation.querySelectorAll('.backgrounds__background')[this.activeIndex].classList.add('backgrounds__background--active')
           e.onmouseenter = () => {
-            navigation.querySelectorAll('.backgrounds__background--active').forEach((e, i) => {
-              e.classList.remove('backgrounds__background--active')
-              const video = e.querySelector('video')
-              if (video) {
-                video.pause()
-              }
-            })
-            if (this.menu.navigation[i].inverttext) {
-              navigation.classList.add('navigation--inverted')
-            } else {
-              navigation.classList.remove('navigation--inverted')
-            }
-            this.$store.commit('header/setColor', this.menu.navigation[i].inverttext ? 'black' : 'white')
-            navigation.querySelectorAll('.backgrounds__background')[i].classList.add('backgrounds__background--active')
-            const video = navigation.querySelector('.backgrounds__background--active video')
-            if (video) {
-              video.play()
-            }
+            this.setState(i, navigation)
           }
         })
+        navigation.querySelectorAll('.backgrounds__background')[this.activeIndex].classList.add('backgrounds__background--active')
+        if (this.menu.navigation[this.activeIndex].inverttext) {
+          navigation.classList.add('navigation--inverted')
+        } else {
+          navigation.classList.remove('navigation--inverted')
+        }
       })
 
       let videoPlaying = false
@@ -145,7 +147,8 @@ export default {
         }
       })
     },
-    closeMenu () {
+    closeMenu (index) {
+      this.activeIndex = index
       this.$emit('close-menu')
     }
   }

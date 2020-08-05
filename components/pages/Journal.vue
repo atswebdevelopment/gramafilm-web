@@ -63,6 +63,7 @@ export default {
     if (this.filteredArticles.length < this.limit) {
       this.loadText = 'No more articles'
     }
+    this.$store.commit('header/setDefaultColor', 'black')
     setTimeout(() => {
       this.$store.commit('header/setDefaultColor', 'black')
     }, 200)

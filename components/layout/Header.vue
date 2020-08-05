@@ -3,8 +3,8 @@
     <div class="header" :class="{ 'header--open': menu }">
       <ContentArea class="header__container">
         <div class="header__inner">
-          <div class="header__logo" :class="{ 'header__logo--hide': nologo, 'header__logo--show': logoOnScroll || menu }">
-            <nuxt-link to="/" title="Back to Home">
+          <div class="header__logo" :class="{ 'header__logo--hide': hideLogo, 'header__logo--show': logoOnScroll || menu }">
+            <nuxt-link to="/" title="Back to Home" @click.native="closeMenu">
               <Logo :color="headerColor" />
             </nuxt-link>
           </div>
@@ -28,12 +28,6 @@ export default {
     Logo: () => import('~/components/content/Logo'),
     MainMenu: () => import('~/components/pages/MainMenu')
   },
-  props: {
-    nologo: {
-      type: Boolean,
-      default: false
-    }
-  },
   data () {
     return {
       menu: false,
@@ -43,9 +37,15 @@ export default {
   computed: {
     headerColor () {
       return this.$store.state.header.color
+    },
+    hideLogo () {
+      return this.$store.state.header.hideLogo
     }
   },
   mounted () {
+    if (window.location.pathname.length > 1) {
+      this.$store.commit('header/hideLogo', false)
+    }
     let oldScrollVal = window.scrollY
     const header = document.querySelector('.header')
     window.addEventListener('scroll', () => {

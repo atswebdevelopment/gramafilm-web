@@ -154,10 +154,10 @@ export default {
     loaded (e) {
       const path = e.path ? e.path[0] : e.srcElement || e.target
       new Rellax(path, {})
-      this.rand++
       setTimeout(() => {
         path.classList.add('loaded')
       }, this.rand * 100)
+      this.rand++
     }
   }
 }
