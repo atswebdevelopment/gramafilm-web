@@ -35,6 +35,7 @@ export default {
     }
   },
   mounted () {
+    this.$store.commit('header/setDefaultColor', 'white')
     setTimeout(() => {
       this.$store.commit('header/setDefaultColor', 'white')
     }, 200)
