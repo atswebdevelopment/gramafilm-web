@@ -44,6 +44,7 @@
                   <div class="casestudy__media">
                     <img v-if="section.image" :src="setResponsive(section.image.url)" :alt="section.image.alternativeText">
                     <Video v-else-if="section.qvideo" :video="section.qvideo" />
+                    <div v-html="section.content" />
                   </div>
                 </div>
               </div>
@@ -160,10 +161,10 @@
       hide-overflow
       :black="caseStudy.case_study.inverttext"
     >
-      <div class="banner__next" @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.case_study.url } })">
+      <div class="banner__next" @click="$nuxt.$router.push({ name: 'work-id', params: { id: caseStudy.case_study.url } })">
         Next
       </div>
-      <h1 class="click" @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.case_study.url } })">{{ caseStudy.case_study.title }}</h1>
+      <h1 class="click" @click="$nuxt.$router.push({ name: 'work-id', params: { id: caseStudy.case_study.url } })">{{ caseStudy.case_study.title }}</h1>
     </Banner>
   </div>
 </template>
@@ -246,9 +247,6 @@ export default {
 
     @media (max-width $bp-sm)
       margin-top 2vh
-
-    @media (max-width $bp-xs)
-      margin-top 0
 
 .casestudy
   p

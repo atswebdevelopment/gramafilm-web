@@ -64,7 +64,7 @@ export default {
       margin-bottom 114px
 
       @media (max-width: $bp-sm)
-        margin-bottom 30px
+        margin 0 0 30px
 
   &__content
     width 49%

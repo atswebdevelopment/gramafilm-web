@@ -83,6 +83,9 @@ export default {
           this.activeIndex = i
         }
       })
+      if (!this.activeIndex) {
+        this.activeIndex = 0
+      }
       navigation.querySelectorAll('.backgrounds__background--active').forEach((e, index) => {
         e.classList.remove('backgrounds__background--active')
         const video = e.querySelector('video')
@@ -119,6 +122,9 @@ export default {
             this.setState(i, navigation)
           }
         })
+        if (!this.activeIndex) {
+          this.activeIndex = 0
+        }
         navigation.querySelectorAll('.backgrounds__background')[this.activeIndex].classList.add('backgrounds__background--active')
         if (this.menu.navigation[this.activeIndex].inverttext) {
           navigation.classList.add('navigation--inverted')

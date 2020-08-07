@@ -69,6 +69,7 @@ export default {
   color $white
 
   @media (max-width $bp-sm)
+    background-attachment scroll
     height 80vh
 
   &--hide-overflow

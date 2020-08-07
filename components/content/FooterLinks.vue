@@ -54,7 +54,7 @@ export default {
     padding 8vh 0 42px
 
     @media (max-width $bp-sm)
-      padding 3vh 0 10px
+      padding 6vh 0 10px
 
   p, a
     font-size 16px
