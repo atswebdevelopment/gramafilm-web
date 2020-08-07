@@ -1,6 +1,6 @@
 <template>
   <div class="journal">
-    <ContentArea overflow>
+    <ContentArea overflow stretch>
       <div class="heading">
         <h1 class="h1-small">
           Journal
@@ -14,6 +14,8 @@
           </div>
         </Filters>
       </div>
+    </ContentArea>
+    <ContentArea overflow no-padding>
       <Articles :articles="filteredArticles" class="article-container" :class="{ 'article-container--filtering': filtering }" />
       <div v-if="!disableLoadMore && !filtering && !loading" class="load-more" :class="{ 'load-more--clickable': loadText === 'Load more'}" @click="loadText === 'Load more' && loadMore()">
         {{ loadText }}

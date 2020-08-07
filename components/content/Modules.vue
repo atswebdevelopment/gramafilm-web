@@ -98,7 +98,7 @@
         <template slot="quote">
           {{ section.quote }}
         </template>
-        <template slot="cite">
+        <template v-if="section.citation" slot="cite">
           <div v-html="section.citation.replace(/\n/g, '<br>')" />
         </template>
       </Quote>

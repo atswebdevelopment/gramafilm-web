@@ -10,7 +10,7 @@
         <a class="footerLinks__link" target="_blank" rel="noopener" title="Opens in a new window" href="https://uk.linkedin.com/organization-guest/company/gramafilm">LinkedIn</a>
       </div>
       <div class="footerLinks__copy">
-        <p>Copyright 2009-2020 Gramafilm Limited. All Rights Reserved.</p>
+        <p>Copyright 2008-{{ currentYear }} Gramafilm Limited. All Rights Reserved.</p>
       </div>
     </div>
   </ContentArea>
@@ -26,6 +26,12 @@ export default {
     inline: {
       type: Boolean,
       default: false
+    }
+  },
+  computed: {
+    currentYear () {
+      const date = new Date(Date.now())
+      return date.getFullYear()
     }
   }
 }

@@ -58,7 +58,7 @@ export default {
 
     >>> p
       margin 0
-      font-family 'whyteregular'
+      font-family $fontFamilySemiBold
       font-size 18px
       line-height 24px
 </style>

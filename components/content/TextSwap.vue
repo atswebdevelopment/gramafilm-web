@@ -2,17 +2,17 @@
   <div class="text-swap" :class="{ 'text-swap--inline': inline }">
     <div class="green">
       <nuxt-link :to="{ name: 'film' }">
-        <span>make</span> <span>a</span> <span>film{{ inline ? '.' : '' }}</span>
+        <span>captivating </span> <span>films{{ inline ? '.' : '' }}</span>
       </nuxt-link>
     </div>
     <div class="blue">
       <nuxt-link :to="{ name: 'design' }">
-        <span>create</span> <span>impactful</span> <span>design{{ inline ? '.' : '' }}</span>
+        <span>impactful</span> <span>design{{ inline ? '.' : '' }}</span>
       </nuxt-link>
     </div>
     <div class="orange">
       <nuxt-link :to="{ name: 'events' }">
-        <span>create</span> <span>memorable</span> <span>events{{ inline ? '.' : '' }}</span>
+        <span>memorable</span> <span>events{{ inline ? '.' : '' }}</span>
       </nuxt-link>
     </div>
   </div>
@@ -40,10 +40,10 @@ export default {
 
   @media (max-width $bp-sm)
     width 100%
-    height 125px
+    height 87px
 
   @media (max-width $bp-xs)
-    height 80px
+    height 42px
 
   &--inline
     display inline-block
@@ -52,7 +52,7 @@ export default {
     text-align left
 
     @media (max-width $bp-sm)
-      height 175px
+      height 140px
 
   > div
     position absolute
