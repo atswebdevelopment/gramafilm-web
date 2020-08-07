@@ -222,6 +222,7 @@ query Film {
       }
       ... on ComponentModulesVideo {
         id
+        content
         image {
           url
           alternativeText

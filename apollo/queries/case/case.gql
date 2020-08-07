@@ -52,6 +52,7 @@ query CaseStudies ($url: String!) {
     modules {
       ... on ComponentModulesVideo {
         id
+        content
         image {
           id
           url

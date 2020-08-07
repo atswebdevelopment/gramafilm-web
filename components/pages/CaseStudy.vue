@@ -44,6 +44,7 @@
                   <div class="casestudy__media">
                     <img v-if="section.image" :src="setResponsive(section.image.url)" :alt="section.image.alternativeText">
                     <Video v-else-if="section.qvideo" :video="section.qvideo" />
+                    <div v-html="section.content" />
                   </div>
                 </div>
               </div>
@@ -246,9 +247,6 @@ export default {
 
     @media (max-width $bp-sm)
       margin-top 2vh
-
-    @media (max-width $bp-xs)
-      margin-top 0
 
 .casestudy
   p

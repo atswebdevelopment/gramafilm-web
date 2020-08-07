@@ -222,6 +222,7 @@ query Design {
       }
       ... on ComponentModulesVideo {
         id
+        content
         image {
           url
           alternativeText

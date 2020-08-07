@@ -80,4 +80,7 @@ export default {
   &__text
     margin-top 4vh
     color $black
+
+    @media (max-width $bp-sm)
+      margin-top 2vh
 </style>
