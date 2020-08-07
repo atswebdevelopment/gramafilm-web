@@ -160,10 +160,10 @@
       hide-overflow
       :black="caseStudy.case_study.inverttext"
     >
-      <div class="banner__next" @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.case_study.url } })">
+      <div class="banner__next" @click="$nuxt.$router.push({ name: 'work-id', params: { id: caseStudy.case_study.url } })">
         Next
       </div>
-      <h1 class="click" @click="$nuxt.$router.push({ name: 'case-id', params: { id: caseStudy.case_study.url } })">{{ caseStudy.case_study.title }}</h1>
+      <h1 class="click" @click="$nuxt.$router.push({ name: 'work-id', params: { id: caseStudy.case_study.url } })">{{ caseStudy.case_study.title }}</h1>
     </Banner>
   </div>
 </template>
