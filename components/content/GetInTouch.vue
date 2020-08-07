@@ -2,7 +2,7 @@
   <ContentArea fullscreen center>
     <div class="getInTouch">
       <div class="getInTouch__title">
-        If you want to
+        If you want to make
         <TextSwap />
       </div>
       <div class="getInTouch__link">

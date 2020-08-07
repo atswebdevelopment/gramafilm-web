@@ -87,7 +87,7 @@
           <div class="work__item work__item--6 fade fadeIn">
             <div class="work__link">
               <nuxt-link class="arrowLink" :to="{ name: 'work' }">
-                See more of our work
+                See more
               </nuxt-link>
             </div>
           </div>

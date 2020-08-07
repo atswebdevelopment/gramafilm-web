@@ -113,7 +113,7 @@
       {{ home.subtitle }}
     </p>
     <p class="intro__about large">
-      We are a global creative agency, creating beautiful <nuxt-link class="link-green" :to="{ name: 'film'}">Film</nuxt-link>, memorable <nuxt-link class="link-blue" :to="{ name: 'events'}">Events</nuxt-link> and impactful <nuxt-link class="link-orange" :to="{ name: 'design'}">Design</nuxt-link>.
+      We're a London-based creative production studio. We develop award-winning <nuxt-link class="link-green" :to="{ name: 'film'}">Films</nuxt-link>, <nuxt-link class="link-blue" :to="{ name: 'events'}">Events</nuxt-link> and <nuxt-link class="link-orange" :to="{ name: 'design'}">Design</nuxt-link>.
     </p>
     <ColumnContainer v-if="home.counters" class="counter-container">
       <Column v-for="(counter, index) in home.counters" :key="index">

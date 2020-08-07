@@ -67,7 +67,6 @@ export default {
   float left
   color $white
   font-size 16px
-  text-transform uppercase
   text-decoration underline
 
 .error

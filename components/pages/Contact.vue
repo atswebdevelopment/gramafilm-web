@@ -2,7 +2,7 @@
   <div class="contact">
     <ContentArea>
       <h1 class="h1-small">
-        Get in touch if you want to
+        Get in touch to make
         <TextSwap inline />
       </h1>
       <ColumnContainer no-padding>
@@ -12,10 +12,12 @@
         <Column>
           <div class="contact__details">
             <div class="nomargin">
-              <b>Call the studio</b>
-              <div v-html="contact.telephone" />
+              <b>Call us</b>
+              <div>
+                <a :href="`tel:${contact.telephone}`">{{ contact.telephone }}</a>
+              </div>
               <br>
-              <b>For new business</b>
+              <b>New business</b>
               <div>
                 <a :href="`mailto:${contact.email}`">{{ contact.email }}</a>
               </div>

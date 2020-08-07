@@ -65,7 +65,7 @@
       </ContentSwitcher>
     </ContentArea>
     <ContentArea class="logos">
-      <h3>Our clients</h3>
+      <h3>Clients</h3>
       <ColumnContainer no-padding center class="fade fadeIn">
         <Column>
           <img src="/images/logo-google.png" alt="">
@@ -108,9 +108,6 @@
     </ContentArea>
     <ContentArea>
       <h3>People</h3>
-      <p class="large">
-        Gramafilm has a core team of creative specialists based in London, but with a wider global network we have created over 10 years.
-      </p>
       <People v-if="people.length" :people="people" />
     </ContentArea>
     <FollowUs />
