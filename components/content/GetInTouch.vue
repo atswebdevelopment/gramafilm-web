@@ -1,6 +1,6 @@
 <template>
-  <ContentArea fullscreen center>
-    <div class="getInTouch">
+  <ContentArea fullscreen center class="getInTouch">
+    <div class="getInTouch__content">
       <div class="getInTouch__title">
         If you want to make
         <TextSwap />
@@ -34,10 +34,13 @@ export default {
 
 <style lang="stylus" scoped>
 .getInTouch
-  width 100%
-  max-width 626px
-  text-align center
-  margin 0 auto
+  background $white
+
+  &__content
+    width 100%
+    max-width 626px
+    text-align center
+    margin 0 auto
 
   &__title
     font-weight 600

@@ -27,11 +27,11 @@ export default {
 
 <style lang="stylus" scoped>
 .articles
-  margin 15vh 0 0
+  margin 7vh 0 0
   text-align center
 
   @media (max-width $bp-sm)
-    margin 5vh 0 0
+    margin 0
 
   &__item
     vertical-align top

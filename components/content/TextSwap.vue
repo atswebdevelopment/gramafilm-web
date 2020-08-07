@@ -40,7 +40,7 @@ export default {
 
   @media (max-width $bp-sm)
     width 100%
-    height 125px
+    height 87px
 
   @media (max-width $bp-xs)
     height 42px
