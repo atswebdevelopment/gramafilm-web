@@ -58,6 +58,7 @@ query CaseStudies ($url: String!) {
           url
           alternativeText
           caption
+          mime
         }
         qvideo {
           id
@@ -78,6 +79,7 @@ query CaseStudies ($url: String!) {
           url
           alternativeText
           caption
+          mime
         }
         mainvideo {
           id
@@ -93,6 +95,7 @@ query CaseStudies ($url: String!) {
           url
           alternativeText
           caption
+          mime
         }
         qvideo {
           id
@@ -113,6 +116,7 @@ query CaseStudies ($url: String!) {
           url
           alternativeText
           caption
+          mime
         }
         mainvideo {
           id
@@ -129,6 +133,7 @@ query CaseStudies ($url: String!) {
           url
           alternativeText
           caption
+          mime
         }
         qvideo {
           id
@@ -150,6 +155,7 @@ query CaseStudies ($url: String!) {
           url
           alternativeText
           caption
+          mime
         }
         column1video {
           id
@@ -167,6 +173,7 @@ query CaseStudies ($url: String!) {
           url
           alternativeText
           caption
+          mime
         }
         column2video {
           id

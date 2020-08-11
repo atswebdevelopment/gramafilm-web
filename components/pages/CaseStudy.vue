@@ -33,7 +33,10 @@
         <template v-if="section.__typename === 'ComponentModulesVideo'">
           <div v-if="section.fullscreen" class="casestudy__item casestudy__item--3">
             <div class="casestudy__media">
-              <img v-if="section.image" :src="setResponsive(section.image.url)" :alt="section.image.alternativeText">
+              <img v-if="section.image && !section.image.mime.includes('video')" :src="setResponsive(section.image.url)" :alt="section.image.alternativeText">
+              <video v-else-if="section.image && section.image.mime.includes('video')" class="looped" loop muted>
+                <source :src="section.image.url" type="video/mp4">
+              </video>
               <Video v-else-if="section.qvideo" :video="section.qvideo" fullscreen />
             </div>
           </div>
@@ -42,7 +45,10 @@
               <div class="casestudy__module">
                 <div class="casestudy__item">
                   <div class="casestudy__media">
-                    <img v-if="section.image" :src="setResponsive(section.image.url)" :alt="section.image.alternativeText">
+                    <img v-if="section.image && !section.image.mime.includes('video')" :src="setResponsive(section.image.url)" :alt="section.image.alternativeText">
+                    <video v-else-if="section.image && section.image.mime.includes('video')" class="looped" loop muted>
+                      <source :src="section.image.url" type="video/mp4">
+                    </video>
                     <Video v-else-if="section.qvideo" :video="section.qvideo" />
                     <div v-html="section.content" />
                   </div>
@@ -57,7 +63,10 @@
               <div class="casestudy__module">
                 <div class="casestudy__item">
                   <div class="casestudy__media">
-                    <img v-if="section.column1image" :src="setResponsive(section.column1image.url)" :alt="section.column1image.alternativeText">
+                    <img v-if="section.column1image && !section.column1image.mime.includes('video')" :src="setResponsive(section.column1image.url)" :alt="section.column1image.alternativeText">
+                    <video v-else-if="section.column1image && section.column1image.mime.includes('video')" class="looped" loop muted>
+                      <source :src="section.column1image.url" type="video/mp4">
+                    </video>
                     <Video v-else-if="section.column1video" :video="section.column1video" />
                     <div v-html="section.column1content" />
                   </div>
@@ -68,7 +77,10 @@
               <div class="casestudy__module">
                 <div class="casestudy__item">
                   <div class="casestudy__media">
-                    <img v-if="section.column2image" :src="setResponsive(section.column2image.url)" :alt="section.column2image.alternativeText">
+                    <img v-if="section.column2image && !section.column2image.mime.includes('video')" :src="setResponsive(section.column2image.url)" :alt="section.column2image.alternativeText">
+                    <video v-else-if="section.column2image && section.column2image.mime.includes('video')" class="looped" loop muted>
+                      <source :src="section.column2image.url" type="video/mp4">
+                    </video>
                     <Video v-else-if="section.column2video" :video="section.column2video" />
                     <div v-html="section.column2content" />
                   </div>
@@ -87,7 +99,10 @@
             <Column>
               <div class="casestudy__item">
                 <div class="casestudy__media">
-                  <img v-if="section.image" :src="setResponsive(section.image.url)" :alt="section.image.alternativeText">
+                  <img v-if="section.image && !section.image.mime.includes('video')" :src="setResponsive(section.image.url)" :alt="section.image.alternativeText">
+                  <video v-else-if="section.image && section.image.mime.includes('video')" class="looped" loop muted>
+                    <source :src="section.image.url" type="video/mp4">
+                  </video>
                   <Video v-else-if="section.qvideo" :video="section.qvideo" />
                 </div>
               </div>
@@ -97,7 +112,10 @@
             <Column>
               <div class="casestudy__item casestudy__item--1">
                 <div class="casestudy__media">
-                  <img v-if="section.mainimage" :src="setResponsive(section.mainimage.url)" :alt="section.mainimage.alternativeText">
+                  <img v-if="section.mainimage && !section.mainimage.mime.includes('video')" :src="setResponsive(section.mainimage.url)" :alt="section.mainimage.alternativeText">
+                  <video v-else-if="section.mainimage && section.mainimage.mime.includes('video')" class="looped" loop muted>
+                    <source :src="section.mainimage.url" type="video/mp4">
+                  </video>
                   <Video v-else-if="section.mainvideo" :video="section.mainvideo" />
                 </div>
               </div>
@@ -109,7 +127,10 @@
             <Column wide-w2>
               <div class="casestudy__item">
                 <div class="casestudy__media">
-                  <img v-if="section.mainimage" :src="setResponsive(section.mainimage.url)" :alt="section.mainimage.alternativeText">
+                  <img v-if="section.mainimage && !section.mainimage.mime.includes('video')" :src="setResponsive(section.mainimage.url)" :alt="section.mainimage.alternativeText">
+                  <video v-else-if="section.mainimage && section.mainimage.mime.includes('video')" class="looped" loop muted>
+                    <source :src="section.mainimage.url" type="video/mp4">
+                  </video>
                   <Video v-else-if="section.mainvideo" :video="section.mainvideo" />
                 </div>
               </div>
@@ -124,7 +145,10 @@
             <Column>
               <div class="casestudy__item casestudy__item--2">
                 <div class="casestudy__media">
-                  <img v-if="section.image" :src="setResponsive(section.image.url)" :alt="section.image.alternativeText">
+                  <img v-if="section.image && !section.image.mime.includes('video')" :src="setResponsive(section.image.url)" :alt="section.image.alternativeText">
+                  <video v-else-if="section.image && section.image.mime.includes('video')" class="looped" loop muted>
+                    <source :src="section.image.url" type="video/mp4">
+                  </video>
                   <Video v-else-if="section.qvideo" :video="section.qvideo" />
                 </div>
               </div>
@@ -200,6 +224,18 @@ export default {
       this.$store.commit('header/setDefaultColor', this.caseStudy.inverttext ? 'black' : 'white')
     }, 200)
     fadeIn()
+    window.addEventListener('scroll', () => {
+      const video = document.querySelectorAll('video.looped')
+      if (video) {
+        video.forEach((e, i) => {
+          if (e.getBoundingClientRect().top - window.innerHeight < -(e.offsetHeight / 2) && e.getBoundingClientRect().top + e.offsetHeight > (e.offsetHeight / 2)) {
+            e.play()
+          } else {
+            e.pause()
+          }
+        })
+      }
+    })
   }
 }
 </script>

@@ -28,6 +28,7 @@ query Film {
           url
           alternativeText
           caption
+          mime
         }
         mainvideo {
           id
@@ -43,6 +44,7 @@ query Film {
           url
           alternativeText
           caption
+          mime
         }
         video1 {
           id
@@ -58,6 +60,7 @@ query Film {
           url
           alternativeText
           caption
+          mime
         }
         video2 {
           id
@@ -73,6 +76,7 @@ query Film {
           url
           alternativeText
           caption
+          mime
         }
         video3 {
           id
@@ -88,6 +92,7 @@ query Film {
           url
           alternativeText
           caption
+          mime
         }
         video4 {
           id
@@ -107,6 +112,7 @@ query Film {
           url
           alternativeText
           caption
+          mime
         }
         mainvideo {
           id
@@ -122,6 +128,7 @@ query Film {
           url
           alternativeText
           caption
+          mime
         }
         video1 {
           id
@@ -137,6 +144,7 @@ query Film {
           url
           alternativeText
           caption
+          mime
         }
         video2 {
           id
@@ -152,6 +160,7 @@ query Film {
           url
           alternativeText
           caption
+          mime
         }
         video3 {
           id
@@ -171,6 +180,7 @@ query Film {
           url
           alternativeText
           caption
+          mime
         }
         column1video {
           id
@@ -187,6 +197,7 @@ query Film {
           url
           alternativeText
           caption
+          mime
         }
         column2video {
           id
@@ -203,6 +214,7 @@ query Film {
           url
           alternativeText
           caption
+          mime
         }
         column3video {
           id
@@ -227,6 +239,7 @@ query Film {
           url
           alternativeText
           caption
+          mime
         }
         qvideo {
           id
@@ -246,6 +259,7 @@ query Film {
           url
           alternativeText
           caption
+          mime
         }
         mainvideo {
           id
@@ -261,6 +275,7 @@ query Film {
           url
           alternativeText
           caption
+          mime
         }
         qvideo {
           id
@@ -280,6 +295,7 @@ query Film {
           url
           alternativeText
           caption
+          mime
         }
         mainvideo {
           id
@@ -295,6 +311,7 @@ query Film {
           url
           alternativeText
           caption
+          mime
         }
         qvideo {
           id

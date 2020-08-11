@@ -4,7 +4,7 @@
       <div v-if="viewportLoaded" v-video-player:myVideoPlayer="playerOptions" class="video-player-box vjs-theme-sea" @play="onPlayerPlay($event)" />
       <div v-if="video.preview && video.preview.url" class="video__preview">
         <img v-if="!video.preview.mime.includes('video')" :src="video.preview.url">
-        <video v-else-if="video.preview.mime.includes('video')" loop muted autoplay>
+        <video v-else-if="video.preview.mime.includes('video')" class="looped" loop muted>
           <source :src="video.preview.url" type="video/mp4">
         </video>
       </div>
@@ -46,6 +46,18 @@ export default {
   },
   mounted () {
     this.ready()
+    window.addEventListener('scroll', () => {
+      const video = document.querySelectorAll('video.looped')
+      if (video) {
+        video.forEach((e, i) => {
+          if (e.getBoundingClientRect().top - window.innerHeight < -(e.offsetHeight / 2) && e.getBoundingClientRect().top + e.offsetHeight > (e.offsetHeight / 2)) {
+            e.play()
+          } else {
+            e.pause()
+          }
+        })
+      }
+    })
   },
   methods: {
     onPlayerPlay (player) {
