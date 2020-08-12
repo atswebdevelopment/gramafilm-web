@@ -312,7 +312,8 @@ export default {
   &__item
     width 100%
 
-    img
+    img,
+    video
       width 100%
 
     &--1
