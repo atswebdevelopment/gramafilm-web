@@ -2,7 +2,7 @@
   <div class="page">
     <Journal v-if="articles && articles.length" :articles="articles" :categories="categories" />
     <Loader v-else />
-    <GetInTouch footer-links />
+    <GetInTouch v-if="articles && articles.length" footer-links />
   </div>
 </template>
 

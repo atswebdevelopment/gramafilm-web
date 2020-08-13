@@ -336,7 +336,7 @@ export default {
       padding 0 18px
 
   .column
-    padding 3vh 4.1667%
+    padding 5vh 4.1667%
 
     @media (max-width $bp-sm)
       padding 3vh 0

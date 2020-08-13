@@ -4,7 +4,7 @@
     <Loader v-else />
     <Journal v-if="articles.length && categories.length" :articles="articles" :categories="categories" disable-load-more />
     <Loader v-else />
-    <GetInTouch footer-links />
+    <GetInTouch v-if="articles.length && categories.length" footer-links />
   </div>
 </template>
 

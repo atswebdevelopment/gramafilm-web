@@ -22,9 +22,6 @@
             </div>
           </div>
         </div>
-        <div v-if="!home && workModule.workModuleOne.length" class="work__module work__module--4">
-          <div class="work__marquee" />
-        </div>
         <div v-if="workModule.workModuleTwo.length && wmindex === 0 || !home && workModule.workModuleTwo.length && wmindex > 0" class="work__module work__module--2" :class="{ 'work__module--filtering': filtering }">
           <div
             v-for="(caseStudy, index) in workModule.workModuleTwo"

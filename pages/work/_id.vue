@@ -45,4 +45,5 @@ export default {
 <style lang="stylus" scoped>
 .page
   padding 0
+  background $white
 </style>

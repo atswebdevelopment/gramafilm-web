@@ -2,7 +2,7 @@
   <div class="page">
     <About v-if="about && about.id" :about="about" />
     <Loader v-else />
-    <GetInTouch footer-links />
+    <GetInTouch v-if="about && about.id" footer-links />
   </div>
 </template>
 

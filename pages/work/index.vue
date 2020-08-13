@@ -2,7 +2,7 @@
   <div class="page">
     <Work v-if="work && work.id" :work="work" />
     <Loader v-else />
-    <GetInTouch footer-links />
+    <GetInTouch v-if="work && work.id" footer-links />
   </div>
 </template>
 
