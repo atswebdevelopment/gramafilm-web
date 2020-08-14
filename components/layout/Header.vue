@@ -49,12 +49,10 @@ export default {
     let oldScrollVal = window.scrollY
     const header = document.querySelector('.header')
     window.addEventListener('scroll', () => {
-      if (window.innerWidth < 767) {
-        if (window.scrollY < oldScrollVal) {
-          header.classList.remove('header--hide')
-        } else {
-          header.classList.add('header--hide')
-        }
+      if (window.scrollY < oldScrollVal) {
+        header.classList.remove('header--hide')
+      } else {
+        header.classList.add('header--hide')
       }
       oldScrollVal = window.scrollY
 
@@ -133,9 +131,9 @@ export default {
     color $white
     transition 0.4s color $ease
     margin-top -5px
+    font-size 18px
 
     @media (max-width $bp-sm)
-      font-size 18px
       letter-spacing 0
       margin-top 0
 
@@ -164,6 +162,7 @@ export default {
   width 36px
   height 14px
   position relative
+  top -2px
   transform rotate(0deg)
   transition .5s ease-in-out
   cursor pointer

@@ -39,6 +39,8 @@
             <div class="nomargin">
               <b>Address</b>
               <div v-html="contact.address" />
+              <br>
+              <p><a class="arrowLink arrowLink--small arrowLink--hover" href="https://www.google.com/maps/dir//Gramafilm,+80+Paul+Street,+London+EC2A+4NE/@51.525486,-0.08377,15z/data=!4m16!1m6!3m5!1s0x0:0x5e4d613314b08fa1!2sGramafilm!8m2!3d51.525486!4d-0.08377!4m8!1m0!1m5!1m1!1s0x48761caff556d2eb:0x5e4d613314b08fa1!2m2!1d-0.08377!2d51.525486!3e3" target="_blank" rel="noopener">Get directions</a></p>
             </div>
           </div>
         </Column>

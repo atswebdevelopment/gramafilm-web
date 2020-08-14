@@ -12,10 +12,10 @@
           :key="index"
         >
           <template v-if="item.image">
-            <div class="swiper__media" @click="$nuxt.$router.push({ name: 'journal-id', params: { id: item.url } })">
+            <div class="swiper__media link" @click="$nuxt.$router.push({ name: 'journal-id', params: { id: item.url } })">
               <img v-if="item.image" data-not-lazy :src="setResponsive(item.image.url, 767)" :alt="item.image.alternativeText || ''">
             </div>
-            <div class="swiper__text" @click="$nuxt.$router.push({ name: 'journal-id', params: { id: item.url } })">
+            <div class="swiper__text link" @click="$nuxt.$router.push({ name: 'journal-id', params: { id: item.url } })">
               <span v-if="item.category" :class="getClass(item.category.name)">{{ item.category.name }}</span> {{ item.title }}
             </div>
           </template>
@@ -93,14 +93,15 @@ export default {
       max-width 80%
 
   &__media
-    cursor pointer
     margin-bottom 16px
     max-width 432px
 
   &__text
-    cursor pointer
     position absolute
     bottom -55px
     left 0
     height 58px
+
+.link
+  cursor pointer
 </style>

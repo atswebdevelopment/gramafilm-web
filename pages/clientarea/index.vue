@@ -3,7 +3,7 @@
     <ContentArea>
       <PrivateVideos v-if="privateVideos && privateVideos.length" :videos="privateVideos" />
       <Loader v-else />
-      <FooterLinks />
+      <FooterLinks v-if="privateVideos && privateVideos.length" />
     </ContentArea>
   </div>
 </template>

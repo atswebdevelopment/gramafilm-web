@@ -2,7 +2,7 @@
   <div class="page">
     <Contact v-if="contact && contact.id" :contact="contact" />
     <Loader v-else />
-    <FooterLinks inline />
+    <FooterLinks v-if="contact && contact.id" inline />
   </div>
 </template>
 
