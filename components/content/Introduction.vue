@@ -294,11 +294,11 @@ export default {
 .link-blue:after,
 .link-green:after,
 .link-orange:after
-  bottom 18px
+  bottom 20px
   border-bottom 1px solid $blue
 
   @media (max-width $bp-sm)
-    bottom 11px
+    bottom 12px
 
 .link-green:after
   border-color $green

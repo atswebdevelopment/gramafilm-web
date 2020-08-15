@@ -87,7 +87,7 @@ export default {
       @media (max-width: $bp-sm)
         .contentSwitcher__tabcontent
           display block
-          margin-top 1em
+          margin 1em 0
 
     @media (min-width: $bp-sm)
       &:hover

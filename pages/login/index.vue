@@ -19,6 +19,12 @@ export default {
     Login: () => import('~/components/content/Login'),
     FooterLinks: () => import('~/components/content/FooterLinks')
   },
+  mounted () {
+    this.$store.commit('header/setDefaultColor', 'white')
+    setTimeout(() => {
+      this.$store.commit('header/setDefaultColor', 'white')
+    }, 200)
+  },
   head () {
     return {
       title: 'Login to My Account',

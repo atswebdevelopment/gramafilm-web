@@ -1,6 +1,14 @@
 <template>
-  <ContentArea class="footerLinks" stretch :class="{ 'footerLinks--inline': inline }">
+  <ContentArea class="footerLinks" stretch :class="{ 'footerLinks--inline': inline }" overflow>
     <div class="footerLinks__inner">
+      <img
+        class="totop"
+        src="/totop.svg"
+        alt="Back to top"
+        title="Back to top"
+        :class="{ 'totop--active': totop }"
+        @click="toTop"
+      >
       <div>
         <a class="footerLinks__link" target="_blank" rel="noopener" title="Opens in a new window" href="https://www.instagram.com/gramafilm/?hl=en">Instagram</a>
         <a class="footerLinks__link" target="_blank" rel="noopener" title="Opens in a new window" href="https://www.facebook.com/Gramafilm/">Facebook</a>
@@ -28,16 +36,53 @@ export default {
       default: false
     }
   },
+  data () {
+    return {
+      totop: false
+    }
+  },
   computed: {
     currentYear () {
       const date = new Date(Date.now())
       return date.getFullYear()
+    }
+  },
+  mounted () {
+    window.addEventListener('scroll', () => {
+      if ((window.scrollY + window.innerHeight) >= (document.body.scrollHeight - 100)) {
+        this.totop = true
+      } else {
+        this.totop = false
+      }
+    })
+  },
+  methods: {
+    toTop () {
+      setTimeout(() => {
+        if (window.scrollY > 0) {
+          window.scrollTo(0, window.scrollY - (window.scrollY / 50))
+          this.toTop()
+        }
+      }, 1)
     }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
+.totop
+  position absolute
+  right 20px
+  bottom 70px
+  cursor pointer
+  opacity 0
+  transform translateY(-100%)
+  transition all 1s $ease
+
+  &--active
+    transform translateY(0%)
+    opacity 1
+
 .footerLinks
   position absolute
   bottom 42px
@@ -68,6 +113,7 @@ export default {
   &__inner
     display flex
     align-items center
+    position relative
 
     @media (max-width $bp-sm)
       padding 0 18px

@@ -58,7 +58,7 @@ export default {
   left 0
   width 100%
   height 100%
-  transform translateX(100%)
+  transform translateY(-100%)
   transition 0.25s $ease
   z-index 8
 

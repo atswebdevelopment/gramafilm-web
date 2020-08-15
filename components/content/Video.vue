@@ -183,6 +183,7 @@ export default {
       height auto
       min-width 100%
       min-height 100%
+      clip-path none
 
     .video__preview video
       top 50%

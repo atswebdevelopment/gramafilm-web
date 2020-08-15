@@ -52,10 +52,10 @@
         :zoom="18"
         class="map"
       >
-        <GMapMarker :position="contact.coordinates" :options="{icon: '/logo.png'}" />
+        <GMapMarker :position="contact.coordinates" :options="{icon: '/logo-google.svg'}" />
       </GMap>
     </ContentArea>
-    <FollowUs />
+    <FollowUs class="follow" />
   </div>
 </template>
 
@@ -272,6 +272,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+>>> .follow .column
+  padding-bottom 0
+
 >>> .columns--no-padding .column
   padding-left 0
   padding-right 0
