@@ -38,6 +38,9 @@ export default {
     width 25%
     float left
 
+    @media (max-width $bp-md)
+      width 33.33%
+
     @media (max-width $bp-sm)
       width 100%
       float none

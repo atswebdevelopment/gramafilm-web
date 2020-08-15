@@ -1,6 +1,6 @@
 <template>
   <div class="case">
-    <Banner v-if="caseStudy.banner" class="case__banner" :video="caseStudy.banner.mime.includes('video')" :background="caseStudy.banner.url" :black="caseStudy.inverttext">
+    <Banner v-if="caseStudy.banner" class="case__banner" :video="desktop && caseStudy.banner.mime.includes('video')" :background="(caseStudy.banner && caseStudy.banner.mime.includes('video') && desktop && caseStudy.banner.url) || (caseStudy.banner && !caseStudy.banner.mime.includes('video') && !desktop && caseStudy.banner.url) || (caseStudy.mobilebannger && caseStudy.mobilebannger.url)" :black="caseStudy.inverttext">
       <h1>{{ caseStudy.title }}</h1>
       <div v-if="caseStudy.media && (caseStudy.media.image || caseStudy.media.qvideo)" class="banner__item banner__item--5">
         <div class="banner__media">
@@ -41,7 +41,7 @@
             </div>
           </div>
           <ColumnContainer v-else>
-            <Column>
+            <Column v-if="section.image || section.qvideo || (section.content && section.content != '<p><br></p>')">
               <div class="casestudy__module">
                 <div class="casestudy__item">
                   <div class="casestudy__media">
@@ -50,7 +50,7 @@
                       <source :src="section.image.url" type="video/mp4">
                     </video>
                     <Video v-else-if="section.qvideo" :video="section.qvideo" />
-                    <div v-html="section.content" />
+                    <div v-if="section.content && section.content != '<p><br></p>'" v-html="section.content" />
                   </div>
                 </div>
               </div>
@@ -59,7 +59,7 @@
         </template>
         <div v-else-if="section.__typename === 'ComponentModules1X1'">
           <ColumnContainer>
-            <Column>
+            <Column v-if="section.column1image || section.column1video || (section.column1content && section.column1content != '<p><br></p>')">
               <div class="casestudy__module">
                 <div class="casestudy__item">
                   <div class="casestudy__media">
@@ -68,12 +68,12 @@
                       <source :src="section.column1image.url" type="video/mp4">
                     </video>
                     <Video v-else-if="section.column1video" :video="section.column1video" />
-                    <div v-html="section.column1content" />
+                    <div v-if="section.column1content && section.column1content != '<p><br></p>'" v-html="section.column1content" />
                   </div>
                 </div>
               </div>
             </Column>
-            <Column>
+            <Column v-if="section.column2image || section.column2video || (section.column2content && section.column2content != '<p><br></p>')">
               <div class="casestudy__module">
                 <div class="casestudy__item">
                   <div class="casestudy__media">
@@ -82,7 +82,7 @@
                       <source :src="section.column2image.url" type="video/mp4">
                     </video>
                     <Video v-else-if="section.column2video" :video="section.column2video" />
-                    <div v-html="section.column2content" />
+                    <div v-if="section.column2content && section.column2content != '<p><br></p>'" v-html="section.column2content" />
                   </div>
                 </div>
               </div>
@@ -91,7 +91,7 @@
         </div>
         <div v-else-if="section.__typename === 'ComponentModules1X1Textleft'" class="casestudy__module casestudy__module--1">
           <ColumnContainer center>
-            <Column wide>
+            <Column v-if="section.content && section.content != '<p><br></p>'" wide>
               <div class="casestudy__item">
                 <div v-html="section.content" />
               </div>
@@ -135,8 +135,8 @@
                 </div>
               </div>
             </Column>
-            <Column>
-              <div>
+            <Column v-if="section.content && section.content != '<p><br></p>'">
+              <div class="casestudy__item">
                 <div v-html="section.content" />
               </div>
             </Column>
@@ -216,6 +216,11 @@ export default {
   data () {
     return {
       setResponsive
+    }
+  },
+  computed: {
+    desktop () {
+      return window.innerWidth > 1023
     }
   },
   mounted () {

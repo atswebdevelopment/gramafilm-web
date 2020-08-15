@@ -5,7 +5,14 @@
         <input id="username" v-model="username" type="text" name="username" placeholder="Username">
       </div>
       <div class="form__field">
-        <input id="password" v-model="password" type="password" name="password" placeholder="Password">
+        <input
+          id="password"
+          v-model="password"
+          type="password"
+          name="password"
+          placeholder="Password"
+          @keyup.enter="login"
+        >
       </div>
       <a class="form__link" href="mailto:email@email.com">Forgot password?</a>
       <button @click="login">

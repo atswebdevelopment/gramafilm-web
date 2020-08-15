@@ -79,6 +79,9 @@ export default {
 .casestudy .swiper-container
   padding 0 0 80px
 
+  @media (max-width $bp-sm)
+    padding 0 0 20px
+
 .swiper-container
   padding 0 18px 80px
   overflow visible

@@ -314,6 +314,9 @@ export default {
     &--0
       margin-left 130px
 
+      @media (max-width $bp-md)
+        margin-left 52px
+
     &--1
       top 160px
       width 658px
@@ -321,7 +324,7 @@ export default {
 
       @media (max-width $bp-md)
         margin-left -482px
-        width 568px
+        width 492px
 
       .work__media
         height 438px
@@ -329,6 +332,9 @@ export default {
     &--2
       top 598px
       margin-left 224px
+
+      @media (max-width $bp-md)
+        margin-left 52px
 
       .work__media
         height 576px
@@ -344,6 +350,9 @@ export default {
       position static
       width 1102px
       margin 0 auto
+
+      @media (max-width $bp-md)
+        width 100%
 
       .work__media
         height 689px

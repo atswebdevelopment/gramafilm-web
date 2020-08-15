@@ -70,9 +70,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
->>> .column
-  padding-bottom 0
-
 .newsletter
   width 382px
 

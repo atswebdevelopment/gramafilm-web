@@ -12,6 +12,11 @@ body, html
 svg, img
   max-width 100%
   display block
+  max-height 95vh
+  height auto
+
+  @media (max-width $bp-sm)
+    max-height none
 
 a
   text-decoration none
@@ -150,20 +155,28 @@ button
   background none
   border 0
   position relative
-  font-family $fontFamily
   padding 0
   outline none
   border-radius 0
 
-input
+input,
+input:-webkit-autofill::first-line,
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active
+  font-family $fontFamily
   border-bottom 1px solid $black
   -webkit-appearance none
   margin-top 1em
   padding 0.45em 0
-  font-size 24px
+  font-size 24px !important
   line-height 32px
   width 100%
   outline none
+  -webkit-text-fill-color $white
+  -webkit-box-shadow 0 0 0px 1000px $primary inset
+  transition background-color 5000s ease-in-out 0s
 
 .form--alt input
   border-color $white
@@ -203,8 +216,9 @@ button
     content ''
     width 62px
     height 48px
-    background url(/images/arrow.svg) no-repeat 50%
+    background url(/images/arrow.svg) no-repeat
     background-size 100%
+    background-position 50%
     flex-shrink 0
     margin-left 20px
     transition 0.4s transform $ease

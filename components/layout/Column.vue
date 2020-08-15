@@ -32,6 +32,7 @@ export default {
   flex-grow 1
   padding 3vh 4.1667% 20vh
   align-self flex-start
+  align-items flex-start
 
   @media (max-width $bp-sm)
     padding 3vh 0
