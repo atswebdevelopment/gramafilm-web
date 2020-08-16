@@ -34,8 +34,6 @@ export default {
 
 <style lang="stylus" scoped>
 .getInTouch
-  background $white
-
   &__content
     width 100%
     max-width 626px
