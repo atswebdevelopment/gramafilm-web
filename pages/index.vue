@@ -88,6 +88,7 @@ export default {
 
 .page
   padding 0
+  background $white
   transition 1.4s background-color $ease
 
   &--orange
