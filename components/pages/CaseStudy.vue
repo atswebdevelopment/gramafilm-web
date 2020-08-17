@@ -1,6 +1,6 @@
 <template>
   <div class="case">
-    <Banner v-if="caseStudy.banner" class="case__banner" :video="desktop && caseStudy.banner.mime.includes('video')" :background="(caseStudy.banner && caseStudy.banner.mime.includes('video') && desktop && caseStudy.banner.url) || (caseStudy.banner && !caseStudy.banner.mime.includes('video') && !desktop && caseStudy.banner.url) || (caseStudy.mobilebannger && caseStudy.mobilebannger.url)" :black="caseStudy.inverttext">
+    <Banner v-if="caseStudy.banner" class="case__banner" :video="desktop && caseStudy.banner.mime.includes('video')" :background="(caseStudy.banner && caseStudy.banner.mime.includes('video') && desktop && caseStudy.banner.url) || (caseStudy.banner && !caseStudy.banner.mime.includes('video') && caseStudy.banner.url) || (caseStudy.mobilebannger && caseStudy.mobilebannger.url)" :black="caseStudy.inverttext">
       <h1>{{ caseStudy.title }}</h1>
       <div v-if="caseStudy.media && (caseStudy.media.image || caseStudy.media.qvideo)" class="banner__item banner__item--5">
         <div class="banner__media">
