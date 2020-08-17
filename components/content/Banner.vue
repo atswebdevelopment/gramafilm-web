@@ -59,6 +59,7 @@ export default {
 
 <style lang="stylus">
 .banner
+  background-color $primary
   background-position 50%
   background-size cover
   background-attachment fixed
