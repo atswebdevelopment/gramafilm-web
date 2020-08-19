@@ -113,7 +113,7 @@
       {{ home.subtitle }}
     </p>
     <p class="intro__about large">
-      We're a London-based creative production studio. We develop award-winning <nuxt-link class="link-green" :to="{ name: 'film'}">Films</nuxt-link>, <nuxt-link class="link-blue" :to="{ name: 'events'}">Events</nuxt-link> and <nuxt-link class="link-orange" :to="{ name: 'design'}">Design</nuxt-link>.
+      We're a London-based creative production studio. We develop award-winning <nuxt-link class="link-orange" :to="{ name: 'film'}">Films</nuxt-link>, <nuxt-link class="link-green" :to="{ name: 'events'}">Events</nuxt-link> and <nuxt-link class="link-blue" :to="{ name: 'design'}">Design</nuxt-link>.
     </p>
     <ColumnContainer v-if="home.counters" class="counter-container">
       <Column v-for="(counter, index) in home.counters" :key="index">
@@ -208,6 +208,12 @@ export default {
       letter-spacing -1.25px
       padding-bottom 10vh
 
+    a
+      height 74px
+
+      @media (max-width $bp-sm)
+        height 52px
+
   &__background
     position absolute
     top 0
@@ -294,11 +300,8 @@ export default {
 .link-blue:after,
 .link-green:after,
 .link-orange:after
-  bottom 20px
+  bottom 0
   border-bottom 1px solid $blue
-
-  @media (max-width $bp-sm)
-    bottom 12px
 
 .link-green:after
   border-color $green

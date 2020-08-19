@@ -320,6 +320,7 @@ export default {
     img,
     video
       width 100%
+      max-height none
 
     &--1
       .casestudy__media

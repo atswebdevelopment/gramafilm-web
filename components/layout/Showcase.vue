@@ -62,6 +62,7 @@ export default {
 
     img
       width 100%
+      max-height none
 
     &--2
       .showcase__media

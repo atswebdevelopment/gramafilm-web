@@ -48,6 +48,11 @@ export default {
     }
     let oldScrollVal = window.scrollY
     const header = document.querySelector('.header')
+    window.addEventListener('mousemove', (e) => {
+      if (e.clientY < 100) {
+        header.classList.remove('header--hide')
+      }
+    })
     window.addEventListener('scroll', () => {
       if (window.scrollY < oldScrollVal) {
         header.classList.remove('header--hide')

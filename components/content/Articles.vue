@@ -53,4 +53,5 @@ export default {
 
     img
       width 100%
+      max-height none
 </style>

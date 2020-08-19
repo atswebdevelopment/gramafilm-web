@@ -1,18 +1,18 @@
 <template>
   <div class="text-swap" :class="{ 'text-swap--inline': inline }">
-    <div class="green">
+    <div class="orange">
       <nuxt-link :to="{ name: 'film' }">
         <span>captivating </span> <span>films{{ inline ? '.' : '' }}</span>
+      </nuxt-link>
+    </div>
+    <div class="green">
+      <nuxt-link :to="{ name: 'events' }">
+        <span>memorable</span> <span>events{{ inline ? '.' : '' }}</span>
       </nuxt-link>
     </div>
     <div class="blue">
       <nuxt-link :to="{ name: 'design' }">
         <span>impactful</span> <span>design{{ inline ? '.' : '' }}</span>
-      </nuxt-link>
-    </div>
-    <div class="orange">
-      <nuxt-link :to="{ name: 'events' }">
-        <span>memorable</span> <span>events{{ inline ? '.' : '' }}</span>
       </nuxt-link>
     </div>
   </div>
