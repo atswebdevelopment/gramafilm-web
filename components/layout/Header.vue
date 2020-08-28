@@ -3,7 +3,7 @@
     <div class="header" :class="{ 'header--open': menu }">
       <ContentArea class="header__container">
         <div class="header__inner">
-          <div class="header__logo" :class="{ 'header__logo--hide': hideLogo, 'header__logo--show': logoOnScroll || menu }">
+          <div class="header__logo">
             <nuxt-link to="/" title="Back to Home" @click.native="closeMenu">
               <Logo :color="headerColor" />
             </nuxt-link>
@@ -43,11 +43,13 @@ export default {
     }
   },
   mounted () {
-    if (window.location.pathname.length > 1) {
-      this.$store.commit('header/hideLogo', false)
-    }
     let oldScrollVal = window.scrollY
     const header = document.querySelector('.header')
+    window.addEventListener('mousemove', (e) => {
+      if (e.clientY < 100) {
+        header.classList.remove('header--hide')
+      }
+    })
     window.addEventListener('scroll', () => {
       if (window.scrollY < oldScrollVal) {
         header.classList.remove('header--hide')
@@ -55,18 +57,6 @@ export default {
         header.classList.add('header--hide')
       }
       oldScrollVal = window.scrollY
-
-      const intro = document.querySelector('.intro')
-      if (intro) {
-        const elemHeight = intro.offsetHeight
-        const pastIntro = window.scrollY >= elemHeight - 100
-        this.logoOnScroll = window.scrollY >= (window.innerHeight / 2) + 150
-        if (pastIntro && this.headerColor === 'white') {
-          this.$store.commit('header/setColor', 'black')
-        } else if ((!this.logoOnScroll || !pastIntro) && this.headerColor === 'black') {
-          this.$store.commit('header/setColor', 'white')
-        }
-      }
 
       const banner = document.querySelector('.banner')
       if (banner) {
@@ -82,9 +72,6 @@ export default {
       const elemBottom = document.querySelector('.banner--bottom')
       if (elemBottom) {
         const logoOnMenu = window.scrollY + window.innerHeight >= document.body.scrollHeight - 50
-        if (window.innerWidth < 767 && logoOnMenu) {
-          header.classList.remove('header--hide')
-        }
         oldScrollVal = window.scrollY
         if (logoOnMenu && this.headerColor === 'black') {
           this.$store.commit('header/setColor', 'white')
@@ -145,15 +132,6 @@ export default {
 
   &__container.section
     padding 0
-
-  &__logo
-    transition 0.4s opacity $ease
-
-    &--hide
-      opacity 0
-
-    &--show
-      opacity 1
 
   >>> .inner
     max-width 1800px

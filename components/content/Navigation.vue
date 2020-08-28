@@ -146,10 +146,6 @@ export default {
             video.pause()
             videoPlaying = false
           }
-          const logoOnMenu = window.scrollY + window.innerHeight >= document.body.scrollHeight - 50
-          if (logoOnMenu) {
-            this.$store.commit('header/setColor', this.menu.navigation[this.activeIndex].inverttext ? 'black' : 'white')
-          }
         }
       })
     },

@@ -323,11 +323,15 @@ export default {
       margin-left -660px
 
       @media (max-width $bp-md)
+        top 260px
         margin-left -482px
         width 492px
 
       .work__media
         height 438px
+
+        @media (max-width $bp-md)
+          height 292px
 
     &--2
       top 598px

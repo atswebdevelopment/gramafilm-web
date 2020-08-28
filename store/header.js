@@ -1,6 +1,6 @@
 export const state = () => ({
-  defaultColor: 'white',
-  color: 'white',
+  defaultColor: 'black',
+  color: 'black',
   hideLogo: true
 })
 
