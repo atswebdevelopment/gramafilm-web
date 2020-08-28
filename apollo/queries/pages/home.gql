@@ -1,12 +1,16 @@
 query Home {
   home {
     id
-    subtitle
     images {
       id
       url
       alternativeText
       mime
+    }
+    qvideo {
+      id
+      title
+      src
     }
     introvideo {
       id

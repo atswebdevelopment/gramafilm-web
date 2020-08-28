@@ -1,141 +1,52 @@
 <template>
   <div class="intro">
-    <div v-if="home && home.images" class="intro__backgrounds">
-      <div class="intro__background">
-        <div class="intro__image-container intro__image-container--1">
-          <img
-            v-if="home.images[0] && !home.images[0].mime.includes('video')"
-            class="intro__image intro__image--image-1"
-            :src="setResponsive(home.images[0].url, 767)"
-            :alt="home.images[0].alternativeText"
-            data-rellax-speed="-6"
-            @load="loaded($event)"
-          >
-          <video
-            v-else-if="home.images[0] && home.images[0].mime.includes('video')"
-            class="intro__image intro__image--image-1"
-            loop
-            muted
-            autoplay
-            data-rellax-speed="-6"
-          >
-            <source :src="home.images[0].url" type="video/mp4">
-          </video>
-        </div>
-        <div class="intro__image-container intro__image-container--5">
-          <img
-            v-if="home.images[4] && !home.images[4].mime.includes('video')"
-            class="intro__image intro__image--image-5"
-            :src="setResponsive(home.images[4].url, 767)"
-            :alt="home.images[4].alternativeText"
-            data-rellax-speed="1"
-            @load="loaded($event)"
-          >
-          <video
-            v-else-if="home.images[4] && home.images[4].mime.includes('video')"
-            class="intro__image intro__image--image-5"
-            loop
-            muted
-            autoplay
-            data-rellax-speed="1"
-          >
-            <source :src="home.images[4].url" type="video/mp4">
-          </video>
-        </div>
+    <ContentArea>
+      <p class="intro__about large" @mouseleave="setBg()">
+        We're a London-based creative production studio. We develop award-winning <nuxt-link class="link-orange" :to="{ name: 'film'}" @mouseenter.native="setBg('orange')">Films</nuxt-link>, <nuxt-link class="link-green" :to="{ name: 'events'}" @mouseenter.native="setBg('green')">Events</nuxt-link> and <nuxt-link class="link-blue" :to="{ name: 'design'}" @mouseenter.native="setBg('blue')">Design</nuxt-link>.
+      </p>
+      <div v-if="home && home.images" class="intro__images">
+        <template v-if="screen === 'mobile'">
+          <div v-for="(image, index) in home.images" :key="index" class="intro__image" :class="{ 'intro__image--active': index === 0 }" :style="`background-image:url('${setResponsive(image.url, 767)}')`">
+            <img
+              class="invisible"
+              :src="setResponsive(home.images[0].url, 767)"
+              @load="loaded($event)"
+            >
+          </div>
+        </template>
+        <video v-else-if="screen === 'desktop' && home.qvideo" loop muted autoplay>
+          <source :src="home.qvideo.src" type="video/mp4">
+        </video>
       </div>
-      <div class="intro__background intro__background--2">
-        <div class="intro__image-container intro__image-container--3">
-          <img
-            v-if="home.images[2] && !home.images[2].mime.includes('video')"
-            class="intro__image intro__image--image-3"
-            :src="setResponsive(home.images[2].url, 767)"
-            :alt="home.images[2].alternativeText"
-            data-rellax-speed="-1"
-            @load="loaded($event)"
-          >
-          <video
-            v-else-if="home.images[2] && home.images[2].mime.includes('video')"
-            class="intro__image intro__image--image-3"
-            loop
-            muted
-            autoplay
-            data-rellax-speed="-3"
-          >
-            <source :src="home.images[2].url" type="video/mp4">
-          </video>
-        </div>
+      <div class="scrolldown-pos">
+        <img
+          class="scrolldown"
+          src="/totop.svg"
+          alt="Scroll down"
+          title="Scroll down"
+        >
       </div>
-      <div class="intro__background intro__background--3">
-        <div class="intro__image-container intro__image-container--2">
-          <img
-            v-if="home.images[1] && !home.images[1].mime.includes('video')"
-            class="intro__image intro__image--image-2"
-            :src="setResponsive(home.images[1].url, 767)"
-            :alt="home.images[1].alternativeText"
-            data-rellax-speed="3"
-            @load="loaded($event)"
-          >
-          <video
-            v-else-if="home.images[1] && home.images[1].mime.includes('video')"
-            class="intro__image intro__image--image-2"
-            loop
-            muted
-            autoplay
-            data-rellax-speed="3"
-          >
-            <source :src="home.images[1].url" type="video/mp4">
-          </video>
-        </div>
-        <div class="intro__image-container intro__image-container--4">
-          <img
-            v-if="home.images[3] && !home.images[3].mime.includes('video')"
-            class="intro__image intro__image--image-4"
-            :src="setResponsive(home.images[3].url, 767)"
-            :alt="home.images[3].alternativeText"
-            data-rellax-speed="1"
-            @load="loaded($event)"
-          >
-          <video
-            v-else-if="home.images[3] && home.images[3].mime.includes('video')"
-            class="intro__image intro__image--image-4"
-            loop
-            muted
-            autoplay
-            data-rellax-speed="1"
-          >
-            <source :src="home.images[3].url" type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-    <Logo class="intro__logo" color="white" />
-    <p class="intro__subtitle">
-      {{ home.subtitle }}
-    </p>
-    <p class="intro__about large">
-      We're a London-based creative production studio. We develop award-winning <nuxt-link class="link-orange" :to="{ name: 'film'}">Films</nuxt-link>, <nuxt-link class="link-green" :to="{ name: 'events'}">Events</nuxt-link> and <nuxt-link class="link-blue" :to="{ name: 'design'}">Design</nuxt-link>.
-    </p>
-    <ColumnContainer v-if="home.counters" class="counter-container">
-      <Column v-for="(counter, index) in home.counters" :key="index">
-        <Counter :start-counter="startCounter" :data-val="counter.number" :val="counters[index]" :unit="counter.unit">
-          {{ counter.text }}
-        </Counter>
-      </Column>
-    </ColumnContainer>
+      <!-- <ColumnContainer v-if="home.counters" class="counter-container">
+        <Column v-for="(counter, index) in home.counters" :key="index">
+          <Counter :start-counter="startCounter" :data-val="counter.number" :val="counters[index]" :unit="counter.unit">
+            {{ counter.text }}
+          </Counter>
+        </Column>
+      </ColumnContainer> -->
+    </ContentArea>
   </div>
 </template>
 
 <script>
-import Rellax from 'rellax'
 import CounterMixin from '~/components/mixins/CounterMixin'
 import { setResponsive } from '~/helpers/cdn'
 export default {
   name: 'Introduction',
   components: {
-    Logo: () => import('~/components/content/Logo'),
-    ColumnContainer: () => import('~/components/layout/ColumnContainer'),
-    Column: () => import('~/components/layout/Column'),
-    Counter: () => import('~/components/content/Counter')
+    ContentArea: () => import('~/components/layout/ContentArea')
+    // ColumnContainer: () => import('~/components/layout/ColumnContainer'),
+    // Column: () => import('~/components/layout/Column'),
+    // Counter: () => import('~/components/content/Counter')
   },
   mixins: [CounterMixin],
   props: {
@@ -147,17 +58,52 @@ export default {
   data () {
     return {
       setResponsive,
-      rand: 0
+      rand: 0,
+      screen: null,
+      activeImage: 0
     }
+  },
+  mounted () {
+    this.screen = window.innerWidth > 766 ? 'desktop' : 'mobile'
+    window.addEventListener('scroll', () => {
+      const video = document.querySelectorAll('.intro video')
+      if (video) {
+        video.forEach((e, i) => {
+          if (e.getBoundingClientRect().top - window.innerHeight < -(e.offsetHeight / 2) && e.getBoundingClientRect().top + e.offsetHeight > (e.offsetHeight / 2)) {
+            e.play()
+          } else {
+            e.pause()
+          }
+        })
+      }
+    })
+    setInterval(() => {
+      const images = document.querySelectorAll('.intro__image')
+      const active = document.querySelector('.intro__image--active')
+      active.classList.remove('intro__image--active')
+      this.activeImage++
+      if (images[this.activeImage]) {
+        images[this.activeImage].classList.add('intro__image--active')
+      } else {
+        images[0].classList.add('intro__image--active')
+        this.activeImage = 0
+      }
+    }, 5000)
   },
   methods: {
     loaded (e) {
       const path = e.path ? e.path[0] : e.srcElement || e.target
-      new Rellax(path, {})
       setTimeout(() => {
-        path.classList.add('loaded')
+        path.parentElement.classList.add('loaded')
       }, this.rand * 100)
       this.rand++
+    },
+    setBg (color) {
+      const intro = document.querySelector('.intro')
+      intro.classList.remove('intro--orange', 'intro--blue', 'intro--green')
+      if (color) {
+        intro.classList.add(`intro--${color}`)
+      }
     }
   }
 }
@@ -165,48 +111,39 @@ export default {
 
 <style lang="stylus" scoped>
 .intro
-  text-align center
-  color $white
   position relative
   z-index 2
-  padding 0 18px
   min-height 100vh
+  background-color transparent
+  transition 0.3s background-color $ease
 
-  &__logo.logo
-    padding 40vh 0 0
-    margin 0 auto
-    width 595px
-    height 147.18px
+  &--orange
+    background-color #E6DDD5
 
-    @media (max-width $bp-sm)
-      width 291.51px
-      height 70.52px
+  &--green
+    background-color #DBDDCF
 
-  &__subtitle
-    font-size 48px
-    line-height 54px
-    letter-spacing -1.5px
-    padding-bottom 85vh
-
-    @media (max-width $bp-sm)
-      font-size 24px
-      line-height 30px
-      letter-spacing -1px
-      padding-bottom 45vh
+  &--blue
+    background-color #DBDCE6
 
   &__about
     font-size 72px
     line-height 78px
-    letter-spacing -2.25px
+    letter-spacing -1.25px
     max-width 1164px
     margin 0 auto
-    padding-bottom 25vh
+    padding 10vh 0 4vh
+
+    @media (max-width $bp-md)
+      font-size 56px
+      line-height 62px
 
     @media (max-width $bp-sm)
-      font-size 48px
-      line-height 56px
-      letter-spacing -1.25px
-      padding-bottom 10vh
+      font-size 40px
+      line-height 46px
+
+    @media (max-width $bp-xs)
+      padding 15vh 0 10vh
 
     a
       height 74px
@@ -214,81 +151,55 @@ export default {
       @media (max-width $bp-sm)
         height 52px
 
-  &__background
+  &__images
+    width 700px
+    height 393px
+    margin-left auto
+    position relative
+    overflow hidden
+
+    @media (max-width $bp-md)
+      width 550px
+      height 309px
+
+    @media (max-width $bp-sm)
+      width 100%
+      height 260px
+      margin-bottom 7vh
+
+    @media (max-width $bp-xs)
+      width 100%
+      height 215px
+
+    video
+      width 100%
+
+  &__image
+    width 100%
+    height 100%
+    background-size cover
+    background-position 50%
     position absolute
     top 0
     left 0
-    width 100%
-    height 100%
-    z-index -1
-    transform-origin 50vw 50vh
+    opacity 0
+    transition opacity 1s $ease
 
-  &__image-container
-    position absolute
-    top 0
-    left calc(50% - 160px)
-    width 320px
+    &--active.loaded
+      opacity 1
 
-    img
-      opacity 0
-      transition opacity 2s $ease
+.scrolldown-pos
+  width 100%
+  max-width 1164px
+  margin 0 auto
+  position relative
+  bottom 24px
 
-      &.loaded
-        opacity 1
+  @media (max-width $bp-sm)
+    display none
 
-    @media (max-width $bp-sm)
-      transform scale(0.5) !important
-      transform-origin 0 0
-
-    &--1
-      left calc(50% - 225px)
-      width 450px
-      margin-left -329px
-
-      @media (max-width $bp-sm)
-        left 18px
-        margin-left 0
-
-    &--2
-      margin-left 400px
-      top 20vh
-
-      @media (max-width $bp-sm)
-        left auto
-        right 0
-        margin 0 18px 0 0
-        transform-origin 100% 0
-
-    &--3
-      margin-left -280px
-      top 74vh
-
-      @media (max-width $bp-sm)
-        margin 0
-        left 0
-        top 80vh
-
-    &--4
-      margin-left -500px
-      top 85vh
-
-      @media (max-width $bp-sm)
-        margin 0
-        left 100px
-        top 74vh
-
-    &--5
-      left calc(50% - 272px)
-      width 544px
-      margin-left 395px
-      top 74vh
-
-      @media (max-width $bp-sm)
-        margin 0
-        left auto
-        right 0
-        top 60vh
-        transform-origin 100% 0
+.scrolldown
+  transform rotateZ(180deg)
 
 .counter-container .column
   padding-left 0
@@ -301,7 +212,7 @@ export default {
 .link-green:after,
 .link-orange:after
   bottom 0
-  border-bottom 1px solid $blue
+  border-bottom 2px solid $blue
 
 .link-green:after
   border-color $green

@@ -33,17 +33,12 @@ export default {
       query: homeQuery
     }
   },
-  beforeRouteEnter (to, from, next) {
-    next((vm) => {
-      vm.$store.commit('header/hideLogo', true)
-    })
-  },
   beforeRouteLeave (to, from, next) {
     this.$store.commit('header/hideLogo', false)
     next()
   },
   created () {
-    this.$store.commit('header/setDefaultColor', 'white')
+    this.$store.commit('header/setDefaultColor', 'black')
   },
   mounted () {
     this.$store.commit('header/hideLogo', true)
@@ -88,7 +83,6 @@ export default {
 
 .page
   padding 0
-  background $white
   transition 1.4s background-color $ease
 
   &--orange

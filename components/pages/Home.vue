@@ -93,10 +93,6 @@ export default {
 .home
   overflow hidden
 
-.intro-container
-  min-height 100vh
-  background $primary
-
 .logo-circle
   position absolute
   bottom -30px
