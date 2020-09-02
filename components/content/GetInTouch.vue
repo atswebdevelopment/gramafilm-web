@@ -1,7 +1,10 @@
 <template>
-  <ContentArea fullscreen center class="getInTouch">
+  <ContentArea fullscreen center class="getInTouch" :class="{ 'getInTouch--careers': careers }">
     <div class="getInTouch__content">
-      <div class="getInTouch__title">
+      <div v-if="careers" class="getInTouch__title">
+        We’re always looking to hear from passionate people. Drop us a message and say hi if you’d like to get involved.
+      </div>
+      <div v-else class="getInTouch__title">
         If you want to make
         <TextSwap />
       </div>
@@ -11,7 +14,7 @@
         </nuxt-link>
       </div>
     </div>
-    <FooterLinks v-if="footerLinks" />
+    <FooterLinks v-if="footerLinks" :careers="careers" />
   </ContentArea>
 </template>
 
@@ -25,6 +28,10 @@ export default {
   },
   props: {
     footerLinks: {
+      type: Boolean,
+      default: false
+    },
+    careers: {
       type: Boolean,
       default: false
     }
@@ -53,4 +60,17 @@ export default {
   &__link
     font-size 32px
     line-height 52px
+
+  &--careers
+    color $white
+    background $primary
+
+    .getInTouch__content
+      max-width 880px
+
+    >>> a
+      color $white
+
+    >>> .arrowLink:after
+      background-image url(/images/arrow-white.svg)
 </style>

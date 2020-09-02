@@ -3,7 +3,7 @@
     <div class="footerLinks__inner">
       <img
         class="totop"
-        src="/totop.svg"
+        :src="`${ careers ? '/totop-white.svg' : '/totop.svg'}`"
         alt="Back to top"
         title="Back to top"
         :class="{ 'totop--active': totop }"
@@ -32,6 +32,10 @@ export default {
   },
   props: {
     inline: {
+      type: Boolean,
+      default: false
+    },
+    careers: {
       type: Boolean,
       default: false
     }
@@ -78,6 +82,9 @@ export default {
   opacity 0
   transform translateY(-100%)
   transition all 1s $ease
+
+  @media (max-width $bp-xs)
+    right 0px
 
   &--active
     transform translateY(0%)

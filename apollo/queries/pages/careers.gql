@@ -1,0 +1,27 @@
+query Careers {
+  career {
+    id
+    title
+    gallery {
+      id
+      url
+      alternativeText
+      caption
+    }
+    jobs {
+      ... on ComponentContentJob {
+        id
+        title
+        type
+        location
+        description
+      }
+    }
+    seo {
+      ... on ComponentContentSeo {
+        title
+        description
+      }
+    }
+  }
+}
