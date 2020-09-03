@@ -8,7 +8,7 @@
       </div>
     </ContentArea>
     <ContentArea>
-      <Slider v-if="careers.gallery" :items="careers.gallery" />
+      <Slider v-if="careers.gallery && careers.gallery.length" :items="careers.gallery" />
     </ContentArea>
     <div class="positions">
       <div class="positions__inner">
