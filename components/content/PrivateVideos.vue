@@ -8,7 +8,7 @@
         <div>
           <p>
             <b>{{ video.clientname }}</b><br>
-            {{ video.title }}
+            {{ video.title }} {{ video.client }}
           </p>
           <div v-html="video.content" />
           <p>Uploaded on {{ formatDate(video.created_at) }}</p>
@@ -45,7 +45,6 @@ export default {
 
 <style lang="stylus" scoped>
 .videoList
-  min-height 64vh
   margin-bottom 10vh
 
   >>> .column p:first-child

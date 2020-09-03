@@ -26,13 +26,13 @@
           title="Scroll down"
         >
       </div>
-      <!-- <ColumnContainer v-if="home.counters" class="counter-container">
+      <ColumnContainer v-if="home.counters" class="counter-container">
         <Column v-for="(counter, index) in home.counters" :key="index">
           <Counter :start-counter="startCounter" :data-val="counter.number" :val="counters[index]" :unit="counter.unit">
             {{ counter.text }}
           </Counter>
         </Column>
-      </ColumnContainer> -->
+      </ColumnContainer>
     </ContentArea>
   </div>
 </template>
@@ -43,10 +43,10 @@ import { setResponsive } from '~/helpers/cdn'
 export default {
   name: 'Introduction',
   components: {
-    ContentArea: () => import('~/components/layout/ContentArea')
-    // ColumnContainer: () => import('~/components/layout/ColumnContainer'),
-    // Column: () => import('~/components/layout/Column'),
-    // Counter: () => import('~/components/content/Counter')
+    ContentArea: () => import('~/components/layout/ContentArea'),
+    ColumnContainer: () => import('~/components/layout/ColumnContainer'),
+    Column: () => import('~/components/layout/Column'),
+    Counter: () => import('~/components/content/Counter')
   },
   mixins: [CounterMixin],
   props: {
@@ -80,13 +80,15 @@ export default {
     setInterval(() => {
       const images = document.querySelectorAll('.intro__image')
       const active = document.querySelector('.intro__image--active')
-      active.classList.remove('intro__image--active')
-      this.activeImage++
-      if (images[this.activeImage]) {
-        images[this.activeImage].classList.add('intro__image--active')
-      } else {
-        images[0].classList.add('intro__image--active')
-        this.activeImage = 0
+      if (active) {
+        active.classList.remove('intro__image--active')
+        this.activeImage++
+        if (images[this.activeImage]) {
+          images[this.activeImage].classList.add('intro__image--active')
+        } else {
+          images[0].classList.add('intro__image--active')
+          this.activeImage = 0
+        }
       }
     }, 5000)
   },
@@ -115,7 +117,7 @@ export default {
   z-index 2
   min-height 100vh
   background-color transparent
-  transition 0.3s background-color $ease
+  transition 0.5s background-color $ease
 
   &--orange
     background-color #E6DDD5
@@ -202,11 +204,13 @@ export default {
   transform rotateZ(180deg)
 
 .counter-container .column
-  padding-left 0
-  padding-right 0
+  padding 20vh 0 10vh
+
+  @media (max-width $bp-sm)
+    padding 20px 0
 
   >>> .counter__text
-    color $white
+    color $black
 
 .link-blue:after,
 .link-green:after,

@@ -2,11 +2,19 @@ query User ($id: ID!) {
   user (id: $id) {
     id
     email
-    images {
+    videos {
+      id
+      title
+      src
+      created_at
+      clientname
+      content
+    }
+    gallery {
+      id
       url
       alternativeText
       caption
-      mime
     }
   }
 }

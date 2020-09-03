@@ -168,7 +168,7 @@
             <Column>
               <div class="casestudy__module">
                 <h2>{{ section.title }}</h2>
-                <Slider v-if="section.images" :items="section.images" />
+                <Slider v-if="section.images && section.images.length" :items="section.images" />
               </div>
             </Column>
           </ColumnContainer>
