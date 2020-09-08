@@ -112,13 +112,17 @@ export default {
       const urls = this.video.src.split('\n')
       const tempArray = []
       urls.forEach((e, i) => {
-        const res = e.includes('id=174') ? 720 : e.includes('id=165') ? 540 : e.includes('id=164') ? 360 : 1080
-        tempArray.push({
-          type: 'video/mp4',
-          src: e.replace(/ /g, ''),
-          label: res + 'p',
-          res
-        })
+        if (e.includes('id=')) {
+          const res = e.includes('id=175') ? 1080 : e.includes('id=174') ? 720 : e.includes('id=165') ? 540 : e.includes('id=164') ? 360 : null
+          if (res) {
+            tempArray.push({
+              type: 'video/mp4',
+              src: e.replace(/ /g, ''),
+              label: res + 'p',
+              res
+            })
+          }
+        }
       })
       this.playerOptions.sources = tempArray
       window.addEventListener('scroll', () => {
