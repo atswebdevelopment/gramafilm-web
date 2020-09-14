@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <Article v-if="tempdata && tempdata.id" :article="tempdata" />
+    <Article v-if="particle && particle.id" :article="particle" />
     <Loader v-else />
     <Journal v-if="articles.length && categories.length" :articles="articles" :categories="categories" disable-load-more />
     <Loader v-else />
@@ -23,7 +23,7 @@ export default {
     return {
       categories: [],
       articles: [],
-      article: {},
+      particle: {},
       tempdata: {}
     }
   },
@@ -36,7 +36,7 @@ export default {
       prefetch: false,
       query: articlesQuery
     },
-    article: {
+    particle: {
       prefetch: false,
       query: articleQuery,
       variables () {
@@ -45,10 +45,13 @@ export default {
         }
       },
       update (data) {
-        this.article = data.articles[0]
-        this.tempdata = data.articles[0]
-        console.log(this.tempdata)
-        return data.articles[0] || this.$nuxt.$router.push({ name: 'journal' })
+        if (data.articles && data.articles[0]) {
+          this.particle = data.articles[0]
+          console.log(this.particle)
+          return data.articles[0]
+        } else {
+          return this.$nuxt.$router.push({ name: 'journal' })
+        }
       }
     }
   },
