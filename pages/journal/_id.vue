@@ -2,8 +2,6 @@
   <div class="page">
     <Article v-if="article && article.id" :article="article" />
     <Loader v-else />
-    <Journal v-if="recentArticles.length && categories.length" :articles="recentArticles" :categories="categories" disable-load-more />
-    <Loader v-else />
     <GetInTouch v-if="categories.length" footer-links />
   </div>
 </template>
@@ -15,7 +13,6 @@ import articleQuery from '~/apollo/queries/article/article.gql'
 export default {
   components: {
     Article: () => import('~/components/pages/Article'),
-    Journal: () => import('~/components/pages/Journal'),
     GetInTouch: () => import('~/components/content/GetInTouch'),
     Loader: () => import('~/components/content/Loader')
   },
@@ -27,11 +24,12 @@ export default {
     }
   },
   mounted () {
-    setTimeout(() => {
-      this.$apollo.query({ query: articlesQuery }).then(({ data }) => {
-        this.recentArticles = [...data.articles]
-      })
-    }, 5000)
+    console.log(this.recentArticles.length, this.categories.length)
+    this.$apollo.query({ query: articlesQuery }).then(({ data }) => {
+      this.recentArticles = [...data.articles]
+      console.log(this.recentArticles.length, this.categories.length)
+    })
+    console.log(this.recentArticles.length, this.categories.length)
   },
   apollo: {
     categories: {
