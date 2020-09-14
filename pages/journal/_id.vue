@@ -2,24 +2,34 @@
   <div class="page">
     <Article v-if="article && article.id" :article="article" />
     <Loader v-else />
+    <Journal v-if="recentArticles.length && categories.length" :articles="recentArticles" :categories="categories" disable-load-more />
+    <Loader v-else />
     <GetInTouch v-if="categories.length" footer-links />
   </div>
 </template>
 
 <script>
 import categoriesQuery from '~/apollo/queries/article/categories.gql'
+import articlesQuery from '~/apollo/queries/article/articles.gql'
 import articleQuery from '~/apollo/queries/article/article.gql'
 export default {
   components: {
     Article: () => import('~/components/pages/Article'),
+    Journal: () => import('~/components/pages/Journal'),
     GetInTouch: () => import('~/components/content/GetInTouch'),
     Loader: () => import('~/components/content/Loader')
   },
   data () {
     return {
       categories: [],
+      recentArticles: [],
       article: {}
     }
+  },
+  mounted () {
+    this.$apollo.query({ query: articlesQuery }).then(({ data }) => {
+      this.recentArticles = [...data.articles]
+    })
   },
   apollo: {
     categories: {

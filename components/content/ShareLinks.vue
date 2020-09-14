@@ -3,7 +3,7 @@
     <div>
       <span class="shareLinks__link" @click="filterToggle = !filterToggle"><b>Share</b></span>
       <a class="shareLinks__link" target="_blank" rel="noopener" title="Opens in a new window" :href="`https://www.facebook.com/dialog/share?app_id=374061643596800&display=popup&href=${url}`">Facebook</a>
-      <a class="shareLinks__link" target="_blank" rel="noopener" title="Opens in a new window" :href="`https://www.linkedin.com/sharing/share-offsite/?url=${url}`">LinkedIn</a>
+      <!-- <a class="shareLinks__link" target="_blank" rel="noopener" title="Opens in a new window" :href="`https://www.linkedin.com/sharing/share-offsite/?url=${url}`">LinkedIn</a> -->
       <a class="shareLinks__link" target="_blank" rel="noopener" title="Opens in a new window" :href="`https://twitter.com/intent/tweet?url=${url}`">Twitter</a>
     </div>
   </div>
