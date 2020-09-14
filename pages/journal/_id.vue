@@ -57,6 +57,9 @@ export default {
         }
       },
       update (data) {
+        console.log(data)
+        this.article = data.articles[0]
+        console.log(this.article)
         return data.articles[0] || this.$nuxt.$router.push({ name: 'journal' })
       }
     }
