@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <Article v-if="article && article.id" :article="article" />
+    <Article v-if="tempdata && tempdata.id" :article="tempdata" />
     <Loader v-else />
     <Journal v-if="articles.length && categories.length" :articles="articles" :categories="categories" disable-load-more />
     <Loader v-else />
@@ -46,21 +46,8 @@ export default {
       },
       update (data) {
         this.article = data.articles[0]
-        setTimeout(() => {
-          this.article = data.articles[0]
-        }, 1)
-        setTimeout(() => {
-          this.article = data.articles[0]
-        }, 10)
-        setTimeout(() => {
-          this.article = data.articles[0]
-        }, 100)
-        setTimeout(() => {
-          this.article = data.articles[0]
-        }, 1000)
-        setTimeout(() => {
-          this.article = data.articles[0]
-        }, 10000)
+        this.tempdata = data.articles[0]
+        console.log(this.tempdata)
         return data.articles[0] || this.$nuxt.$router.push({ name: 'journal' })
       }
     }
