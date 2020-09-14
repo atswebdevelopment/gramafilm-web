@@ -2,11 +2,9 @@
   <div class="shareLinks" :class="{ 'shareLinks--active': filterToggle }">
     <div>
       <span class="shareLinks__link" @click="filterToggle = !filterToggle"><b>Share</b></span>
-      <a class="shareLinks__link" target="_blank" rel="noopener" title="Opens in a new window" href="https://www.instagram.com/gramafilm/?hl=en">Instagram</a>
-      <a class="shareLinks__link" target="_blank" rel="noopener" title="Opens in a new window" href="https://www.facebook.com/Gramafilm/">Facebook</a>
-      <a class="shareLinks__link" target="_blank" rel="noopener" title="Opens in a new window" href="https://uk.linkedin.com/organization-guest/company/gramafilm">LinkedIn</a>
-      <a class="shareLinks__link" target="_blank" rel="noopener" title="Opens in a new window" href="https://www.youtube.com/gramafilm">YouTube</a>
-      <a class="shareLinks__link" target="_blank" rel="noopener" title="Opens in a new window" href="https://twitter.com/Gramafilm">Twitter</a>
+      <a class="shareLinks__link" target="_blank" rel="noopener" title="Opens in a new window" :href="`https://www.facebook.com/dialog/share?app_id=374061643596800&display=popup&href=${url}`">Facebook</a>
+      <a class="shareLinks__link" target="_blank" rel="noopener" title="Opens in a new window" :href="`https://www.linkedin.com/sharing/share-offsite/?url=${url}`">LinkedIn</a>
+      <a class="shareLinks__link" target="_blank" rel="noopener" title="Opens in a new window" :href="`https://twitter.com/intent/tweet?url=${url}`">Twitter</a>
     </div>
   </div>
 </template>
@@ -16,8 +14,12 @@ export default {
   name: 'ShareLinks',
   data () {
     return {
-      filterToggle: false
+      filterToggle: false,
+      url: ''
     }
+  },
+  mounted () {
+    this.url = encodeURIComponent(window.location.href)
   }
 }
 </script>
