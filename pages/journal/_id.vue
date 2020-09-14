@@ -27,9 +27,11 @@ export default {
     }
   },
   mounted () {
-    this.$apollo.query({ query: articlesQuery }).then(({ data }) => {
-      this.recentArticles = [...data.articles]
-    })
+    setTimeout(() => {
+      this.$apollo.query({ query: articlesQuery }).then(({ data }) => {
+        this.recentArticles = [...data.articles]
+      })
+    }, 5000)
   },
   apollo: {
     categories: {
