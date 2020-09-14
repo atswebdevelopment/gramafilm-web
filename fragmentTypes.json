@@ -96,6 +96,15 @@
             "name": "deleteArticlePayload"
           },
           {
+            "name": "Careers"
+          },
+          {
+            "name": "updateCareerPayload"
+          },
+          {
+            "name": "deleteCareerPayload"
+          },
+          {
             "name": "CaseStudy"
           },
           {
@@ -157,6 +166,9 @@
           },
           {
             "name": "CaseStudyConnectionInverttext"
+          },
+          {
+            "name": "CaseStudyConnectionMobilebannger"
           },
           {
             "name": "createCaseStudyPayload"
@@ -559,6 +571,9 @@
           },
           {
             "name": "ComponentContentCounter"
+          },
+          {
+            "name": "ComponentContentJob"
           },
           {
             "name": "ComponentContentMedia"
