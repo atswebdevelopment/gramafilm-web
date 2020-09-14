@@ -28,7 +28,7 @@ export default {
     }
   },
   watch: {
-    article (val) {
+    'article.id' (val) {
       this.tempdata = val
       console.log('article update')
       console.log(val, val.id)
@@ -57,9 +57,11 @@ export default {
         }
       },
       update (data) {
-        console.log(data)
         this.article = data.articles[0]
-        console.log(this.article)
+        setTimeout(() => {
+          this.tempdata = data.articles[0]
+        }, 10000)
+        console.log('fetched', data)
         return data.articles[0] || this.$nuxt.$router.push({ name: 'journal' })
       }
     }
