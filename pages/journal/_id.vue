@@ -23,8 +23,21 @@ export default {
     return {
       categories: [],
       articles: [],
-      article: {}
+      article: {},
+      tempdata: {}
     }
+  },
+  watch: {
+    article (val) {
+      this.tempdata = val
+      console.log('article update')
+      console.log(val, val.id)
+    }
+  },
+  mounted () {
+    setInterval(() => {
+      console.log('timer...', this.article, this.tempdata, this.article.id)
+    }, 100)
   },
   apollo: {
     categories: {
@@ -44,7 +57,6 @@ export default {
         }
       },
       update (data) {
-        console.log(data)
         return data.articles[0] || this.$nuxt.$router.push({ name: 'journal' })
       }
     }
