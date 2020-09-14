@@ -68,9 +68,6 @@ export default {
   background $primary
   color $white
 
-  // &:before
-  //   background $primary
-
 >>> .footerLinks__link
   color $white
 
