@@ -27,18 +27,6 @@ export default {
       tempdata: {}
     }
   },
-  watch: {
-    'article.id' (val) {
-      this.tempdata = val
-      console.log('article update')
-      console.log(val, val.id)
-    }
-  },
-  mounted () {
-    setInterval(() => {
-      console.log('timer...', this.article, this.tempdata, this.article.id)
-    }, 100)
-  },
   apollo: {
     categories: {
       prefetch: false,
@@ -59,9 +47,20 @@ export default {
       update (data) {
         this.article = data.articles[0]
         setTimeout(() => {
-          this.tempdata = data.articles[0]
+          this.article = data.articles[0]
+        }, 1)
+        setTimeout(() => {
+          this.article = data.articles[0]
+        }, 10)
+        setTimeout(() => {
+          this.article = data.articles[0]
+        }, 100)
+        setTimeout(() => {
+          this.article = data.articles[0]
+        }, 1000)
+        setTimeout(() => {
+          this.article = data.articles[0]
         }, 10000)
-        console.log('fetched', data)
         return data.articles[0] || this.$nuxt.$router.push({ name: 'journal' })
       }
     }
