@@ -27,6 +27,9 @@ export default {
         }
       },
       update (data) {
+        if (data.caseStudies && data.caseStudies[0]) {
+          this.caseStudy = data.caseStudies[0]
+        }
         return (data.caseStudies && data.caseStudies[0]) || this.$nuxt.$router.push({ name: 'work' })
       }
     }
