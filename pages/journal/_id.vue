@@ -30,10 +30,7 @@ export default {
   mounted () {
     this.$apollo.query({ query: articlesQuery }).then(({ data }) => {
       this.recentArticles = [...data.articles]
-      console.log(this.recentArticles.length, this.categories.length)
-      console.log(this.recentArticles, this.categories)
     })
-    console.log(this.recentArticles.length, this.categories.length)
   },
   apollo: {
     categories: {
