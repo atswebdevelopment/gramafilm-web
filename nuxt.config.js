@@ -3,8 +3,8 @@ export default {
   target: 'static',
   publicRuntimeConfig: {
     baseUrl: 'http://localhost:3000',
-    strapiBaseUri: process.env.NODE_ENV === 'production' ? 'http://18.132.131.54' : 'http://localhost:1337',
-    schemaPath: process.env.NODE_ENV === 'production' ? 'http://18.132.131.54/graphql' : 'http://localhost:1337/graphql'
+    strapiBaseUri: process.env.NODE_ENV === 'production' ? 'https://admin.gramafilm.com' : 'http://localhost:1337',
+    schemaPath: process.env.NODE_ENV === 'production' ? 'https://admin.gramafilm.com/graphql' : 'http://localhost:1337/graphql'
   },
   /*
   ** Headers of the page
