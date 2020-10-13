@@ -58,17 +58,17 @@ export default {
   left 0
   width 100%
   height 100%
-  transform translateY(-100%)
-  transition 0.25s $ease
+  transform translateY(-150%)
+  transition 0.35s $ease
   z-index 8
 
   &--hide
     display none
 
   &--open
-    transform translateX(0%)
+    transform translateY(0%)
 
   &--fixed
     z-index 0
-    transform translateX(0%)
+    transform translateY(0%)
 </style>

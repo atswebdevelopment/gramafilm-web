@@ -162,6 +162,9 @@ export default {
   color $white
   transition color 0.4s $ease
 
+  >>> .section--fullscreen
+    padding 0
+
   &__links
     left 26vw
     position relative
