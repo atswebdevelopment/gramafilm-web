@@ -1,6 +1,7 @@
 <template>
   <div class="page">
-    <CaseStudy v-if="caseStudy && caseStudy.id" :case-study="caseStudy" />
+    <CaseStudy v-if="caseStudy && caseStudy.id && caseStudy.published" :case-study="caseStudy" />
+    <div v-else-if="caseStudy && caseStudy.id" />
     <Loader v-else />
   </div>
 </template>

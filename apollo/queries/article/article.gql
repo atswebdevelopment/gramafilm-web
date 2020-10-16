@@ -16,5 +16,11 @@ query Articles ($url: String!) {
       colour
     }
     published_at
+    seo {
+      ... on ComponentContentSeo {
+        title
+        description
+      }
+    }
   }
 }

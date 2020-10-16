@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="header" :class="{ 'header--open': menu }">
+    <div class="header" :class="{ 'header--open': menu, 'header--scrolled': scrolled }">
       <ContentArea class="header__container">
         <div class="header__inner">
           <div class="header__logo">
@@ -31,6 +31,7 @@ export default {
   data () {
     return {
       menu: false,
+      scrolled: false,
       logoOnScroll: false
     }
   },
@@ -44,6 +45,7 @@ export default {
   },
   mounted () {
     let oldScrollVal = window.scrollY
+    let override = this.$store.state.header.defaultColor
     const header = document.querySelector('.header')
     window.addEventListener('mousemove', (e) => {
       if (e.clientY < 100) {
@@ -58,25 +60,42 @@ export default {
       }
       oldScrollVal = window.scrollY
 
-      const banner = document.querySelector('.banner')
-      if (banner) {
-        const elemHeight = banner.offsetHeight
-        this.logoOnScroll = window.scrollY >= elemHeight - 50
-        if (this.logoOnScroll && this.headerColor === 'white') {
-          this.$store.commit('header/setColor', 'black')
-        } else if (!this.logoOnScroll && this.headerColor === 'black') {
-          this.$store.commit('header/setColor', this.$store.state.header.defaultColor)
-        }
+      if (window.scrollY > 10) {
+        setTimeout(() => {
+          if (window.scrollY > 10) {
+            this.scrolled = true
+            if (this.headerColor === 'black') {
+              this.$store.commit('header/setColor', 'white')
+              override = this.$store.state.header.defaultColor
+              this.$store.commit('header/setDefaultColor', 'white')
+            }
+          }
+        }, 500)
+      } else {
+        this.scrolled = false
+        this.$store.commit('header/setDefaultColor', override)
+        this.$store.commit('header/setColor', this.$store.state.header.defaultColor)
       }
 
-      const elemBottom = document.querySelector('.banner--bottom')
-      if (elemBottom) {
-        const logoOnMenu = window.scrollY + window.innerHeight >= document.body.scrollHeight - 50
-        oldScrollVal = window.scrollY
-        if (logoOnMenu && this.headerColor === 'black') {
-          this.$store.commit('header/setColor', 'white')
-        }
-      }
+      // const banner = document.querySelector('.banner')
+      // if (banner) {
+      //   const elemHeight = banner.offsetHeight
+      //   this.logoOnScroll = window.scrollY >= elemHeight - 50
+      //   if (this.logoOnScroll && this.headerColor === 'white') {
+      //     this.$store.commit('header/setColor', 'black')
+      //   } else if (!this.logoOnScroll && this.headerColor === 'black') {
+      //     this.$store.commit('header/setColor', this.$store.state.header.defaultColor)
+      //   }
+      // }
+
+      // const elemBottom = document.querySelector('.banner--bottom')
+      // if (elemBottom) {
+      //   const logoOnMenu = window.scrollY + window.innerHeight >= document.body.scrollHeight - 50
+      //   oldScrollVal = window.scrollY
+      //   if (logoOnMenu && this.headerColor === 'black') {
+      //     this.$store.commit('header/setColor', 'white')
+      //   }
+      // }
     })
   },
   methods: {
@@ -98,10 +117,24 @@ export default {
   top 4vh
   left 0
   width 100%
-  transition transform 0.5s $ease
+  transition transform 0.7s $ease
+
+  &:before
+    content ''
+    opacity 0
+    transition opacity 0.5s $ease
+    width 100%
+    height 12vh
+    position absolute
+    top -4vh
+    left 0
+    background linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 95%, rgba(0,0,0,0) 100%)
+
+  &--scrolled:before
+    opacity 1
 
   &--hide
-    transform translateY(-100px)
+    transform translateY(-150px)
 
   &__inner
     display flex
