@@ -28,7 +28,7 @@ export default {
 .columns
   display flex
   flex-direction row
-  max-width 1440px
+  max-width 1800px
   margin 0 auto
   box-sizing border-box
 

@@ -71,12 +71,9 @@ export default {
 
 .inner
   padding 0 58px
-  max-width 1440px
+  max-width 1800px
   margin 0 auto
   box-sizing border-box
-
-  &--stretch
-    max-width 1800px
 
   @media (max-width $bp-sm)
     padding 0 18px

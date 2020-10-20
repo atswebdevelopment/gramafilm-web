@@ -124,17 +124,23 @@ export default {
     opacity 0
     transition opacity 0.5s $ease
     width 100%
-    height 12vh
+    height 200px
     position absolute
     top -4vh
     left 0
-    background linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 95%, rgba(0,0,0,0) 100%)
+    background linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 95%, rgba(0,0,0,0) 100%)
+
+    @media (max-width $bp-md)
+      height 150px
+
+    @media (max-width $bp-xs)
+      height 100px
 
   &--scrolled:before
     opacity 1
 
   &--hide
-    transform translateY(-150px)
+    transform translateY(-200px)
 
   &__inner
     display flex

@@ -79,7 +79,7 @@ export default {
 
   &__inner
     padding 0 58px
-    max-width 1440px
+    max-width 1800px
     margin 0 auto
     box-sizing border-box
 
