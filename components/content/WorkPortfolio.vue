@@ -1,7 +1,27 @@
 <template>
   <div class="work" :class="{'work--home': home}">
     <div v-if="caseStudies.length">
-      <div v-for="(workModule, wmindex) in workModules" :key="wmindex">
+      <div class="work__modules">
+        <div
+          v-for="(caseStudy, index) in workModules"
+          :key="index"
+          class="work__module"
+          @click="$nuxt.$router.push({ name: 'work-id', params: { id: caseStudy.url } })"
+        >
+          <div class="work__media" :class="`work__media--${caseStudy.thumbnailPosition}`">
+            <img v-if="caseStudy.thumbnail && !caseStudy.thumbnail.mime.includes('video')" class="work__image" :src="setResponsive(caseStudy.thumbnail.url, 1316)">
+            <video v-else-if="caseStudy.thumbnail" class="work__image" loop muted>
+              <source :src="caseStudy.thumbnail.url" type="video/mp4">
+            </video>
+            <img v-else-if="caseStudy.banner && !caseStudy.banner.mime.includes('video')" class="work__image" :src="setResponsive(caseStudy.banner.url, 1316)">
+            <img v-else-if="caseStudy.media && caseStudy.media.image" class="work__image" :src="setResponsive(caseStudy.media.url, 1316)">
+            <div class="work__text">
+              <span :class="getClass(caseStudy.type)">{{ caseStudy.type }}</span> {{ caseStudy.title }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div v-for="(workModule, wmindex) in workModules" :key="wmindex">
         <div v-if="workModule.workModuleOne.length && wmindex === 0 || !home && workModule.workModuleOne.length && wmindex > 0" class="work__module work__module--1" :class="{ 'work__module--filtering': filtering }">
           <div
             v-for="(caseStudy, index) in workModule.workModuleOne"
@@ -169,7 +189,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -238,26 +258,7 @@ export default {
     splitWork () {
       let caseStudies = [...this.caseStudies]
       caseStudies = caseStudies.map(caseStudy => caseStudy.case_study)
-      this.workModules = []
-
-      setTimeout(() => {
-        const modules = Math.ceil(caseStudies.length / 16)
-        let start = 0
-        for (let i = 0; i < modules; i++) {
-          const moduleCaseStudies = caseStudies.slice(start, start + 16)
-          start = start + 16
-          const obj = {}
-          obj.workModuleOne = moduleCaseStudies.length > 0 ? moduleCaseStudies.slice(0, 4) : []
-          obj.workModuleTwo = moduleCaseStudies.length > 4 ? moduleCaseStudies.slice(4, 5) : []
-          obj.workModuleThree = moduleCaseStudies.length > 5 ? moduleCaseStudies.slice(5, 8) : []
-          obj.workModuleFour = moduleCaseStudies.length > 7 ? moduleCaseStudies.slice(7, 8) : []
-          obj.workModuleFive = moduleCaseStudies.length > 8 ? moduleCaseStudies.slice(8, 9) : []
-          obj.workModuleSix = moduleCaseStudies.length > 9 ? moduleCaseStudies.slice(9, 11) : []
-          obj.workModuleSeven = moduleCaseStudies.length > 11 ? moduleCaseStudies.slice(11, 12) : []
-          obj.workModuleEight = moduleCaseStudies.length > 12 ? moduleCaseStudies.slice(12, 16) : []
-          this.workModules.push(obj)
-        }
-      }, 100)
+      this.workModules = caseStudies
       fadeIn()
     },
     getClass (type) {
@@ -283,150 +284,49 @@ export default {
     margin-top 5vh
 
   &__module
-    position relative
-    margin-bottom 10vh
-    transition 0.4s opacity $ease
-
-    &--1
-      height 1230px
-
-    &--5,
-    &--6
-      .work__item
-        display inline-block
-        vertical-align top
-        position static
-
-    &--filtering
-      opacity 0
+    width calc(50% - 2px)
+    display inline-block
+    margin-bottom 160px
 
     @media (max-width: $bp-sm)
-      height auto
-      margin 0
-
-  &__item
-    position absolute
-    left 50%
-    width 432px
-    flex 1
-    cursor pointer
-
-    &--0
-      margin-left 130px
-
-      @media (max-width $bp-md)
-        margin-left 52px
-
-    &--1
-      top 160px
-      width 658px
-      margin-left -660px
-
-      @media (max-width $bp-md)
-        top 260px
-        margin-left -482px
-        width 492px
-
-      .work__media
-        height 438px
-
-        @media (max-width $bp-md)
-          height 292px
-
-    &--2
-      top 598px
-      margin-left 224px
-
-      @media (max-width $bp-md)
-        margin-left 52px
-
-      .work__media
-        height 576px
-
-    &--3
-      top 930px
-      margin-left -532px
-
-      @media (max-width $bp-md)
-        margin-left -482px
-
-    &--4
-      position static
-      width 1102px
-      margin 0 auto
-
-      @media (max-width $bp-md)
-        width 100%
-
-      .work__media
-        height 689px
-
-    &--5
-      position static
-
-      .work__media
-        height 576px
-
-    &--6
-      top 240px
-      margin-left 80px
-
-    &--7
-      width 32%
-
-      .work__media
-        height 217px
-
-    &--8
-      width 32%
-      margin-left 5%
-
-      .work__media
-        height 217px
-
-    &--9
-      width 25%
-      margin-left 5%
-
-      .work__media
-        height 426px
-
-    &--10
-      width 320px
-
-      .work__media
-        height 320px
-
-    &--11
-      width calc(89% - 320px)
-      margin-left 10%
-
-      .work__media
-        height 370px
-
-    @media (max-width: $bp-sm)
-      position static
-      margin 0
+      margin-bottom 96px
       width 100%
-      margin-bottom 60px
+
+    @media (max-width: $bp-xs)
+      margin-bottom 64px
+
+    &:nth-child(even)
+      position relative
+      top 160px
+
+      @media (max-width: $bp-sm)
+        top 0
 
   &__media
-    width 100%
-    height 243px
-    margin-bottom 16px
+    max-width 80%
+    cursor pointer
 
     @media (max-width: $bp-sm)
-      height 254px !important
+      max-width 100%
+
+    &--Right
+      margin-left auto
+
+    &--Center
+      margin 0 auto
 
   &__image
-    width 100%
-    height 100%
-    background-position 50%
-    background-size cover
-    object-fit cover
+    max-width 100%
+    max-height 430px
 
-  &__text span
-    text-transform capitalize
+  &__text
+    margin-top 20px
+
+    @media (max-width: $bp-sm)
+      margin-top 10px
+
+    span
+      text-transform capitalize
 
   &__link
     font-size 56px
@@ -444,33 +344,9 @@ export default {
       font-size 34px
       line-height 42px
 
-  &__marquee
-    height 51px
-    background url(/logo.svg) 0 0
-    background-size auto 51px
-    width 3000px
-    animation-name marquee
-    animation-duration 4s
-    animation-timing-function linear
-    animation-iteration-count infinite
-    transform translateX(-590px)
-    margin-left -500px
-
-    @media (max-width: $bp-sm)
-      margin 100px 0
-
   &--home
     margin -50px 0 0
 
     @media (max-width: $bp-sm)
       margin 0
-
-@keyframes marquee {
-  from {
-    transform translateX(0)
-  }
-  to {
-    transform translateX(-590px)
-  }
-}
 </style>

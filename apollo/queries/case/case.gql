@@ -18,6 +18,7 @@ query CaseStudies ($url: String!) {
       url
       mime
     }
+    thumbnailPosition
     media {
       ... on ComponentContentMedia {
         id
