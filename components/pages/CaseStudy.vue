@@ -175,6 +175,10 @@
         </div>
       </div>
     </div>
+    <ContentArea>
+      <h2>Related work</h2>
+    </ContentArea>
+    <Slider v-if="relatedWork" :items="relatedWork" :see-more="true" />
     <GetInTouch footer-links />
     <Banner
       v-if="caseStudy.case_study"
@@ -211,16 +215,26 @@ export default {
     caseStudy: {
       type: Object,
       default: () => {}
+    },
+    caseStudies: {
+      type: Array,
+      default: () => []
     }
   },
   data () {
     return {
+      relatedWork: null,
       setResponsive
     }
   },
   computed: {
     desktop () {
       return window.innerWidth > 1023
+    }
+  },
+  watch: {
+    caseStudies () {
+      this.relatedWork = [...this.caseStudy.relatedwork, ...this.caseStudies.map(m => m.case_study).filter(m => m.type === this.caseStudy.type && m.id !== this.caseStudy.id)].splice(0, 5)
     }
   },
   mounted () {

@@ -45,6 +45,17 @@ query CaseStudies ($url: String!) {
     content
     client
     whatwedid
+    relatedwork {
+      id
+      url
+      title
+      thumbnail {
+        id
+        url
+        alternativeText
+      }
+      type
+    }
     case_study {
       id
       title

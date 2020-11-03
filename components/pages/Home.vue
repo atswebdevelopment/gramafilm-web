@@ -34,10 +34,6 @@
         </template>
       </ContentSwitcher>
     </ContentArea>
-    <ContentArea v-if="home" class="journal">
-      <h2>Journal</h2>
-    </ContentArea>
-    <Slider v-if="home && articles.length" :items="articles.slice(0, 10)" />
   </div>
 </template>
 
@@ -51,7 +47,6 @@ export default {
     Introduction: () => import('~/components/content/Introduction'),
     WorkPortfolio: () => import('~/components/content/WorkPortfolio'),
     ContentSwitcher: () => import('~/components/content/ContentSwitcher'),
-    Slider: () => import('~/components/content/Slider'),
     Video: () => import('~/components/content/Video')
   },
   props: {

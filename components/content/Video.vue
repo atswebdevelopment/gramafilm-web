@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <div v-if="video" :ref="`video-${identifier}`" class="video" :class="[`video-${identifier}`, fullscreen ? 'video--fullscreen' : '']">
-      <div v-if="viewportLoaded" v-video-player:myVideoPlayer="playerOptions" class="video-player-box vjs-theme-sea" @play="onPlayerPlay($event)" />
+      <div v-if="viewportLoaded" v-video-player:myVideoPlayer="playerOptions" class="video-js vjs-default-skin" @play="onPlayerPlay($event)" />
       <div v-if="video.preview && video.preview.url" class="video__preview">
         <img v-if="!video.preview.mime.includes('video')" :src="video.preview.url">
         <video v-else-if="video.preview.mime.includes('video')" class="looped" loop muted>
@@ -161,6 +161,7 @@ export default {
     left 0
     width 100%
     height 100%
+    outline none
 
     @media (max-width $bp-sm)
       width 100% !important

@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <CaseStudy v-if="caseStudy && caseStudy.id && caseStudy.published" :case-study="caseStudy" />
+    <CaseStudy v-if="caseStudy && caseStudy.id && caseStudy.published" :case-study="caseStudy" :case-studies="caseStudies" />
     <div v-else-if="caseStudy && caseStudy.id" />
     <Loader v-else />
   </div>
@@ -8,6 +8,7 @@
 
 <script>
 import caseQuery from '~/apollo/queries/case/case.gql'
+import casesQuery from '~/apollo/queries/work/work.gql'
 export default {
   components: {
     CaseStudy: () => import('~/components/pages/CaseStudy'),
@@ -15,8 +16,14 @@ export default {
   },
   data () {
     return {
-      caseStudy: {}
+      caseStudy: {},
+      caseStudies: []
     }
+  },
+  mounted () {
+    this.$apollo.query({ query: casesQuery }).then(({ data }) => {
+      this.caseStudies = [...data.work.casestudies]
+    })
   },
   apollo: {
     caseStudy: {
