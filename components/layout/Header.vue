@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="header" :class="{ 'header--open': menu, 'header--scrolled': scrolled }">
+    <div class="header" :class="{ 'header--open': menu, 'header--scrolled': scrolled, 'header--loaded': loaded }">
       <ContentArea class="header__container">
         <div class="header__inner">
           <div class="header__logo">
@@ -32,7 +32,8 @@ export default {
     return {
       menu: false,
       scrolled: false,
-      logoOnScroll: false
+      logoOnScroll: false,
+      loaded: false
     }
   },
   computed: {
@@ -47,6 +48,7 @@ export default {
     let oldScrollVal = window.scrollY
     let override = this.$store.state.header.defaultColor
     const header = document.querySelector('.header')
+    this.loaded = true
     window.addEventListener('mousemove', (e) => {
       if (e.clientY < 100) {
         header.classList.remove('header--hide')
@@ -117,7 +119,11 @@ export default {
   top 4vh
   left 0
   width 100%
-  transition transform 0.7s $ease
+  transition all 0.7s $ease
+  opacity 0
+
+  &--loaded
+    opacity 1
 
   &:before
     content ''
