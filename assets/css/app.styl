@@ -240,7 +240,9 @@ button
     width 36px
     height 28px
 
-  &--hover
+  &--hover,
+  &--external,
+  &--internal
     justify-content left
 
     &:after
@@ -250,6 +252,23 @@ button
       width 20px
       height 20px
       transform none
+
+  &--internal:after
+    background url(/images/arrow.svg) no-repeat
+    background-size 100%
+    background-position 50%
+    opacity 1
+    transform none
+
+  &--internal:hover:after
+    transform translateX(10px)
+
+  &--external:after
+    opacity 1
+    transform none
+
+  &--external:hover:after
+    transform translateX(7px) translateY(-7px)
 
   &--hover:hover:after
     opacity 1

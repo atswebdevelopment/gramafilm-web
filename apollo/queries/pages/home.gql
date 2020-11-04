@@ -22,6 +22,19 @@ query Home {
         mime
       }
     }
+    studionews {
+      ... on ComponentStudionewsStudionews {
+        id
+        description
+        label
+        url
+        thumbnail {
+          id
+          url
+          alternativeText
+        }
+      }
+    }
     partners {
       ... on ComponentContentselectorContentSelector {
         id

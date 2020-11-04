@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="splash" :class="{ 'loaded': loaded }">
-      <div class="splash__title">We produce the extraordinary</div>
+      <div class="splash__title">Producing the extraordinary</div>
       <div class="scrolldown-pos">
         <img
           class="scrolldown"

@@ -24,7 +24,7 @@
               <img v-if="item.thumbnail && item.thumbnail.url" data-not-lazy :src="setResponsive(item.thumbnail.url, 767)" :alt="item.thumbnail.alternativeText || ''">
             </div>
             <div v-if="item.title" class="swiper__text link" @click="$nuxt.$router.push({ name: 'work-id', params: { id: item.url } })">
-              <span v-if="item.type" :class="getClass(item.type)">{{ capitalize(item.type) }}</span> {{ item.title }}
+              <span v-if="item.type" :class="getClass(item.type)">{{ capitalize(item.type) }}</span> {{ item.title }} asd
             </div>
           </template>
           <template v-else-if="item.caption || item.caption === ''">

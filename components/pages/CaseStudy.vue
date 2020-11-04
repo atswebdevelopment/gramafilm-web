@@ -1,7 +1,7 @@
 <template>
   <div class="case">
     <Banner v-if="caseStudy.banner" class="case__banner" :video="desktop && caseStudy.banner.mime.includes('video')" :background="(caseStudy.banner && caseStudy.banner.mime.includes('video') && desktop && caseStudy.banner.url) || (caseStudy.banner && !caseStudy.banner.mime.includes('video') && caseStudy.banner.url) || (caseStudy.mobilebannger && caseStudy.mobilebannger.url)" :black="caseStudy.inverttext">
-      <h1>{{ caseStudy.title }}</h1>
+      <h1 :class="{ 'header-top': caseStudy.textposition === 'Top', 'header-center': caseStudy.textposition === 'Middle', 'header-bottom': caseStudy.textposition === 'Bottom'}">{{ caseStudy.title }}</h1>
       <div v-if="caseStudy.media && (caseStudy.media.image || caseStudy.media.qvideo)" class="banner__item banner__item--5">
         <div class="banner__media">
           <div v-if="caseStudy.media && caseStudy.media.image" class="banner__image" :style="`background-image:url(${caseStudy.media.image.url})`" />
@@ -238,6 +238,9 @@ export default {
     }
   },
   mounted () {
+    if (this.caseStudies) {
+      this.relatedWork = [...this.caseStudy.relatedwork, ...this.caseStudies.map(m => m.case_study).filter(m => m.type === this.caseStudy.type && m.id !== this.caseStudy.id)].splice(0, 5)
+    }
     this.$store.commit('header/setDefaultColor', this.caseStudy.inverttext ? 'black' : 'white')
     setTimeout(() => {
       this.$store.commit('header/setDefaultColor', this.caseStudy.inverttext ? 'black' : 'white')
@@ -260,12 +263,24 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+
 .case
   overflow hidden
 
 .case__banner h1
   font-size 112px
   line-height 120px
+  margin 0
+
+  &.header-top
+    top 10%
+
+  &.header-center
+    top 40%
+
+  &.header-bottom
+    top auto
+    bottom 10%
 
 >>> .banner__inner
   height 92vh
@@ -275,8 +290,13 @@ export default {
     h1
       font-size 56px
       line-height 64px
-      top 20vh
       letter-spacing 0
+
+      &.header-top
+        top 15%
+
+      &.header-bottom
+        bottom 80px
 
     @media (max-width $bp-sm)
       .banner__next
@@ -290,6 +310,12 @@ export default {
     h1
       font-size 48px
       line-height 56px
+
+      &.header-top
+        top 15%
+
+      &.header-bottom
+        bottom 10px
 
 .large
   margin 30vh auto 5vh

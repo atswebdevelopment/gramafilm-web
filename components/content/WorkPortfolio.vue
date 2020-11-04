@@ -77,7 +77,9 @@ export default {
       work: [],
       screen: null,
       caseStudies: [],
-      workModules: []
+      workModules: [],
+      workModulesMain: [],
+      new: true
     }
   },
   apollo: {
@@ -118,6 +120,11 @@ export default {
   },
   methods: {
     splitWork () {
+      if (this.new && (this.$nuxt.$route.query.film === null || this.$nuxt.$route.query.event === null || this.$nuxt.$route.query.design === null)) {
+        this.$emit('filter-work')
+        this.new = false
+        return
+      }
       let caseStudies = [...this.caseStudies]
       caseStudies = caseStudies.map(caseStudy => caseStudy.case_study)
       this.workModules = this.home ? caseStudies.splice(0, 5) : caseStudies

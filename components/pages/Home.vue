@@ -8,7 +8,7 @@
     </div>
     <ContentArea v-if="home" overflow>
       <h2>Studio news</h2>
-      <StudioNews />
+      <StudioNews :home="home" />
     </ContentArea>
     <ContentArea v-if="home" overflow>
       <h2>Work</h2>

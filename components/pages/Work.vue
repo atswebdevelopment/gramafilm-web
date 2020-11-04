@@ -20,7 +20,7 @@
           </div>
         </Filters>
       </div>
-      <WorkPortfolio :filtered-work="filteredWork" />
+      <WorkPortfolio :filtered-work="filteredWork" @filter-work="filterWorkByUrl" />
     </ContentArea>
   </div>
 </template>
@@ -58,6 +58,15 @@ export default {
         this.filteredWork = this.work.casestudies
       }
       this.type = type
+    },
+    filterWorkByUrl () {
+      if (this.$nuxt.$route.query.film === null) {
+        this.filterWork('film')
+      } else if (this.$nuxt.$route.query.event === null) {
+        this.filterWork('event')
+      } else if (this.$nuxt.$route.query.design === null) {
+        this.filterWork('design')
+      }
     }
   }
 }

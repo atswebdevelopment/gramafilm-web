@@ -4,6 +4,7 @@ query CaseStudies ($url: String!) {
     url
     title
     inverttext
+    textposition
     banner {
       id
       url
