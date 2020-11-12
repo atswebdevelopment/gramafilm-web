@@ -162,12 +162,19 @@ export default {
   &__column
     flex-grow 1
     flex-basis 0
+    margin-right 20px
 
     &:nth-child(even)
       margin-top 160px
+      margin-right 0
+      margin-left 20px
+
+      @media (max-width: $bp-xs)
+        margin-left 0
 
     @media (max-width: $bp-xs)
       margin-top 0
+      margin-right 0
 
   &__modules
     display flex
