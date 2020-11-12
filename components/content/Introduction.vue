@@ -1,23 +1,7 @@
 <template>
-  <div class="intro">
-    <ContentArea>
-      <p class="intro__about large" @mouseleave="setBg()">
-        We're a London-based creative production studio. We develop award-winning <nuxt-link class="link-orange" :to="{ name: 'film'}" @mouseenter.native="setBg('orange')">Films</nuxt-link>, <nuxt-link class="link-green" :to="{ name: 'events'}" @mouseenter.native="setBg('green')">Events</nuxt-link> and <nuxt-link class="link-blue" :to="{ name: 'design'}" @mouseenter.native="setBg('blue')">Design</nuxt-link>.
-      </p>
-      <div v-if="home && home.images" class="intro__images">
-        <template v-if="screen === 'mobile'">
-          <div v-for="(image, index) in home.images" :key="index" class="intro__image" :class="{ 'intro__image--active': index === 0 }" :style="`background-image:url('${setResponsive(image.url, 767)}')`">
-            <img
-              class="invisible"
-              :src="setResponsive(home.images[0].url, 767)"
-              @load="loaded($event)"
-            >
-          </div>
-        </template>
-        <video v-else-if="screen === 'desktop' && home.qvideo" loop muted autoplay>
-          <source :src="home.qvideo.src" type="video/mp4">
-        </video>
-      </div>
+  <div>
+    <div class="splash" :class="{ 'loaded': loaded, 'ready': ready, 'introVideoLoaded': introVideoLoaded }" @click="loadIntroVideo()">
+      <div class="splash__title">Producing the extraordinary</div>
       <div class="scrolldown-pos">
         <img
           class="scrolldown"
@@ -26,14 +10,39 @@
           title="Scroll down"
         >
       </div>
-      <ColumnContainer v-if="home.counters" class="counter-container">
-        <Column v-for="(counter, index) in home.counters" :key="index">
-          <Counter :start-counter="startCounter" :data-val="counter.number" :val="counters[index]" :unit="counter.unit">
-            {{ counter.text }}
-          </Counter>
-        </Column>
-      </ColumnContainer>
-    </ContentArea>
+      <video v-if="!introVideoLoaded" class="splash__video" loop muted>
+        <source src="https://res.cloudinary.com/gramafilm/video/upload/v1595529956/Gramafilm_Production_Content_03a1fce00d.mp4" type="video/mp4">
+      </video>
+      <Video v-if="home && home.introvideo && introVideoLoaded" :video="home.introvideo" play fullscreen class="splash__introvideo" />
+    </div>
+    <div class="intro">
+      <ContentArea>
+        <p class="intro__about large" @mouseleave="setBg()">
+          We're a London-based creative production studio. We develop award-winning <nuxt-link class="link-orange" :to="{ name: 'film'}">Films</nuxt-link>, <nuxt-link class="link-green" :to="{ name: 'events'}">Events</nuxt-link> and <nuxt-link class="link-blue" :to="{ name: 'design'}">Design</nuxt-link>.
+        </p>
+        <!-- <div v-if="home && home.images" class="intro__images">
+          <template v-if="screen === 'mobile'">
+            <div v-for="(image, index) in home.images" :key="index" class="intro__image" :class="{ 'intro__image--active': index === 0 }" :style="`background-image:url('${setResponsive(image.url, 767)}')`">
+              <img
+                class="invisible"
+                :src="setResponsive(home.images[0].url, 767)"
+                @load="load($event)"
+              >
+            </div>
+          </template>
+          <video v-else-if="screen === 'desktop' && home.qvideo" loop muted autoplay>
+            <source :src="home.qvideo.src" type="video/mp4">
+          </video>
+        </div>
+        <ColumnContainer v-if="home.counters" class="counter-container">
+          <Column v-for="(counter, index) in home.counters" :key="index">
+            <Counter :start-counter="startCounter" :data-val="counter.number" :val="counters[index]" :unit="counter.unit">
+              {{ counter.text }}
+            </Counter>
+          </Column>
+        </ColumnContainer> -->
+      </ContentArea>
+    </div>
   </div>
 </template>
 
@@ -44,9 +53,7 @@ export default {
   name: 'Introduction',
   components: {
     ContentArea: () => import('~/components/layout/ContentArea'),
-    ColumnContainer: () => import('~/components/layout/ColumnContainer'),
-    Column: () => import('~/components/layout/Column'),
-    Counter: () => import('~/components/content/Counter')
+    Video: () => import('~/components/content/Video')
   },
   mixins: [CounterMixin],
   props: {
@@ -60,10 +67,23 @@ export default {
       setResponsive,
       rand: 0,
       screen: null,
-      activeImage: 0
+      ready: false,
+      loaded: false,
+      activeImage: 0,
+      introVideoLoaded: false
     }
   },
   mounted () {
+    this.loaded = true
+    setTimeout(() => {
+      const introVideo = document.querySelector('.splash__video')
+      introVideo.play()
+      this.ready = true
+    }, 1800)
+    setTimeout(() => {
+      const introTitle = document.querySelector('.splash__title')
+      introTitle.classList.add('splash__title--finished')
+    }, 3000)
     this.screen = window.innerWidth > 766 ? 'desktop' : 'mobile'
     window.addEventListener('scroll', () => {
       const video = document.querySelectorAll('.intro video')
@@ -93,7 +113,7 @@ export default {
     }, 5000)
   },
   methods: {
-    loaded (e) {
+    load (e) {
       const path = e.path ? e.path[0] : e.srcElement || e.target
       setTimeout(() => {
         path.parentElement.classList.add('loaded')
@@ -106,46 +126,122 @@ export default {
       if (color) {
         intro.classList.add(`intro--${color}`)
       }
+    },
+    loadIntroVideo () {
+      this.introVideoLoaded = true
     }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-.intro
+.splash
+  min-height 100vh
+  background-color $tertiary
   position relative
   z-index 2
-  min-height 100vh
-  background-color transparent
-  transition 0.5s background-color $ease
+  display flex
+  align-items center
+  justify-content center
 
-  &--orange
-    background-color #E6DDD5
+  &.ready
+    cursor url('/cursor-play.png'), auto
 
-  &--green
-    background-color #DBDDCF
+  &__title
+    text-align center
+    font-size 112px
+    line-height 120px
+    max-width 800px
+    padding 0 20px
+    position relative
+    z-index 2
+    opacity 0
+    transform translateY(-20px)
+    transition all 1s linear
+    transition-delay 0.6s
 
-  &--blue
-    background-color #DBDCE6
+    @media (max-width $bp-md)
+      font-size 96px
+      line-height 104px
 
+    @media (max-width $bp-sm)
+      font-size 56px
+      line-height 62px
+
+    @media (max-width $bp-xs)
+      font-size 50px
+      line-height 56px
+
+    &--finished
+      opacity 0 !important
+
+      @media (max-width $bp-sm)
+        opacity 1 !important
+
+  &__introvideo.video,
+  &__video
+    position absolute
+    top 0
+    left 0
+    width 100%
+    height 100%
+    opacity 0
+    transition-delay 1.8s
+
+  &__introvideo.video
+    opacity 1
+    z-index 2
+
+.scrolldown-pos
+  width 100%
+  max-width 1164px
+  position absolute
+  bottom 40px
+  left 50%
+  margin-left -12px
+  transform translateY(-20px)
+  opacity 0
+  transition opacity 0.8s linear, transform 0.8s cubic-bezier(.78,2.37,.51,-0.48)
+  transition-delay 1s
+  z-index 1
+
+.scrolldown
+  transform rotateZ(180deg)
+
+.loaded
+  .splash__video
+    opacity 1
+
+  .splash__title
+    opacity 1
+    transform translateY(0px)
+
+  .scrolldown-pos
+    opacity 1
+    transform translateY(0px)
+
+.splash.ready.introVideoLoaded
+  cursor url('/cursor-pause.png'), auto
+
+.intro
   &__about
     font-size 72px
     line-height 78px
     letter-spacing -1.25px
-    max-width 1164px
-    margin 0 auto
-    padding 10vh 0 4vh
+    max-width 1200px
+    padding 132px 0 42px
 
     @media (max-width $bp-md)
       font-size 56px
       line-height 62px
+      padding 80px 0 0
 
     @media (max-width $bp-sm)
       font-size 40px
       line-height 46px
 
     @media (max-width $bp-xs)
-      padding 15vh 0 10vh
+      padding 30px 0 0
 
     a
       height 74px
@@ -189,19 +285,6 @@ export default {
 
     &--active.loaded
       opacity 1
-
-.scrolldown-pos
-  width 100%
-  max-width 1164px
-  margin 0 auto
-  position relative
-  bottom 24px
-
-  @media (max-width $bp-sm)
-    display none
-
-.scrolldown
-  transform rotateZ(180deg)
 
 .counter-container .column
   padding 20vh 0 10vh

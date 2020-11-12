@@ -6,7 +6,10 @@
     <div class="intro-container">
       <Introduction :home="home" />
     </div>
-    <Video v-if="home && home.introvideo" :video="home.introvideo" fullscreen />
+    <ContentArea v-if="home" overflow>
+      <h2>Studio news</h2>
+      <StudioNews :home="home" />
+    </ContentArea>
     <ContentArea v-if="home" overflow>
       <h2>Work</h2>
       <WorkPortfolio home />
@@ -34,10 +37,6 @@
         </template>
       </ContentSwitcher>
     </ContentArea>
-    <ContentArea v-if="home" class="journal">
-      <h2>Journal</h2>
-    </ContentArea>
-    <Slider v-if="home && articles.length" :items="articles.slice(0, 10)" />
   </div>
 </template>
 
@@ -51,7 +50,7 @@ export default {
     Introduction: () => import('~/components/content/Introduction'),
     WorkPortfolio: () => import('~/components/content/WorkPortfolio'),
     ContentSwitcher: () => import('~/components/content/ContentSwitcher'),
-    Slider: () => import('~/components/content/Slider'),
+    StudioNews: () => import('~/components/content/StudioNews'),
     Video: () => import('~/components/content/Video')
   },
   props: {
@@ -102,11 +101,10 @@ export default {
 
   @media (max-width: $bp-sm)
     margin 0
-    bottom -100px
+    bottom -187px
 
   @media (max-width $bp-xs)
     width 250px
-    bottom -74px
 
 .journal
   padding 4vh 0

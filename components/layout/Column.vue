@@ -30,7 +30,7 @@ export default {
   flex-wrap wrap
   flex-basis 0
   flex-grow 1
-  padding 3vh 4.1667% 20vh
+  padding 3vh 58px 20vh
   align-self flex-start
   align-items flex-start
 

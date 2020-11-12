@@ -3,7 +3,7 @@
     <div class="footerLinks__inner">
       <img
         class="totop"
-        :src="`${ careers ? '/totop-white.svg' : '/totop.svg'}`"
+        :src="`${ careers || inverted ? '/totop-white.svg' : '/totop.svg'}`"
         alt="Back to top"
         title="Back to top"
         :class="{ 'totop--active': totop }"
@@ -36,6 +36,10 @@ export default {
       default: false
     },
     careers: {
+      type: Boolean,
+      default: false
+    },
+    inverted: {
       type: Boolean,
       default: false
     }

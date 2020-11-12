@@ -16,6 +16,7 @@ query Work {
             mime
             alternativeText
           }
+          thumbnailPosition
           banner {
             id
             url

@@ -1,7 +1,7 @@
 <template>
   <div class="case">
     <Banner v-if="caseStudy.banner" class="case__banner" :video="desktop && caseStudy.banner.mime.includes('video')" :background="(caseStudy.banner && caseStudy.banner.mime.includes('video') && desktop && caseStudy.banner.url) || (caseStudy.banner && !caseStudy.banner.mime.includes('video') && caseStudy.banner.url) || (caseStudy.mobilebannger && caseStudy.mobilebannger.url)" :black="caseStudy.inverttext">
-      <h1>{{ caseStudy.title }}</h1>
+      <h1 :class="{ 'header-top': caseStudy.textposition === 'Top', 'header-center': caseStudy.textposition === 'Middle', 'header-bottom': caseStudy.textposition === 'Bottom'}">{{ caseStudy.title }}</h1>
       <div v-if="caseStudy.media && (caseStudy.media.image || caseStudy.media.qvideo)" class="banner__item banner__item--5">
         <div class="banner__media">
           <div v-if="caseStudy.media && caseStudy.media.image" class="banner__image" :style="`background-image:url(${caseStudy.media.image.url})`" />
@@ -13,7 +13,7 @@
       <p class="large" :class="{ 'large--no-gap': !caseStudy.media || (caseStudy.media && !caseStudy.media.image && !caseStudy.media.qvideo)}">
         {{ caseStudy.introduction }}
       </p>
-      <ColumnContainer no-padding>
+      <ColumnContainer no-padding class="case__intro">
         <Column>
           <div class="nomargin">
             <b>Client</b>
@@ -29,7 +29,7 @@
       </ColumnContainer>
     </ContentArea>
     <div v-if="caseStudy.modules" class="casestudy">
-      <div v-for="(section, index) in caseStudy.modules" :key="`section-${index}`" class="fade fadeIn">
+      <div v-for="(section, index) in caseStudy.modules" :key="`section-${index}`" class="fade fadeIn" :class="{ 'bg-blue': bgBlue(section), 'bg-green': bgGreen(section) }">
         <template v-if="section.__typename === 'ComponentModulesVideo'">
           <div v-if="section.fullscreen" class="casestudy__item casestudy__item--3">
             <div class="casestudy__media">
@@ -50,7 +50,7 @@
                       <source :src="section.image.url" type="video/mp4">
                     </video>
                     <Video v-else-if="section.qvideo" :video="section.qvideo" />
-                    <div v-if="section.content && section.content != '<p><br></p>'" v-html="section.content" />
+                    <div v-if="section.content && section.content != '<p><br></p>'" v-html="section.content.replaceAll('<p><br></p>','')" />
                   </div>
                 </div>
               </div>
@@ -59,7 +59,7 @@
         </template>
         <div v-else-if="section.__typename === 'ComponentModules1X1'">
           <ColumnContainer>
-            <Column v-if="section.column1image || section.column1video || (section.column1content && section.column1content != '<p><br></p>')">
+            <Column>
               <div class="casestudy__module">
                 <div class="casestudy__item">
                   <div class="casestudy__media">
@@ -73,7 +73,7 @@
                 </div>
               </div>
             </Column>
-            <Column v-if="section.column2image || section.column2video || (section.column2content && section.column2content != '<p><br></p>')">
+            <Column>
               <div class="casestudy__module">
                 <div class="casestudy__item">
                   <div class="casestudy__media">
@@ -90,26 +90,8 @@
           </ColumnContainer>
         </div>
         <div v-else-if="section.__typename === 'ComponentModules1X1Textleft'" class="casestudy__module casestudy__module--1">
-          <ColumnContainer center>
-            <Column v-if="section.content && section.content != '<p><br></p>'" wide>
-              <div class="casestudy__item">
-                <div v-html="section.content" />
-              </div>
-            </Column>
-            <Column>
-              <div class="casestudy__item">
-                <div class="casestudy__media">
-                  <img v-if="section.image && !section.image.mime.includes('video')" :src="setResponsive(section.image.url)" :alt="section.image.alternativeText">
-                  <video v-else-if="section.image && section.image.mime.includes('video')" class="looped" loop muted>
-                    <source :src="section.image.url" type="video/mp4">
-                  </video>
-                  <Video v-else-if="section.qvideo" :video="section.qvideo" />
-                </div>
-              </div>
-            </Column>
-          </ColumnContainer>
-          <ColumnContainer center>
-            <Column>
+          <ColumnContainer>
+            <Column v-if="section.mainimage || section.mainvideo">
               <div class="casestudy__item casestudy__item--1">
                 <div class="casestudy__media">
                   <img v-if="section.mainimage && !section.mainimage.mime.includes('video')" :src="setResponsive(section.mainimage.url)" :alt="section.mainimage.alternativeText">
@@ -121,11 +103,29 @@
               </div>
             </Column>
           </ColumnContainer>
+          <ColumnContainer center>
+            <Column v-if="section.content && section.content != '<p><br></p>'" :wide="section.contentposition === 'float'" :class="`column--${section.contentposition}`">
+              <div class="casestudy__item">
+                <div v-html="section.content" />
+              </div>
+            </Column>
+            <Column :wide-w2="section.contentposition !== 'float'" class="column--top">
+              <div class="casestudy__item">
+                <div class="casestudy__media">
+                  <img v-if="section.image && !section.image.mime.includes('video')" :src="setResponsive(section.image.url)" :alt="section.image.alternativeText">
+                  <video v-else-if="section.image && section.image.mime.includes('video')" class="looped" loop muted>
+                    <source :src="section.image.url" type="video/mp4">
+                  </video>
+                  <Video v-else-if="section.qvideo" :video="section.qvideo" />
+                </div>
+              </div>
+            </Column>
+          </ColumnContainer>
         </div>
         <div v-else-if="section.__typename === 'ComponentModules1X1Textright'" class="casestudy__module casestudy__module--1">
           <ColumnContainer center>
-            <Column wide-w2>
-              <div class="casestudy__item">
+            <Column v-if="section.mainimage || section.mainvideo">
+              <div class="casestudy__item casestudy__item--2">
                 <div class="casestudy__media">
                   <img v-if="section.mainimage && !section.mainimage.mime.includes('video')" :src="setResponsive(section.mainimage.url)" :alt="section.mainimage.alternativeText">
                   <video v-else-if="section.mainimage && section.mainimage.mime.includes('video')" class="looped" loop muted>
@@ -135,15 +135,10 @@
                 </div>
               </div>
             </Column>
-            <Column v-if="section.content && section.content != '<p><br></p>'">
-              <div class="casestudy__item">
-                <div v-html="section.content" />
-              </div>
-            </Column>
           </ColumnContainer>
           <ColumnContainer center>
-            <Column>
-              <div class="casestudy__item casestudy__item--2">
+            <Column wide-w2>
+              <div class="casestudy__item">
                 <div class="casestudy__media">
                   <img v-if="section.image && !section.image.mime.includes('video')" :src="setResponsive(section.image.url)" :alt="section.image.alternativeText">
                   <video v-else-if="section.image && section.image.mime.includes('video')" class="looped" loop muted>
@@ -151,6 +146,11 @@
                   </video>
                   <Video v-else-if="section.qvideo" :video="section.qvideo" />
                 </div>
+              </div>
+            </Column>
+            <Column v-if="section.content && section.content != '<p><br></p>'" :class="`column--${section.contentposition2}`">
+              <div class="casestudy__item">
+                <div v-html="section.content" />
               </div>
             </Column>
           </ColumnContainer>
@@ -175,6 +175,10 @@
         </div>
       </div>
     </div>
+    <ContentArea>
+      <h2>Related work</h2>
+    </ContentArea>
+    <Slider v-if="relatedWork" :items="relatedWork" :see-more="true" />
     <GetInTouch footer-links />
     <Banner
       v-if="caseStudy.case_study"
@@ -211,10 +215,15 @@ export default {
     caseStudy: {
       type: Object,
       default: () => {}
+    },
+    caseStudies: {
+      type: Array,
+      default: () => []
     }
   },
   data () {
     return {
+      relatedWork: null,
       setResponsive
     }
   },
@@ -223,7 +232,15 @@ export default {
       return window.innerWidth > 1023
     }
   },
+  watch: {
+    caseStudies () {
+      this.relatedWork = [...this.caseStudy.relatedwork, ...this.caseStudies.map(m => m.case_study).filter(m => m.type === this.caseStudy.type && m.id !== this.caseStudy.id)].splice(0, 5)
+    }
+  },
   mounted () {
+    if (this.caseStudies) {
+      this.relatedWork = [...this.caseStudy.relatedwork, ...this.caseStudies.map(m => m.case_study).filter(m => m.type === this.caseStudy.type && m.id !== this.caseStudy.id)].splice(0, 5)
+    }
     this.$store.commit('header/setDefaultColor', this.caseStudy.inverttext ? 'black' : 'white')
     setTimeout(() => {
       this.$store.commit('header/setDefaultColor', this.caseStudy.inverttext ? 'black' : 'white')
@@ -241,6 +258,32 @@ export default {
         })
       }
     })
+  },
+  methods: {
+    bgBlue (section) {
+      // This code is awful, but done in a rush. Refactor
+      if ((section.backgroundcolour && section.backgroundcolour === 'blue') ||
+      (section.backgroundcolour2 && section.backgroundcolour2 === 'blue') ||
+      (section.backgroundcolour3 && section.backgroundcolour3 === 'blue') ||
+      (section.backgroundcolour4 && section.backgroundcolour4 === 'blue') ||
+      (section.backgroundcolour5 && section.backgroundcolour5 === 'blue') ||
+      (section.backgroundcolour6 && section.backgroundcolour6 === 'blue')) {
+        return true
+      }
+      return false
+    },
+    bgGreen (section) {
+      // This code is awful, but done in a rush. Refactor
+      if ((section.backgroundcolour && section.backgroundcolour === 'green') ||
+      (section.backgroundcolour2 && section.backgroundcolour2 === 'green') ||
+      (section.backgroundcolour3 && section.backgroundcolour3 === 'green') ||
+      (section.backgroundcolour4 && section.backgroundcolour4 === 'green') ||
+      (section.backgroundcolour5 && section.backgroundcolour5 === 'green') ||
+      (section.backgroundcolour6 && section.backgroundcolour6 === 'green')) {
+        return true
+      }
+      return false
+    }
   }
 }
 </script>
@@ -252,6 +295,17 @@ export default {
 .case__banner h1
   font-size 112px
   line-height 120px
+  margin 0
+
+  &.header-top
+    top 10%
+
+  &.header-center
+    top 40%
+
+  &.header-bottom
+    top auto
+    bottom 10%
 
 >>> .banner__inner
   height 92vh
@@ -261,8 +315,13 @@ export default {
     h1
       font-size 56px
       line-height 64px
-      top 20vh
       letter-spacing 0
+
+      &.header-top
+        top 15%
+
+      &.header-bottom
+        bottom 80px
 
     @media (max-width $bp-sm)
       .banner__next
@@ -276,6 +335,12 @@ export default {
     h1
       font-size 48px
       line-height 56px
+
+      &.header-top
+        top 15%
+
+      &.header-bottom
+        bottom 10px
 
 .large
   margin 30vh auto 5vh
@@ -324,7 +389,6 @@ export default {
 
     &--1
       .casestudy__media
-        margin 0 auto
         max-width 880px
 
     &--2
@@ -336,14 +400,20 @@ export default {
       padding 3vh 0
 
   .columns
-    padding 0 58px
+    padding 0
 
     @media (max-width $bp-sm)
       padding 0 18px
 
   .column
-    padding 5vh 4.1667%
+    padding 5vh 58px
 
     @media (max-width $bp-sm)
       padding 3vh 0
+
+// .bg-green
+//   background-color $tertiary
+
+// .bg-blue
+//   background-color #DBDCE6
 </style>

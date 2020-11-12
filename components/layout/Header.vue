@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="header" :class="{ 'header--open': menu, 'header--scrolled': scrolled }">
+    <div class="header" :class="{ 'header--open': menu, 'header--scrolled': scrolled, 'header--loaded': loaded }">
       <ContentArea class="header__container">
         <div class="header__inner">
           <div class="header__logo">
@@ -32,7 +32,8 @@ export default {
     return {
       menu: false,
       scrolled: false,
-      logoOnScroll: false
+      logoOnScroll: false,
+      loaded: false
     }
   },
   computed: {
@@ -47,6 +48,7 @@ export default {
     let oldScrollVal = window.scrollY
     let override = this.$store.state.header.defaultColor
     const header = document.querySelector('.header')
+    this.loaded = true
     window.addEventListener('mousemove', (e) => {
       if (e.clientY < 100) {
         header.classList.remove('header--hide')
@@ -117,24 +119,36 @@ export default {
   top 4vh
   left 0
   width 100%
-  transition transform 0.7s $ease
+  transition all 0.7s linear
+  transform translateY(-10px)
+  opacity 0
+
+  &--loaded
+    transform translateY(0px)
+    opacity 1
 
   &:before
     content ''
     opacity 0
-    transition opacity 0.5s $ease
+    transition opacity 0.5s linear
     width 100%
-    height 12vh
+    height 200px
     position absolute
     top -4vh
     left 0
-    background linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 95%, rgba(0,0,0,0) 100%)
+    background linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 95%, rgba(0,0,0,0) 100%)
+
+    @media (max-width $bp-md)
+      height 150px
+
+    @media (max-width $bp-xs)
+      height 100px
 
   &--scrolled:before
     opacity 1
 
   &--hide
-    transform translateY(-150px)
+    transform translateY(-200px)
 
   &__inner
     display flex

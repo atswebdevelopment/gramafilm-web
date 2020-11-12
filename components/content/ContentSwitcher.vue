@@ -62,9 +62,7 @@ export default {
 
 <style lang="stylus" scoped>
 .contentSwitcher >>> .column
-  padding-top 5vh
-  padding-left 0
-  padding-right 0
+  padding 5vh 0 0
 
 >>> .contentSwitcher
   &__tabs--center

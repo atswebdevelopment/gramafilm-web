@@ -28,7 +28,7 @@ export default {
 .columns
   display flex
   flex-direction row
-  max-width 1440px
+  max-width 1800px
   margin 0 auto
   box-sizing border-box
 
@@ -39,15 +39,19 @@ export default {
     >>> .column
       align-self center
 
+  >>> .column--bottom
+    align-self flex-end
+
+  >>> .column--top
+    align-self flex-start
+
+  >>> .column--float
+    margin-top 144px
+
+    @media (max-width: $bp-sm)
+      margin-top 0
+
   &--no-padding
     >>> .column
       padding-bottom 3vh
-//   @media (max-width $breakpoint-sm)
-//     display block
-// .collapse-tablet
-//   @media (max-width $breakpoint-lg)
-//     display block
-// .collapse-mobile
-//   @media (max-width $breakpoint-sm)
-//     display block
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="window">
     <div class="window--front">
-      <div class="page" :class="{ 'page--orange': partnersInFocus }">
+      <div class="page" :class="{ 'page--tertiary': partnersInFocus }">
         <div class="home-container">
           <Home :home="home" />
         </div>
@@ -54,11 +54,8 @@ export default {
 
       const partners = document.querySelector('.partners')
       if (partners) {
-        const partnersHeight = partners.offsetHeight
         const partnersTop = partners.getBoundingClientRect().top
-        if (partnersTop + (partnersHeight / 2) < 0) {
-          this.partnersInFocus = false
-        } else if (partnersTop - (window.innerHeight / 2) < 0) {
+        if (partnersTop - (window.innerHeight / 2) < 0) {
           this.partnersInFocus = true
         } else {
           this.partnersInFocus = false
@@ -85,6 +82,6 @@ export default {
   padding 0
   transition 1.4s background-color $ease
 
-  &--orange
-    background $orange
+  &--tertiary
+    background $tertiary
 </style>

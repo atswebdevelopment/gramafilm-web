@@ -1,6 +1,6 @@
 <template>
-  <div class="page">
-    <CaseStudy v-if="caseStudy && caseStudy.id && caseStudy.published" :case-study="caseStudy" />
+  <div class="page" :class="{ 'page--tertiary': pageGreenInFocus, 'page--blue': pageBlueInFocus }">
+    <CaseStudy v-if="caseStudy && caseStudy.id && caseStudy.published" :case-study="caseStudy" :case-studies="caseStudies" />
     <div v-else-if="caseStudy && caseStudy.id" />
     <Loader v-else />
   </div>
@@ -8,6 +8,7 @@
 
 <script>
 import caseQuery from '~/apollo/queries/case/case.gql'
+import casesQuery from '~/apollo/queries/work/work.gql'
 export default {
   components: {
     CaseStudy: () => import('~/components/pages/CaseStudy'),
@@ -15,8 +16,30 @@ export default {
   },
   data () {
     return {
-      caseStudy: {}
+      caseStudy: {},
+      caseStudies: [],
+      pageGreenInFocus: false,
+      pageBlueInFocus: false
     }
+  },
+  mounted () {
+    this.$apollo.query({ query: casesQuery }).then(({ data }) => {
+      this.caseStudies = [...data.work.casestudies]
+    })
+    window.addEventListener('scroll', () => {
+      const bgBlue = document.querySelectorAll('.bg-blue')
+      if (bgBlue) {
+        let onBlue = false
+        bgBlue.forEach((e, i) => {
+          const top = e.getBoundingClientRect().top
+          const height = e.offsetHeight
+          if (top - (window.innerHeight / 2) < 0 && ((top + height) - (window.innerHeight / 2) > 0)) {
+            onBlue = true
+          }
+        })
+        this.pageBlueInFocus = onBlue
+      }
+    })
   },
   apollo: {
     caseStudy: {
@@ -47,4 +70,11 @@ export default {
 .page
   padding 0
   background $white
+  transition 1.4s background-color $ease
+
+  &--tertiary
+    background $tertiary
+
+  &--blue
+    background #DBDCE6
 </style>

@@ -1,8 +1,8 @@
 <template>
   <client-only>
     <div v-if="video" :ref="`video-${identifier}`" class="video" :class="[`video-${identifier}`, fullscreen ? 'video--fullscreen' : '']">
-      <div v-if="viewportLoaded" v-video-player:myVideoPlayer="playerOptions" class="video-player-box vjs-theme-sea" @play="onPlayerPlay($event)" />
-      <div v-if="video.preview && video.preview.url" class="video__preview">
+      <div v-if="viewportLoaded" v-video-player:myVideoPlayer="playerOptions" class="video-js vjs-default-skin" @play="onPlayerPlay($event)" />
+      <div v-if="video.preview && video.preview.url && !play" class="video__preview">
         <img v-if="!video.preview.mime.includes('video')" :src="video.preview.url">
         <video v-else-if="video.preview.mime.includes('video')" class="looped" loop muted>
           <source :src="video.preview.url" type="video/mp4">
@@ -21,6 +21,10 @@ export default {
       default: () => {}
     },
     fullscreen: {
+      type: Boolean,
+      default: false
+    },
+    play: {
       type: Boolean,
       default: false
     }
@@ -65,6 +69,7 @@ export default {
       if (videoPreview) {
         videoPreview.parentNode.removeChild(videoPreview)
       }
+      this.playerOptions.autoplay = 'play'
       if (!this.loaded && this.playerOptions.sources && this.playerOptions.sources.length > 1) {
         const qualityList = document.querySelector('.video-' + this.identifier + ' .vjs-spacer')
         qualityList.innerHTML = ''
@@ -129,6 +134,12 @@ export default {
         this.loadVideo()
       })
       this.loadVideo()
+      if (this.play) {
+        setTimeout(() => {
+          const video2 = document.querySelector('.video-' + this.identifier + ' video')
+          video2.play()
+        }, 100)
+      }
     },
     loadVideo () {
       const video = document.querySelector('.video-' + this.identifier)
@@ -161,6 +172,7 @@ export default {
     left 0
     width 100%
     height 100%
+    outline none
 
     @media (max-width $bp-sm)
       width 100% !important

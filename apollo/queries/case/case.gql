@@ -4,6 +4,7 @@ query CaseStudies ($url: String!) {
     url
     title
     inverttext
+    textposition
     banner {
       id
       url
@@ -18,6 +19,7 @@ query CaseStudies ($url: String!) {
       url
       mime
     }
+    thumbnailPosition
     media {
       ... on ComponentContentMedia {
         id
@@ -44,6 +46,17 @@ query CaseStudies ($url: String!) {
     content
     client
     whatwedid
+    relatedwork {
+      id
+      url
+      title
+      thumbnail {
+        id
+        url
+        alternativeText
+      }
+      type
+    }
     case_study {
       id
       title
@@ -75,6 +88,7 @@ query CaseStudies ($url: String!) {
           }
         }
         fullscreen
+        backgroundcolour
       }
       ... on ComponentModules1X1Textleft {
         id
@@ -112,6 +126,8 @@ query CaseStudies ($url: String!) {
           }
         }
         content
+        contentposition
+        backgroundcolour2
       }
       ... on ComponentModules1X1Textright {
         id
@@ -150,6 +166,8 @@ query CaseStudies ($url: String!) {
           }
         }
         content
+        contentposition2
+        backgroundcolour3
       }
       ... on ComponentModules1X1 {
         id
@@ -189,11 +207,13 @@ query CaseStudies ($url: String!) {
             mime
           }
         }
+        backgroundcolour4
       }
       ... on ComponentModulesQuote {
         id
         quote
         citation
+        backgroundcolour5
       }
       ... on ComponentModulesGallery {
         id
@@ -204,6 +224,7 @@ query CaseStudies ($url: String!) {
           alternativeText
           caption
         }
+        backgroundcolour6
       }
     }
     published
