@@ -23,7 +23,7 @@
           {{ item.title }}
         </nuxt-link>
       </div>
-      <FooterLinks />
+      <FooterLinks :inverted="inverted" />
     </ContentArea>
   </div>
 </template>
@@ -43,6 +43,10 @@ export default {
     show: {
       type: Boolean,
       default: false
+    },
+    inverted: {
+      type: Boolean,
+      default: true
     }
   },
   data () {
@@ -95,8 +99,10 @@ export default {
       })
       if (this.menu.navigation[i].inverttext) {
         navigation.classList.add('navigation--inverted')
+        this.inverted = false
       } else {
         navigation.classList.remove('navigation--inverted')
+        this.inverted = true
       }
       this.$store.commit('header/setColor', this.menu.navigation[i].inverttext ? 'black' : 'white')
       navigation.querySelectorAll('.backgrounds__background')[i].classList.add('backgrounds__background--active')

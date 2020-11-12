@@ -119,16 +119,18 @@ export default {
   top 4vh
   left 0
   width 100%
-  transition all 0.7s $ease
+  transition all 0.7s linear
+  transform translateY(-10px)
   opacity 0
 
   &--loaded
+    transform translateY(0px)
     opacity 1
 
   &:before
     content ''
     opacity 0
-    transition opacity 0.5s $ease
+    transition opacity 0.5s linear
     width 100%
     height 200px
     position absolute

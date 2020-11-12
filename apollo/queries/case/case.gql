@@ -88,6 +88,7 @@ query CaseStudies ($url: String!) {
           }
         }
         fullscreen
+        backgroundcolour
       }
       ... on ComponentModules1X1Textleft {
         id
@@ -125,6 +126,8 @@ query CaseStudies ($url: String!) {
           }
         }
         content
+        contentposition
+        backgroundcolour2
       }
       ... on ComponentModules1X1Textright {
         id
@@ -163,6 +166,8 @@ query CaseStudies ($url: String!) {
           }
         }
         content
+        contentposition2
+        backgroundcolour3
       }
       ... on ComponentModules1X1 {
         id
@@ -202,11 +207,13 @@ query CaseStudies ($url: String!) {
             mime
           }
         }
+        backgroundcolour4
       }
       ... on ComponentModulesQuote {
         id
         quote
         citation
+        backgroundcolour5
       }
       ... on ComponentModulesGallery {
         id
@@ -217,6 +224,7 @@ query CaseStudies ($url: String!) {
           alternativeText
           caption
         }
+        backgroundcolour6
       }
     }
     published

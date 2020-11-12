@@ -17,7 +17,7 @@
   height: 3px;
   overflow: hidden;
   top: 8px;*/
-  background-image: url(/DesktopModules/Gramafilm.Modules.Player/Resources/images/small-play-off.svg);
+  background-image: url('/videoplayer/small-play-off.svg');
   background-repeat: no-repeat;
   background-color: transparent !important;
   border: none !important;

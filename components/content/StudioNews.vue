@@ -84,6 +84,9 @@ export default {
   display flex
   margin-top 96px
 
+  @media (max-width $bp-md)
+    display block
+
   &__column
     flex-grow 1
     flex-basis 0
@@ -95,10 +98,30 @@ export default {
     width calc(50% - 36px)
     vertical-align top
 
+    @media (max-width $bp-sm)
+      width 100%
+      display block
+
   &__column--left
     .studio__item
       width 100%
       margin-left 0
+
+  &__column--right
+    @media (max-width $bp-md)
+      width calc(100% + 40px)
+      margin-left -20px
+
+    @media (max-width $bp-sm)
+      width 100%
+      margin 0
+
+    .studio__item
+      @media (max-width $bp-md)
+        margin 0 16px 70px
+
+      @media (max-width $bp-sm)
+        margin 0 0 40px
 
   &__image
     width 100%

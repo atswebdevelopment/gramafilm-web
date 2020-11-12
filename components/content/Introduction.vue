@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="splash" :class="{ 'loaded': loaded }">
+    <div class="splash" :class="{ 'loaded': loaded, 'ready': ready, 'introVideoLoaded': introVideoLoaded }" @click="loadIntroVideo()">
       <div class="splash__title">Producing the extraordinary</div>
       <div class="scrolldown-pos">
         <img
@@ -10,9 +10,10 @@
           title="Scroll down"
         >
       </div>
-      <video class="splash__video" loop muted>
-        <source src="home-video-2.mp4" type="video/mp4">
+      <video v-if="!introVideoLoaded" class="splash__video" loop muted>
+        <source src="https://res.cloudinary.com/gramafilm/video/upload/v1595529956/Gramafilm_Production_Content_03a1fce00d.mp4" type="video/mp4">
       </video>
+      <Video v-if="home && home.introvideo && introVideoLoaded" :video="home.introvideo" play fullscreen class="splash__introvideo" />
     </div>
     <div class="intro">
       <ContentArea>
@@ -51,7 +52,8 @@ import { setResponsive } from '~/helpers/cdn'
 export default {
   name: 'Introduction',
   components: {
-    ContentArea: () => import('~/components/layout/ContentArea')
+    ContentArea: () => import('~/components/layout/ContentArea'),
+    Video: () => import('~/components/content/Video')
   },
   mixins: [CounterMixin],
   props: {
@@ -65,12 +67,23 @@ export default {
       setResponsive,
       rand: 0,
       screen: null,
+      ready: false,
       loaded: false,
-      activeImage: 0
+      activeImage: 0,
+      introVideoLoaded: false
     }
   },
   mounted () {
     this.loaded = true
+    setTimeout(() => {
+      const introVideo = document.querySelector('.splash__video')
+      introVideo.play()
+      this.ready = true
+    }, 1800)
+    setTimeout(() => {
+      const introTitle = document.querySelector('.splash__title')
+      introTitle.classList.add('splash__title--finished')
+    }, 3000)
     this.screen = window.innerWidth > 766 ? 'desktop' : 'mobile'
     window.addEventListener('scroll', () => {
       const video = document.querySelectorAll('.intro video')
@@ -113,6 +126,9 @@ export default {
       if (color) {
         intro.classList.add(`intro--${color}`)
       }
+    },
+    loadIntroVideo () {
+      this.introVideoLoaded = true
     }
   }
 }
@@ -128,6 +144,9 @@ export default {
   align-items center
   justify-content center
 
+  &.ready
+    cursor url('/cursor-play.png'), auto
+
   &__title
     text-align center
     font-size 112px
@@ -137,9 +156,29 @@ export default {
     position relative
     z-index 2
     opacity 0
-    transition opacity 2s $ease
-    transition-delay 1s
+    transform translateY(-20px)
+    transition all 1s linear
+    transition-delay 0.6s
 
+    @media (max-width $bp-md)
+      font-size 96px
+      line-height 104px
+
+    @media (max-width $bp-sm)
+      font-size 56px
+      line-height 62px
+
+    @media (max-width $bp-xs)
+      font-size 50px
+      line-height 56px
+
+    &--finished
+      opacity 0 !important
+
+      @media (max-width $bp-sm)
+        opacity 1 !important
+
+  &__introvideo.video,
   &__video
     position absolute
     top 0
@@ -147,6 +186,11 @@ export default {
     width 100%
     height 100%
     opacity 0
+    transition-delay 1.8s
+
+  &__introvideo.video
+    opacity 1
+    z-index 2
 
 .scrolldown-pos
   width 100%
@@ -155,22 +199,29 @@ export default {
   bottom 40px
   left 50%
   margin-left -12px
+  transform translateY(-20px)
   opacity 0
-  transition opacity 2s $ease
-  transition-delay 3s
-
-  @media (max-width $bp-sm)
-    display none
+  transition opacity 0.8s linear, transform 0.8s cubic-bezier(.78,2.37,.51,-0.48)
+  transition-delay 1s
+  z-index 1
 
 .scrolldown
   transform rotateZ(180deg)
 
 .loaded
+  .splash__video
+    opacity 1
+
   .splash__title
     opacity 1
+    transform translateY(0px)
 
   .scrolldown-pos
     opacity 1
+    transform translateY(0px)
+
+.splash.ready.introVideoLoaded
+  cursor url('/cursor-pause.png'), auto
 
 .intro
   &__about
@@ -183,13 +234,14 @@ export default {
     @media (max-width $bp-md)
       font-size 56px
       line-height 62px
+      padding 80px 0 0
 
     @media (max-width $bp-sm)
       font-size 40px
       line-height 46px
 
     @media (max-width $bp-xs)
-      padding 15vh 0 10vh
+      padding 30px 0 0
 
     a
       height 74px

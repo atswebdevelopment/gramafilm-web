@@ -213,9 +213,10 @@ export default {
 
   &__link
     font-size 56px
-    width 382px
+    width 650px
     line-height 64px
     text-align center
+    margin 0 auto
 
     @media (max-width: $bp-sm)
       margin 100px auto 200px
