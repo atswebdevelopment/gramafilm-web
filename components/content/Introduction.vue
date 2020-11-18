@@ -11,7 +11,7 @@
         >
       </div>
       <video v-if="!introVideoLoaded" class="splash__video" loop muted>
-        <source src="https://res.cloudinary.com/gramafilm/video/upload/v1595529956/Gramafilm_Production_Content_03a1fce00d.mp4" type="video/mp4">
+        <source src="https://player.vimeo.com/external/480858453.hd.mp4?s=550ba27914dd2cd96eff1865bd10362bdc7aeca2&profile_id=175" type="video/mp4">
       </video>
       <Video v-if="home && home.introvideo && introVideoLoaded" :video="home.introvideo" play fullscreen class="splash__introvideo" />
     </div>
