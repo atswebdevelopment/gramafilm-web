@@ -7,13 +7,13 @@
       <Introduction :home="home" />
     </div>
     <ContentArea v-if="home" overflow>
-      <h2>Studio news</h2>
-      <StudioNews :home="home" />
-    </ContentArea>
-    <ContentArea v-if="home" overflow>
       <h2>Work</h2>
       <WorkPortfolio home />
       <img no-lazy-load class="logo-circle" src="/logo-circle.svg" alt="">
+    </ContentArea>
+    <ContentArea v-if="home" overflow>
+      <h2>Studio news</h2>
+      <StudioNews :home="home" />
     </ContentArea>
     <ContentArea v-if="home && home.partners" class="partners" overflow>
       <h2><b>Partners</b></h2>
