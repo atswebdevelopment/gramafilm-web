@@ -91,9 +91,6 @@ export default {
     gzip: true,
     exclude: ['/secret', '/admin/**']
   },
-  serverMiddleware: [
-    '~/servermiddleware/seo.js'
-  ],
   styleResources: {
     stylus: [
       '~assets/css/variables.styl'
