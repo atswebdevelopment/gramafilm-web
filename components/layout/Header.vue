@@ -46,7 +46,6 @@ export default {
   },
   mounted () {
     let oldScrollVal = window.scrollY
-    let override = this.$store.state.header.defaultColor
     const header = document.querySelector('.header')
     this.loaded = true
     window.addEventListener('mousemove', (e) => {
@@ -68,14 +67,11 @@ export default {
             this.scrolled = true
             if (this.headerColor === 'black') {
               this.$store.commit('header/setColor', 'white')
-              override = this.$store.state.header.defaultColor
-              this.$store.commit('header/setDefaultColor', 'white')
             }
           }
         }, 500)
       } else {
         this.scrolled = false
-        this.$store.commit('header/setDefaultColor', override)
         this.$store.commit('header/setColor', this.$store.state.header.defaultColor)
       }
 
@@ -132,11 +128,11 @@ export default {
     opacity 0
     transition opacity 0.5s linear
     width 100%
-    height 200px
+    height 180px
     position absolute
     top -4vh
     left 0
-    background linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 95%, rgba(0,0,0,0) 100%)
+    background linear-gradient(180deg, rgba(119,119,119,0.5) 0%, rgba(37,38,44,0) 100%)
 
     @media (max-width $bp-md)
       height 150px

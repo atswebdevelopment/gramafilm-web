@@ -23,7 +23,7 @@
           {{ item.title }}
         </nuxt-link>
       </div>
-      <FooterLinks :inverted="inverted" />
+      <FooterLinks :inverted="footerLinksInverted" />
     </ContentArea>
   </div>
 </template>
@@ -51,7 +51,8 @@ export default {
   },
   data () {
     return {
-      activeIndex: null
+      activeIndex: null,
+      footerLinksInverted: null
     }
   },
   computed: {
@@ -78,6 +79,7 @@ export default {
   },
   mounted () {
     this.ready()
+    this.footerLinksInverted = this.inverted
   },
   methods: {
     setState (i, navigation) {
@@ -99,10 +101,10 @@ export default {
       })
       if (this.menu.navigation[i].inverttext) {
         navigation.classList.add('navigation--inverted')
-        this.inverted = false
+        this.footerLinksInverted = false
       } else {
         navigation.classList.remove('navigation--inverted')
-        this.inverted = true
+        this.footerLinksInverted = true
       }
       this.$store.commit('header/setColor', this.menu.navigation[i].inverttext ? 'black' : 'white')
       navigation.querySelectorAll('.backgrounds__background')[i].classList.add('backgrounds__background--active')
