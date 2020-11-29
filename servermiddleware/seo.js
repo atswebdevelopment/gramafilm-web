@@ -1,7 +1,7 @@
 const redirects = [
-  { "from": "http://da8ogl5div83k.cloudfront.net/home", "to": "/" },
-  { "from": "http://da8ogl5div83k.cloudfront.net/services", "to": "/about" },
-  { "from": "/about-us", "to": "/about" },
+  { "from": "https://da8ogl5div83k.cloudfront.net/home", "to": "/" },
+  { "from": "https://da8ogl5div83k.cloudfront.net/services", "to": "/about" },
+  { "from": "da8ogl5div83k.cloudfront.net/about-us", "to": "/about" },
   { "from": "/journal", "to": "/journal" },
   { "from": "/activity-feed/my-profile", "to": "/" },
   { "from": "/activity-feed/friends", "to": "/" },
