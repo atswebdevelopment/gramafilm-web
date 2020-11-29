@@ -1,6 +1,6 @@
 const redirects = [
-  { "from": "/home", "to": "/" },
-  { "from": "/services", "to": "/about" },
+  { "from": "http://da8ogl5div83k.cloudfront.net/home", "to": "/" },
+  { "from": "http://da8ogl5div83k.cloudfront.net/services", "to": "/about" },
   { "from": "/about-us", "to": "/about" },
   { "from": "/journal", "to": "/journal" },
   { "from": "/activity-feed/my-profile", "to": "/" },
@@ -70,6 +70,7 @@ const redirects = [
 
 export default (req, res, next) => {
   const redirect = redirects.find(r => r.from === req.url)
+  console.log(req.url, redirect)
   if (redirect) {
     console.log(`redirect: ${redirect.from} => ${redirect.to}`)
     res.writeHead(301, { Location: redirect.to })
