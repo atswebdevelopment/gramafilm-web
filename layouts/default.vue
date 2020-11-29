@@ -8,6 +8,7 @@
 <script>
 import Header from '~/components/layout/Header'
 export default {
+  middleware: 'seo',
   components: {
     Header
   }
