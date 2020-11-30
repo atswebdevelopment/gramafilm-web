@@ -186,6 +186,9 @@ export default {
     left 0
     opacity 1
 
+    img
+      max-height none
+
   &--fullscreen
     height 100vh
     overflow hidden
