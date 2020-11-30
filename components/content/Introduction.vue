@@ -190,6 +190,14 @@ export default {
     opacity 0
     transition-delay 1.8s
 
+  &__video
+    width: 177.77777778vh; /* 100 * 16 / 9 */
+    min-width: 100%;
+    min-height: 56.25vw; /* 100 * 9 / 16 */
+    left: 50%; /* % of surrounding element */
+    top: 50%;
+    transform: translate(-50%, -50%); /* % of current element */
+
   &__introvideo.video
     opacity 1
     z-index 2
