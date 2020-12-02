@@ -18,7 +18,7 @@
     <div class="intro">
       <ContentArea>
         <p class="intro__about large" @mouseleave="setBg()">
-          We're a London-based creative production studio. We develop award-winning <nuxt-link class="link-orange" :to="{ name: 'film'}">Films</nuxt-link>, <nuxt-link class="link-green" :to="{ name: 'events'}">Events</nuxt-link> and <nuxt-link class="link-blue" :to="{ name: 'design'}">Design</nuxt-link>.
+          We're a London-based creative production studio. We develop award-winning Films, Events and Design.
         </p>
         <!-- <div v-if="home && home.images" class="intro__images">
           <template v-if="screen === 'mobile'">
