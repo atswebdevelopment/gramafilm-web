@@ -119,10 +119,6 @@ export default {
   transform translateY(-10px)
   opacity 0
 
-  &--loaded
-    transform translateY(0px)
-    opacity 1
-
   &:before
     content ''
     opacity 0
@@ -139,6 +135,13 @@ export default {
 
     @media (max-width $bp-xs)
       height 100px
+
+  &--open:before
+    content: none;
+
+  &--loaded
+    transform translateY(0px)
+    opacity 1
 
   &--scrolled:before
     opacity 1

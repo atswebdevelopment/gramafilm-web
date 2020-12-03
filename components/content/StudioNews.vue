@@ -1,11 +1,5 @@
 <template>
   <div v-if="home.studionews" class="studio">
-    <!-- <div v-for="(person, index) in people" :key="index" class="people__person fade fadeIn">
-      <div class="people__inner">
-        <img v-if="person.image" :src="person.image.url" :alt="person.image.alternativeText">
-        <div class="people__text" v-html="person.content" />
-      </div>
-    </div> -->
     <div class="studio__column studio__column--left">
       <div v-if="home.studionews[0]" class="studio__item">
         <img v-if="home.studionews[0].thumbnail" :src="home.studionews[0].thumbnail.url" :alt="home.studionews[0].thumbnail.alternativeText" class="studio__image-main">
@@ -63,7 +57,7 @@ export default {
         return 'green'
       case 'announcement':
         return 'blue'
-      case 'people':
+      case 'culture':
         return 'orange'
       default:
         return 'green'

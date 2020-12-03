@@ -1,7 +1,10 @@
 <template>
   <div>
     <div class="splash" :class="{ 'loaded': loaded, 'ready': ready, 'introVideoLoaded': introVideoLoaded }" @click="loadIntroVideo()">
-      <div class="splash__title">Producing the extraordinary</div>
+      <div class="splash__title">
+        We're a London-based creative production studio.<br>
+        We develop Films, Events and Design.
+      </div>
       <div class="scrolldown-pos">
         <img
           class="scrolldown"
@@ -81,8 +84,8 @@ export default {
       this.ready = true
     }, 1800)
     setTimeout(() => {
-      const introTitle = document.querySelector('.splash__title')
-      introTitle.classList.add('splash__title--finished')
+      // const introTitle = document.querySelector('.splash__title')
+      // introTitle.classList.add('splash__title--finished')
     }, 3000)
     this.screen = window.innerWidth > 766 ? 'desktop' : 'mobile'
     window.addEventListener('scroll', () => {
@@ -144,36 +147,41 @@ export default {
   z-index 2
   display flex
   align-items center
-  justify-content center
+  justify-content left
   overflow hidden
 
   &.ready
     cursor url('/cursor-play.png'), auto
 
   &__title
-    text-align center
-    font-size 112px
-    line-height 120px
-    max-width 800px
-    padding 0 20px
+    text-align left
+    font-size 56px
+    line-height 62px
+    padding 0 58px
     position relative
+    width calc(100% - 116px)
+    flex-shrink 0
+    max-width 1684px
+    margin 0 auto
     z-index 2
     opacity 0
     transform translateY(-20px)
-    transition all 1s linear
+    transition opacity 1s linear, transform 1s linear
     transition-delay 0.6s
 
     @media (max-width $bp-md)
-      font-size 96px
-      line-height 104px
-
-    @media (max-width $bp-sm)
-      font-size 56px
-      line-height 62px
-
-    @media (max-width $bp-xs)
       font-size 50px
       line-height 56px
+
+    @media (max-width $bp-sm)
+      padding 0 20px
+      width calc(100% - 40px)
+      font-size 40px
+      line-height 46px
+
+    @media (max-width $bp-xs)
+      font-size 34px
+      line-height 40px
 
     &--finished
       opacity 0 !important
