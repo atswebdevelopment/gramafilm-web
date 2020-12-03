@@ -1,0 +1,46 @@
+name: CI
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+
+    - name: Yarn Install
+      run: yarn install
+    - name: Generate the site
+      run: yarn generate
+      env:
+        SCHEMA_PATH: ${{ secrets.SCHEMA_PATH_PROD }}
+    - name: Run tests
+      run: yarn test
+      env:
+        SCHEMA_PATH: ${{ secrets.SCHEMA_PATH_PROD }}
+    - name: Deploy to S3
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --cache-control max-age=31536000 --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: ${{ secrets.AWS_STAGING_BUCKET_NAME }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: ${{ secrets.AWS_REGION }}
+        SOURCE_DIR: "dist"
+
+    # Invalidate Cloudfront (this action)
+    - name: Invalidate cache
+      uses: chetan/invalidate-cloudfront-action@master
+      env:
+        DISTRIBUTION: ${{ secrets.DISTRIBUTION_STAGING }}
+        PATHS: '/index.html /about/* /careers/* /clientarea/* /contact/* /design/* /events/* /film/* /journal/* /login/* /work/* /fonts/* /images/* /logo.png /logo.svg /logo-circle.svg'
+        AWS_REGION: ${{ secrets.AWS_REGION }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
