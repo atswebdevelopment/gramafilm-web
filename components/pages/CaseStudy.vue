@@ -343,13 +343,7 @@ export default {
         bottom 10px
 
 .large
-  padding 0px 58px
-  max-width 1800px
   margin 30vh auto 5vh
-
-  @media (max-width $bp-sm)
-    margin-top 20vh
-    padding 0
 
   &--no-gap
     margin-top 5vh
