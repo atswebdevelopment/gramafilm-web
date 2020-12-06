@@ -12,7 +12,7 @@
           <img v-if="home.studionews[0].thumbnail" :src="home.studionews[0].thumbnail.url" :alt="home.studionews[0].thumbnail.alternativeText" class="studio__image-main">
           <p><span :class="getClass(home.studionews[0].label)">{{ capitalize(home.studionews[0].label) }}</span> {{ home.studionews[0].description }}</p>
         </a>
-        <nuxt-link v-else class="arrowLink arrowLink--internal" :to="home.studionews[0].url">
+        <nuxt-link v-else :to="home.studionews[0].url">
           <img v-if="home.studionews[0].thumbnail" :src="home.studionews[0].thumbnail.url" :alt="home.studionews[0].thumbnail.alternativeText" class="studio__image-main">
           <p><span :class="getClass(home.studionews[0].label)">{{ capitalize(home.studionews[0].label) }}</span> {{ home.studionews[0].description }}</p>
         </nuxt-link>
@@ -43,7 +43,7 @@
           <div v-if="studionews.thumbnail" class="studio__image" :style="`background-image:url(${studionews.thumbnail.url})`" />
           <p><span :class="getClass(studionews.label)">{{ capitalize(studionews.label) }}</span> {{ studionews.description }}</p>
         </a>
-        <nuxt-link v-else class="arrowLink arrowLink--internal" :to="studionews.url">
+        <nuxt-link v-else :to="studionews.url">
           <div v-if="studionews.thumbnail" class="studio__image" :style="`background-image:url(${studionews.thumbnail.url})`" />
           <p><span :class="getClass(studionews.label)">{{ capitalize(studionews.label) }}</span> {{ studionews.description }}</p>
         </nuxt-link>
