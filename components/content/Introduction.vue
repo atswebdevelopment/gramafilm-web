@@ -2,8 +2,7 @@
   <div>
     <div class="splash" :class="{ 'loaded': loaded, 'ready': ready, 'introVideoLoaded': introVideoLoaded }" @click="loadIntroVideo()">
       <div class="splash__title">
-        We're a London-based creative production studio.<br>
-        We develop Films, Events and Design.
+        <img src="/logo-white.svg" alt="Gramafilm logo">
       </div>
       <div class="scrolldown-pos">
         <img
@@ -14,14 +13,14 @@
         >
       </div>
       <video v-if="!introVideoLoaded" class="splash__video" loop muted>
-        <source src="https://player.vimeo.com/external/481343342.hd.mp4?s=601cbb76adc9bec66273b779f5bb8d774b951ca3&profile_id=175" type="video/mp4">
+        <source src="https://player.vimeo.com/external/487353966.hd.mp4?s=587745e52c9df54211176700da9f3bf116ff35e0&profile_id=175" type="video/mp4">
       </video>
       <Video v-if="home && home.introvideo && introVideoLoaded" :video="home.introvideo" play fullscreen class="splash__introvideo" />
     </div>
     <div class="intro">
       <ContentArea>
         <p class="intro__about large" @mouseleave="setBg()">
-          We're a London-based creative production studio. We develop award-winning Films, Events and Design.
+          We're a London-based creative production studio. We develop award-winning <nuxt-link class="link-orange" :to="{ name: 'work', query: { film: null }}">Films</nuxt-link>, <nuxt-link class="link-green" :to="{ name: 'work', query: { event: null }}">Events</nuxt-link> and <nuxt-link class="link-blue" :to="{ name: 'work', query: { design: null }}">Design</nuxt-link>.
         </p>
         <!-- <div v-if="home && home.images" class="intro__images">
           <template v-if="screen === 'mobile'">
@@ -114,6 +113,16 @@ export default {
         }
       }
     }, 5000)
+    document.onkeydown = (event) => {
+      event = event || window.event
+      if (event.keyCode === 27) {
+        this.introVideoLoaded = false
+        setTimeout(() => {
+          const introVideo = document.querySelector('.splash__video')
+          introVideo.play()
+        }, 100)
+      }
+    }
   },
   methods: {
     load (e) {
@@ -151,7 +160,7 @@ export default {
   overflow hidden
 
   &.ready
-    cursor url('/cursor-play.png'), auto
+    cursor url('/cursor-play.svg'), auto
 
   &__title
     text-align left
@@ -182,6 +191,15 @@ export default {
     @media (max-width $bp-xs)
       font-size 34px
       line-height 40px
+
+    img
+      width 510px
+      margin 0 auto
+
+    .logo
+      width 510px
+      height 124px
+      margin 0 auto
 
     &--finished
       opacity 0 !important
@@ -240,7 +258,7 @@ export default {
     transform translateY(0px)
 
 .splash.ready.introVideoLoaded
-  cursor url('/cursor-pause.png'), auto
+  cursor auto
 
 .intro
   &__about

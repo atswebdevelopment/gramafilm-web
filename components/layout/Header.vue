@@ -3,7 +3,7 @@
     <div class="header" :class="{ 'header--open': menu, 'header--scrolled': scrolled, 'header--loaded': loaded }">
       <ContentArea class="header__container">
         <div class="header__inner">
-          <div class="header__logo">
+          <div class="header__logo" :class="{ 'hidden': hideOnHome }">
             <nuxt-link to="/" title="Back to Home" @click.native="closeMenu">
               <Logo :color="headerColor" />
             </nuxt-link>
@@ -33,7 +33,8 @@ export default {
       menu: false,
       scrolled: false,
       logoOnScroll: false,
-      loaded: false
+      loaded: false,
+      hideOnHome: false
     }
   },
   computed: {
@@ -47,7 +48,12 @@ export default {
   mounted () {
     let oldScrollVal = window.scrollY
     const header = document.querySelector('.header')
-    this.loaded = true
+    if (this.$route.path === '/') {
+      this.hideOnHome = true
+    }
+    setTimeout(() => {
+      this.loaded = true
+    }, 100)
     window.addEventListener('mousemove', (e) => {
       if (e.clientY < 100) {
         header.classList.remove('header--hide')
@@ -69,6 +75,7 @@ export default {
               this.$store.commit('header/setColor', 'white')
             }
           }
+          this.hideOnHome = false
         }, 500)
       } else {
         this.scrolled = false

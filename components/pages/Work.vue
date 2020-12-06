@@ -49,13 +49,32 @@ export default {
     setTimeout(() => {
       this.$store.commit('header/setDefaultColor', 'black')
     }, 200)
+    window.onpopstate = (event) => {
+      const query = event.target.location.href.split('?')
+      if (query[1]) {
+        this.filteredWork = this.work.casestudies.filter(caseStudy => caseStudy.case_study.type && caseStudy.case_study.type === query[1])
+      } else {
+        this.filteredWork = this.work.casestudies
+      }
+      this.type = query[1]
+    }
   },
   methods: {
     filterWork (type) {
       if (type) {
         this.filteredWork = this.work.casestudies.filter(caseStudy => caseStudy.case_study.type && caseStudy.case_study.type === type)
+        history.pushState(
+          { },
+          null,
+          this.$route.path + '?' + type
+        )
       } else {
         this.filteredWork = this.work.casestudies
+        history.pushState(
+          { },
+          null,
+          this.$route.path
+        )
       }
       this.type = type
     },
