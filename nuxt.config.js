@@ -51,9 +51,9 @@ export default {
     '@nuxtjs/eslint-module',
     ['@nuxtjs/pwa', { meta: false }],
     '@nuxtjs/style-resources'
-    // ['@nuxtjs/google-analytics', {
-    //   id: 'UA-22891163-1'
-    // }]
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-22891163-1'
+    }]
   ],
   /*
   ** Nuxt.js modules
@@ -76,12 +76,12 @@ export default {
       optipng: { optimizationLevel: 5 },
       gifsicle: { optimizationLevel: 2 }
     }]
-    // ['nuxt-facebook-pixel-module', {
-    //   /* module options */
-    //   track: 'PageView',
-    //   pixelId: '1130929773924122',
-    //   disabled: false
-    // }]
+    ['nuxt-facebook-pixel-module', {
+      /* module options */
+      track: 'PageView',
+      pixelId: '1130929773924122',
+      disabled: false
+    }]
   ],
   markdownit: {
     injected: true
