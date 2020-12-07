@@ -50,7 +50,7 @@ export default {
     '@nuxtjs/dotenv',
     '@nuxtjs/eslint-module',
     ['@nuxtjs/pwa', { meta: false }],
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
     ['@nuxtjs/google-analytics', {
       id: 'UA-22891163-1'
     }]
@@ -75,7 +75,7 @@ export default {
     ['nuxt-imagemin', {
       optipng: { optimizationLevel: 5 },
       gifsicle: { optimizationLevel: 2 }
-    }]
+    }],
     ['nuxt-facebook-pixel-module', {
       /* module options */
       track: 'PageView',
