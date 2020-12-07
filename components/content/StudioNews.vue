@@ -1,15 +1,21 @@
 <template>
   <div v-if="home.studionews" class="studio">
-    <!-- <div v-for="(person, index) in people" :key="index" class="people__person fade fadeIn">
-      <div class="people__inner">
-        <img v-if="person.image" :src="person.image.url" :alt="person.image.alternativeText">
-        <div class="people__text" v-html="person.content" />
-      </div>
-    </div> -->
     <div class="studio__column studio__column--left">
       <div v-if="home.studionews[0]" class="studio__item">
-        <img v-if="home.studionews[0].thumbnail" :src="home.studionews[0].thumbnail.url" :alt="home.studionews[0].thumbnail.alternativeText" class="studio__image-main">
-        <p><span :class="getClass(home.studionews[0].label)">{{ capitalize(home.studionews[0].label) }}</span> {{ home.studionews[0].description }}</p>
+        <a
+          v-if="urlExternal(home.studionews[0].url)"
+          :href="home.studionews[0].url"
+          target="_blank"
+          rel="noopener"
+          title="Opens in a new window"
+        >
+          <img v-if="home.studionews[0].thumbnail" :src="home.studionews[0].thumbnail.url" :alt="home.studionews[0].thumbnail.alternativeText" class="studio__image-main">
+          <p><span :class="getClass(home.studionews[0].label)">{{ capitalize(home.studionews[0].label) }}</span> {{ home.studionews[0].description }}</p>
+        </a>
+        <nuxt-link v-else :to="home.studionews[0].url">
+          <img v-if="home.studionews[0].thumbnail" :src="home.studionews[0].thumbnail.url" :alt="home.studionews[0].thumbnail.alternativeText" class="studio__image-main">
+          <p><span :class="getClass(home.studionews[0].label)">{{ capitalize(home.studionews[0].label) }}</span> {{ home.studionews[0].description }}</p>
+        </nuxt-link>
         <a
           v-if="urlExternal(home.studionews[0].url)"
           :href="home.studionews[0].url"
@@ -27,8 +33,20 @@
     </div>
     <div class="studio__column studio__column--right">
       <div v-for="(studionews, index) in home.studionews.slice(1, 4)" :key="index" class="studio__item">
-        <div v-if="studionews.thumbnail" class="studio__image" :style="`background-image:url(${studionews.thumbnail.url})`" />
-        <p><span :class="getClass(studionews.label)">{{ capitalize(studionews.label) }}</span> {{ studionews.description }}</p>
+        <a
+          v-if="urlExternal(studionews.url)"
+          :href="studionews.url"
+          target="_blank"
+          rel="noopener"
+          title="Opens in a new window"
+        >
+          <div v-if="studionews.thumbnail" class="studio__image" :style="`background-image:url(${studionews.thumbnail.url})`" />
+          <p><span :class="getClass(studionews.label)">{{ capitalize(studionews.label) }}</span> {{ studionews.description }}</p>
+        </a>
+        <nuxt-link v-else :to="studionews.url">
+          <div v-if="studionews.thumbnail" class="studio__image" :style="`background-image:url(${studionews.thumbnail.url})`" />
+          <p><span :class="getClass(studionews.label)">{{ capitalize(studionews.label) }}</span> {{ studionews.description }}</p>
+        </nuxt-link>
         <a
           v-if="urlExternal(studionews.url)"
           :href="studionews.url"
@@ -63,7 +81,7 @@ export default {
         return 'green'
       case 'announcement':
         return 'blue'
-      case 'people':
+      case 'culture':
         return 'orange'
       default:
         return 'green'
@@ -100,6 +118,9 @@ export default {
 
     @media (max-width $bp-sm)
       width 100%
+      display block
+
+    > a:first-child
       display block
 
   &__column--left

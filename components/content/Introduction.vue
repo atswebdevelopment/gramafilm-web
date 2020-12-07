@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="splash" :class="{ 'loaded': loaded, 'ready': ready, 'introVideoLoaded': introVideoLoaded }" @click="loadIntroVideo()">
-      <div class="splash__title">Producing the extraordinary</div>
+      <div class="splash__title">
+        <img src="/logo-white.svg" alt="Gramafilm logo">
+      </div>
       <div class="scrolldown-pos">
         <img
           class="scrolldown"
@@ -10,15 +12,15 @@
           title="Scroll down"
         >
       </div>
-      <video v-if="!introVideoLoaded" class="splash__video" loop muted>
-        <source src="https://player.vimeo.com/external/481343342.hd.mp4?s=601cbb76adc9bec66273b779f5bb8d774b951ca3&profile_id=175" type="video/mp4">
+      <video v-if="!introVideoLoaded" class="splash__video" loop muted playsinline>
+        <source src="https://player.vimeo.com/external/487353966.hd.mp4?s=587745e52c9df54211176700da9f3bf116ff35e0&profile_id=175" type="video/mp4">
       </video>
       <Video v-if="home && home.introvideo && introVideoLoaded" :video="home.introvideo" play fullscreen class="splash__introvideo" />
     </div>
     <div class="intro">
       <ContentArea>
         <p class="intro__about large" @mouseleave="setBg()">
-          We're a London-based creative production studio. We develop award-winning Films, Events and Design.
+          We're a London-based creative production studio. We develop award-winning <nuxt-link class="link-orange" :to="{ name: 'work', query: { film: null }}">Films</nuxt-link>, <nuxt-link class="link-green" :to="{ name: 'work', query: { event: null }}">Events</nuxt-link> and <nuxt-link class="link-blue" :to="{ name: 'work', query: { design: null }}">Design</nuxt-link>.
         </p>
         <!-- <div v-if="home && home.images" class="intro__images">
           <template v-if="screen === 'mobile'">
@@ -81,8 +83,8 @@ export default {
       this.ready = true
     }, 1800)
     setTimeout(() => {
-      const introTitle = document.querySelector('.splash__title')
-      introTitle.classList.add('splash__title--finished')
+      // const introTitle = document.querySelector('.splash__title')
+      // introTitle.classList.add('splash__title--finished')
     }, 3000)
     this.screen = window.innerWidth > 766 ? 'desktop' : 'mobile'
     window.addEventListener('scroll', () => {
@@ -111,6 +113,16 @@ export default {
         }
       }
     }, 5000)
+    document.onkeydown = (event) => {
+      event = event || window.event
+      if (event.keyCode === 27) {
+        this.introVideoLoaded = false
+        setTimeout(() => {
+          const introVideo = document.querySelector('.splash__video')
+          introVideo.play()
+        }, 100)
+      }
+    }
   },
   methods: {
     load (e) {
@@ -144,36 +156,50 @@ export default {
   z-index 2
   display flex
   align-items center
-  justify-content center
+  justify-content left
   overflow hidden
 
   &.ready
-    cursor url('/cursor-play.png'), auto
+    cursor url('/cursor-play.svg'), auto
 
   &__title
-    text-align center
-    font-size 112px
-    line-height 120px
-    max-width 800px
-    padding 0 20px
+    text-align left
+    font-size 56px
+    line-height 62px
+    padding 0 58px
     position relative
+    width calc(100% - 116px)
+    flex-shrink 0
+    max-width 1684px
+    margin 0 auto
     z-index 2
     opacity 0
     transform translateY(-20px)
-    transition all 1s linear
+    transition opacity 1s linear, transform 1s linear
     transition-delay 0.6s
 
     @media (max-width $bp-md)
-      font-size 96px
-      line-height 104px
-
-    @media (max-width $bp-sm)
-      font-size 56px
-      line-height 62px
-
-    @media (max-width $bp-xs)
       font-size 50px
       line-height 56px
+
+    @media (max-width $bp-sm)
+      padding 0 20px
+      width calc(100% - 40px)
+      font-size 40px
+      line-height 46px
+
+    @media (max-width $bp-xs)
+      font-size 34px
+      line-height 40px
+
+    img
+      width 510px
+      margin 0 auto
+
+    .logo
+      width 510px
+      height 124px
+      margin 0 auto
 
     &--finished
       opacity 0 !important
@@ -232,7 +258,7 @@ export default {
     transform translateY(0px)
 
 .splash.ready.introVideoLoaded
-  cursor url('/cursor-pause.png'), auto
+  cursor auto
 
 .intro
   &__about

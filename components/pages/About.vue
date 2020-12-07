@@ -106,10 +106,10 @@
         <Column />
       </ColumnContainer>
     </ContentArea>
-    <ContentArea>
+    <!-- <ContentArea>
       <h3>People</h3>
       <People v-if="people.length" :people="people" />
-    </ContentArea>
+    </ContentArea> -->
     <FollowUs />
   </div>
 </template>
@@ -117,7 +117,7 @@
 <script>
 import fadeIn from '~/helpers/fadeIn'
 import { setResponsive } from '~/helpers/cdn'
-import peopleQuery from '~/apollo/queries/people/people.gql'
+// import peopleQuery from '~/apollo/queries/people/people.gql'
 export default {
   components: {
     ContentArea: () => import('~/components/layout/ContentArea'),
@@ -125,7 +125,7 @@ export default {
     Column: () => import('~/components/layout/Column'),
     Video: () => import('~/components/content/Video'),
     ContentSwitcher: () => import('~/components/content/ContentSwitcher'),
-    People: () => import('~/components/content/People'),
+    // People: () => import('~/components/content/People'),
     FollowUs: () => import('~/components/content/FollowUs')
   },
   props: {
@@ -136,16 +136,16 @@ export default {
   },
   data () {
     return {
-      people: [],
+      // people: [],
       setResponsive
     }
   },
-  apollo: {
-    people: {
-      prefetch: false,
-      query: peopleQuery
-    }
-  },
+  // apollo: {
+  //   people: {
+  //     prefetch: false,
+  //     query: peopleQuery
+  //   }
+  // },
   computed: {
     mobile () {
       return window.innerWidth < 1024

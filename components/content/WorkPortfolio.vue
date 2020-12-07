@@ -133,7 +133,7 @@ export default {
     },
     getClass (type) {
       switch (type) {
-      case 'event':
+      case 'film':
         return 'orange'
       case 'design':
         return 'blue'

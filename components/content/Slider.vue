@@ -22,9 +22,10 @@
           <template v-else-if="item.title">
             <div class="swiper__media link" @click="$nuxt.$router.push({ name: 'work-id', params: { id: item.url } })">
               <img v-if="item.thumbnail && item.thumbnail.url" data-not-lazy :src="setResponsive(item.thumbnail.url, 767)" :alt="item.thumbnail.alternativeText || ''">
+              <img v-else-if="item.thumbnailimage && item.thumbnailimage.url" data-not-lazy :src="setResponsive(item.thumbnailimage.url, 767)" :alt="item.thumbnailimage.alternativeText || ''">
             </div>
             <div v-if="item.title" class="swiper__text link" @click="$nuxt.$router.push({ name: 'work-id', params: { id: item.url } })">
-              <span v-if="item.type" :class="getClass(item.type)">{{ capitalize(item.type) }}</span> {{ item.title }} asd
+              <span v-if="item.type" :class="getClass(item.type)">{{ capitalize(item.type) }}</span> {{ item.title }}
             </div>
           </template>
           <template v-else-if="item.caption || item.caption === ''">

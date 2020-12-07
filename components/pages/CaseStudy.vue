@@ -345,9 +345,6 @@ export default {
 .large
   margin 30vh auto 5vh
 
-  @media (max-width $bp-sm)
-    margin-top 20vh
-
   &--no-gap
     margin-top 5vh
 

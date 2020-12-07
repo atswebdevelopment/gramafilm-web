@@ -1,7 +1,6 @@
 <template>
   <div class="loader" :class="{ 'loader--inline': inline }">
-    <!-- By Sam Herbert (@sherb), for everyone. More @ http://goo.gl/7AJzbL -->
-    <svg
+    <!-- <svg
       :stroke="color"
       class="loader__icon"
       width="44"
@@ -55,7 +54,7 @@
           />
         </circle>
       </g>
-    </svg>
+    </svg> -->
   </div>
 </template>
 
