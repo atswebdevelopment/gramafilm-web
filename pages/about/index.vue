@@ -29,7 +29,10 @@ export default {
     return {
       title: (this.about && this.about.seo && this.about.seo.title) || 'About Gramafilm',
       meta: [
-        { hid: 'description', name: 'description', content: (this.about && this.about.seo && this.about.seo.description) || 'Gramafilm produce branded content and films for broadcasters and brands. We&#39;re an independent production company based in London, UK.' }
+        { hid: 'description', name: 'description', content: (this.about && this.about.seo && this.about.seo.description) || 'About Gramafilm' },
+        { hid: 'og:title', name: 'og:title', content: (this.about && this.about.seo && this.about.seo.title) || 'About Gramafilm' },
+        { hid: 'og:description', name: 'og:description', content: (this.about && this.about.seo && this.about.seo.description) || 'About Gramafilm' },
+        { hid: 'og:url', name: 'og:url', content: `https://www.gramafilm.com${this.$route.path}` }
       ]
     }
   }
