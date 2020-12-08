@@ -59,7 +59,10 @@ export default {
     return {
       title: (this.caseStudy && ((this.caseStudy.seo && this.caseStudy.seo.title) || this.caseStudy.title)) || 'Gramafilm',
       meta: [
-        { hid: 'description', name: 'description', content: (this.caseStudy && this.caseStudy.seo && this.caseStudy.seo.description) || 'Gramafilm created and produced a global campaign for Android showcasing developers through a series of 11 films, photography, out of home and an event activation.' }
+        { hid: 'description', name: 'description', content: (this.caseStudy && this.caseStudy.seo && this.caseStudy.seo.description) || 'Gramafilm created and produced a global campaign for Android showcasing developers through a series of 11 films, photography, out of home and an event activation.' },
+        { hid: 'og:title', name: 'og:title', content: (this.caseStudy && this.caseStudy.seo && this.caseStudy.seo.title) || 'Gramafilm' },
+        { hid: 'og:description', name: 'og:description', content: (this.caseStudy && this.caseStudy.seo && this.caseStudy.seo.description) || 'Gramafilm created and produced a global campaign for Android showcasing developers through a series of 11 films, photography, out of home and an event activation.' },
+        { hid: 'og:url', name: 'og:url', content: `https://www.gramafilm.com${this.$route.path}` }
       ]
     }
   }
