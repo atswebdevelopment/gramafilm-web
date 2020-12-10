@@ -12,9 +12,9 @@
           title="Scroll down"
         >
       </div>
-      <video v-if="!introVideoLoaded" class="splash__video" loop muted playsinline>
+      <!-- <video v-if="!introVideoLoaded" class="splash__video" loop muted playsinline>
         <source src="https://player.vimeo.com/external/487353966.hd.mp4?s=587745e52c9df54211176700da9f3bf116ff35e0&profile_id=175" type="video/mp4">
-      </video>
+      </video> -->
       <Video v-if="home && home.introvideo && introVideoLoaded" :video="home.introvideo" play fullscreen class="splash__introvideo" />
     </div>
     <div class="intro">
