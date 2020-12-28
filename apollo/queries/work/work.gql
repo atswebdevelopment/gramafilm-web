@@ -16,6 +16,12 @@ query Work {
             mime
             alternativeText
           }
+          thumbnailimage {
+            id
+            url
+            mime
+            alternativeText
+          }
           thumbnailPosition
           banner {
             id

@@ -1,6 +1,7 @@
 query Home {
   home {
     id
+    title
     images {
       id
       url
@@ -28,6 +29,7 @@ query Home {
         description
         label
         url
+        urlText
         thumbnail {
           id
           url

@@ -242,6 +242,9 @@ export default {
   transition-delay 1s
   z-index 1
 
+  @media (max-width $bp-sm)
+    bottom 70px
+
 .scrolldown
   transform rotateZ(180deg)
 

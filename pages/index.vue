@@ -9,7 +9,7 @@
       </div>
     </div>
     <MainMenu class="mainMenu mainMenu--hide" fixed />
-    <img class="hidden" data-not-lazy src="/videoplayer/play-on.svg">
+    <img class="hidden" data-not-lazy src="/videoplayer/play-on.svg" alt="">
   </div>
 </template>
 

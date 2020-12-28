@@ -205,6 +205,11 @@ export default {
             left 50%
             margin-left -227px
 
+      @media (max-width $bp-xs)
+        .banner__media .video
+          width: 328px;
+          margin-left: -164px;
+
       @media (max-width $bp-xxs)
         .banner__media .video
           width 100%

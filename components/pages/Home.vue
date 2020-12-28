@@ -1,13 +1,13 @@
 <template>
   <div class="home">
     <h1 class="hidden">
-      Gramafilm
+      {{ home.title }}
     </h1>
     <div class="intro-container">
       <Introduction :home="home" />
     </div>
     <ContentArea v-if="home" overflow>
-      <h2>Work</h2>
+      <h2>Latest Projects</h2>
       <WorkPortfolio home />
       <img no-lazy-load class="logo-circle" src="/logo-circle.svg" alt="">
     </ContentArea>

@@ -29,7 +29,10 @@ export default {
     return {
       title: (this.career && this.career.seo && this.career.seo.title) || 'Gramafilm career',
       meta: [
-        { hid: 'description', name: 'description', content: (this.career && this.career.seo && this.career.seo.description) || 'Gramafilm produce branded content and films for broadcasters and brands. We&#39;re an independent production company based in London, UK.' }
+        { hid: 'description', name: 'description', content: (this.career && this.career.seo && this.career.seo.description) || 'Gramafilm produce branded content and films for broadcasters and brands. We&#39;re an independent production company based in London, UK.' },
+        { hid: 'og:title', name: 'og:title', content: (this.career && this.career.seo && this.career.seo.title) || 'Gramafilm career' },
+        { hid: 'og:description', name: 'og:description', content: (this.career && this.career.seo && this.career.seo.description) || 'Gramafilm produce branded content and films for broadcasters and brands. We&#39;re an independent production company based in London, UK.' },
+        { hid: 'og:url', name: 'og:url', content: `https://www.gramafilm.com${this.$route.path}` }
       ]
     }
   }

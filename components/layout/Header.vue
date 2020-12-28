@@ -45,65 +45,55 @@ export default {
       return this.$store.state.header.hideLogo
     }
   },
-  mounted () {
-    let oldScrollVal = window.scrollY
-    const header = document.querySelector('.header')
-    if (this.$route.path === '/') {
-      this.hideOnHome = true
+  watch: {
+    $route () {
+      this.hideOnHome = false
+      this.ready()
     }
-    setTimeout(() => {
-      this.loaded = true
-    }, 100)
-    window.addEventListener('mousemove', (e) => {
-      if (e.clientY < 100) {
-        header.classList.remove('header--hide')
-      }
-    })
-    window.addEventListener('scroll', () => {
-      if (window.scrollY < oldScrollVal) {
-        header.classList.remove('header--hide')
-      } else {
-        header.classList.add('header--hide')
-      }
-      oldScrollVal = window.scrollY
-
-      if (window.scrollY > 10) {
-        setTimeout(() => {
-          if (window.scrollY > 10) {
-            this.scrolled = true
-            if (this.headerColor === 'black') {
-              this.$store.commit('header/setColor', 'white')
-            }
-          }
-          this.hideOnHome = false
-        }, 500)
-      } else {
-        this.scrolled = false
-        this.$store.commit('header/setColor', this.$store.state.header.defaultColor)
-      }
-
-      // const banner = document.querySelector('.banner')
-      // if (banner) {
-      //   const elemHeight = banner.offsetHeight
-      //   this.logoOnScroll = window.scrollY >= elemHeight - 50
-      //   if (this.logoOnScroll && this.headerColor === 'white') {
-      //     this.$store.commit('header/setColor', 'black')
-      //   } else if (!this.logoOnScroll && this.headerColor === 'black') {
-      //     this.$store.commit('header/setColor', this.$store.state.header.defaultColor)
-      //   }
-      // }
-
-      // const elemBottom = document.querySelector('.banner--bottom')
-      // if (elemBottom) {
-      //   const logoOnMenu = window.scrollY + window.innerHeight >= document.body.scrollHeight - 50
-      //   oldScrollVal = window.scrollY
-      //   if (logoOnMenu && this.headerColor === 'black') {
-      //     this.$store.commit('header/setColor', 'white')
-      //   }
-      // }
-    })
+  },
+  mounted () {
+    this.ready()
   },
   methods: {
+    ready () {
+      let oldScrollVal = window.scrollY
+      const header = document.querySelector('.header')
+      if (this.$route.path === '/') {
+        this.hideOnHome = true
+      }
+      setTimeout(() => {
+        this.loaded = true
+      }, 100)
+      window.addEventListener('mousemove', (e) => {
+        if (e.clientY < 100) {
+          header.classList.remove('header--hide')
+        }
+      })
+      window.addEventListener('scroll', () => {
+        if (window.scrollY < oldScrollVal) {
+          header.classList.remove('header--hide')
+        } else {
+          header.classList.add('header--hide')
+        }
+        oldScrollVal = window.scrollY
+
+        if (window.scrollY > 10) {
+          setTimeout(() => {
+            if (window.scrollY > 10) {
+              this.scrolled = true
+              if (this.headerColor === 'black') {
+                this.$store.commit('header/setColor', 'white')
+              }
+            }
+
+            this.hideOnHome = (this.$route.path === '/' && window.scrollY < window.innerHeight)
+          }, 500)
+        } else {
+          this.scrolled = false
+          this.$store.commit('header/setColor', this.$store.state.header.defaultColor)
+        }
+      })
+    },
     closeMenu () {
       this.menu = false
     },
