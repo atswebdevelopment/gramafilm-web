@@ -3,8 +3,8 @@
     <div class="header" :class="{ 'header--open': menu, 'header--scrolled': scrolled, 'header--loaded': loaded }">
       <ContentArea class="header__container">
         <div class="header__inner">
-          <div class="header__logo" :class="{ 'hidden': hideOnHome }">
-            <nuxt-link to="/" title="Back to Home" @click.native="closeMenu">
+          <div class="header__logo" :class="{ 'header__logo--hidden': hideOnHome }">
+            <nuxt-link to="/" title="Back to Home" @click.native="homeClick">
               <Logo :color="headerColor" />
             </nuxt-link>
           </div>
@@ -94,6 +94,11 @@ export default {
         }
       })
     },
+    homeClick () {
+      window.scrollTo(0, 0)
+      this.hideOnHome = true
+      this.closeMenu()
+    },
     closeMenu () {
       this.menu = false
     },
@@ -155,6 +160,13 @@ export default {
     margin-left auto
     display flex
     align-items center
+
+  &__logo
+    opacity 1
+    transition 0.4s opacity $ease
+
+    &--hidden
+      opacity 0
 
   &__link
     margin-right 20px

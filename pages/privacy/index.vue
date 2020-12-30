@@ -3,13 +3,15 @@
     <ContentArea>
       <div v-html="content" />
     </ContentArea>
+    <FooterLinks inline />
   </div>
 </template>
 
 <script>
 export default {
   components: {
-    ContentArea: () => import('~/components/layout/ContentArea')
+    ContentArea: () => import('~/components/layout/ContentArea'),
+    FooterLinks: () => import('~/components/content/FooterLinks')
   },
   data () {
     return {

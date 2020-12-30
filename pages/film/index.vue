@@ -1,9 +1,8 @@
 <template>
   <div class="page">
-    <FilmBanner v-if="filmFromStoreId || (film && film.id)" :film="(filmFromStoreId && filmFromStore) || film" banner-top />
-    <Film v-if="film && film.id" :film="film" />
+    <Film v-if="film && film.id" :work="film" />
     <Loader v-else />
-    <EventsBanner v-if="event && event.id" :events="event" />
+    <GetInTouch v-if="film && film.id" footer-links />
   </div>
 </template>
 
@@ -12,46 +11,30 @@ import filmQuery from '~/apollo/queries/work/film.gql'
 export default {
   components: {
     Film: () => import('~/components/pages/Film'),
-    FilmBanner: () => import('~/components/banners/FilmBanner'),
-    EventsBanner: () => import('~/components/banners/EventsBanner'),
+    GetInTouch: () => import('~/components/content/GetInTouch'),
     Loader: () => import('~/components/content/Loader')
   },
   data () {
     return {
-      film: {},
-      event: {}
+      film: {}
     }
   },
   apollo: {
     film: {
       prefetch: false,
       query: filmQuery
-    },
-    event: {
-      prefetch: false,
-      query: filmQuery
-    }
-  },
-  computed: {
-    filmFromStore () {
-      return this.$store.state.showcase.film
-    },
-    filmFromStoreId () {
-      return this.$store.state.showcase.film.id
     }
   },
   head () {
     return {
-      title: (this.film && this.film.seo && this.film.seo.title) || 'Gramafilm > Our Work > Film',
+      title: (this.film && this.film.seo && this.film.seo.title) || 'Gramafilm > Film',
       meta: [
-        { hid: 'description', name: 'description', content: (this.film && this.film.seo && this.film.seo.description) || 'Gramafilm produce branded content and films for broadcasters and brands. We&#39;re an independent production company based in London, UK.' }
+        { hid: 'description', name: 'description', content: (this.film && this.film.seo && this.film.seo.description) || 'Gramafilm produce branded content and films for broadcasters and brands. We&#39;re an independent production company based in London, UK.' },
+        { hid: 'og:title', name: 'og:title', content: (this.film && this.film.seo && this.film.seo.title) || 'Gramafilm > Film' },
+        { hid: 'og:description', name: 'og:description', content: (this.film && this.film.seo && this.film.seo.description) || 'Gramafilm produce branded content and films for broadcasters and brands. We&#39;re an independent production company based in London, UK.' },
+        { hid: 'og:url', name: 'og:url', content: `https://www.gramafilm.com${this.$route.path}` }
       ]
     }
   }
 }
 </script>
-
-<style lang="stylus" scoped>
-.page
-  padding 0
-</style>

@@ -65,9 +65,9 @@ export default {
       type: Boolean,
       default: false
     },
-    filteredWork: {
-      type: Array,
-      default: () => []
+    type: {
+      type: String,
+      default: ''
     }
   },
   data () {
@@ -90,16 +90,12 @@ export default {
   },
   watch: {
     work () {
-      this.caseStudies = [...this.work.casestudies]
+      if (this.type) {
+        this.caseStudies = [...this.work.casestudies.filter(caseStudy => caseStudy.case_study.type && caseStudy.case_study.type === this.type)]
+      } else {
+        this.caseStudies = [...this.work.casestudies]
+      }
       this.splitWork()
-    },
-    filteredWork () {
-      this.caseStudies = [...this.filteredWork]
-      this.filtering = true
-      setTimeout(() => {
-        this.splitWork()
-        this.filtering = false
-      }, 400)
     }
   },
   mounted () {
@@ -120,11 +116,6 @@ export default {
   },
   methods: {
     splitWork () {
-      if (this.new && (this.$nuxt.$route.query.film === null || this.$nuxt.$route.query.event === null || this.$nuxt.$route.query.design === null)) {
-        this.$emit('filter-work')
-        this.new = false
-        return
-      }
       let caseStudies = [...this.caseStudies]
       caseStudies = caseStudies.map(caseStudy => caseStudy.case_study)
       this.workModules = this.home ? caseStudies.splice(0, 5) : caseStudies

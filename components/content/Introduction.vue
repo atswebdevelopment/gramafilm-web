@@ -12,37 +12,16 @@
           title="Scroll down"
         >
       </div>
-      <!-- <video v-if="!introVideoLoaded" class="splash__video" loop muted playsinline>
+      <video v-if="!introVideoLoaded" class="splash__video" loop muted playsinline>
         <source src="https://player.vimeo.com/external/487353966.hd.mp4?s=587745e52c9df54211176700da9f3bf116ff35e0&profile_id=175" type="video/mp4">
-      </video> -->
+      </video>
       <Video v-if="home && home.introvideo && introVideoLoaded" :video="home.introvideo" play fullscreen class="splash__introvideo" />
     </div>
     <div class="intro">
       <ContentArea>
         <p class="intro__about large" @mouseleave="setBg()">
-          We're a London-based creative production studio. We develop award-winning <nuxt-link class="link-orange" :to="{ name: 'work', query: { film: null }}">Films</nuxt-link>, <nuxt-link class="link-green" :to="{ name: 'work', query: { event: null }}">Events</nuxt-link> and <nuxt-link class="link-blue" :to="{ name: 'work', query: { design: null }}">Design</nuxt-link>.
+          We're a London-based creative production studio. We develop award-winning <nuxt-link class="link-orange" :to="{ name: 'film' }">Films</nuxt-link>, <nuxt-link class="link-green" :to="{ name: 'events' }">Events</nuxt-link> and <nuxt-link class="link-blue" :to="{ name: 'design' }">Design</nuxt-link>.
         </p>
-        <!-- <div v-if="home && home.images" class="intro__images">
-          <template v-if="screen === 'mobile'">
-            <div v-for="(image, index) in home.images" :key="index" class="intro__image" :class="{ 'intro__image--active': index === 0 }" :style="`background-image:url('${setResponsive(image.url, 767)}')`">
-              <img
-                class="invisible"
-                :src="setResponsive(home.images[0].url, 767)"
-                @load="load($event)"
-              >
-            </div>
-          </template>
-          <video v-else-if="screen === 'desktop' && home.qvideo" loop muted autoplay>
-            <source :src="home.qvideo.src" type="video/mp4">
-          </video>
-        </div>
-        <ColumnContainer v-if="home.counters" class="counter-container">
-          <Column v-for="(counter, index) in home.counters" :key="index">
-            <Counter :start-counter="startCounter" :data-val="counter.number" :val="counters[index]" :unit="counter.unit">
-              {{ counter.text }}
-            </Counter>
-          </Column>
-        </ColumnContainer> -->
       </ContentArea>
     </div>
   </div>
@@ -79,13 +58,11 @@ export default {
     this.loaded = true
     setTimeout(() => {
       const introVideo = document.querySelector('.splash__video')
-      introVideo.play()
-      this.ready = true
+      if (introVideo) {
+        introVideo.play()
+        this.ready = true
+      }
     }, 1800)
-    setTimeout(() => {
-      // const introTitle = document.querySelector('.splash__title')
-      // introTitle.classList.add('splash__title--finished')
-    }, 3000)
     this.screen = window.innerWidth > 766 ? 'desktop' : 'mobile'
     window.addEventListener('scroll', () => {
       const video = document.querySelectorAll('.intro video')

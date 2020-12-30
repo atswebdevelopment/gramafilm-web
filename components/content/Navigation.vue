@@ -23,7 +23,7 @@
           {{ item.title }}
         </nuxt-link>
       </div>
-      <FooterLinks :inverted="footerLinksInverted" />
+      <FooterLinks :inverted="footerLinksInverted" @close-menu="closeMenu()" />
     </ContentArea>
   </div>
 </template>
@@ -99,6 +99,9 @@ export default {
           video.pause()
         }
       })
+      if (!this.menu.navigation[i]) {
+        i = 0
+      }
       if (this.menu.navigation[i].inverttext) {
         navigation.classList.add('navigation--inverted')
         this.footerLinksInverted = false

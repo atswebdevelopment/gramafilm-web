@@ -16,7 +16,11 @@
         <a class="footerLinks__link" target="_blank" rel="noopener" title="Opens in a new window" href="https://uk.linkedin.com/organization-guest/company/gramafilm">LinkedIn</a>
       </div>
       <div class="footerLinks__copy">
-        <p>Copyright 2008-{{ currentYear }} Gramafilm Limited. All Rights Reserved.</p>
+        <p>
+          &copy; 2009-{{ currentYear }}
+          <nuxt-link class="footerLinks__link" :to="{ name: 'privacy' }" @click.native="closeMenu">Privacy Policy</nuxt-link>
+          <nuxt-link class="footerLinks__link" :to="{ name: 'cookies' }" @click.native="closeMenu">Cookie Policy</nuxt-link>
+        </p>
       </div>
     </div>
   </ContentArea>
@@ -70,6 +74,9 @@ export default {
           this.toTop()
         }
       }, 1)
+    },
+    closeMenu () {
+      this.$emit('close-menu')
     }
   }
 }
@@ -143,6 +150,9 @@ export default {
 
   &__copy
     margin-left auto
+
+    .footerLinks__link
+      margin 0 0 0 10px
 
   a:hover
       text-decoration underline
