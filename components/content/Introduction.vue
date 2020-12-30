@@ -19,7 +19,7 @@
     </div>
     <div class="intro">
       <ContentArea>
-        <p class="intro__about large" @mouseleave="setBg()">
+        <p class="intro__about large">
           We're a London-based creative production studio. We develop award-winning <nuxt-link class="link-orange" :to="{ name: 'film' }">Films</nuxt-link>, <nuxt-link class="link-green" :to="{ name: 'events' }">Events</nuxt-link> and <nuxt-link class="link-blue" :to="{ name: 'design' }">Design</nuxt-link>.
         </p>
       </ContentArea>
@@ -109,23 +109,15 @@ export default {
       }, this.rand * 100)
       this.rand++
     },
-    setBg (color) {
-      const intro = document.querySelector('.intro')
-      intro.classList.remove('intro--orange', 'intro--blue', 'intro--green')
-      if (color) {
-        intro.classList.add(`intro--${color}`)
-      }
-    },
     loadIntroVideo () {
-      if (window.innerWidth > 1023) {
-        this.introVideoLoaded = true
-      }
+      this.introVideoLoaded = true
     }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
+
 .splash
   min-height 100vh
   background-color $tertiary
@@ -169,6 +161,19 @@ export default {
       font-size 34px
       line-height 40px
 
+    &:after
+      @media (max-width $bp-sm)
+        content ''
+        display block
+        width 48px
+        height 48px
+        background url('/cursor-play.svg')
+        background-size 48px
+        position absolute
+        left 50%
+        margin-left -24px
+        bottom -80px
+
     img
       width 510px
       margin 0 auto
@@ -205,6 +210,10 @@ export default {
   &__introvideo.video
     opacity 1
     z-index 2
+
+    @media (max-width $bp-sm)
+      height 100% !important
+      padding 0 !important
 
 .scrolldown-pos
   width 100%
