@@ -101,6 +101,10 @@ query About {
       ... on ComponentContentSeo {
         title
         description
+        image {
+          id
+          url
+        }
       }
     }
   }

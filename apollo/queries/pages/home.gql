@@ -2,12 +2,6 @@ query Home {
   home {
     id
     title
-    images {
-      id
-      url
-      alternativeText
-      mime
-    }
     qvideo {
       id
       title
@@ -72,6 +66,10 @@ query Home {
       ... on ComponentContentSeo {
         title
         description
+        image {
+          id
+          url
+        }
       }
     }
   }

@@ -11,6 +11,10 @@ query Film {
       ... on ComponentContentSeo {
         title
         description
+        image {
+          id
+          url
+        }
       }
     }
   }

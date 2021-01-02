@@ -121,6 +121,7 @@ export default {
     font-size 16px
     line-height 19px
     letter-spacing 0
+    text-decoration none
 
     @media (max-width $bp-xs)
       font-size 12px

@@ -20,6 +20,10 @@ query Articles ($url: String!) {
       ... on ComponentContentSeo {
         title
         description
+        image {
+          id
+          url
+        }
       }
     }
   }

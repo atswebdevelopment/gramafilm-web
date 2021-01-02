@@ -11,6 +11,10 @@ query Events {
       ... on ComponentContentSeo {
         title
         description
+        image {
+          id
+          url
+        }
       }
     }
   }

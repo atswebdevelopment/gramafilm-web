@@ -70,7 +70,8 @@ export default {
         { hid: 'description', name: 'description', content: (this.home && this.home.seo && this.home.seo.description) || 'Gramafilm produce some of the world&#39;s most shared branded content, films, technology and experiences for global brands and broadcasters.' },
         { hid: 'og:title', name: 'og:title', content: (this.home && this.home.seo && this.home.seo.title) || 'Gramafilm London - Branded Content Video Production Company' },
         { hid: 'og:description', name: 'og:description', content: (this.home && this.home.seo && this.home.seo.description) || 'Gramafilm produce some of the world&#39;s most shared branded content, films, technology and experiences for global brands and broadcasters.' },
-        { hid: 'og:url', name: 'og:url', content: `https://www.gramafilm.com${this.$route.path}` }
+        { hid: 'og:url', name: 'og:url', content: `https://www.gramafilm.com${this.$route.path}` },
+        { hid: 'og:image', name: 'og:image', content: this.home && this.home.seo && this.home.seo.image && this.home.seo.image.url }
       ]
     }
   }

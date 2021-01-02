@@ -321,6 +321,11 @@ export default {
   >>> .counter__text
     color $black
 
+.link-blue,
+.link-green,
+.link-orange
+  text-decoration none
+
 .link-blue:after,
 .link-green:after,
 .link-orange:after

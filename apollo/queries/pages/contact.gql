@@ -11,6 +11,10 @@ query Contact {
       ... on ComponentContentSeo {
         title
         description
+        image {
+          id
+          url
+        }
       }
     }
   }
