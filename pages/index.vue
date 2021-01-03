@@ -1,7 +1,7 @@
 <template>
   <div class="window">
     <div class="window--front">
-      <div class="page" :class="{ 'page--tertiary': partnersInFocus }">
+      <div class="page" :class="{ 'page--tertiary': partnersInFocus, 'page--primary': blueBg, 'page--grey': greyBg }">
         <div class="home-container">
           <Home :home="home" />
         </div>
@@ -24,7 +24,9 @@ export default {
   data () {
     return {
       home: {},
-      partnersInFocus: false
+      partnersInFocus: false,
+      blueBg: false,
+      greyBg: false
     }
   },
   apollo: {
@@ -52,14 +54,36 @@ export default {
         }
       }
 
+      const blueBgs = document.querySelectorAll('.background-blue')
+      if (blueBgs.length) {
+        blueBgs.forEach((e, i) => {
+          const sectionTop = e.getBoundingClientRect().top
+          const sectionBound = sectionTop + e.offsetHeight
+          if ((sectionTop - (window.innerHeight / 2) < 0) && (sectionBound > (window.innerHeight / 2))) {
+            this.blueBg = true
+          } else {
+            this.blueBg = false
+          }
+        })
+      }
+
+      const greyBgs = document.querySelectorAll('.background-grey')
+      if (greyBgs.length) {
+        greyBgs.forEach((e, i) => {
+          const sectionTop = e.getBoundingClientRect().top
+          const sectionBound = sectionTop + e.offsetHeight
+          if ((sectionTop - (window.innerHeight / 2) < 0) && (sectionBound > (window.innerHeight / 2))) {
+            this.greyBg = true
+          } else {
+            this.greyBg = false
+          }
+        })
+      }
+
       const partners = document.querySelector('.partners')
       if (partners) {
         const partnersTop = partners.getBoundingClientRect().top
-        if (partnersTop - (window.innerHeight / 2) < 0) {
-          this.partnersInFocus = true
-        } else {
-          this.partnersInFocus = false
-        }
+        this.partnersInFocus = partnersTop - (window.innerHeight / 2) < 0
       }
     })
   },
@@ -85,6 +109,12 @@ export default {
 .page
   padding 0
   transition 1.4s background-color $ease
+
+  &--primary
+    background $primary
+
+  &--grey
+    background #DBDCE6
 
   &--tertiary
     background $tertiary

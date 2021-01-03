@@ -2,11 +2,6 @@ query Home {
   home {
     id
     title
-    qvideo {
-      id
-      title
-      src
-    }
     introvideo {
       id
       title
@@ -15,6 +10,24 @@ query Home {
         id
         url
         mime
+      }
+    }
+    modules {
+    	... on ComponentColumnsOneColumn {
+        id
+        content
+        backgroundcolor
+      }
+    	... on ComponentColumnsTwoColumn {
+        id
+        content
+        media {
+          url
+          alternativeText
+          caption
+        }
+        reverse
+        backgroundcolor2
       }
     }
     studionews {
@@ -52,14 +65,6 @@ query Home {
             mime
           }
         }
-      }
-    }
-    counters {
-      ... on ComponentContentCounter {
-        id
-        number
-        unit
-        text
       }
     }
     seo {

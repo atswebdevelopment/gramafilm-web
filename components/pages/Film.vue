@@ -20,7 +20,7 @@
           </div>
         </Filters>
       </div>
-      <div v-if="work.modules[0] && work.modules[0].content" class="work-introduction">
+      <div v-if="work.modules[0] && work.modules[0].content" class="module-introduction">
         <div v-html="work.modules[0].content" />
       </div>
       <WorkPortfolio :type="type" />
@@ -51,7 +51,6 @@ export default {
     setTimeout(() => {
       this.$store.commit('header/setDefaultColor', 'black')
     }, 200)
-    console.log(this.work)
   }
 }
 </script>
