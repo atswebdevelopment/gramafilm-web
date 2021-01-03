@@ -1,7 +1,7 @@
 <template>
   <div class="window">
     <div class="window--front">
-      <div class="page" :class="{ 'page--tertiary': partnersInFocus, 'page--primary': blueBg, 'page--grey': greyBg }">
+      <div class="page" :class="{ 'page--tertiary': partnersInFocus, 'page--blue': blueBg, 'page--grey': greyBg }">
         <div class="home-container">
           <Home :home="home" />
         </div>
@@ -110,11 +110,11 @@ export default {
   padding 0
   transition 1.4s background-color $ease
 
-  &--primary
-    background $primary
+  &--blue
+    background #DBDCE6
 
   &--grey
-    background #DBDCE6
+    background $grey
 
   &--tertiary
     background $tertiary
