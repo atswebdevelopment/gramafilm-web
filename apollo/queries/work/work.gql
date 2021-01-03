@@ -2,12 +2,6 @@ query Work {
   work {
     id
     title
-    modules {
-      ... on ComponentColumnsOneColumn {
-        id
-        content
-      }
-    }
     casestudies {
       ... on ComponentCasestudiesCaseStudies {
         id

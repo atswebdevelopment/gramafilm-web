@@ -407,10 +407,4 @@ export default {
 
     @media (max-width $bp-sm)
       padding 3vh 0
-
-// .bg-green
-//   background-color $tertiary
-
-// .bg-blue
-//   background-color #DBDCE6
 </style>
