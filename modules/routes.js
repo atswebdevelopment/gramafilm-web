@@ -1,10 +1,13 @@
-import axios, * as others from 'axios';
+import axios, * as others from 'axios'
+import https from 'https'
+
 export default async function getRoutes() {
   const data = []
   const schemaPath = process.env.NODE_ENV === 'production' ? 'https://admin.gramafilm.com/graphql' : 'http://localhost:1337/graphql'
-
+  const httpsAgent = new https.Agent({ rejectUnauthorized: false })
   await axios({
     url: schemaPath,
+    httpsAgent,
     method: 'post',
     data: {
       query: `{    articles {      url published   }  }`
@@ -24,6 +27,7 @@ export default async function getRoutes() {
 
   await axios({
     url: schemaPath,
+    httpsAgent,
     method: 'post',
     data: {
       query: `{     caseStudies {       url published   }   }`
