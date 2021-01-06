@@ -34,7 +34,7 @@ export default {
       scrolled: false,
       logoOnScroll: false,
       loaded: false,
-      hideOnHome: false
+      hideOnHome: true
     }
   },
   computed: {
@@ -47,7 +47,6 @@ export default {
   },
   watch: {
     $route () {
-      this.hideOnHome = false
       this.ready()
     }
   },
@@ -58,9 +57,7 @@ export default {
     ready () {
       let oldScrollVal = window.scrollY
       const header = document.querySelector('.header')
-      if (this.$route.path === '/') {
-        this.hideOnHome = true
-      }
+      this.hideOnHome = this.$route.path === '/'
       setTimeout(() => {
         this.loaded = true
       }, 100)
