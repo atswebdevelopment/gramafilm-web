@@ -20,7 +20,7 @@
           </div>
         </Filters>
       </div>
-      <div v-if="work.modules[0] && work.modules[0].content" class="module-introduction">
+      <div v-if="work.modules && work.modules[0] && work.modules[0].content" class="module-introduction">
         <div v-html="work.modules[0].content" />
       </div>
       <WorkPortfolio />
