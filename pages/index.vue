@@ -1,7 +1,7 @@
 <template>
   <div class="window">
     <div class="window--front">
-      <div class="page" :class="{ 'page--tertiary': partnersInFocus }">
+      <div class="page" :class="{ 'page--tertiary': partnersInFocus, 'page--blue': blueBg, 'page--grey': greyBg }">
         <div class="home-container">
           <Home :home="home" />
         </div>
@@ -9,7 +9,7 @@
       </div>
     </div>
     <MainMenu class="mainMenu mainMenu--hide" fixed />
-    <img class="hidden" data-not-lazy src="/videoplayer/play-on.svg">
+    <img class="hidden" data-not-lazy src="/videoplayer/play-on.svg" alt="">
   </div>
 </template>
 
@@ -24,7 +24,9 @@ export default {
   data () {
     return {
       home: {},
-      partnersInFocus: false
+      partnersInFocus: false,
+      blueBg: false,
+      greyBg: false
     }
   },
   apollo: {
@@ -52,14 +54,36 @@ export default {
         }
       }
 
+      const blueBgs = document.querySelectorAll('.background-blue')
+      if (blueBgs.length) {
+        blueBgs.forEach((e, i) => {
+          const sectionTop = e.getBoundingClientRect().top
+          const sectionBound = sectionTop + e.offsetHeight
+          if ((sectionTop - (window.innerHeight / 2) < 0) && (sectionBound > (window.innerHeight / 2))) {
+            this.blueBg = true
+          } else {
+            this.blueBg = false
+          }
+        })
+      }
+
+      const greyBgs = document.querySelectorAll('.background-grey')
+      if (greyBgs.length) {
+        greyBgs.forEach((e, i) => {
+          const sectionTop = e.getBoundingClientRect().top
+          const sectionBound = sectionTop + e.offsetHeight
+          if ((sectionTop - (window.innerHeight / 2) < 0) && (sectionBound > (window.innerHeight / 2))) {
+            this.greyBg = true
+          } else {
+            this.greyBg = false
+          }
+        })
+      }
+
       const partners = document.querySelector('.partners')
       if (partners) {
         const partnersTop = partners.getBoundingClientRect().top
-        if (partnersTop - (window.innerHeight / 2) < 0) {
-          this.partnersInFocus = true
-        } else {
-          this.partnersInFocus = false
-        }
+        this.partnersInFocus = partnersTop - (window.innerHeight / 2) < 0
       }
     })
   },
@@ -67,7 +91,11 @@ export default {
     return {
       title: (this.home && this.home.seo && this.home.seo.title) || 'Gramafilm London - Branded Content Video Production Company',
       meta: [
-        { hid: 'description', name: 'description', content: (this.home && this.home.seo && this.home.seo.description) || 'Gramafilm produce some of the world&#39;s most shared branded content, films, technology and experiences for global brands and broadcasters.' }
+        { hid: 'description', name: 'description', content: (this.home && this.home.seo && this.home.seo.description) || 'Gramafilm produce some of the world&#39;s most shared branded content, films, technology and experiences for global brands and broadcasters.' },
+        { hid: 'og:title', name: 'og:title', content: (this.home && this.home.seo && this.home.seo.title) || 'Gramafilm London - Branded Content Video Production Company' },
+        { hid: 'og:description', name: 'og:description', content: (this.home && this.home.seo && this.home.seo.description) || 'Gramafilm produce some of the world&#39;s most shared branded content, films, technology and experiences for global brands and broadcasters.' },
+        { hid: 'og:url', name: 'og:url', content: `https://www.gramafilm.com${this.$route.path}` },
+        { hid: 'og:image', name: 'og:image', content: this.home && this.home.seo && this.home.seo.image && this.home.seo.image.url }
       ]
     }
   }
@@ -81,6 +109,12 @@ export default {
 .page
   padding 0
   transition 1.4s background-color $ease
+
+  &--blue
+    background #DBDCE6
+
+  &--grey
+    background #333
 
   &--tertiary
     background $tertiary

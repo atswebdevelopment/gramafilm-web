@@ -1,17 +1,7 @@
 query Home {
   home {
     id
-    images {
-      id
-      url
-      alternativeText
-      mime
-    }
-    qvideo {
-      id
-      title
-      src
-    }
+    title
     introvideo {
       id
       title
@@ -22,12 +12,32 @@ query Home {
         mime
       }
     }
+    modules {
+    	... on ComponentColumnsOneColumn {
+        id
+        content
+        backgroundcolor
+      }
+    	... on ComponentColumnsTwoColumn {
+        id
+        content
+        media {
+          url
+          alternativeText
+          caption
+          mime
+        }
+        reverse
+        backgroundcolor2
+      }
+    }
     studionews {
       ... on ComponentStudionewsStudionews {
         id
         description
         label
         url
+        urlText
         thumbnail {
           id
           url
@@ -58,18 +68,14 @@ query Home {
         }
       }
     }
-    counters {
-      ... on ComponentContentCounter {
-        id
-        number
-        unit
-        text
-      }
-    }
     seo {
       ... on ComponentContentSeo {
         title
         description
+        image {
+          id
+          url
+        }
       }
     }
   }

@@ -3,24 +3,27 @@
     <ContentArea stretch>
       <div class="heading">
         <h1 class="h1-small">
-          {{ work.title }}
+          Work
         </h1>
         <Filters>
-          <div class="filters__filter" :class="{ 'filters__filter--active': type === '' }" @click="filterWork('')">
+          <div class="filters__filter filters__filter--active">
             All
           </div>
-          <div class="filters__filter filters__filter--orange" :class="{ 'filters__filter--active': type === 'film' }" @click="filterWork('film')">
-            Film
+          <div class="filters__filter filters__filter--orange">
+            <nuxt-link :to="{ name: 'film' }">Film</nuxt-link>
           </div>
-          <div class="filters__filter filters__filter--green" :class="{ 'filters__filter--active': type === 'event' }" @click="filterWork('event')">
-            Event
+          <div class="filters__filter filters__filter--green">
+            <nuxt-link :to="{ name: 'events' }">Event</nuxt-link>
           </div>
-          <div class="filters__filter filters__filter--blue" :class="{ 'filters__filter--active': type === 'design' }" @click="filterWork('design')">
-            Design
+          <div class="filters__filter filters__filter--blue">
+            <nuxt-link :to="{ name: 'design' }">Design</nuxt-link>
           </div>
         </Filters>
       </div>
-      <WorkPortfolio :filtered-work="filteredWork" @filter-work="filterWorkByUrl" />
+      <div v-if="work.modules && work.modules[0] && work.modules[0].content" class="module-introduction">
+        <div v-html="work.modules[0].content" />
+      </div>
+      <WorkPortfolio />
     </ContentArea>
   </div>
 </template>
@@ -40,8 +43,7 @@ export default {
   },
   data () {
     return {
-      type: '',
-      filteredWork: []
+      type: ''
     }
   },
   mounted () {
@@ -49,44 +51,6 @@ export default {
     setTimeout(() => {
       this.$store.commit('header/setDefaultColor', 'black')
     }, 200)
-    window.onpopstate = (event) => {
-      const query = event.target.location.href.split('?')
-      if (query[1]) {
-        this.filteredWork = this.work.casestudies.filter(caseStudy => caseStudy.case_study.type && caseStudy.case_study.type === query[1])
-      } else {
-        this.filteredWork = this.work.casestudies
-      }
-      this.type = query[1]
-    }
-  },
-  methods: {
-    filterWork (type) {
-      if (type) {
-        this.filteredWork = this.work.casestudies.filter(caseStudy => caseStudy.case_study.type && caseStudy.case_study.type === type)
-        history.pushState(
-          { },
-          null,
-          this.$route.path + '?' + type
-        )
-      } else {
-        this.filteredWork = this.work.casestudies
-        history.pushState(
-          { },
-          null,
-          this.$route.path
-        )
-      }
-      this.type = type
-    },
-    filterWorkByUrl () {
-      if (this.$nuxt.$route.query.film === null) {
-        this.filterWork('film')
-      } else if (this.$nuxt.$route.query.event === null) {
-        this.filterWork('event')
-      } else if (this.$nuxt.$route.query.design === null) {
-        this.filterWork('design')
-      }
-    }
   }
 }
 </script>

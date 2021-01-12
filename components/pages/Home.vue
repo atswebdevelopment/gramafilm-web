@@ -1,19 +1,47 @@
 <template>
   <div class="home">
-    <h1 class="hidden">
-      Gramafilm
+    <h1 v-if="home" class="hidden">
+      {{ home.title }}
     </h1>
     <div class="intro-container">
       <Introduction :home="home" />
     </div>
     <ContentArea v-if="home" overflow>
-      <h2>Work</h2>
+      <h2>Latest projects</h2>
       <WorkPortfolio home />
       <img no-lazy-load class="logo-circle" src="/logo-circle.svg" alt="">
     </ContentArea>
     <ContentArea v-if="home" overflow>
       <h2>Studio news</h2>
       <StudioNews :home="home" />
+    </ContentArea>
+    <ContentArea v-if="home && home.modules" no-padding>
+      <div class="home__inner">
+        <ColumnContainer v-for="(section, index) in home.modules" :key="`section-${index}`" center class="fade fadeIn" :class="`background-${section.backgroundcolor || section.backgroundcolor2}`">
+          <template v-if="section.__typename === 'ComponentColumnsOneColumn'">
+            <Column>
+              <p class="large center" v-html="section.content" />
+            </Column>
+          </template>
+          <template v-else>
+            <Column v-if="!section.reverse">
+              <video v-if="section.media && section.media.mime.includes('video')" loop muted autoplay class="video-max-100">
+                <source :src="section.media.url" type="video/mp4">
+              </video>
+              <img v-else-if="section.media" :src="setResponsive(section.media.url)" :alt="section.media.alternativeText">
+            </Column>
+            <Column wide>
+              <div v-html="section.content" />
+            </Column>
+            <Column v-if="section.reverse">
+              <video v-if="section.media && section.media.mime.includes('video')" loop muted autoplay class="video-max-100">
+                <source :src="section.media.url" type="video/mp4">
+              </video>
+              <img v-else-if="section.media" :src="setResponsive(section.media.url)" :alt="section.media.alternativeText">
+            </Column>
+          </template>
+        </ColumnContainer>
+      </div>
     </ContentArea>
     <ContentArea v-if="home && home.partners" class="partners" overflow>
       <h2><b>Partners</b></h2>
@@ -47,6 +75,8 @@ import { setResponsive } from '~/helpers/cdn'
 export default {
   components: {
     ContentArea: () => import('~/components/layout/ContentArea'),
+    ColumnContainer: () => import('~/components/layout/ColumnContainer'),
+    Column: () => import('~/components/layout/Column'),
     Introduction: () => import('~/components/content/Introduction'),
     WorkPortfolio: () => import('~/components/content/WorkPortfolio'),
     ContentSwitcher: () => import('~/components/content/ContentSwitcher'),
@@ -91,6 +121,22 @@ export default {
 <style lang="stylus" scoped>
 .home
   overflow hidden
+
+  &__inner
+    padding 0 4.1667%
+
+    @media (max-width $bp-sm)
+      padding 0
+
+    @media (max-width $bp-xs)
+      font-family $fontFamily
+      font-size 34px
+      line-height 40px
+
+    >>> h2
+      font-size 48px
+      line-height 54px
+      font-family $fontFamily
 
 .logo-circle
   position absolute

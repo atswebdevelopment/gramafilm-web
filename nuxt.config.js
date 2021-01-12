@@ -1,3 +1,5 @@
+const getRoutes = require('./modules/routes.js').default;
+
 export default {
   mode: 'universal',
   target: 'static',
@@ -87,6 +89,9 @@ export default {
     injected: true
   },
   sitemap: {
+    routes() {
+      return getRoutes()
+    },
     hostname: 'https://gramafilm.com',
     gzip: true,
     exclude: ['/secret', '/admin/**']

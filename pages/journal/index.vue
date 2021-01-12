@@ -35,7 +35,10 @@ export default {
     return {
       title: 'Gramafilm > Journal',
       meta: [
-        { hid: 'Gramafilm produce branded content and films for broadcasters and brands. We&#39;re an independent production company based in London, UK.' }
+        { hid: 'Gramafilm produce branded content and films for broadcasters and brands. We&#39;re an independent production company based in London, UK.' },
+        { hid: 'og:title', name: 'og:title', content: 'Gramafilm > Journal' },
+        { hid: 'og:description', name: 'og:description', content: 'Gramafilm produce branded content and films for broadcasters and brands. We&#39;re an independent production company based in London, UK.' },
+        { hid: 'og:url', name: 'og:url', content: `https://www.gramafilm.com${this.$route.path}` }
       ]
     }
   }

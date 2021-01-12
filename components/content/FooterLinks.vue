@@ -12,13 +12,15 @@
       <div>
         <a class="footerLinks__link" target="_blank" rel="noopener" title="Opens in a new window" href="https://www.instagram.com/gramafilm/?hl=en">Instagram</a>
         <a class="footerLinks__link" target="_blank" rel="noopener" title="Opens in a new window" href="https://www.facebook.com/Gramafilm/">Facebook</a>
-        <a class="footerLinks__link" target="_blank" rel="noopener" title="Opens in a new window" href="https://www.youtube.com/gramafilm">YouTube</a>
         <a class="footerLinks__link" target="_blank" rel="noopener" title="Opens in a new window" href="https://twitter.com/Gramafilm">Twitter</a>
-        <a class="footerLinks__link" target="_blank" rel="noopener" title="Opens in a new window" href="https://vimeo.com/gramafilm">Vimeo</a>
         <a class="footerLinks__link" target="_blank" rel="noopener" title="Opens in a new window" href="https://uk.linkedin.com/organization-guest/company/gramafilm">LinkedIn</a>
       </div>
       <div class="footerLinks__copy">
-        <p>Copyright 2008-{{ currentYear }} Gramafilm Limited. All Rights Reserved.</p>
+        <p>
+          &copy; 2009-{{ currentYear }}
+          <nuxt-link class="footerLinks__link" :to="{ name: 'privacy' }" @click.native="closeMenu">Privacy Policy</nuxt-link>
+          <nuxt-link class="footerLinks__link" :to="{ name: 'cookies' }" @click.native="closeMenu">Cookie Policy</nuxt-link>
+        </p>
       </div>
     </div>
   </ContentArea>
@@ -72,6 +74,9 @@ export default {
           this.toTop()
         }
       }, 1)
+    },
+    closeMenu () {
+      this.$emit('close-menu')
     }
   }
 }
@@ -116,6 +121,7 @@ export default {
     font-size 16px
     line-height 19px
     letter-spacing 0
+    text-decoration none
 
     @media (max-width $bp-xs)
       font-size 12px
@@ -145,6 +151,9 @@ export default {
 
   &__copy
     margin-left auto
+
+    .footerLinks__link
+      margin 0 0 0 10px
 
   a:hover
       text-decoration underline

@@ -46,16 +46,31 @@
   top: 0;
   left: 50%;
   transform: translate(-125%, 0); }
+  @media only screen and (max-width: 320px) {
+    .video .vjs-control-bar .vjs-current-time.vjs-time-control.vjs-control {
+      transform: translate(-157%, 0);
+    }
+  }
 .video .vjs-control-bar .vjs-duration.vjs-time-control.vjs-control {
   position: absolute;
   top: 0;
   left: 50%;
   transform: translate(25%, 0); }
+  @media only screen and (max-width: 320px) {
+    .video .vjs-control-bar .vjs-duration.vjs-time-control.vjs-control {
+      transform: translate(-24%, 0);
+    }
+  }
 .video .vjs-control-bar .vjs-time-control.vjs-time-divider {
   position: absolute;
   top: 0;
   left: 50%;
   transform: translate(-50%, 0); }
+  @media only screen and (max-width: 320px) {
+    .video .vjs-control-bar .vjs-time-control.vjs-time-divider {
+      transform: translate(-171%, 0);
+    }
+  }
 .video .vjs-control-bar .vjs-fullscreen-control {
   position: absolute;
   top: 0px;
@@ -689,6 +704,10 @@ body.vjs-full-window {
   .video-js .vjs-control:before {
     font-size: 2.8em;
     line-height: 2.3em; }
+    @media only screen and (max-width: 500px) {
+      .video-js .vjs-volume-panel {
+        display: none; }
+    }
 
 .video-js .vjs-control:focus:before,
 .video-js .vjs-control:hover:before,
@@ -1476,6 +1495,12 @@ video::-webkit-media-text-track-display {
     background-position-x: 30px;
     background-position-y: 13px;
     width: 100px;
+}
+@media only screen and (max-width: 320px) {
+  .video-js .vjs-play-control {
+    background-position-x: 16px;
+    width: 100px;
+  }
 }
 .vjs-play-control:hover {
     background-image: url('/videoplayer/small-play-on.svg');

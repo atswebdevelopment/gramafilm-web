@@ -3,13 +3,15 @@
     <ContentArea>
       <div v-html="content" />
     </ContentArea>
+    <FooterLinks inline />
   </div>
 </template>
 
 <script>
 export default {
   components: {
-    ContentArea: () => import('~/components/layout/ContentArea')
+    ContentArea: () => import('~/components/layout/ContentArea'),
+    FooterLinks: () => import('~/components/content/FooterLinks')
   },
   data () {
     return {
@@ -34,7 +36,10 @@ export default {
     return {
       title: 'Gramafilm',
       meta: [
-        { hid: 'description', name: 'description', content: 'Gramafilm produce branded content and films for broadcasters and brands. We&#39;re an independent production company based in London, UK.' }
+        { hid: 'description', name: 'description', content: 'Gramafilm produce branded content and films for broadcasters and brands. We&#39;re an independent production company based in London, UK.' },
+        { hid: 'og:title', name: 'og:title', content: 'Gramafilm' },
+        { hid: 'og:description', name: 'og:description', content: 'Gramafilm produce branded content and films for broadcasters and brands. We&#39;re an independent production company based in London, UK.' },
+        { hid: 'og:url', name: 'og:url', content: `https://www.gramafilm.com${this.$route.path}` }
       ]
     }
   }

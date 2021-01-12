@@ -18,11 +18,7 @@ query CaseStudies ($url: String!) {
       id
       url
       mime
-    }
-    thumbnailimage {
-      id
-      url
-      mime
+      alternativeText
     }
     thumbnailPosition
     media {
@@ -58,6 +54,13 @@ query CaseStudies ($url: String!) {
       thumbnail {
         id
         url
+        mime
+        alternativeText
+      }
+      thumbnailimage {
+        id
+        url
+        mime
         alternativeText
       }
       type
@@ -237,6 +240,10 @@ query CaseStudies ($url: String!) {
       ... on ComponentContentSeo {
         title
         description
+        image {
+          id
+          url
+        }
       }
     }
   }

@@ -6,26 +6,66 @@
         ref="carousel"
         class="swiper"
         :options="swiperOptions"
+        @click="sliderClicked"
       >
         <swiper-slide
           v-for="(item, index) in items"
-          :key="index"
+          :key="`${index}`"
+          v-bind-data-index="index"
         >
           <template v-if="item.image">
-            <div class="swiper__media link" @click="$nuxt.$router.push({ name: 'journal-id', params: { id: item.url } })">
-              <img v-if="item.image" data-not-lazy :src="setResponsive(item.image.url, 767)" :alt="item.image.alternativeText || ''">
+            <div class="swiper__media link">
+              <img
+                v-if="item.image"
+                data-not-lazy
+                :src="setResponsive(item.image.url, 767)"
+                :alt="item.image.alternativeText || ''"
+                :data-url="item.url"
+                data-type="journal-id"
+              >
             </div>
-            <div class="swiper__text link" @click="$nuxt.$router.push({ name: 'journal-id', params: { id: item.url } })">
-              <span v-if="item.category" :class="getClass(item.category.name)">{{ item.category.name }}</span> {{ item.title }}
+            <div class="swiper__text link">
+              <span
+                v-if="item.category"
+                :class="getClass(item.category.name)"
+                :data-url="item.url"
+                data-type="journal-id"
+              >
+                {{ item.category.name }}
+              </span> {{ item.title }}
             </div>
           </template>
           <template v-else-if="item.title">
-            <div class="swiper__media link" @click="$nuxt.$router.push({ name: 'work-id', params: { id: item.url } })">
-              <img v-if="item.thumbnail && item.thumbnail.url" data-not-lazy :src="setResponsive(item.thumbnail.url, 767)" :alt="item.thumbnail.alternativeText || ''">
-              <img v-else-if="item.thumbnailimage && item.thumbnailimage.url" data-not-lazy :src="setResponsive(item.thumbnailimage.url, 767)" :alt="item.thumbnailimage.alternativeText || ''">
+            <div class="swiper__media link">
+              <img
+                v-if="item.thumbnail && item.thumbnail.url && !item.thumbnail.mime.includes('video')"
+                data-not-lazy
+                :src="setResponsive(item.thumbnail.url, 767)"
+                :alt="item.thumbnail.alternativeText || ''"
+                :data-url="item.url"
+                data-type="work-id"
+              >
+              <img
+                v-else-if="item.thumbnailimage && item.thumbnailimage.url"
+                data-not-lazy
+                :src="setResponsive(item.thumbnailimage.url, 767)"
+                :alt="item.thumbnailimage.alternativeText || ''"
+                :data-url="item.url"
+                data-type="work-id"
+              >
             </div>
-            <div v-if="item.title" class="swiper__text link" @click="$nuxt.$router.push({ name: 'work-id', params: { id: item.url } })">
-              <span v-if="item.type" :class="getClass(item.type)">{{ capitalize(item.type) }}</span> {{ item.title }}
+            <div
+              v-if="item.title"
+              class="swiper__text link"
+            >
+              <span
+                v-if="item.type"
+                :class="getClass(item.type)"
+                :data-url="item.url"
+                data-type="work-id"
+              >
+                {{ capitalize(item.type) }}
+              </span> {{ item.title }}
             </div>
           </template>
           <template v-else-if="item.caption || item.caption === ''">
@@ -96,6 +136,11 @@ export default {
     },
     capitalize (text) {
       return text.charAt(0).toUpperCase() + text.slice(1)
+    },
+    sliderClicked (e) {
+      const type = e.target.getAttribute('data-type')
+      const url = e.target.getAttribute('data-url')
+      this.$router.push({ name: type, params: { id: url } })
     }
   }
 }
@@ -121,6 +166,7 @@ export default {
 
   &-slide
     width auto
+    margin-right 56px
 
     @media (max-width $bp-sm)
       max-width 80%

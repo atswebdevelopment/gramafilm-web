@@ -57,6 +57,7 @@ query About {
           url
           alternativeText
           caption
+          mime
         }
         reverse
       }
@@ -101,6 +102,10 @@ query About {
       ... on ComponentContentSeo {
         title
         description
+        image {
+          id
+          url
+        }
       }
     }
   }

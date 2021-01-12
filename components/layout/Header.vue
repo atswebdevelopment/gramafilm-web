@@ -3,8 +3,8 @@
     <div class="header" :class="{ 'header--open': menu, 'header--scrolled': scrolled, 'header--loaded': loaded }">
       <ContentArea class="header__container">
         <div class="header__inner">
-          <div class="header__logo" :class="{ 'hidden': hideOnHome }">
-            <nuxt-link to="/" title="Back to Home" @click.native="closeMenu">
+          <div class="header__logo" :class="{ 'header__logo--hidden': hideOnHome }">
+            <nuxt-link to="/" title="Back to Home" @click.native="homeClick">
               <Logo :color="headerColor" />
             </nuxt-link>
           </div>
@@ -34,7 +34,7 @@ export default {
       scrolled: false,
       logoOnScroll: false,
       loaded: false,
-      hideOnHome: false
+      hideOnHome: true
     }
   },
   computed: {
@@ -45,65 +45,57 @@ export default {
       return this.$store.state.header.hideLogo
     }
   },
-  mounted () {
-    let oldScrollVal = window.scrollY
-    const header = document.querySelector('.header')
-    if (this.$route.path === '/') {
-      this.hideOnHome = true
+  watch: {
+    $route () {
+      this.ready()
     }
-    setTimeout(() => {
-      this.loaded = true
-    }, 100)
-    window.addEventListener('mousemove', (e) => {
-      if (e.clientY < 100) {
-        header.classList.remove('header--hide')
-      }
-    })
-    window.addEventListener('scroll', () => {
-      if (window.scrollY < oldScrollVal) {
-        header.classList.remove('header--hide')
-      } else {
-        header.classList.add('header--hide')
-      }
-      oldScrollVal = window.scrollY
-
-      if (window.scrollY > 10) {
-        setTimeout(() => {
-          if (window.scrollY > 10) {
-            this.scrolled = true
-            if (this.headerColor === 'black') {
-              this.$store.commit('header/setColor', 'white')
-            }
-          }
-          this.hideOnHome = false
-        }, 500)
-      } else {
-        this.scrolled = false
-        this.$store.commit('header/setColor', this.$store.state.header.defaultColor)
-      }
-
-      // const banner = document.querySelector('.banner')
-      // if (banner) {
-      //   const elemHeight = banner.offsetHeight
-      //   this.logoOnScroll = window.scrollY >= elemHeight - 50
-      //   if (this.logoOnScroll && this.headerColor === 'white') {
-      //     this.$store.commit('header/setColor', 'black')
-      //   } else if (!this.logoOnScroll && this.headerColor === 'black') {
-      //     this.$store.commit('header/setColor', this.$store.state.header.defaultColor)
-      //   }
-      // }
-
-      // const elemBottom = document.querySelector('.banner--bottom')
-      // if (elemBottom) {
-      //   const logoOnMenu = window.scrollY + window.innerHeight >= document.body.scrollHeight - 50
-      //   oldScrollVal = window.scrollY
-      //   if (logoOnMenu && this.headerColor === 'black') {
-      //     this.$store.commit('header/setColor', 'white')
-      //   }
-      // }
-    })
+  },
+  mounted () {
+    this.ready()
   },
   methods: {
+    ready () {
+      let oldScrollVal = window.scrollY
+      const header = document.querySelector('.header')
+      this.hideOnHome = this.$route.path === '/'
+      setTimeout(() => {
+        this.loaded = true
+      }, 100)
+      window.addEventListener('mousemove', (e) => {
+        if (e.clientY < 100) {
+          header.classList.remove('header--hide')
+        }
+      })
+      window.addEventListener('scroll', () => {
+        if (window.scrollY < oldScrollVal) {
+          header.classList.remove('header--hide')
+        } else {
+          header.classList.add('header--hide')
+        }
+        oldScrollVal = window.scrollY
+
+        if (window.scrollY > 10) {
+          setTimeout(() => {
+            if (window.scrollY > 10) {
+              this.scrolled = true
+              if (this.headerColor === 'black') {
+                this.$store.commit('header/setColor', 'white')
+              }
+            }
+
+            this.hideOnHome = (this.$route.path === '/' && window.scrollY < window.innerHeight)
+          }, 500)
+        } else {
+          this.scrolled = false
+          this.$store.commit('header/setColor', this.$store.state.header.defaultColor)
+        }
+      })
+    },
+    homeClick () {
+      window.scrollTo(0, 0)
+      this.hideOnHome = true
+      this.closeMenu()
+    },
     closeMenu () {
       this.menu = false
     },
@@ -165,6 +157,13 @@ export default {
     margin-left auto
     display flex
     align-items center
+
+  &__logo
+    opacity 1
+    transition 0.4s opacity $ease
+
+    &--hidden
+      opacity 0
 
   &__link
     margin-right 20px

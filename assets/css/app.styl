@@ -29,6 +29,9 @@ p
     font-size 22px
     line-height 28px
 
+  a
+    text-decoration underline
+
 b, strong
   font-weight normal
   font-family $fontFamilyBold
@@ -219,6 +222,7 @@ button
   display flex
   align-items center
   justify-content center
+  text-decoration none
 
   &:after
     content ''
@@ -293,14 +297,37 @@ video::-webkit-media-controls-start-playback-button
   display none!important
   -webkit-appearance none
 
-// .page-enter-active,
-// .page-leave-active,
-// .layout-enter-active, 
-// .layout-leave-active
-//   transition opacity .5s $ease
+.video-max-100
+  max-width 100%
 
-// .page-enter,
-// .page-leave-active,
-// .layout-enter, 
-// .layout-leave-active
-//   opacity 0.5
+.module-introduction
+  margin 0 auto
+  max-width 880px
+
+  p
+    font-size 48px
+    line-height 54px
+
+    @media (max-width $bp-md)
+      font-size 42px
+      line-height 48px
+
+    @media (max-width $bp-sm)
+      font-size 36px
+      line-height 42px
+
+    @media (max-width $bp-xs)
+      font-size 32px
+      line-height 38px
+
+.work .module-introduction
+  margin-top 15vh
+
+  @media (max-width $bp-sm)
+    margin 10vh auto
+
+  @media (max-width $bp-xs)
+    margin 5vh auto
+
+.background-grey
+  color $white

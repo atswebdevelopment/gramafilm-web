@@ -1,57 +1,41 @@
 <template>
   <div class="page">
-    <EventsBanner v-if="eventsFromStoreId || (event && event.id)" :events="(eventsFromStoreId && eventsFromStore) || event" banner-top />
-    <Events v-if="event && event.id" :events="event" />
+    <Events v-if="event && event.id" :work="event" />
     <Loader v-else />
-    <DesignBanner v-if="design && design.id" :design="design" />
+    <GetInTouch v-if="event && event.id" footer-links />
   </div>
 </template>
 
 <script>
-import eventsQuery from '~/apollo/queries/work/events.gql'
+import eventQuery from '~/apollo/queries/work/events.gql'
 export default {
   components: {
     Events: () => import('~/components/pages/Events'),
-    EventsBanner: () => import('~/components/banners/EventsBanner'),
-    DesignBanner: () => import('~/components/banners/DesignBanner'),
+    GetInTouch: () => import('~/components/content/GetInTouch'),
     Loader: () => import('~/components/content/Loader')
   },
   data () {
     return {
-      event: {},
-      design: {}
+      event: {}
     }
   },
   apollo: {
     event: {
       prefetch: false,
-      query: eventsQuery
-    },
-    design: {
-      prefetch: false,
-      query: eventsQuery
-    }
-  },
-  computed: {
-    eventsFromStore () {
-      return this.$store.state.showcase.events
-    },
-    eventsFromStoreId () {
-      return this.$store.state.showcase.events.id
+      query: eventQuery
     }
   },
   head () {
     return {
-      title: (this.event && this.event.seo && this.event.seo.title) || 'Gramafilm > Our Work > Event',
+      title: (this.event && this.event.seo && this.event.seo.title) || 'Gramafilm > Events',
       meta: [
-        { hid: 'description', name: 'description', content: (this.event && this.event.seo && this.event.seo.description) || 'Gramafilm produce branded content and films for broadcasters and brands. We&#39;re an independent production company based in London, UK.' }
+        { hid: 'description', name: 'description', content: (this.event && this.event.seo && this.event.seo.description) || 'Gramafilm produce branded content and films for broadcasters and brands. We&#39;re an independent production company based in London, UK.' },
+        { hid: 'og:title', name: 'og:title', content: (this.event && this.event.seo && this.event.seo.title) || 'Gramafilm > Events' },
+        { hid: 'og:description', name: 'og:description', content: (this.event && this.event.seo && this.event.seo.description) || 'Gramafilm produce branded content and films for broadcasters and brands. We&#39;re an independent production company based in London, UK.' },
+        { hid: 'og:url', name: 'og:url', content: `https://www.gramafilm.com${this.$route.path}` },
+        { hid: 'og:image', name: 'og:image', content: this.event && this.event.seo && this.event.seo.image && this.event.seo.image.url }
       ]
     }
   }
 }
 </script>
-
-<style lang="stylus" scoped>
-.page
-  padding 0
-</style>

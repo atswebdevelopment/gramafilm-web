@@ -24,10 +24,10 @@
           title="Opens in a new window"
           class="arrowLink arrowLink--external"
         >
-          Visit site
+          {{ home.studionews[0].urlText || 'Visit site' }}
         </a>
         <nuxt-link v-else class="arrowLink arrowLink--internal" :to="home.studionews[0].url">
-          Read more
+          {{ home.studionews[0].urlText || 'Read more' }}
         </nuxt-link>
       </div>
     </div>
@@ -55,10 +55,10 @@
           title="Opens in a new window"
           class="arrowLink arrowLink--external"
         >
-          Visit site
+          {{ studionews.urlText || 'Visit site' }}
         </a>
         <nuxt-link v-else class="arrowLink arrowLink--internal" :to="studionews.url">
-          Read more
+          {{ studionews.urlText || 'Read more' }}
         </nuxt-link>
       </div>
     </div>

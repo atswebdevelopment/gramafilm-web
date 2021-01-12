@@ -29,7 +29,11 @@ export default {
     return {
       title: (this.work && this.work.seo && this.work.seo.title) || 'Gramafilm > Our Work > All',
       meta: [
-        { hid: 'description', name: 'description', content: (this.work && this.work.seo && this.work.seo.description) || 'Gramafilm produce branded content and films for broadcasters and brands. We&#39;re an independent production company based in London, UK.' }
+        { hid: 'description', name: 'description', content: (this.work && this.work.seo && this.work.seo.description) || 'Gramafilm produce branded content and films for broadcasters and brands. We&#39;re an independent production company based in London, UK.' },
+        { hid: 'og:title', name: 'og:title', content: (this.work && this.work.seo && this.work.seo.title) || 'Gramafilm > Our Work > All' },
+        { hid: 'og:description', name: 'og:description', content: (this.work && this.work.seo && this.work.seo.description) || 'Gramafilm produce branded content and films for broadcasters and brands. We&#39;re an independent production company based in London, UK.' },
+        { hid: 'og:url', name: 'og:url', content: `https://www.gramafilm.com${this.$route.path}` },
+        { hid: 'og:image', name: 'og:image', content: this.work && this.work.seo && this.work.seo.image && this.work.seo.image.url }
       ]
     }
   }

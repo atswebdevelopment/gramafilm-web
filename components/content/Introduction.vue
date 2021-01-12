@@ -13,36 +13,15 @@
         >
       </div>
       <video v-if="!introVideoLoaded" class="splash__video" loop muted playsinline>
-        <source src="https://player.vimeo.com/external/487353966.hd.mp4?s=587745e52c9df54211176700da9f3bf116ff35e0&profile_id=175" type="video/mp4">
+        <source :src="introVideo" type="video/mp4">
       </video>
       <Video v-if="home && home.introvideo && introVideoLoaded" :video="home.introvideo" play fullscreen class="splash__introvideo" />
     </div>
     <div class="intro">
       <ContentArea>
-        <p class="intro__about large" @mouseleave="setBg()">
-          We're a London-based creative production studio. We develop award-winning <nuxt-link class="link-orange" :to="{ name: 'work', query: { film: null }}">Films</nuxt-link>, <nuxt-link class="link-green" :to="{ name: 'work', query: { event: null }}">Events</nuxt-link> and <nuxt-link class="link-blue" :to="{ name: 'work', query: { design: null }}">Design</nuxt-link>.
+        <p class="intro__about large">
+          We're a London-based creative production studio. We develop <nuxt-link class="link-orange" :to="{ name: 'film' }">Films</nuxt-link>, <nuxt-link class="link-green" :to="{ name: 'events' }">Events</nuxt-link> and <nuxt-link class="link-blue" :to="{ name: 'design' }">Design</nuxt-link>.
         </p>
-        <!-- <div v-if="home && home.images" class="intro__images">
-          <template v-if="screen === 'mobile'">
-            <div v-for="(image, index) in home.images" :key="index" class="intro__image" :class="{ 'intro__image--active': index === 0 }" :style="`background-image:url('${setResponsive(image.url, 767)}')`">
-              <img
-                class="invisible"
-                :src="setResponsive(home.images[0].url, 767)"
-                @load="load($event)"
-              >
-            </div>
-          </template>
-          <video v-else-if="screen === 'desktop' && home.qvideo" loop muted autoplay>
-            <source :src="home.qvideo.src" type="video/mp4">
-          </video>
-        </div>
-        <ColumnContainer v-if="home.counters" class="counter-container">
-          <Column v-for="(counter, index) in home.counters" :key="index">
-            <Counter :start-counter="startCounter" :data-val="counter.number" :val="counters[index]" :unit="counter.unit">
-              {{ counter.text }}
-            </Counter>
-          </Column>
-        </ColumnContainer> -->
       </ContentArea>
     </div>
   </div>
@@ -72,20 +51,20 @@ export default {
       ready: false,
       loaded: false,
       activeImage: 0,
-      introVideoLoaded: false
+      introVideoLoaded: false,
+      introVideo: null
     }
   },
   mounted () {
     this.loaded = true
+    this.introVideo = window.innerWidth < 1024 ? 'https://player.vimeo.com/external/498070607.hd.mp4?s=df7a7f2b9890ab8fd95a9c3473c17dc976b157e1&profile_id=174' : 'https://player.vimeo.com/external/498072218.hd.mp4?s=3c9c382fe0cc07a8d4dd22b387112cd1d10c1a20&profile_id=175'
     setTimeout(() => {
       const introVideo = document.querySelector('.splash__video')
-      introVideo.play()
-      this.ready = true
+      if (introVideo) {
+        introVideo.play()
+        this.ready = true
+      }
     }, 1800)
-    setTimeout(() => {
-      // const introTitle = document.querySelector('.splash__title')
-      // introTitle.classList.add('splash__title--finished')
-    }, 3000)
     this.screen = window.innerWidth > 766 ? 'desktop' : 'mobile'
     window.addEventListener('scroll', () => {
       const video = document.querySelectorAll('.intro video')
@@ -132,23 +111,15 @@ export default {
       }, this.rand * 100)
       this.rand++
     },
-    setBg (color) {
-      const intro = document.querySelector('.intro')
-      intro.classList.remove('intro--orange', 'intro--blue', 'intro--green')
-      if (color) {
-        intro.classList.add(`intro--${color}`)
-      }
-    },
     loadIntroVideo () {
-      if (window.innerWidth > 1023) {
-        this.introVideoLoaded = true
-      }
+      this.introVideoLoaded = true
     }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
+
 .splash
   min-height 100vh
   background-color $tertiary
@@ -192,6 +163,19 @@ export default {
       font-size 34px
       line-height 40px
 
+    &:after
+      @media (max-width $bp-sm)
+        content ''
+        display block
+        width 48px
+        height 48px
+        background url('/cursor-play.svg')
+        background-size 48px
+        position absolute
+        left 50%
+        margin-left -24px
+        bottom -80px
+
     img
       width 510px
       margin 0 auto
@@ -229,6 +213,10 @@ export default {
     opacity 1
     z-index 2
 
+    @media (max-width $bp-sm)
+      height 100% !important
+      padding 0 !important
+
 .scrolldown-pos
   width 100%
   max-width 1164px
@@ -241,6 +229,9 @@ export default {
   transition opacity 0.8s linear, transform 0.8s cubic-bezier(.78,2.37,.51,-0.48)
   transition-delay 1s
   z-index 1
+
+  @media (max-width $bp-sm)
+    bottom 70px
 
 .scrolldown
   transform rotateZ(180deg)
@@ -331,6 +322,11 @@ export default {
 
   >>> .counter__text
     color $black
+
+.link-blue,
+.link-green,
+.link-orange
+  text-decoration none
 
 .link-blue:after,
 .link-green:after,

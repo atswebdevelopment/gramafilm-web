@@ -2,6 +2,12 @@ query Work {
   work {
     id
     title
+    modules {
+      ... on ComponentColumnsOneColumn {
+        id
+        content
+      }
+    }
     casestudies {
       ... on ComponentCasestudiesCaseStudies {
         id
@@ -11,6 +17,12 @@ query Work {
           title
           type
           thumbnail {
+            id
+            url
+            mime
+            alternativeText
+          }
+          thumbnailimage {
             id
             url
             mime
@@ -51,6 +63,10 @@ query Work {
       ... on ComponentContentSeo {
         title
         description
+        image {
+          id
+          url
+        }
       }
     }
   }
