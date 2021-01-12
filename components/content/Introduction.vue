@@ -20,7 +20,7 @@
     <div class="intro">
       <ContentArea>
         <p class="intro__about large">
-          We're a London-based creative production studio. We develop award-winning <nuxt-link class="link-orange" :to="{ name: 'film' }">Films</nuxt-link>, <nuxt-link class="link-green" :to="{ name: 'events' }">Events</nuxt-link> and <nuxt-link class="link-blue" :to="{ name: 'design' }">Design</nuxt-link>.
+          We're a London-based creative production studio. We develop <nuxt-link class="link-orange" :to="{ name: 'film' }">Films</nuxt-link>, <nuxt-link class="link-green" :to="{ name: 'events' }">Events</nuxt-link> and <nuxt-link class="link-blue" :to="{ name: 'design' }">Design</nuxt-link>.
         </p>
       </ContentArea>
     </div>
@@ -57,7 +57,7 @@ export default {
   },
   mounted () {
     this.loaded = true
-    this.introVideo = window.innerWidth < 1024 ? 'https://player.vimeo.com/external/487353966.hd.mp4?s=587745e52c9df54211176700da9f3bf116ff35e0&profile_id=174' : 'https://player.vimeo.com/external/487353966.hd.mp4?s=587745e52c9df54211176700da9f3bf116ff35e0&profile_id=175'
+    this.introVideo = window.innerWidth < 1024 ? 'https://player.vimeo.com/external/498070607.hd.mp4?s=df7a7f2b9890ab8fd95a9c3473c17dc976b157e1&profile_id=174' : 'https://player.vimeo.com/external/498072218.hd.mp4?s=3c9c382fe0cc07a8d4dd22b387112cd1d10c1a20&profile_id=175'
     setTimeout(() => {
       const introVideo = document.querySelector('.splash__video')
       if (introVideo) {

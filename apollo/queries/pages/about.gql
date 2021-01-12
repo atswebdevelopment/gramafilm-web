@@ -57,6 +57,7 @@ query About {
           url
           alternativeText
           caption
+          mime
         }
         reverse
       }

@@ -114,7 +114,7 @@ export default {
     background #DBDCE6
 
   &--grey
-    background $grey
+    background #333
 
   &--tertiary
     background $tertiary

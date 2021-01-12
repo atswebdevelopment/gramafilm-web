@@ -3,7 +3,7 @@
     <ContentArea stretch>
       <div class="heading">
         <h1 class="h1-small">
-          Latest Projects
+          Work
         </h1>
         <Filters>
           <div class="filters__filter filters__filter--active">

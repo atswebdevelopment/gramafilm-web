@@ -25,6 +25,7 @@ query Home {
           url
           alternativeText
           caption
+          mime
         }
         reverse
         backgroundcolor2

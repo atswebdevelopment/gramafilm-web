@@ -7,7 +7,7 @@
       <Introduction :home="home" />
     </div>
     <ContentArea v-if="home" overflow>
-      <h2>Latest Projects</h2>
+      <h2>Latest projects</h2>
       <WorkPortfolio home />
       <img no-lazy-load class="logo-circle" src="/logo-circle.svg" alt="">
     </ContentArea>
@@ -25,13 +25,19 @@
           </template>
           <template v-else>
             <Column v-if="!section.reverse">
-              <img v-if="section.media" :src="setResponsive(section.media.url)" :alt="section.media.alternativeText">
+              <video v-if="section.media && section.media.mime.includes('video')" loop muted autoplay class="video-max-100">
+                <source :src="section.media.url" type="video/mp4">
+              </video>
+              <img v-else-if="section.media" :src="setResponsive(section.media.url)" :alt="section.media.alternativeText">
             </Column>
             <Column wide>
               <div v-html="section.content" />
             </Column>
             <Column v-if="section.reverse">
-              <img v-if="section.media" :src="setResponsive(section.media.url)" :alt="section.media.alternativeText">
+              <video v-if="section.media && section.media.mime.includes('video')" loop muted autoplay class="video-max-100">
+                <source :src="section.media.url" type="video/mp4">
+              </video>
+              <img v-else-if="section.media" :src="setResponsive(section.media.url)" :alt="section.media.alternativeText">
             </Column>
           </template>
         </ColumnContainer>
