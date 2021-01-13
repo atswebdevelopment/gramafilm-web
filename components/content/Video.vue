@@ -198,11 +198,13 @@ export default {
     >>> .video-player-box,
     >>> .video-js,
     >>> iframe
-      width auto
-      height auto
+      width 177.77777778vh
+      height 100%
       min-width 100%
-      min-height 100%
-      clip-path none
+      min-height 56.25vw
+      left 50%
+      top 50%
+      transform translate(-50%, -50%)
 
     .video__preview video
       top 50%
