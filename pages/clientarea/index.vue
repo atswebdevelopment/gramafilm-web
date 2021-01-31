@@ -2,11 +2,10 @@
   <div class="page">
     <ContentArea>
       <div class="clientarea">
-        <PrivateVideos v-if="user.videos && user.videos.length" :videos="user.videos" />
-        <Slider v-if="user.gallery && user.gallery.length" :items="user.gallery" />
-        <Loader v-else />
+        <PrivateVideos v-if="user && user.videos && user.videos.length" :videos="user.videos" />
+        <Slider v-if="user && user.gallery && user.gallery.length" :items="user.gallery" />
       </div>
-      <FooterLinks v-if="user.videos && user.videos.length" />
+      <FooterLinks v-if="user && user.videos && user.videos.length" />
     </ContentArea>
   </div>
 </template>
@@ -35,8 +34,7 @@ export default {
     ContentArea: () => import('~/components/layout/ContentArea'),
     PrivateVideos: () => import('~/components/content/PrivateVideos'),
     Slider: () => import('~/components/content/Slider'),
-    FooterLinks: () => import('~/components/content/FooterLinks'),
-    Loader: () => import('~/components/content/Loader')
+    FooterLinks: () => import('~/components/content/FooterLinks')
   },
   data () {
     return {
@@ -49,7 +47,7 @@ export default {
       query: userQuery,
       variables () {
         return {
-          id: 1
+          id: localStorage.getItem('m')
         }
       }
     }

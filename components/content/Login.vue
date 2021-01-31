@@ -49,6 +49,7 @@ export default {
             user: response.data.user,
             token: response.data.jwt
           })
+          localStorage.setItem('m', response.data.user.id)
           await this.$apolloHelpers.onLogin(response.data.jwt)
           this.$nuxt.$router.push({ name: 'clientarea' })
         })
