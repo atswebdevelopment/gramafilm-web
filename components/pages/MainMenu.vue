@@ -30,7 +30,7 @@ export default {
   },
   apollo: {
     menu: {
-      prefetch: false,
+      prefetch: true,
       query: menuQuery
     }
   },

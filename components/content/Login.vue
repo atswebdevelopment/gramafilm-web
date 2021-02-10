@@ -14,7 +14,7 @@
           @keyup.enter="login"
         >
       </div>
-      <a class="form__link" href="mailto:email@email.com">Forgot password?</a>
+      <a class="form__link" href="mailto:reset@gramafilm.com?subject=Forgot Password">Forgot password?</a>
       <button @click="login">
         Enter
       </button>
