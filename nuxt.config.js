@@ -221,34 +221,34 @@ export default {
     },
     extend (config, ctx) {
     }
+  },
+  generate: {
+    routes: [
+      '/journal/launching-into-the-new-year',
+      '/journal/on-set',
+      '/journal/way-back-home-with-danny-macaskill',
+      '/journal/we-won',
+      '/journal/gramafilm-dog-squad-grows',
+      '/work/beneath-the-surface',
+      '/work/cooking-fever',
+      '/work/intel-the-tempest',
+      '/work/google-animations',
+      '/work/android-developer-challenge',
+      '/work/android-10-year',
+      '/work/red-bull-f1',
+      '/work/red-bull-way-back-home-with-danny-macaskill',
+      '/work/android-developer-stories',
+      '/work/siemens-x-intel',
+      '/work/bafta-campaign',
+      '/work/amazon-tour',
+      '/work/imakeapps',
+      '/work/lg-styler',
+      '/work/youtube-stay-home',
+      '/work/io-opener',
+      '/work/google-playtime',
+      '/work/100-voices',
+      '/work/bitpanda-ios-launch',
+      '/work/magic-kinder'
+    ]
   }
-  // generate: {
-  //   routes: [
-  //     '/journal/launching-into-the-new-year',
-  //     '/journal/on-set',
-  //     '/journal/way-back-home-with-danny-macaskill',
-  //     '/journal/we-won',
-  //     '/journal/gramafilm-dog-squad-grows',
-  //     '/work/beneath-the-surface',
-  //     '/work/cooking-fever',
-  //     '/work/intel-the-tempest',
-  //     '/work/google-animations',
-  //     '/work/android-developer-challenge',
-  //     '/work/android-10-year',
-  //     '/work/red-bull-f1',
-  //     '/work/red-bull-way-back-home-with-danny-macaskill',
-  //     '/work/android-developer-stories',
-  //     '/work/siemens-x-intel',
-  //     '/work/bafta-campaign',
-  //     '/work/amazon-tour',
-  //     '/work/imakeapps',
-  //     '/work/lg-styler',
-  //     '/work/youtube-stay-home',
-  //     '/work/io-opener',
-  //     '/work/google-playtime',
-  //     '/work/100-voices',
-  //     '/work/bitpanda-ios-launch',
-  //     '/work/magic-kinder'
-  //   ]
-  // }
 }
