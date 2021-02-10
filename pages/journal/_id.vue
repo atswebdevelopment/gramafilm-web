@@ -1,9 +1,9 @@
 <template>
-  <div class="page">
+  <div class="page" :class="{ 'page--white': whiteBg }">
     <Article v-if="article && article.id" :article="article" />
     <Loader v-else />
-    <div v-if="recentArticles.length && categories.length">
-      <Journal :articles="recentArticles" :categories="categories" disable-load-more />
+    <div class="article-journal">
+      <Journal v-if="recentArticles.length && categories.length" :articles="recentArticles" :categories="categories" disable-load-more />
     </div>
     <GetInTouch v-if="categories.length" footer-links />
   </div>
@@ -24,13 +24,27 @@ export default {
     return {
       categories: [],
       recentArticles: [],
-      article: {}
+      article: {},
+      whiteBg: false
     }
   },
   mounted () {
     this.$apollo.query({ query: articlesQuery }).then(({ data }) => {
       this.recentArticles = [...data.articles]
     })
+
+    const journal = document.querySelector('.article-journal')
+    if (journal) {
+      window.addEventListener('scroll', () => {
+        const sectionTop = journal.getBoundingClientRect().top
+        const sectionBound = sectionTop + journal.offsetHeight
+        if ((sectionTop - (window.innerHeight / 2) < 0) && (sectionBound > (window.innerHeight / 2))) {
+          this.whiteBg = true
+        } else {
+          this.whiteBg = false
+        }
+      })
+    }
   },
   apollo: {
     categories: {
@@ -64,3 +78,11 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+.page
+  transition 1.4s background-color $ease
+
+  &--white
+    background $white
+</style>

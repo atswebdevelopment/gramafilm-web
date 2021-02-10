@@ -1,7 +1,7 @@
 <template>
   <div class="window">
     <div class="window--front">
-      <div class="page" :class="{ 'page--tertiary': partnersInFocus, 'page--blue': blueBg, 'page--grey': greyBg }">
+      <div class="page" :class="{ 'page--tertiary': partnersInFocus, 'page--blue': blueBg, 'page--grey': greyBg, 'page--white': whiteBg }">
         <div class="home-container">
           <Home :home="home" />
         </div>
@@ -26,7 +26,8 @@ export default {
       home: {},
       partnersInFocus: false,
       blueBg: false,
-      greyBg: false
+      greyBg: false,
+      whiteBg: false
     }
   },
   apollo: {
@@ -80,6 +81,19 @@ export default {
         })
       }
 
+      const whiteBgs = document.querySelectorAll('.article-journal .journal')
+      if (whiteBgs.length) {
+        whiteBgs.forEach((e, i) => {
+          const sectionTop = e.getBoundingClientRect().top
+          const sectionBound = sectionTop + e.offsetHeight
+          if ((sectionTop - (window.innerHeight / 2) < 0) && (sectionBound > (window.innerHeight / 2))) {
+            this.whiteBg = true
+          } else {
+            this.whiteBg = false
+          }
+        })
+      }
+
       const partners = document.querySelector('.partners')
       if (partners) {
         const partnersTop = partners.getBoundingClientRect().top
@@ -115,6 +129,9 @@ export default {
 
   &--grey
     background #333
+
+  &--white
+    background $white
 
   &--tertiary
     background $tertiary

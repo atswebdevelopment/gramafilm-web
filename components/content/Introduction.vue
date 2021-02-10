@@ -331,8 +331,14 @@ export default {
 .link-blue:after,
 .link-green:after,
 .link-orange:after
-  bottom 0
+  bottom -4px
   border-bottom 2px solid $blue
+
+  @media (max-width $bp-md)
+    bottom 10px
+
+  @media (max-width $bp-sm)
+    bottom 6px
 
 .link-green:after
   border-color $green

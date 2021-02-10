@@ -123,6 +123,9 @@ export default {
     > a:first-child
       display block
 
+    p
+      margin-bottom 10px
+
   &__column--left
     .studio__item
       width 100%

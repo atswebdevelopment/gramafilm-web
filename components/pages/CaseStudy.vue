@@ -296,6 +296,7 @@ export default {
   font-size 112px
   line-height 120px
   margin 0
+  max-width 1200px
 
   &.header-top
     top 10%
@@ -352,6 +353,9 @@ export default {
       margin-top 2vh
 
 .casestudy
+  >>> .swiper__media
+    max-width 532px
+
   p
     max-width 528px
 
@@ -383,6 +387,9 @@ export default {
     video
       width 100%
       max-height none
+
+    >>> p
+      max-width 1000px
 
     &--1
       .casestudy__media
