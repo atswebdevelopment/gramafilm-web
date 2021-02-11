@@ -1,12 +1,13 @@
 <template>
   <div class="page" :class="{ 'page--tertiary': pageGreenInFocus, 'page--blue': pageBlueInFocus }">
-    <CaseStudy v-if="caseStudy && caseStudy.id && caseStudy.published" :case-study="caseStudy" :case-studies="caseStudies" />
-    <div v-else-if="caseStudy && caseStudy.id" />
+    <CaseStudy v-if="caseStudies && caseStudies.id && caseStudies.published" :case-study="caseStudies" :case-studies="caseStudiesz" />
+    <div v-else-if="caseStudies && caseStudies.id" />
     <Loader v-else />
   </div>
 </template>
 
 <script>
+import gql from 'graphql-tag'
 import caseQuery from '~/apollo/queries/case/case.gql'
 import casesQuery from '~/apollo/queries/work/work.gql'
 export default {
@@ -17,14 +18,15 @@ export default {
   data () {
     return {
       caseStudy: {},
-      caseStudies: [],
+      caseStudies: {},
+      caseStudiesz: [],
       pageGreenInFocus: false,
       pageBlueInFocus: false
     }
   },
   mounted () {
     this.$apollo.query({ query: casesQuery }).then(({ data }) => {
-      this.caseStudies = [...data.work.casestudies]
+      this.caseStudiesz = [...data.work.casestudies]
     })
     window.addEventListener('scroll', () => {
       const bgBlue = document.querySelectorAll('.bg-blue')
@@ -42,9 +44,35 @@ export default {
     })
   },
   apollo: {
-    caseStudy: {
+    caseStudies: {
       prefetch: false,
       query: caseQuery,
+      variables () {
+        return {
+          url: this.$route.params.id
+        }
+      },
+      update (data) {
+        return (data.caseStudies && data.caseStudies[0]) || this.$nuxt.$router.push({ name: 'work' })
+      }
+    },
+    caseStudy: {
+      prefetch: true,
+      query: gql`
+        query Seo ($url: String!) {
+          caseStudies (where: { url: $url }) {
+            seo {
+              ... on ComponentContentSeo {
+                title
+                description
+                image {
+                  url
+                }
+              }
+            }
+          }
+        }
+      `,
       variables () {
         return {
           url: this.$route.params.id

@@ -23,7 +23,7 @@ export default {
   },
   apollo: {
     categories: {
-      prefetch: false,
+      prefetch: true,
       query: categoriesQuery
     },
     articles: {

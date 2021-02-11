@@ -1,12 +1,13 @@
 <template>
   <div class="page">
-    <Events v-if="event && event.id" :work="event" />
+    <Events v-if="eventData && eventData.id" :work="eventData" />
     <Loader v-else />
-    <GetInTouch v-if="event && event.id" footer-links />
+    <GetInTouch v-if="eventData && eventData.id" footer-links />
   </div>
 </template>
 
 <script>
+import gql from 'graphql-tag'
 import eventQuery from '~/apollo/queries/work/events.gql'
 export default {
   components: {
@@ -16,14 +17,38 @@ export default {
   },
   data () {
     return {
-      event: {}
+      event: {},
+      eventData: {}
     }
   },
   apollo: {
     event: {
       prefetch: false,
       query: eventQuery
+    },
+    event: {
+      prefetch: true,
+      query: gql`
+        query Seo {
+          event {
+            seo {
+              ... on ComponentContentSeo {
+                title
+                description
+                image {
+                  url
+                }
+              }
+            }
+          }
+        }
+      `
     }
+  },
+  created () {
+    this.$apollo.query({ query: eventQuery }).then(({ data }) => {
+      this.eventData = data.event
+    })
   },
   head () {
     return {

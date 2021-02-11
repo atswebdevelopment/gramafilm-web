@@ -1,12 +1,13 @@
 <template>
   <div class="page">
-    <Film v-if="film && film.id" :work="film" />
+    <Film v-if="filmData && filmData.id" :work="filmData" />
     <Loader v-else />
-    <GetInTouch v-if="film && film.id" footer-links />
+    <GetInTouch v-if="filmData && filmData.id" footer-links />
   </div>
 </template>
 
 <script>
+import gql from 'graphql-tag'
 import filmQuery from '~/apollo/queries/work/film.gql'
 export default {
   components: {
@@ -16,14 +17,38 @@ export default {
   },
   data () {
     return {
-      film: {}
+      film: {},
+      filmData: {}
     }
   },
   apollo: {
     film: {
       prefetch: false,
       query: filmQuery
+    },
+    film: {
+      prefetch: true,
+      query: gql`
+        query Seo {
+          film {
+            seo {
+              ... on ComponentContentSeo {
+                title
+                description
+                image {
+                  url
+                }
+              }
+            }
+          }
+        }
+      `
     }
+  },
+  created () {
+    this.$apollo.query({ query: filmQuery }).then(({ data }) => {
+      this.filmData = data.film
+    })
   },
   head () {
     return {

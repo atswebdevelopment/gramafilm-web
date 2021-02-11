@@ -1,6 +1,6 @@
 <template>
   <div class="page" :class="{ 'page--white': whiteBg }">
-    <Article v-if="article && article.id" :article="article" />
+    <Article v-if="articles && articles.id" :article="articles" />
     <Loader v-else />
     <div class="article-journal">
       <Journal v-if="recentArticles.length && categories.length" :articles="recentArticles" :categories="categories" disable-load-more />
@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import gql from 'graphql-tag'
 import categoriesQuery from '~/apollo/queries/article/categories.gql'
 import articlesQuery from '~/apollo/queries/article/articles.gql'
 import articleQuery from '~/apollo/queries/article/article.gql'
@@ -25,6 +26,7 @@ export default {
       categories: [],
       recentArticles: [],
       article: {},
+      articles: {},
       whiteBg: false
     }
   },
@@ -48,12 +50,38 @@ export default {
   },
   apollo: {
     categories: {
-      prefetch: false,
+      prefetch: true,
       query: categoriesQuery
     },
-    article: {
+    articles: {
       prefetch: false,
       query: articleQuery,
+      variables () {
+        return {
+          url: this.$route.params.id
+        }
+      },
+      update (data) {
+        return (data.articles && data.articles[0]) || this.$nuxt.$router.push({ name: 'journal' })
+      }
+    },
+    article: {
+      prefetch: true,
+      query: gql`
+        query Seo ($url: String!) {
+          articles (where: { url: $url }) {
+            seo {
+              ... on ComponentContentSeo {
+                title
+                description
+                image {
+                  url
+                }
+              }
+            }
+          }
+        }
+      `,
       variables () {
         return {
           url: this.$route.params.id

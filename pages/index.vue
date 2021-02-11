@@ -3,7 +3,7 @@
     <div class="window--front">
       <div class="page" :class="{ 'page--tertiary': partnersInFocus, 'page--blue': blueBg, 'page--grey': greyBg, 'page--white': whiteBg }">
         <div class="home-container">
-          <Home :home="home" />
+          <Home :home="homeData" />
         </div>
         <GetInTouch />
       </div>
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import gql from 'graphql-tag'
 import homeQuery from '~/apollo/queries/pages/home.gql'
 export default {
   components: {
@@ -24,6 +25,7 @@ export default {
   data () {
     return {
       home: {},
+      homeData: {},
       partnersInFocus: false,
       blueBg: false,
       greyBg: false,
@@ -32,8 +34,22 @@ export default {
   },
   apollo: {
     home: {
-      prefetch: false,
-      query: homeQuery
+      prefetch: true,
+      query: gql`
+        query Seo {
+          home {
+            seo {
+              ... on ComponentContentSeo {
+                title
+                description
+                image {
+                  url
+                }
+              }
+            }
+          }
+        }
+      `
     }
   },
   beforeRouteLeave (to, from, next) {
@@ -41,6 +57,9 @@ export default {
     next()
   },
   created () {
+    this.$apollo.query({ query: homeQuery }).then(({ data }) => {
+      this.homeData = data.home
+    })
     this.$store.commit('header/setDefaultColor', 'black')
   },
   mounted () {

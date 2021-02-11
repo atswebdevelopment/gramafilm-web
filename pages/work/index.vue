@@ -1,12 +1,13 @@
 <template>
   <div class="page">
-    <Work v-if="work && work.id" :work="work" />
+    <Work v-if="workData && workData.id" :work="workData" />
     <Loader v-else />
-    <GetInTouch v-if="work && work.id" footer-links />
+    <GetInTouch v-if="workData && workData.id" footer-links />
   </div>
 </template>
 
 <script>
+import gql from 'graphql-tag'
 import workQuery from '~/apollo/queries/work/work.gql'
 export default {
   components: {
@@ -16,14 +17,34 @@ export default {
   },
   data () {
     return {
-      work: {}
+      work: {},
+      workData: {}
     }
   },
   apollo: {
     work: {
-      prefetch: false,
-      query: workQuery
+      prefetch: true,
+      query: gql`
+        query Seo {
+          work {
+            seo {
+              ... on ComponentContentSeo {
+                title
+                description
+                image {
+                  url
+                }
+              }
+            }
+          }
+        }
+      `
     }
+  },
+  created () {
+    this.$apollo.query({ query: workQuery }).then(({ data }) => {
+      this.workData = data.work
+    })
   },
   head () {
     return {

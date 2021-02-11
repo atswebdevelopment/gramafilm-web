@@ -1,12 +1,13 @@
 <template>
   <div class="page">
-    <Contact v-if="contact && contact.id" :contact="contact" />
+    <Contact v-if="contactData && contactData.id" :contact="contactData" />
     <Loader v-else />
-    <FooterLinks v-if="contact && contact.id" inline />
+    <FooterLinks v-if="contactData && contactData.id" inline />
   </div>
 </template>
 
 <script>
+import gql from 'graphql-tag'
 import contactQuery from '~/apollo/queries/pages/contact.gql'
 export default {
   components: {
@@ -16,14 +17,34 @@ export default {
   },
   data () {
     return {
-      contact: {}
+      contact: {},
+      contactData: {}
     }
   },
   apollo: {
     contact: {
-      prefetch: false,
-      query: contactQuery
+      prefetch: true,
+      query: gql`
+        query Seo {
+          contact {
+            seo {
+              ... on ComponentContentSeo {
+                title
+                description
+                image {
+                  url
+                }
+              }
+            }
+          }
+        }
+      `
     }
+  },
+  created () {
+    this.$apollo.query({ query: contactQuery }).then(({ data }) => {
+      this.contactData = data.contact
+    })
   },
   head () {
     return {
