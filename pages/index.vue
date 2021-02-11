@@ -81,19 +81,6 @@ export default {
         })
       }
 
-      const whiteBgs = document.querySelectorAll('.article-journal .journal')
-      if (whiteBgs.length) {
-        whiteBgs.forEach((e, i) => {
-          const sectionTop = e.getBoundingClientRect().top
-          const sectionBound = sectionTop + e.offsetHeight
-          if ((sectionTop - (window.innerHeight / 2) < 0) && (sectionBound > (window.innerHeight / 2))) {
-            this.whiteBg = true
-          } else {
-            this.whiteBg = false
-          }
-        })
-      }
-
       const partners = document.querySelector('.partners')
       if (partners) {
         const partnersTop = partners.getBoundingClientRect().top
