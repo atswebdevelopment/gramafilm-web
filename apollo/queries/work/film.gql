@@ -7,15 +7,5 @@ query Film {
         content
       }
     }
-    seo {
-      ... on ComponentContentSeo {
-        title
-        description
-        image {
-          id
-          url
-        }
-      }
-    }
   }
 }

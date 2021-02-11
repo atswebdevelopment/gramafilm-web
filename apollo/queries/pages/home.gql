@@ -68,15 +68,5 @@ query Home {
         }
       }
     }
-    seo {
-      ... on ComponentContentSeo {
-        title
-        description
-        image {
-          id
-          url
-        }
-      }
-    }
   }
 }
