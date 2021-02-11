@@ -2,7 +2,7 @@ const getRoutes = require('./modules/routes.js').default;
 
 export default {
   mode: 'universal',
-  target: 'static',
+  target: 'server',
   publicRuntimeConfig: {
     baseUrl: 'http://localhost:3000',
     strapiBaseUri: process.env.NODE_ENV === 'production' ? 'https://admin.gramafilm.com' : 'http://localhost:1337',
