@@ -54,7 +54,7 @@ export default {
         { hid: 'og:title', name: 'og:title', content: (this.about && this.about.seo && this.about.seo.title) || 'About Gramafilm' },
         { hid: 'og:description', name: 'og:description', content: (this.about && this.about.seo && this.about.seo.description) || 'About Gramafilm' },
         { hid: 'og:url', name: 'og:url', content: `https://www.gramafilm.com${this.$route.path}` },
-        { hid: 'og:image', name: 'og:image', content: this.about && this.about.seo && this.about.seo.image && this.about.seo.image.url }
+        { hid: 'og:image', name: 'image', property: 'og:image', content: this.about && this.about.seo && this.about.seo.image && this.about.seo.image.url }
       ]
     }
   }

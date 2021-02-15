@@ -2,7 +2,7 @@
   "name": "gramafilm",
   "version": "1.0.0",
   "description": "Gramafilm",
-  "author": "Adam Southorn",
+  "author": "Gramafilm",
   "private": true,
   "scripts": {
     "dev": "nuxt && graphql-codegen",
