@@ -12,7 +12,7 @@
           title="Scroll down"
         >
       </div>
-      <video v-if="!introVideoLoaded" class="splash__video" loop muted playsinline>
+      <video v-if="!introVideoLoaded && introVideo" class="splash__video" loop muted playsinline>
         <source :src="introVideo" type="video/mp4">
       </video>
       <Video v-if="home && home.introvideo && introVideoLoaded" :video="home.introvideo" play fullscreen class="splash__introvideo" />
