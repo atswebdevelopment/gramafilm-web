@@ -22,6 +22,7 @@ module.exports = {
     'template-curly-spacing': 'off',
     'indent': ['error', 2, {
       'ignoredNodes': ['TemplateLiteral']
-    }]
+    }],
+    'vue/comment-directive': 'off'
   }
 }
