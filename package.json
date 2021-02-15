@@ -44,6 +44,8 @@
     "vue-video-player": "^5.0.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.16",
+    "@babel/eslint-parser": "^7.12.16",
     "@babel/runtime-corejs3": "^7.10.2",
     "@graphql-codegen/cli": "^1.15.4",
     "@graphql-codegen/fragment-matcher": "^1.15.4",
@@ -53,9 +55,9 @@
     "@nuxtjs/google-analytics": "^2.3.0",
     "@nuxtjs/pwa": "^3.0.0-beta.20",
     "@vue/test-utils": "^1.0.0-beta.27",
-    "babel-eslint": "^10.0.1",
+    "babel-eslint": "^10.1.0",
     "babel-jest": "^24.1.0",
-    "eslint": "^6.1.0",
+    "eslint": "^7.20.0",
     "eslint-plugin-nuxt": ">=0.4.2",
     "jest": "^24.1.0",
     "vue-jest": "^4.0.0-0"
