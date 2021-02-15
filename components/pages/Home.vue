@@ -9,7 +9,7 @@
     <ContentArea v-if="home" overflow>
       <h2>Latest projects</h2>
       <WorkPortfolio home />
-      <img no-lazy-load class="logo-circle fade fadeIn" src="/logo-circle.svg" alt="">
+      <img class="logo-circle fade fadeIn" src="/logo-circle.svg" alt="">
     </ContentArea>
     <ContentArea v-if="home" overflow>
       <h2>Studio news</h2>

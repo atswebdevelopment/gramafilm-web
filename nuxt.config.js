@@ -64,7 +64,6 @@ export default {
     '@nuxtjs/apollo',
     '@nuxtjs/axios', 
     '@nuxtjs/markdownit',
-    'nuxt-lazy-load',
     '@nuxtjs/sitemap',
     '@nuxtjs/markdownit',
     ['nuxt-gmaps', {

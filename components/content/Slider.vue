@@ -17,7 +17,6 @@
             <div class="swiper__media link">
               <img
                 v-if="item.image"
-                data-not-lazy
                 :src="setResponsive(item.image.url, 767)"
                 :alt="item.image.alternativeText || ''"
                 :data-url="item.url"
@@ -39,7 +38,6 @@
             <div class="swiper__media link">
               <img
                 v-if="item.thumbnail && item.thumbnail.url && !item.thumbnail.mime.includes('video')"
-                data-not-lazy
                 :src="setResponsive(item.thumbnail.url, 767)"
                 :alt="item.thumbnail.alternativeText || ''"
                 :data-url="item.url"
@@ -47,7 +45,6 @@
               >
               <img
                 v-else-if="item.thumbnailimage && item.thumbnailimage.url"
-                data-not-lazy
                 :src="setResponsive(item.thumbnailimage.url, 767)"
                 :alt="item.thumbnailimage.alternativeText || ''"
                 :data-url="item.url"
