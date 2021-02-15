@@ -20,6 +20,7 @@ jobs:
       run: yarn generate
       env:
         SCHEMA_PATH: ${{ secrets.SCHEMA_PATH_PROD }}
+        NODE_TLS_REJECT_UNAUTHORIZED: 0
     - name: Deploy to S3
       uses: jakejarvis/s3-sync-action@master
       with:
