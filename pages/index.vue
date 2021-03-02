@@ -1,19 +1,20 @@
 <template>
   <div class="window">
     <div class="window--front">
-      <div class="page" :class="{ 'page--tertiary': partnersInFocus, 'page--blue': blueBg, 'page--grey': greyBg }">
+      <div class="page" :class="{ 'page--tertiary': partnersInFocus, 'page--blue': blueBg, 'page--grey': greyBg, 'page--white': whiteBg }">
         <div class="home-container">
-          <Home :home="home" />
+          <Home :home="homeData" />
         </div>
         <GetInTouch />
       </div>
     </div>
     <MainMenu class="mainMenu mainMenu--hide" fixed />
-    <img class="hidden" data-not-lazy src="/videoplayer/play-on.svg" alt="">
+    <img class="hidden" src="/videoplayer/play-on.svg" alt="">
   </div>
 </template>
 
 <script>
+import gql from 'graphql-tag'
 import homeQuery from '~/apollo/queries/pages/home.gql'
 export default {
   components: {
@@ -24,15 +25,31 @@ export default {
   data () {
     return {
       home: {},
+      homeData: {},
       partnersInFocus: false,
       blueBg: false,
-      greyBg: false
+      greyBg: false,
+      whiteBg: false
     }
   },
   apollo: {
     home: {
-      prefetch: false,
-      query: homeQuery
+      prefetch: true,
+      query: gql`
+        query Seo {
+          home {
+            seo {
+              ... on ComponentContentSeo {
+                title
+                description
+                image {
+                  url
+                }
+              }
+            }
+          }
+        }
+      `
     }
   },
   beforeRouteLeave (to, from, next) {
@@ -40,6 +57,9 @@ export default {
     next()
   },
   created () {
+    this.$apollo.query({ query: homeQuery }).then(({ data }) => {
+      this.homeData = data.home
+    })
     this.$store.commit('header/setDefaultColor', 'black')
   },
   mounted () {
@@ -95,7 +115,7 @@ export default {
         { hid: 'og:title', name: 'og:title', content: (this.home && this.home.seo && this.home.seo.title) || 'Gramafilm London - Branded Content Video Production Company' },
         { hid: 'og:description', name: 'og:description', content: (this.home && this.home.seo && this.home.seo.description) || 'Gramafilm produce some of the world&#39;s most shared branded content, films, technology and experiences for global brands and broadcasters.' },
         { hid: 'og:url', name: 'og:url', content: `https://www.gramafilm.com${this.$route.path}` },
-        { hid: 'og:image', name: 'og:image', content: this.home && this.home.seo && this.home.seo.image && this.home.seo.image.url }
+        { hid: 'og:image', name: 'image', property: 'og:image', content: this.home && this.home.seo && this.home.seo.image && this.home.seo.image.url }
       ]
     }
   }
@@ -115,6 +135,9 @@ export default {
 
   &--grey
     background #333
+
+  &--white
+    background $white
 
   &--tertiary
     background $tertiary

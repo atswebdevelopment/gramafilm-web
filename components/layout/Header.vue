@@ -9,9 +9,10 @@
             </nuxt-link>
           </div>
           <div class="header__util">
-            <nuxt-link v-if="!menu" class="header__link" :class="{ 'header__link--black': headerColor === 'black' }" :to="{ name: 'contact'}">
+            <nuxt-link v-if="!menu && !logout" class="header__link" :class="{ 'header__link--black': headerColor === 'black' }" :to="{ name: 'contact'}">
               Contact
             </nuxt-link>
+            <span v-else-if="logout" class="header__link" :class="{ 'header__link--black': headerColor === 'black' }" @click="goLogout()">Logout</span>
             <div class="menu" :class="{ 'menu--open': menu, 'menu--black': headerColor === 'black' }" @click="toggleMenu" />
           </div>
         </div>
@@ -34,7 +35,8 @@ export default {
       scrolled: false,
       logoOnScroll: false,
       loaded: false,
-      hideOnHome: true
+      hideOnHome: true,
+      logout: false
     }
   },
   computed: {
@@ -48,12 +50,24 @@ export default {
   watch: {
     $route () {
       this.ready()
+      this.checkLoginStatus()
     }
   },
   mounted () {
     this.ready()
+    this.logout = !!this.$apolloHelpers.getToken()
   },
   methods: {
+    checkLoginStatus () {
+      this.logout = !!this.$apolloHelpers.getToken()
+    },
+    goLogout () {
+      this.$apolloHelpers.onLogout()
+      this.logout = false
+      localStorage.removeItem('m')
+      this.$nuxt.$router.push('/')
+      this.closeMenu()
+    },
     ready () {
       let oldScrollVal = window.scrollY
       const header = document.querySelector('.header')
@@ -171,6 +185,7 @@ export default {
     transition 0.4s color $ease
     margin-top -5px
     font-size 18px
+    cursor pointer
 
     @media (max-width $bp-sm)
       letter-spacing 0

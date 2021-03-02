@@ -15,13 +15,20 @@
         <nuxt-link
           v-for="(item, index) in menu.navigation"
           :key="index"
-          :to="item.route"
+          :to="((logout && item.route === '/login') ? '/clientarea' : item.route)"
           class="navigation__link"
           :class="{ 'navigation__link--home': item.route === '/', 'navigation__link--page': item.route !== '/' }"
           @click.native="closeMenu(index)"
         >
-          {{ item.title }}
+          {{ ((logout && item.route === '/login') ? "Client Area" : item.title) }}
         </nuxt-link>
+        <span
+          v-if="logout"
+          class="navigation__link navigation__link--page"
+          @click="goLogout()"
+        >
+          Logout
+        </span>
       </div>
       <FooterLinks :inverted="footerLinksInverted" @close-menu="closeMenu()" />
     </ContentArea>
@@ -52,7 +59,8 @@ export default {
   data () {
     return {
       activeIndex: null,
-      footerLinksInverted: null
+      footerLinksInverted: null,
+      logout: false
     }
   },
   computed: {
@@ -75,13 +83,31 @@ export default {
           this.$store.commit('header/setColor', this.$store.state.header.defaultColor)
         }
       }
+    },
+    $route () {
+      this.checkLoginStatus()
     }
   },
   mounted () {
     this.ready()
+    this.checkLoginStatus()
     this.footerLinksInverted = this.inverted
   },
   methods: {
+    checkLoginStatus () {
+      this.logout = !!this.$apolloHelpers.getToken()
+    },
+    goLogout () {
+      this.$apolloHelpers.onLogout()
+      this.logout = false
+      localStorage.removeItem('m')
+      this.closeMenu(0)
+      this.$store.commit('auth/setUser', {
+        user: null,
+        token: null
+      })
+      this.$nuxt.$router.push('/')
+    },
     setState (i, navigation) {
       // This whole section is quick and hacky, need refactoring through vue data
       navigation.querySelectorAll('.navigation__link').forEach((e, i) => {
@@ -195,6 +221,7 @@ export default {
     z-index 1
     margin 0 18px
     transition color 0.4s $ease
+    cursor pointer
 
     @media (max-width $bp-xxs)
       margin 0 6px

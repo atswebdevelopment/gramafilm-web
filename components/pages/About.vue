@@ -13,7 +13,7 @@
       </video>
       <Video v-else-if="about.image2 && about.image2.qvideo" class="image-1" :video="about.image2.qvideo" />
       <h3>About us</h3>
-      <p class="large">
+      <p class="large fade fadeIn">
         {{ about.introduction }}
       </p>
       <div class="about__inner">
@@ -168,6 +168,12 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+>>> .contentSwitcher__tabs
+  padding-left calc(88px + 4.1667%)
+
+  @media (max-width $bp-md)
+    padding-left 0
+
 .about
   position relative
   z-index 1

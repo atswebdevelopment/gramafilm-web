@@ -5,7 +5,7 @@ module.exports = {
     node: true
   },
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: '@babel/eslint-parser'
   },
   extends: [
     '@nuxtjs',
@@ -17,10 +17,12 @@ module.exports = {
     'no-new': 'off',
     'nuxt/no-globals-in-created': 'off',
     'vue/no-v-html': 'off',
+    'no-dupe-keys': 'off',
     'vue/singleline-html-element-content-newline': 'off',
     'template-curly-spacing': 'off',
     'indent': ['error', 2, {
       'ignoredNodes': ['TemplateLiteral']
-    }]
+    }],
+    'vue/comment-directive': 'off'
   }
 }

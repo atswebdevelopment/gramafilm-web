@@ -17,7 +17,7 @@
       </div>
       <div class="footerLinks__copy">
         <p>
-          &copy; 2009-{{ currentYear }}
+          &copy; 2008-{{ currentYear }}
           <nuxt-link class="footerLinks__link" :to="{ name: 'privacy' }" @click.native="closeMenu">Privacy Policy</nuxt-link>
           <nuxt-link class="footerLinks__link" :to="{ name: 'cookies' }" @click.native="closeMenu">Cookie Policy</nuxt-link>
         </p>
@@ -86,11 +86,12 @@ export default {
 .totop
   position absolute
   right 20px
-  bottom 70px
+  bottom 30px
   cursor pointer
   opacity 0
   transform translateY(-100%)
   transition all 1s $ease
+  padding-bottom 40px
 
   @media (max-width $bp-xs)
     right 0px
@@ -98,6 +99,9 @@ export default {
   &--active
     transform translateY(0%)
     opacity 1
+
+  &:hover
+    transform translateY(-20px)
 
 .footerLinks
   position absolute

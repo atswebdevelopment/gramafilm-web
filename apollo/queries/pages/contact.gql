@@ -7,15 +7,5 @@ query Contact {
     telephone
     email
     coordinates
-    seo {
-      ... on ComponentContentSeo {
-        title
-        description
-        image {
-          id
-          url
-        }
-      }
-    }
   }
 }

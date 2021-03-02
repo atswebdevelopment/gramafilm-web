@@ -9,21 +9,15 @@
 
 <script>
 export default {
-  middleware ({ store, redirect }) {
-    if (store.state.auth.user.token) {
-      return redirect('/clientarea')
-    }
-  },
   components: {
     ContentArea: () => import('~/components/layout/ContentArea'),
     Login: () => import('~/components/content/Login'),
     FooterLinks: () => import('~/components/content/FooterLinks')
   },
-  mounted () {
-    this.$store.commit('header/setDefaultColor', 'white')
-    setTimeout(() => {
-      this.$store.commit('header/setDefaultColor', 'white')
-    }, 200)
+  middleware ({ store, redirect }) {
+    if (store.state.auth.user.token) {
+      return redirect('/clientarea')
+    }
   },
   head () {
     return {
@@ -35,6 +29,12 @@ export default {
         { hid: 'og:url', name: 'og:url', content: `https://www.gramafilm.com${this.$route.path}` }
       ]
     }
+  },
+  mounted () {
+    this.$store.commit('header/setDefaultColor', 'white')
+    setTimeout(() => {
+      this.$store.commit('header/setDefaultColor', 'white')
+    }, 200)
   }
 }
 </script>

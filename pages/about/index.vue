@@ -1,12 +1,13 @@
 <template>
   <div class="page">
-    <About v-if="about && about.id" :about="about" />
+    <About v-if="aboutData && aboutData.id" :about="aboutData" />
     <Loader v-else />
-    <GetInTouch v-if="about && about.id" footer-links />
+    <GetInTouch v-if="aboutData && aboutData.id" footer-links />
   </div>
 </template>
 
 <script>
+import gql from 'graphql-tag'
 import aboutQuery from '~/apollo/queries/pages/about.gql'
 export default {
   components: {
@@ -16,14 +17,34 @@ export default {
   },
   data () {
     return {
-      about: {}
+      about: {},
+      aboutData: {}
     }
   },
   apollo: {
     about: {
-      prefetch: false,
-      query: aboutQuery
+      prefetch: true,
+      query: gql`
+        query Seo {
+          about {
+            seo {
+              ... on ComponentContentSeo {
+                title
+                description
+                image {
+                  url
+                }
+              }
+            }
+          }
+        }
+      `
     }
+  },
+  created () {
+    this.$apollo.query({ query: aboutQuery }).then(({ data }) => {
+      this.aboutData = data.about
+    })
   },
   head () {
     return {
@@ -33,7 +54,7 @@ export default {
         { hid: 'og:title', name: 'og:title', content: (this.about && this.about.seo && this.about.seo.title) || 'About Gramafilm' },
         { hid: 'og:description', name: 'og:description', content: (this.about && this.about.seo && this.about.seo.description) || 'About Gramafilm' },
         { hid: 'og:url', name: 'og:url', content: `https://www.gramafilm.com${this.$route.path}` },
-        { hid: 'og:image', name: 'og:image', content: this.about && this.about.seo && this.about.seo.image && this.about.seo.image.url }
+        { hid: 'og:image', name: 'image', property: 'og:image', content: this.about && this.about.seo && this.about.seo.image && this.about.seo.image.url }
       ]
     }
   }

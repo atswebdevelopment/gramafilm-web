@@ -6,7 +6,7 @@
           <div
             v-for="(caseStudy, index) in workModulesMain"
             :key="index"
-            class="work__module"
+            class="work__module fade fadeIn"
             @click="$nuxt.$router.push({ name: 'work-id', params: { id: caseStudy.url } })"
           >
             <div class="work__media" :class="`work__media--${caseStudy.thumbnailPosition}`">
@@ -26,7 +26,7 @@
           <div
             v-for="(caseStudy, index) in workModules.filter((m, i) => i % 2 === 1)"
             :key="index"
-            class="work__module"
+            class="work__module fade fadeIn"
             @click="$nuxt.$router.push({ name: 'work-id', params: { id: caseStudy.url } })"
           >
             <div class="work__media" :class="`work__media--${caseStudy.thumbnailPosition}`">
@@ -185,7 +185,6 @@ export default {
 
   &__media
     max-width 80%
-    cursor pointer
 
     @media (max-width: $bp-sm)
       max-width 100%
@@ -198,13 +197,17 @@ export default {
 
   &__image
     max-width 100%
-    max-height 430px
+    max-height 530px
+    cursor pointer
 
   &__text
     margin-top 20px
+    cursor pointer
+    display inline-block
 
     @media (max-width: $bp-sm)
       margin-top 10px
+      display block
 
     span
       text-transform capitalize

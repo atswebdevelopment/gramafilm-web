@@ -12,7 +12,7 @@
           title="Scroll down"
         >
       </div>
-      <video v-if="!introVideoLoaded" class="splash__video" loop muted playsinline>
+      <video v-if="!introVideoLoaded && introVideo" class="splash__video" loop muted playsinline>
         <source :src="introVideo" type="video/mp4">
       </video>
       <Video v-if="home && home.introvideo && introVideoLoaded" :video="home.introvideo" play fullscreen class="splash__introvideo" />
@@ -331,8 +331,14 @@ export default {
 .link-blue:after,
 .link-green:after,
 .link-orange:after
-  bottom 0
+  bottom -4px
   border-bottom 2px solid $blue
+
+  @media (max-width $bp-md)
+    bottom 10px
+
+  @media (max-width $bp-sm)
+    bottom 6px
 
 .link-green:after
   border-color $green

@@ -7,15 +7,5 @@ query Events {
         content
       }
     }
-    seo {
-      ... on ComponentContentSeo {
-        title
-        description
-        image {
-          id
-          url
-        }
-      }
-    }
   }
 }

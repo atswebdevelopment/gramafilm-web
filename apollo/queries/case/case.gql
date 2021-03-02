@@ -236,15 +236,5 @@ query CaseStudies ($url: String!) {
       }
     }
     published
-    seo {
-      ... on ComponentContentSeo {
-        title
-        description
-        image {
-          id
-          url
-        }
-      }
-    }
   }
 }
