@@ -102,6 +102,10 @@ export default {
       this.logout = false
       localStorage.removeItem('m')
       this.closeMenu(0)
+      this.$store.commit('auth/setUser', {
+        user: null,
+        token: null
+      })
       this.$nuxt.$router.push('/')
     },
     setState (i, navigation) {
@@ -217,6 +221,7 @@ export default {
     z-index 1
     margin 0 18px
     transition color 0.4s $ease
+    cursor pointer
 
     @media (max-width $bp-xxs)
       margin 0 6px

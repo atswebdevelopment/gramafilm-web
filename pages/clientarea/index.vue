@@ -14,6 +14,12 @@
 import gql from 'graphql-tag'
 import userQuery from '~/apollo/queries/users/user.gql'
 export default {
+  components: {
+    ContentArea: () => import('~/components/layout/ContentArea'),
+    PrivateVideos: () => import('~/components/content/PrivateVideos'),
+    Slider: () => import('~/components/content/Slider'),
+    FooterLinks: () => import('~/components/content/FooterLinks')
+  },
   async middleware ({ app, redirect }) {
     const hasToken = !!app.$apolloHelpers.getToken()
     if (!hasToken) {
@@ -29,12 +35,6 @@ export default {
       `
     })
     app.data.me = me.id
-  },
-  components: {
-    ContentArea: () => import('~/components/layout/ContentArea'),
-    PrivateVideos: () => import('~/components/content/PrivateVideos'),
-    Slider: () => import('~/components/content/Slider'),
-    FooterLinks: () => import('~/components/content/FooterLinks')
   },
   data () {
     return {
