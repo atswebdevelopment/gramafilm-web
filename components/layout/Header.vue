@@ -5,7 +5,7 @@
         <div class="header__inner">
           <div class="header__logo" :class="{ 'header__logo--hidden': hideOnHome }">
             <nuxt-link to="/" title="Back to Home" @click.native="homeClick">
-              <Logo :color="headerColor" />
+              <Logo :class="{ 'logo--black': headerColor === 'black' }" :color="headerColor === 'black'" />
             </nuxt-link>
           </div>
           <div class="header__util">
