@@ -62,6 +62,7 @@ export default {
       this.logout = !!this.$apolloHelpers.getToken()
     },
     goLogout () {
+      this.$store.commit('auth/setUser', {})
       this.$apolloHelpers.onLogout()
       this.logout = false
       localStorage.removeItem('m')

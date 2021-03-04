@@ -15,7 +15,7 @@ export default {
     FooterLinks: () => import('~/components/content/FooterLinks')
   },
   middleware ({ store, redirect }) {
-    if (store.state.auth.user.token) {
+    if (store && store.state && store.state.auth.user && store.state.auth.user.token) {
       return redirect('/clientarea')
     }
   },

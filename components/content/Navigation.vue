@@ -98,14 +98,11 @@ export default {
       this.logout = !!this.$apolloHelpers.getToken()
     },
     goLogout () {
+      this.$store.commit('auth/setUser', {})
       this.$apolloHelpers.onLogout()
       this.logout = false
       localStorage.removeItem('m')
       this.closeMenu(0)
-      this.$store.commit('auth/setUser', {
-        user: null,
-        token: null
-      })
       this.$nuxt.$router.push('/')
     },
     setState (i, navigation) {
