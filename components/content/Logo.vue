@@ -1,7 +1,7 @@
 <template>
   <svg
     class="logo"
-    :class="{ 'logo--black': color}"
+    :class="{ 'logo--black': color === 'black'}"
     width="595"
     height="147"
     viewBox="0 0 595 147"
@@ -104,8 +104,8 @@ export default {
   name: 'Logo',
   props: {
     color: {
-      type: Boolean,
-      default: false
+      type: String,
+      default: 'white'
     }
   }
 }
