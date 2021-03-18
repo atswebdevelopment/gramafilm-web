@@ -67,7 +67,7 @@ export default {
     '@nuxtjs/sitemap',
     '@nuxtjs/markdownit',
     ['nuxt-gmaps', {
-      key: 'AIzaSyCFdgq-MJ_zopqLhWQlhfw7USoHRe0hrBc'
+      key: 'AIzaSyC_KdL-Al-xYRn-HI_SZ94RY3pPpY1Urho'
     }],
     ['@nuxtjs/component-cache', {
       max: 10000,

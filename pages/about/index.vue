@@ -42,7 +42,7 @@ export default {
     }
   },
   created () {
-    this.$apollo.query({ query: aboutQuery }).then(({ data }) => {
+    this.$apollo.query({ query: aboutQuery, prefetch: false }).then(({ data }) => {
       this.aboutData = data.about
     })
   },
