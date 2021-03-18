@@ -42,7 +42,7 @@ export default {
     }
   },
   created () {
-    this.$apollo.query({ query: careerQuery }).then(({ data }) => {
+    this.$apollo.query({ query: careerQuery, prefetch: false }).then(({ data }) => {
       this.careerData = data.career
     })
   },
