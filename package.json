@@ -35,7 +35,7 @@
     "request-promise": "^4.2.5",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
-    "swiper": "^5.4.5",
+    "swiper": "^6.5.1",
     "uikit": "^3.5.4",
     "video.js": "^7.8.4",
     "vue-awesome-swiper": "^4.1.1",
