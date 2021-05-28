@@ -158,6 +158,7 @@ export default {
   padding 56.25% 0 0 0
   position relative
   box-sizing border-box
+  margin-bottom: 1em;
 
   @media (max-width $bp-sm)
     height auto !important

@@ -412,6 +412,11 @@ export default {
   .column
     padding 5vh 58px
 
+    >>> p:first-of-type,
+    >>> h2:first-of-type,
+    >>> h3:first-of-type
+      margin-top 0
+
     @media (max-width $bp-sm)
       padding 3vh 0
 </style>
