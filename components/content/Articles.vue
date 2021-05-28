@@ -28,7 +28,6 @@ export default {
 <style lang="stylus" scoped>
 .articles
   margin 7vh 0 0
-  text-align center
 
   @media (max-width $bp-sm)
     margin 0
@@ -53,5 +52,6 @@ export default {
 
     img
       width 100%
-      max-height none
+      max-height 500px
+      object-fit cover
 </style>
