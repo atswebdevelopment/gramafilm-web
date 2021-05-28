@@ -37,16 +37,16 @@
           <template v-else-if="item.title">
             <div class="swiper__media link">
               <img
-                v-if="item.thumbnail && item.thumbnail.url && !item.thumbnail.mime.includes('video')"
-                :src="setResponsive(item.thumbnail.url, 767)"
-                :alt="item.thumbnail.alternativeText || ''"
+                v-if="item.thumbnailimage && item.thumbnailimage.url"
+                :src="setResponsive(item.thumbnailimage.url, 767)"
+                :alt="item.thumbnailimage.alternativeText || ''"
                 :data-url="item.url"
                 data-type="work-id"
               >
               <img
-                v-else-if="item.thumbnailimage && item.thumbnailimage.url"
-                :src="setResponsive(item.thumbnailimage.url, 767)"
-                :alt="item.thumbnailimage.alternativeText || ''"
+                v-else-if="item.thumbnail && item.thumbnail.url && !item.thumbnail.mime.includes('video')"
+                :src="setResponsive(item.thumbnail.url, 767)"
+                :alt="item.thumbnail.alternativeText || ''"
                 :data-url="item.url"
                 data-type="work-id"
               >
