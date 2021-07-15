@@ -41,11 +41,6 @@ export default {
       `
     }
   },
-  created () {
-    this.$apollo.query({ query: workQuery }).then(({ data }) => {
-      this.workData = data.work
-    })
-  },
   head () {
     return {
       title: (this.work && this.work.seo && this.work.seo.title) || 'Gramafilm > Our Work > All',
@@ -57,6 +52,11 @@ export default {
         { hid: 'og:image', name: 'image', property: 'og:image', content: this.work && this.work.seo && this.work.seo.image && this.work.seo.image.url }
       ]
     }
+  },
+  created () {
+    this.$apollo.query({ query: workQuery }).then(({ data }) => {
+      this.workData = data.work
+    })
   }
 }
 </script>

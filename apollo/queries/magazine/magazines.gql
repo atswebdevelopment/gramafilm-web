@@ -1,0 +1,16 @@
+query Magazines ($start: Int) {
+  magazines (limit: 10, start: $start, sort: "published_at:DESC", where: { published: true }) {
+    id
+    url
+    title
+    content
+    introduction
+    inverttext
+    image {
+      url
+      alternativeText
+      caption
+    }
+    published_at
+  }
+}

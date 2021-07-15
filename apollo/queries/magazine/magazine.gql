@@ -1,0 +1,87 @@
+query Magazines ($url: String!) {
+  magazines (where: { url: $url }) {
+    id
+    url
+    title
+    toptitle
+    content
+    image {
+      id
+      url
+      alternativeText
+      caption
+    }
+    published_at
+    inverttext
+    textposition
+    introduction
+    relatedmagazines {
+      id
+      url
+      title
+      image {
+        id
+        url
+        mime
+        alternativeText
+      }
+      introduction
+    }
+    modules {
+      ... on ComponentMagazines1 {
+        id
+        content
+        backgroundcolour
+        image {
+          url
+          alternativeText
+          caption
+          mime
+        }
+      }
+      ... on ComponentMagazinesImageLeft {
+        id
+        content
+        backgroundcolour2: backgroundcolour
+        image {
+          url
+          alternativeText
+          caption
+          mime
+        }
+      }
+      ... on ComponentMagazinesImageRight {
+        id
+        content
+        backgroundcolour3: backgroundcolour
+        image {
+          url
+          alternativeText
+          caption
+          mime
+        }
+      }
+      ... on ComponentMagazinesImageCenter {
+        id
+        content
+        backgroundcolour4: backgroundcolour
+        image {
+          url
+          alternativeText
+          caption
+          mime
+        }
+      }
+      ... on ComponentMagazinesImageList {
+        id
+        backgroundcolour5: backgroundcolour
+        images {
+          url
+          alternativeText
+          caption
+          mime
+        }
+      }
+    }
+  }
+}

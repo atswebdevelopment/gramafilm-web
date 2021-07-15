@@ -22,6 +22,10 @@ export default {
     GetInTouch: () => import('~/components/content/GetInTouch'),
     MainMenu: () => import('~/components/pages/MainMenu')
   },
+  beforeRouteLeave (to, from, next) {
+    this.$store.commit('header/hideLogo', false)
+    next()
+  },
   data () {
     return {
       home: {},
@@ -52,9 +56,17 @@ export default {
       `
     }
   },
-  beforeRouteLeave (to, from, next) {
-    this.$store.commit('header/hideLogo', false)
-    next()
+  head () {
+    return {
+      title: (this.home && this.home.seo && this.home.seo.title) || 'Gramafilm London - Branded Content Video Production Company',
+      meta: [
+        { hid: 'description', name: 'description', content: (this.home && this.home.seo && this.home.seo.description) || 'Gramafilm produce some of the world&#39;s most shared branded content, films, technology and experiences for global brands and broadcasters.' },
+        { hid: 'og:title', name: 'og:title', content: (this.home && this.home.seo && this.home.seo.title) || 'Gramafilm London - Branded Content Video Production Company' },
+        { hid: 'og:description', name: 'og:description', content: (this.home && this.home.seo && this.home.seo.description) || 'Gramafilm produce some of the world&#39;s most shared branded content, films, technology and experiences for global brands and broadcasters.' },
+        { hid: 'og:url', name: 'og:url', content: `https://www.gramafilm.com${this.$route.path}` },
+        { hid: 'og:image', name: 'image', property: 'og:image', content: this.home && this.home.seo && this.home.seo.image && this.home.seo.image.url }
+      ]
+    }
   },
   created () {
     this.$apollo.query({ query: homeQuery }).then(({ data }) => {
@@ -106,18 +118,6 @@ export default {
         this.partnersInFocus = partnersTop - (window.innerHeight / 2) < 0
       }
     })
-  },
-  head () {
-    return {
-      title: (this.home && this.home.seo && this.home.seo.title) || 'Gramafilm London - Branded Content Video Production Company',
-      meta: [
-        { hid: 'description', name: 'description', content: (this.home && this.home.seo && this.home.seo.description) || 'Gramafilm produce some of the world&#39;s most shared branded content, films, technology and experiences for global brands and broadcasters.' },
-        { hid: 'og:title', name: 'og:title', content: (this.home && this.home.seo && this.home.seo.title) || 'Gramafilm London - Branded Content Video Production Company' },
-        { hid: 'og:description', name: 'og:description', content: (this.home && this.home.seo && this.home.seo.description) || 'Gramafilm produce some of the world&#39;s most shared branded content, films, technology and experiences for global brands and broadcasters.' },
-        { hid: 'og:url', name: 'og:url', content: `https://www.gramafilm.com${this.$route.path}` },
-        { hid: 'og:image', name: 'image', property: 'og:image', content: this.home && this.home.seo && this.home.seo.image && this.home.seo.image.url }
-      ]
-    }
   }
 }
 </script>

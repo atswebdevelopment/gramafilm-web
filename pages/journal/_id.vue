@@ -30,6 +30,18 @@ export default {
       whiteBg: false
     }
   },
+  head () {
+    return {
+      title: (this.article && ((this.article.seo && this.article.seo.title) || this.article.title)) || 'Gramafilm',
+      meta: [
+        { hid: 'description', name: 'description', content: (this.article && this.article.seo && this.article.seo.description) || 'Gramafilm produce branded content and films for broadcasters and brands. We&#39;re an independent production company based in London, UK.' },
+        { hid: 'og:title', name: 'og:title', content: (this.article && this.article.seo && this.article.seo.title) || 'Gramafilm' },
+        { hid: 'og:description', name: 'og:description', content: (this.article && this.article.seo && this.article.seo.description) || 'Gramafilm produce branded content and films for broadcasters and brands. We&#39;re an independent production company based in London, UK.' },
+        { hid: 'og:url', name: 'og:url', content: `https://www.gramafilm.com${this.$route.path}` },
+        { hid: 'og:image', name: 'image', property: 'og:image', content: this.article && this.article.seo && this.article.seo.image && this.article.seo.image.url }
+      ]
+    }
+  },
   mounted () {
     this.$apollo.query({ query: articlesQuery }).then(({ data }) => {
       this.recentArticles = [...data.articles]
@@ -90,18 +102,6 @@ export default {
       update (data) {
         return (data.articles && data.articles[0]) || this.$nuxt.$router.push({ name: 'journal' })
       }
-    }
-  },
-  head () {
-    return {
-      title: (this.article && ((this.article.seo && this.article.seo.title) || this.article.title)) || 'Gramafilm',
-      meta: [
-        { hid: 'description', name: 'description', content: (this.article && this.article.seo && this.article.seo.description) || 'Gramafilm produce branded content and films for broadcasters and brands. We&#39;re an independent production company based in London, UK.' },
-        { hid: 'og:title', name: 'og:title', content: (this.article && this.article.seo && this.article.seo.title) || 'Gramafilm' },
-        { hid: 'og:description', name: 'og:description', content: (this.article && this.article.seo && this.article.seo.description) || 'Gramafilm produce branded content and films for broadcasters and brands. We&#39;re an independent production company based in London, UK.' },
-        { hid: 'og:url', name: 'og:url', content: `https://www.gramafilm.com${this.$route.path}` },
-        { hid: 'og:image', name: 'image', property: 'og:image', content: this.article && this.article.seo && this.article.seo.image && this.article.seo.image.url }
-      ]
     }
   }
 }

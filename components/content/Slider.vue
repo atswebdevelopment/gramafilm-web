@@ -1,65 +1,58 @@
 <template>
   <div>
     <client-only>
-      <swiper
-        v-if="items.length"
-        ref="carousel"
-        class="swiper"
-        :options="swiperOptions"
-        @click="sliderClicked"
-      >
-        <swiper-slide
+      <splide v-if="items.length" ref="carousel" class="swiper" :options="options">
+        <splide-slide
           v-for="(item, index) in items"
           :key="`${index}`"
           v-bind-data-index="index"
         >
+          <a class="link" :href="sliderHref(item)" />
           <template v-if="item.image">
-            <div class="swiper__media link">
+            <div class="swiper__media">
               <img
                 v-if="item.image"
                 :src="setResponsive(item.image.url, 767)"
                 :alt="item.image.alternativeText || ''"
-                :data-url="item.url"
-                data-type="journal-id"
               >
             </div>
-            <div class="swiper__text link">
+            <div v-if="item.introduction" class="swiper__text">
+              <span
+                class="title"
+                :data-url="item.url"
+                data-type="magazine-id"
+              >{{ item.title }}</span>
+              <span>{{ item.introduction }}</span>
+            </div>
+            <div v-else class="swiper__text">
               <span
                 v-if="item.category"
                 :class="getClass(item.category.name)"
-                :data-url="item.url"
-                data-type="journal-id"
               >
                 {{ item.category.name }}
               </span> {{ item.title }}
             </div>
           </template>
           <template v-else-if="item.title">
-            <div class="swiper__media link">
+            <div class="swiper__media">
               <img
                 v-if="item.thumbnailimage && item.thumbnailimage.url"
                 :src="setResponsive(item.thumbnailimage.url, 767)"
                 :alt="item.thumbnailimage.alternativeText || ''"
-                :data-url="item.url"
-                data-type="work-id"
               >
               <img
                 v-else-if="item.thumbnail && item.thumbnail.url && !item.thumbnail.mime.includes('video')"
                 :src="setResponsive(item.thumbnail.url, 767)"
                 :alt="item.thumbnail.alternativeText || ''"
-                :data-url="item.url"
-                data-type="work-id"
               >
             </div>
             <div
               v-if="item.title"
-              class="swiper__text link"
+              class="swiper__text"
             >
               <span
                 v-if="item.type"
                 :class="getClass(item.type)"
-                :data-url="item.url"
-                data-type="work-id"
               >
                 {{ capitalize(item.type) }}
               </span> {{ item.title }}
@@ -73,15 +66,8 @@
               {{ item.caption }}
             </div>
           </template>
-        </swiper-slide>
-        <swiper-slide v-if="seeMore">
-          <div class="work__link">
-            <nuxt-link class="arrowLink" :to="{ name: 'work' }">
-              See more
-            </nuxt-link>
-          </div>
-        </swiper-slide>
-      </swiper>
+        </splide-slide>
+      </splide>
     </client-only>
   </div>
 </template>
@@ -103,6 +89,17 @@ export default {
   },
   data () {
     return {
+      options: {
+        type: 'loop',
+        gap: '2rem',
+        autoWidth: true,
+        autoplay: true,
+        interval: 3000,
+        pauseOnHover: true,
+        pauseOnFocus: true,
+        pagination: false,
+        arrows: false
+      },
       setResponsive,
       swiperOptions: {
         slidesPerView: 'auto',
@@ -134,10 +131,9 @@ export default {
     capitalize (text) {
       return text.charAt(0).toUpperCase() + text.slice(1)
     },
-    sliderClicked (e) {
-      const type = e.target.getAttribute('data-type')
-      const url = e.target.getAttribute('data-url')
-      this.$router.push({ name: type, params: { id: url } })
+    sliderHref (e) {
+      const type = e.introduction ? 'magazine' : e.category ? 'journal' : 'work'
+      return '/' + type + '/' + e.url
     }
   }
 }
@@ -154,9 +150,12 @@ export default {
   @media (max-width $bp-sm)
     padding 0 0 20px
 
-.swiper-container
-  padding 0 18px 80px
+.splide
+  padding 0 0 80px
   overflow visible
+
+  >>> .splide__track
+    overflow visible
 
 .swiper
   cursor grab
@@ -174,11 +173,20 @@ export default {
     min-width 200px
 
   &__text
-    position absolute
-    bottom -55px
-    left 0
-    height 58px
+    max-width 432px
 
 .link
   cursor pointer
+  position absolute
+  top 0
+  left 0
+  width 100%
+  height 100%
+
+.title
+  font-family $fontFamilySteiner
+  font-size 30px
+  line-height 38px
+  display block
+  margin-bottom 20px
 </style>

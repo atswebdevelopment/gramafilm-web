@@ -41,8 +41,9 @@ export default {
   ],
   plugins: [
     { src: '~plugins/vue-awesome-swiper', mode: 'client' },
-    { src: `~plugins/vimeo-player`, mode: 'client' },
-    { src: `~plugins/vue-countup`, mode: 'client' }
+    { src: '~plugins/vimeo-player', mode: 'client' },
+    { src: '~plugins/splide.client.js', mode: 'client' },
+    { src: '~plugins/vue-countup', mode: 'client' }
   ],
   /*
   ** Nuxt.js dev-modules
