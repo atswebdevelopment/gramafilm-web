@@ -43,6 +43,7 @@ query Magazines ($url: String!) {
         id
         content
         backgroundcolour2: backgroundcolour
+        textcolour
         image {
           url
           alternativeText
@@ -54,6 +55,7 @@ query Magazines ($url: String!) {
         id
         content
         backgroundcolour3: backgroundcolour
+        textcolour2: textcolour
         image {
           url
           alternativeText
@@ -65,6 +67,7 @@ query Magazines ($url: String!) {
         id
         content
         backgroundcolour4: backgroundcolour
+        textcolour3: textcolour
         image {
           url
           alternativeText

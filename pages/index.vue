@@ -1,7 +1,7 @@
 <template>
   <div class="window">
     <div class="window--front">
-      <div class="page" :class="{ 'page--tertiary': partnersInFocus, 'page--blue': blueBg, 'page--grey': greyBg, 'page--white': whiteBg }">
+      <div class="page" :class="{ 'page--tertiary': partnersInFocus, 'page--orange': formatInFocus, 'page--blue': blueBg, 'page--grey': greyBg, 'page--white': whiteBg }">
         <div class="home-container">
           <Home :home="homeData" />
         </div>
@@ -31,8 +31,10 @@ export default {
       home: {},
       homeData: {},
       partnersInFocus: false,
+      formatInFocus: false,
       blueBg: false,
       greyBg: false,
+      orangeBg: false,
       whiteBg: false
     }
   },
@@ -112,6 +114,12 @@ export default {
         })
       }
 
+      const format = document.querySelector('.format')
+      if (format) {
+        const formatTop = format.getBoundingClientRect().top
+        this.formatInFocus = formatTop - (window.innerHeight / 2) < 0
+      }
+
       const partners = document.querySelector('.partners')
       if (partners) {
         const partnersTop = partners.getBoundingClientRect().top
@@ -138,6 +146,9 @@ export default {
 
   &--white
     background $white
+
+  &--orange
+    background #E1D8D4
 
   &--tertiary
     background $tertiary

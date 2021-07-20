@@ -284,10 +284,13 @@ button
 
 .fade
   opacity 1
-  transition 1s opacity $ease
+  transition 1s opacity $ease 0.2s, 1s transform $ease 0.2s
+  transform translateX(0px)
+
 
 .fadeIn
   opacity 0 !important
+  transform translateY(50px)
 
 video::-webkit-media-controls-panel
   display none!important

@@ -33,7 +33,7 @@
                     <img v-if="section.image && !section.image.mime.includes('video')" :src="setResponsive(section.image.url)" :alt="section.image.alternativeText">
                     <span class="caption">{{ section.image.caption }}</span>
                   </div>
-                  <div v-if="section.content && section.content != '<p><br></p>'" class="casestudy__media-content" v-html="section.content.replaceAll('<p><br></p>','')" />
+                  <div v-if="section.content && section.content != '<p><br></p>'" class="casestudy__media-content" :data-color="section.textcolour || section.textcolour2 || section.textcolour3" v-html="section.content.replaceAll('<p><br></p>','')" />
                   <!-- <video v-else-if="section.image && section.image.mime.includes('video')" class="looped" loop muted>
                     <source :src="section.image.url" type="video/mp4">
                   </video>
@@ -48,7 +48,7 @@
                     <img v-if="section.image && !section.image.mime.includes('video')" :src="setResponsive(section.image.url)" :alt="section.image.alternativeText">
                     <span class="caption">{{ section.image.caption }}</span>
                   </div>
-                  <div v-if="section.content && section.content != '<p><br></p>'" class="casestudy__media-content" v-html="section.content.replaceAll('<p><br></p>','')" />
+                  <div v-if="section.content && section.content != '<p><br></p>'" class="casestudy__media-content" :data-color="section.textcolour || section.textcolour2 || section.textcolour3" v-html="section.content.replaceAll('<p><br></p>','')" />
                   <!-- <video v-else-if="section.image && section.image.mime.includes('video')" class="looped" loop muted>
                     <source :src="section.image.url" type="video/mp4">
                   </video>
@@ -63,7 +63,7 @@
                     <img v-if="section.image && !section.image.mime.includes('video')" :src="setResponsive(section.image.url)" :alt="section.image.alternativeText">
                     <span class="caption">{{ section.image.caption }}</span>
                   </div>
-                  <div v-if="section.content && section.content != '<p><br></p>'" class="casestudy__media-content" v-html="section.content.replaceAll('<p><br></p>','')" />
+                  <div v-if="section.content && section.content != '<p><br></p>'" class="casestudy__media-content" :data-color="section.textcolour || section.textcolour2 || section.textcolour3" v-html="section.content.replaceAll('<p><br></p>','')" />
                   <!-- <video v-else-if="section.image && section.image.mime.includes('video')" class="looped" loop muted>
                     <source :src="section.image.url" type="video/mp4">
                   </video>
@@ -86,8 +86,8 @@
       </div>
     </ContentArea>
     <ContentArea>
-      <h2>Magazine</h2>
-      <Slider v-if="article.relatedmagazines" :items="getItems()" />
+      <h2>Explore <span>Magazine</span></h2>
+      <Slider v-if="article.relatedmagazines && relatedMagazines" :items="relatedMagazines" />
     </ContentArea>
     <GetInTouch footer-links />
   </div>
@@ -122,14 +122,29 @@ export default {
     article: {
       type: Object,
       default: () => {}
+    },
+    articles: {
+      type: Array,
+      default: () => []
     }
   },
   data () {
     return {
-      setResponsive
+      setResponsive,
+      relatedMagazines: null
+    }
+  },
+  watch: {
+    articles () {
+      const relatedIds = this.article.relatedmagazines.map(m => m.id)
+      this.relatedMagazines = [...this.article.relatedmagazines, ...this.articles.filter(m => m.id !== this.article.id && !relatedIds.includes(m.id))].splice(0, 5)
     }
   },
   mounted () {
+    if (this.articles) {
+      const relatedIds = this.article.relatedmagazines.map(m => m.id)
+      this.relatedMagazines = [...this.article.relatedmagazines, ...this.articles.filter(m => m.id !== this.article.id && !relatedIds.includes(m.id))].splice(0, 5)
+    }
     if (this.article.modules && this.article.modules.length) {
       this.$store.commit('header/setDefaultColor', this.article.inverttext ? 'black' : 'white')
       setTimeout(() => {
@@ -154,22 +169,17 @@ export default {
         })
       }
     })
-  },
-  methods: {
-    getItems () {
-      let items = this.article.relatedmagazines
-      if (items.length < 8) {
-        const m = this.article.relatedmagazines.concat(this.article.relatedmagazines)
-        const test = this.article.relatedmagazines.concat(this.article.relatedmagazines)
-        items = m.concat(test)
-      }
-      return items
-    }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
+h2 span
+  font-family $fontFamilyGTAlpinaItalic
+  font-weight 600
+  font-size 52px
+  line-height 60px
+
 .article
   padding-top 10vh
   background #eeede9
@@ -221,6 +231,10 @@ export default {
     line-height 54px
     font-family $fontFamilyGTAlpina
 
+    @media (max-width $bp-sm)
+      font-size 36px
+      line-height 44px
+
 .toptitle
   position absolute
   top 4vh
@@ -229,8 +243,11 @@ export default {
   transform translate(-50%)
   font-size 50px
   line-height 58px
-  font-family $fontFamilyGTAlpina
+  font-family $fontFamilyGTAlpinaItalic
   color $white
+
+  @media (max-width $bp-sm)
+    display none
 
 .case__banner h1
   font-size 124px
@@ -329,6 +346,10 @@ export default {
     max-width 657px
     margin 0 auto 120px
 
+    >>> h3
+      font-size 24px
+      line-height 32px
+
     >>> *:first-child
       margin-top 0
 
@@ -344,6 +365,44 @@ export default {
       font-family $fontFamilySteiner
       font-size 85px
       line-height 90px
+
+      @media (max-width $bp-sm)
+        position static
+        transform none
+        margin-top 20px
+        width auto
+        font-size 45px
+        line-height 52px
+
+      &[data-color=pale_yellow]
+        color #EEEDE9
+
+      &[data-color=pale_red]
+        color #E8DEDD
+
+      &[data-color=pale_green]
+        color #E0E1D4
+
+      &[data-color=pale_blue]
+        color #DBE3E6
+
+      &[data-color=pale_pink]
+        color #EBE0E9
+
+      &[data-color=orange]
+        color #EFB08D
+
+      &[data-color=green]
+        color #BAC294
+
+      &[data-color=blue]
+        color #9EBBB6
+
+      &[data-color=dark_blue]
+        color #768393
+
+      &[data-color=dark_yellow]
+        color #88877E
 
     &--left
       max-width 880px
@@ -369,22 +428,46 @@ export default {
       max-width 1440px
       margin 0
 
+      @media (max-width $bp-sm)
+        display block
+
       .casestudy__image
         width calc(33.33% - 112px)
         padding 0 56px
+
+        @media (max-width $bp-sm)
+          padding-left 45px
+          padding-right 45px
+          width 100%
+          box-sizing border-box
+          margin-bottom 64px
 
     &--center
       max-width 50%
       margin 0
 
+      @media (max-width $bp-sm)
+        max-width 100%
+
       img
         margin-left auto
+
+        @media (max-width $bp-sm)
+          padding-left 25px
+          padding-right 25px
+          width 100%
+          box-sizing border-box
 
       .casestudy__media-content
         left calc(50% - 94px)
         font-size 48px
         line-height 54px
         font-family $fontFamilyGTAlpina
+
+        @media (max-width $bp-sm)
+          margin-top -86px
+          font-size 36px
+          line-height 44px
 
   &__item
     width 100%

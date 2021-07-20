@@ -41,11 +41,6 @@ export default {
       `
     }
   },
-  created () {
-    this.$apollo.query({ query: aboutQuery, prefetch: false }).then(({ data }) => {
-      this.aboutData = data.about
-    })
-  },
   head () {
     return {
       title: (this.about && this.about.seo && this.about.seo.title) || 'About Gramafilm',
@@ -57,6 +52,11 @@ export default {
         { hid: 'og:image', name: 'image', property: 'og:image', content: this.about && this.about.seo && this.about.seo.image && this.about.seo.image.url }
       ]
     }
+  },
+  created () {
+    this.$apollo.query({ query: aboutQuery, prefetch: false }).then(({ data }) => {
+      this.aboutData = data.about
+    })
   }
 }
 </script>

@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import fadeIn from '~/helpers/fadeIn'
 export default {
   name: 'Articles',
   props: {
@@ -25,6 +26,9 @@ export default {
       type: Array,
       default: () => []
     }
+  },
+  created () {
+    fadeIn()
   }
 }
 </script>

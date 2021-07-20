@@ -91,7 +91,7 @@ export default {
     return {
       options: {
         type: 'loop',
-        gap: '2rem',
+        gap: window && window.innerWidth < 767 ? '1rem' : '2rem',
         autoWidth: true,
         autoplay: true,
         interval: 3000,
@@ -157,15 +157,12 @@ export default {
   >>> .splide__track
     overflow visible
 
+  &__slide
+    @media (max-width $bp-sm)
+      max-width 80vw
+
 .swiper
   cursor grab
-
-  &-slide
-    width auto
-    margin-right 56px
-
-    @media (max-width $bp-sm)
-      max-width 80%
 
   &__media
     margin-bottom 16px

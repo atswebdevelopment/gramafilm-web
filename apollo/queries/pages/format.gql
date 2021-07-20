@@ -1,0 +1,205 @@
+query Format {
+  format {
+    id
+    url
+    title
+    inverttext
+    textposition
+    banner {
+      id
+      url
+      mime
+    }
+    thumbnail {
+      id
+      url
+      mime
+      alternativeText
+    }
+    thumbnailPosition
+    media {
+      ... on ComponentContentMedia {
+        id
+        image {
+          id
+          url
+          alternativeText
+          mime
+        }
+        qvideo {
+          id
+          title
+          src
+          preview {
+            id
+            url
+            mime
+          }
+        }
+      }
+    }
+    introduction
+    content
+    modules {
+      ... on ComponentModulesVideo {
+        id
+        content
+        image {
+          id
+          url
+          alternativeText
+          caption
+          mime
+        }
+        qvideo {
+          id
+          title
+          src
+          preview {
+            id
+            url
+            mime
+          }
+        }
+        fullscreen
+        backgroundcolour
+      }
+      ... on ComponentModules1X1Textleft {
+        id
+        mainimage {
+          id
+          url
+          alternativeText
+          caption
+          mime
+        }
+        mainvideo {
+          id
+          title
+          src
+          preview {
+            id
+            url
+            mime
+          }
+        }
+        image {
+          url
+          alternativeText
+          caption
+          mime
+        }
+        qvideo {
+          id
+          title
+          src
+          preview {
+            id
+            url
+            mime
+          }
+        }
+        content
+        contentposition
+        backgroundcolour2
+      }
+      ... on ComponentModules1X1Textright {
+        id
+        mainimage {
+          id
+          url
+          alternativeText
+          caption
+          mime
+        }
+        mainvideo {
+          id
+          title
+          src
+          preview {
+            id
+            url
+            mime
+          }
+        }
+        image {
+          id
+          url
+          alternativeText
+          caption
+          mime
+        }
+        qvideo {
+          id
+          title
+          src
+          preview {
+            id
+            url
+            mime
+          }
+        }
+        content
+        contentposition2
+        backgroundcolour3
+      }
+      ... on ComponentModules1X1 {
+        id
+        column1content
+        column1image {
+          id
+          url
+          alternativeText
+          caption
+          mime
+        }
+        column1video {
+          id
+          title
+          src
+          preview {
+            id
+            url
+            mime
+          }
+        }
+        column2content
+        column2image {
+          id
+          url
+          alternativeText
+          caption
+          mime
+        }
+        column2video {
+          id
+          title
+          src
+          preview {
+            id
+            url
+            mime
+          }
+        }
+        backgroundcolour4
+      }
+      ... on ComponentModulesQuote {
+        id
+        quote
+        citation
+        backgroundcolour5
+      }
+      ... on ComponentModulesGallery {
+        id
+        title
+        images {
+          id
+          url
+          alternativeText
+          caption
+        }
+        backgroundcolour6
+      }
+    }
+  }
+}

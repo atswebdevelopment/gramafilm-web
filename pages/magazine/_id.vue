@@ -1,10 +1,7 @@
 <template>
   <div class="page" :class="`page--${background}`">
-    <Magazine v-if="magazines && magazines.id" :article="magazines" />
+    <Magazine v-if="magazines && magazines.id" :article="magazines" :articles="magazinesZ" />
     <Loader v-else />
-    <!-- <div class="article-journal">
-      <Journal v-if="recentArticles.length" :articles="recentArticles" :categories="categories" disable-load-more />
-    </div> -->
     <GetInTouch v-if="categories.length" footer-links />
   </div>
 </template>
@@ -23,9 +20,9 @@ export default {
   data () {
     return {
       categories: [],
-      recentArticles: [],
       magazine: {},
       magazines: {},
+      magazinesZ: {},
       whiteBg: false,
       background: ''
     }
@@ -44,7 +41,7 @@ export default {
   },
   mounted () {
     this.$apollo.query({ query: magazinesQuery }).then(({ data }) => {
-      this.recentArticles = [...data.magazines]
+      this.magazinesZ = [...data.magazines]
     })
 
     const journal = document.querySelector('.article-journal')

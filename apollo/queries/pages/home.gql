@@ -45,6 +45,17 @@ query Home {
         }
       }
     }
+    format
+    formatimage1 {
+      id
+      url
+      alternativeText
+    }
+    formatimage2 {
+      id
+      url
+      alternativeText
+    }
     partners {
       ... on ComponentContentselectorContentSelector {
         id
