@@ -20,8 +20,8 @@
           <img v-if="article.image" :src="article.image.url" :alt="article.image.alternativeText">
           <div class="articles__content">
             <h2>{{ article.title }}</h2>
-            <div v-if="article.introduction && index % 5 !== 0" v-html="article.introduction" />
-            <div v-else-if="article.content && index % 5 !== 0" v-html="article.content" />
+            <div v-if="article.introduction" v-html="article.introduction" />
+            <div v-else-if="article.content" v-html="article.content" />
           </div>
         </div>
       </div>
